@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import FoodTruckList from "./components/api-testing";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,6 +27,9 @@ function App() {
       <p className="read-the-docs">
         {/* Coming Soon with a copyright symbol */}
         <h3>© InfinitePixel {currentYear}</h3>
+
+        <p>Testing</p>
+        <FoodTruckList />
       </p>
     </>
   );
