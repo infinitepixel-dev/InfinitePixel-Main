@@ -4,24 +4,19 @@ const CustomCursor = () => {
   const cursorRef = useRef(null);
 
   useEffect(() => {
-    document.addEventListener("mousemove", animateCursor);
+    const colors = ["#7bc950", "#2d2b75", "#e92f5e", "#fbcf7f", "#fca723"];
 
-    function animateCursor(e) {
-      //Array for each color pixel
-      const colors = ["#7bc950", "#2d2b75", "#e92f5e", "#fbcf7f", "#fca723"];
-
-      const { clientX: x, clientY: y } = e;
+    const animateCursor = (e) => {
+      const { clientX: x, clientY: y } = e.touches ? e.touches[0] : e;
       const cursor = cursorRef.current;
 
       cursor.style.left = `${x}px`;
       cursor.style.top = `${y}px`;
 
-      // Create a pixel and append to cursor
       const pixel = document.createElement("div");
       pixel.style.width = "2px";
       pixel.style.height = "2px";
 
-      // Generates a random color from the colors array
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
       pixel.style.background = randomColor;
 
@@ -32,8 +27,7 @@ const CustomCursor = () => {
       pixel.style.top = `${y}px`;
       document.body.appendChild(pixel);
 
-      // Animate the pixel outwards and fade it out
-      const angle = Math.random() * (2 * Math.PI); // Random angle in radians
+      const angle = Math.random() * (2 * Math.PI);
       const distance = 20;
       pixel.animate(
         [
@@ -52,14 +46,17 @@ const CustomCursor = () => {
         }
       );
 
-      // Remove the pixel after animation
       setTimeout(() => {
         pixel.remove();
       }, 1000);
-    }
+    };
+
+    document.addEventListener("mousemove", animateCursor);
+    document.addEventListener("touchmove", animateCursor);
 
     return () => {
       document.removeEventListener("mousemove", animateCursor);
+      document.removeEventListener("touchmove", animateCursor);
     };
   }, []);
 
