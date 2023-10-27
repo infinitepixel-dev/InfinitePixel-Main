@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import FoodTruckList from "./components/api-testing";
+// import FoodTruckList from "./components/api-testing";
 import logo from "./assets/logotest.png";
 import CustomCursor from "./components/effects/customcursor";
 import Figure8 from "./components/effects/figure8";
