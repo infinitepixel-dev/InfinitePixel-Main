@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import FoodTruckList from "./components/api-testing";
 import logo from "./assets/logotest.png";
+import CustomCursor from "./components/effects/customcursor";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <>
+      <CustomCursor />
       <div className="App">
         <img src={logo} alt="" />
 

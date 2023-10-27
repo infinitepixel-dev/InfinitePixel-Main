@@ -40,3 +40,19 @@
 .read-the-docs {
   color: #888;
 }
+
+body {
+  cursor: none;
+}
+
+/* Custom Mouse Animation */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
