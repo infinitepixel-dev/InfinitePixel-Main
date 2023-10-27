@@ -41,10 +41,18 @@
   color: #888;
 }
 
+/* Disable mouse pointer for buttons and interactive elements */
 body {
   cursor: none;
   overflow: hidden;
   touch-action: manipulation;
+}
+
+/* Define the cursor style for specific elements where you want the pointer disabled */
+button,
+a,
+.interactive-element {
+  cursor: none !important; /* Add !important to ensure the override */
 }
 
 /* Custom Mouse Animation */
