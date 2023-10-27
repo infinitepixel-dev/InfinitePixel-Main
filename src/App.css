@@ -66,3 +66,31 @@ a,
   transform: translate(-50%, -50%);
   z-index: 9999;
 }
+
+.figure-eight-container {
+  /* center the canvas to the page */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  #root {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  .figure-eight-container {
+    width: 100%;
+    /* zoom: 0.5; */
+  }
+}
+
+/* cneter .App */
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
