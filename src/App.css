@@ -44,6 +44,7 @@
 body {
   cursor: none;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 /* Custom Mouse Animation */
