@@ -3,6 +3,7 @@ import "./App.css";
 import FoodTruckList from "./components/api-testing";
 import logo from "./assets/logotest.png";
 import CustomCursor from "./components/effects/customcursor";
+import Figure8 from "./components/effects/figure8";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,28 +15,23 @@ function App() {
 
   return (
     <>
+      <Figure8 />
+
       <CustomCursor />
       <div className="App">
         <img src={logo} alt="" />
-
         <h1>InfinitePixel!</h1>
-      </div>
 
-      <div className="card">
-        <button onClick={() => setCount((count) => count + random)}>
-          Pixel Counter {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        {/* Coming Soon with a copyright symbol */}
+        <div className="card">
+          <button onClick={() => setCount((count) => count + random)}>
+            Pixel Counter {count}
+          </button>
+        </div>
+
         <h3>© InfinitePixel {currentYear}</h3>
 
-        <p>Testing</p>
         <FoodTruckList />
-      </p>
+      </div>
     </>
   );
 }
