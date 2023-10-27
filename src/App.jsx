@@ -30,7 +30,7 @@ function App() {
 
         <h3>© InfinitePixel {currentYear}</h3>
 
-        <FoodTruckList />
+        {/* <FoodTruckList /> */}
       </div>
     </>
   );
