@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       {/* Pretend Component A is a Feature The client hasn't paid for, but we natively implemented */}
-      <DynamicComponentLoader componentName="ComponentA" prop1="value1" />
+      {/* <DynamicComponentLoader componentName="ComponentA" prop1="value1" /> */}
       {/* Noticed that even though a component above is missing, the application functions as intended */}
 
       {/* Client paid for this feature 'Figure8' and it displays accordingly */}
