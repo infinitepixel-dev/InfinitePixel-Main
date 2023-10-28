@@ -1,30 +1,21 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-// import * as AllComponents from "./componentsIndex";
+import availableComponents from "./availableComponents.json"; // Adjust the path to your JSON file
 
 const FallbackComponent = () => {
-  return <div>Component not found</div>;
+  return null; //Returns nothing
 };
 
 const DynamicComponentLoader = ({ componentName, ...props }) => {
   const [Component, setComponent] = useState(null);
 
   useEffect(() => {
-    console.log("Switch:", componentName);
-    let importPromise;
+    // Use the JSON to get the path for the component
+    const componentPath = availableComponents[componentName];
 
-    switch (componentName) {
-      case "Customcursor":
-        importPromise = import("./components/effects/customcursor.jsx");
-        break;
-      case "Figure8":
-        importPromise = import("./components/effects/figure8.jsx");
-        break;
-      // ... other components
-    }
-
-    if (importPromise) {
-      importPromise
+    if (componentPath) {
+      // Construct the import dynamically to prevent Vite from analyzing it at build time
+      import(`${componentPath}`)
         .then((module) => {
           setComponent(() => module.default);
         })
