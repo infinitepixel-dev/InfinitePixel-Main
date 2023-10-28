@@ -1,32 +1,15 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-// import availableComponents from "./availableComponents.json"; // Adjust the path to your JSON
-import * as availableComponents from "./componentsIndex";
-
-const FallbackComponent = () => {
-  return <div>Component not found</div>;
-  //   return null; // Return nothing
-};
+import { getComponent } from "./componentsIndex";
 
 const DynamicComponentLoader = ({ componentName, ...props }) => {
   const [Component, setComponent] = useState(null);
 
   useEffect(() => {
-    // Use the JSON to get the path for the component
-    const componentPath = availableComponents[componentName];
-
-    if (componentPath) {
-      // Construct the import dynamically to prevent Vite from analyzing it at build time
-      import(`${componentPath}`)
-        .then((module) => {
-          setComponent(() => module.default);
-        })
-        .catch(() => {
-          setComponent(() => FallbackComponent);
-        });
-    } else {
-      setComponent(() => FallbackComponent);
-    }
+    (async () => {
+      const ImportedComponent = await getComponent(componentName);
+      setComponent(() => ImportedComponent);
+    })();
   }, [componentName]);
 
   if (!Component) {
