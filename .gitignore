@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 #custom files
-availableComponents.json
+src/availableComponents.json
