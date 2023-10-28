@@ -1,0 +1,5 @@
+{
+  "ApiTesting": "./components/api-testing",
+  "Customcursor": "./components/effects/customcursor",
+  "Figure8": "./components/effects/figure8"
+}
