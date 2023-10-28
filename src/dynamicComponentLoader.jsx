@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import availableComponents from "./availableComponents.json"; // Adjust the path to your JSON file
+// import availableComponents from "./availableComponents.json"; // Adjust the path to your JSON
+import * as availableComponents from "./componentsIndex";
 
 const FallbackComponent = () => {
-  return null; //Returns nothing
+  return <div>Component not found</div>;
+  //   return null; // Return nothing
 };
 
 const DynamicComponentLoader = ({ componentName, ...props }) => {
