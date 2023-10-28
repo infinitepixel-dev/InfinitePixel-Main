@@ -10,14 +10,15 @@ const DynamicComponentLoader = ({ componentName, ...props }) => {
   const [Component, setComponent] = useState(null);
 
   useEffect(() => {
+    console.log("Switch:", componentName);
     let importPromise;
 
     switch (componentName) {
       case "Customcursor":
-        importPromise = import("./components/effects/customcursor");
+        importPromise = import("./components/effects/customcursor.jsx");
         break;
       case "Figure8":
-        importPromise = import("./components/effects/figure8");
+        importPromise = import("./components/effects/figure8.jsx");
         break;
       // ... other components
     }
