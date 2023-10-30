@@ -38,10 +38,10 @@ export const getComponent = async (componentName) => {
   try {
     switch (componentName) {
       case "Customcursor":
-        module = await import("./components/effects/Customcursor.jsx");
+        module = await import("./components/effects/customcursor.jsx");
         break;
       case "Figure8":
-        module = await import("./components/effects/Figure8.jsx");
+        module = await import("./components/effects/figure8.jsx");
         break;
       // ... add more cases for other components
       default:
