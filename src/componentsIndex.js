@@ -1,32 +1,56 @@
-// // componentsIndex.js
+/*
+In order for a component to be used, the physical data must be present.
+Regardless all components will be listed here, and mapped out accordingly.
 
-// // export { default as ApiTesting } from "./components/api-testing";
-// export { default as Customcursor } from "./components/effects/customcursor";
+The dynamicComponentLoader will handle the mapping of the components.
+If a component is not found, it will simply not be rendered.
+*/
 
-// export { default as Figure8 } from "./components/effects/figure8";
-// // ... any other components you might have
+//REVIEW v1
+//Defines the list of all components.
+// const componentPaths = {
+//   Customcursor: true,
+//   Figure8: true,
+//   // ... other components
+// };
 
-// componentsIndex.js
+// export const getComponent = async (componentName) => {
+//   if (!componentPaths[componentName]) {
+//     console.warn(`Path not found for component: ${componentName}`);
+//     return null;
+//   }
 
-const componentPaths = {
-  Customcursor: "./components/effects/customcursor",
-  Figure8: "./components/effects/figure8",
-  // ... other components
-};
+//   try {
+//     // Use a static part in the import path
+//     const module = await import(`./components/effects/${componentName}.jsx`);
+//     return module.default;
+//   } catch (error) {
+//     console.warn(`Component not found: ${componentName}`, error);
+//     return null;
+//   }
+// };
+
+//REVIEW V2
 
 export const getComponent = async (componentName) => {
-  const componentPath = componentPaths[componentName];
-
-  if (!componentPath) {
-    console.warn(`Path not found for component: ${componentName}`);
-    return null;
-  }
+  let module;
 
   try {
-    const module = await import(componentPath);
+    switch (componentName) {
+      case "Customcursor":
+        module = await import("./components/effects/Customcursor.jsx");
+        break;
+      case "Figure8":
+        module = await import("./components/effects/Figure8.jsx");
+        break;
+      // ... add more cases for other components
+      default:
+        console.warn(`Path not found for component: ${componentName}`);
+        return null;
+    }
+
     return module.default;
   } catch (error) {
-    // console.clear();
     console.warn(`Component not found: ${componentName}`, error);
     return null;
   }
