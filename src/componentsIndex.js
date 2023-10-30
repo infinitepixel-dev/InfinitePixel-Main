@@ -30,7 +30,7 @@ If a component is not found, it will simply not be rendered.
 //   }
 // };
 
-//REVIEW V2
+//REVIEW V2 Version 2 of the import loader
 
 export const getComponent = async (componentName) => {
   let module;
