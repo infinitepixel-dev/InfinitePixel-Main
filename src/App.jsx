@@ -24,6 +24,8 @@ function App() {
 
       <DynamicComponentLoader componentName="Customcursor" />
 
+      <DynamicComponentLoader componentName="ComponentB" prop1="value1" />
+
       <div className="App">
         <img src={logo} alt="" />
         <h1>InfinitePixel!</h1>
