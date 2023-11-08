@@ -44,7 +44,7 @@
 /* Disable mouse pointer for buttons and interactive elements */
 body {
   cursor: none;
-  overflow: hidden;
+  /* overflow: hidden; */
   touch-action: manipulation;
 }
 
@@ -86,7 +86,7 @@ a,
   }
 }
 
-/* cneter .App */
+/* center .App */
 .App {
   display: flex;
   justify-content: center;

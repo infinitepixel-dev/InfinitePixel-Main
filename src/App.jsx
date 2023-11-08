@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 // import FoodTruckList from "./components/api-testing";
-import logo from "./assets/logotest.png";
+import logo from "./assets/logo_rev2.svg";
 
 import DynamicComponentLoader from "./dynamicComponentLoader";
 
@@ -15,27 +15,32 @@ function App() {
 
   return (
     <>
+      <img src={logo} alt="" />
+      {/* I want my navbar here maybe??? */}
+      <DynamicComponentLoader componentName="NavigationBar" />
       {/* Pretend Component A is a Feature The client hasn't paid for, but we natively implemented */}
       {/* <DynamicComponentLoader componentName="ComponentA" prop1="value1" /> */}
       {/* Noticed that even though a component above is missing, the application functions as intended */}
 
       {/* Client paid for this feature 'Figure8' and it displays accordingly */}
-      <DynamicComponentLoader componentName="Figure8" />
+      {/* <DynamicComponentLoader componentName="Figure8" /> */}
 
       <DynamicComponentLoader componentName="Customcursor" />
 
-      <DynamicComponentLoader componentName="ComponentB" prop1="value1" />
-
       <div className="App">
-        <img src={logo} alt="" />
         <h1>InfinitePixel!</h1>
+
+        <DynamicComponentLoader
+          componentName="Bestcomponent ever!!!!!"
+          prop1="blahblahblah"
+        />
 
         <div className="card">
           <button onClick={() => setCount((count) => count + random)}>
             Pixel Counter {count}
           </button>
         </div>
-
+        <DynamicComponentLoader componentName="ComponentB" prop1="value1" />
         <h3>© InfinitePixel {currentYear}</h3>
 
         {/* <FoodTruckList /> */}
