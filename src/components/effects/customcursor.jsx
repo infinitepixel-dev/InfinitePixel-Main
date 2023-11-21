@@ -7,8 +7,15 @@ const CustomCursor = () => {
     const colors = ["#7bc950", "#2d2b75", "#e92f5e", "#fbcf7f", "#fca723"];
 
     const animateCursor = (e) => {
-      const { clientX: x, clientY: y } = e.touches ? e.touches[0] : e;
+      const { clientX, clientY } = e.touches ? e.touches[0] : e;
+
       const cursor = cursorRef.current;
+
+      // Adding scroll offset to cursor for better accuracy
+      const x = clientX + window.scrollX;
+      const y = clientY + window.scrollY;
+
+      console.log("Position:", x, y);
 
       cursor.style.left = `${x}px`;
       cursor.style.top = `${y}px`;
