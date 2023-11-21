@@ -15,8 +15,8 @@ export const getComponent = async (componentName) => {
         module = await import("./components/effects/navigation.jsx");
         break;
       case "SplashPage":
-        module = await import("./components/SplashPage.jsx");
-        break;  
+        module = await import("./components/pages/SplashPage.jsx");
+        break;
       // ... add more cases for other components
       default:
         console.warn(`Path not found for component: ${componentName}`);
@@ -25,7 +25,7 @@ export const getComponent = async (componentName) => {
 
     return module.default;
   } catch (error) {
-    console.warn(`Component not found: ${componentName}`, error);
+    // console.warn(`Component not found: ${componentName}`, error);
     return null;
   }
 };
