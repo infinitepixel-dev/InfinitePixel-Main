@@ -1,12 +1,10 @@
-// import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-
+import "./components/pages/SplashPage.css";
+import SplashPage from "./components/pages/SplashPage.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
     {/* <React.StrictMode> */}
-    <App />
+    <SplashPage />
     {/* </React.StrictMode> */}
   </>
 );

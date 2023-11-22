@@ -1,29 +1,21 @@
-import { useEffect } from "react";
-import "./SplashPage.css"; // Import any custom CSS if needed
+import { Row, Col } from 'react-bootstrap';
+import "./SplashPage.css";
+import { Animated } from 'react-animated-css';
 
 function SplashPage() {
-  useEffect(() => {
-    const headings = document.querySelectorAll("h1");
-
-    headings.forEach(function (heading) {
-      heading.classList.add(
-        "animate__animated",
-        "animate__fadeIn",
-        "animate__duration-5s",
-        "animate__delay-1s"
-      );
-    });
-  }, []); // Add an empty dependency array if you only want this effect to run once
+  // You can remove the useEffect hook if you are using react-animated-css
 
   return (
-    <div className="container-fluid d-flex justify-content-center align-items-center bg">
-      <div className="row">
-        <div className="col">
+    <Row className="d-flex text-center text-container bg">
+      <Col className="splashHeadings">
+      <Animated animationIn="fadeIn" animationInDuration={5000} animationInDelay={1000} isVisible={true}>
           <h1>Infinite Pixel</h1>
+      </Animated>
+      <Animated animationIn="fadeIn" animationInDuration={5000} animationInDelay={1000} isVisible={true}>
           <h1>Coming Soon</h1>
-        </div>
-      </div>
-    </div>
+      </Animated> 
+      </Col>
+    </Row>
   );
 }
 

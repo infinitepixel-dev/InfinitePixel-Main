@@ -1,4 +1,10 @@
+body{
+  cursor: default;
+  margin:0;
+}
+
 .bg{
+    display: flex;
     background-image:url('/public/nebulaBG.jpg');
     background-size:cover;
     height: 100vh;
@@ -14,4 +20,44 @@
     color: #fff;
     font-size: 5em;
     text-shadow: 1px 5px 10px #000
+  }
+
+  .splashHeadings {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+  }
+
+
+
+  @media screen and (min-width: 390px){
+    .text-container{
+      display: flex;
+      left:0;
+      top: 2em;
+      background-image:url('/public/nebulaBG.jpg');
+      background-size:cover;
+      height: 100vh;
+      position: static;
+    }     
+  }
+
+  @media screen and (max-width: 430px){
+   .splashHeadings {
+      top: 20%;
+      left: 0%;
+    }
+  }
+
+  @media screen and (max-width: 768px){
+   .splashHeadings {
+      top: 30%;
+      left: 20%;
+   }
+  }
+
+  @media screen and (max-width: 820px){
+    .splashHeadings {
+      left: 25%;
+    }
   }
