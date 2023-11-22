@@ -55,18 +55,6 @@ a,
   cursor: none !important; /* Add !important to ensure the override */
 }
 
-/* Custom Mouse Animation */
-.custom-cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid white;
-  border-radius: 50%;
-  position: absolute;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-}
-
 .figure-eight-container {
   /* center the canvas to the page */
   display: flex;
