@@ -5,6 +5,9 @@ export const getComponent = async (componentName) => {
 
   try {
     switch (componentName) {
+      case "SplashPage":
+        module = await import("./components/pages/SplashPage.jsx");
+        break;
       case "Customcursor":
         module = await import("./components/effects/customcursor.jsx");
         break;
@@ -13,9 +16,6 @@ export const getComponent = async (componentName) => {
         break;
       case "NavigationBar":
         module = await import("./components/effects/navigation.jsx");
-        break;
-      case "SplashPage":
-        module = await import("./components/pages/SplashPage.jsx");
         break;
       // ... add more cases for other components
       default:
