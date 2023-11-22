@@ -1,24 +1,4 @@
 /* Custom Mouse Animation */
-/* .custom-cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid white;
-  border-radius: 50%;
-  position: absolute;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-}
-
-.pixel {
-  width: 2px;
-  height: 2px;
-  position: absolute;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-} */
-
-/* Custom Mouse Animation */
 .custom-cursor {
   width: 20px;
   height: 20px;
