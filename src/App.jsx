@@ -15,7 +15,9 @@ function App() {
 
   return (
     <>
-      <DynamicComponentLoader componentName="SplashPage" />
+      {/* Splash Page Component */}
+      {/* <DynamicComponentLoader componentName="SplashPage" />
+       */}
       <img src={logo} alt="" />
       {/* I want my navbar here maybe??? */}
       <DynamicComponentLoader componentName="NavigationBar" />
