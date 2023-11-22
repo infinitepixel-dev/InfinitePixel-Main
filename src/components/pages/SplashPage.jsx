@@ -1,0 +1,22 @@
+import { Row, Col } from 'react-bootstrap';
+import "./SplashPage.css";
+import { Animated } from 'react-animated-css';
+
+function SplashPage() {
+  // You can remove the useEffect hook if you are using react-animated-css
+
+  return (
+    <Row className="d-flex text-center text-container bg">
+      <Col className="splashHeadings">
+      <Animated animationIn="fadeIn" animationInDuration={5000} animationInDelay={1000} isVisible={true}>
+          <h1>Infinite Pixel</h1>
+      </Animated>
+      <Animated animationIn="fadeIn" animationInDuration={5000} animationInDelay={1000} isVisible={true}>
+          <h1>Coming Soon</h1>
+      </Animated> 
+      </Col>
+    </Row>
+  );
+}
+
+export default SplashPage;

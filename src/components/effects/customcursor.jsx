@@ -1,32 +1,43 @@
 import { useEffect, useRef } from "react";
+import "./customcursor.css";
 
 const CustomCursor = () => {
   const cursorRef = useRef(null);
+  const pixelsRef = useRef([]);
+  const colors = ["#7bc950", "#2d2b75", "#e92f5e", "#fbcf7f", "#fca723"];
 
   useEffect(() => {
-    const colors = ["#7bc950", "#2d2b75", "#e92f5e", "#fbcf7f", "#fca723"];
+    // Initialize pixel divs
+    for (let i = 0; i < 50; i++) {
+      const pixel = document.createElement("div");
+      pixel.className = "pixel";
+      document.body.appendChild(pixel);
+      pixelsRef.current.push(pixel);
+    }
 
-    const animateCursor = (e) => {
-      const { clientX: x, clientY: y } = e.touches ? e.touches[0] : e;
+    const handleMove = (e) => {
+      const { clientX, clientY } = e.touches ? e.touches[0] : e;
+      const x = clientX + window.scrollX;
+      const y = clientY + window.scrollY;
+
+      // Update cursor position
       const cursor = cursorRef.current;
-
       cursor.style.left = `${x}px`;
       cursor.style.top = `${y}px`;
 
-      const pixel = document.createElement("div");
-      pixel.style.width = "2px";
-      pixel.style.height = "2px";
+      // Update pixel positions
+      const pixel = pixelsRef.current.shift();
+      if (pixel) {
+        pixel.style.left = `${x}px`;
+        pixel.style.top = `${y}px`;
+        pixel.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+        animatePixel(pixel);
+        pixelsRef.current.push(pixel);
+      }
+    };
 
-      const randomColor = colors[Math.floor(Math.random() * colors.length)];
-      pixel.style.background = randomColor;
-
-      pixel.style.position = "absolute";
-      pixel.style.pointerEvents = "none";
-      pixel.style.transform = "translate(-50%, -50%)";
-      pixel.style.left = `${x}px`;
-      pixel.style.top = `${y}px`;
-      document.body.appendChild(pixel);
-
+    const animatePixel = (pixel) => {
       const angle = Math.random() * (2 * Math.PI);
       const distance = 20;
       pixel.animate(
@@ -40,25 +51,21 @@ const CustomCursor = () => {
           },
         ],
         {
-          duration: 1000,
+          duration: 500,
           easing: "ease-out",
           fill: "forwards",
         }
       );
-
-      setTimeout(() => {
-        pixel.remove();
-      }, 1000);
     };
 
-    document.addEventListener("mousemove", animateCursor);
-    document.addEventListener("touchmove", animateCursor);
+    document.addEventListener("mousemove", handleMove);
+    document.addEventListener("touchmove", handleMove);
 
     return () => {
-      document.removeEventListener("mousemove", animateCursor);
-      document.removeEventListener("touchmove", animateCursor);
+      document.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("touchmove", handleMove);
     };
-  }, []);
+  }, []); // Empty dependency array ensures this effect runs only once
 
   return <div className="custom-cursor" ref={cursorRef}></div>;
 };
