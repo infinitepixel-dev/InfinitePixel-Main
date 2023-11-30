@@ -1,3 +1,5 @@
+/*updated changes to splash page 11/2023*/
+
 import { useEffect } from "react";
 import "./SplashPage.css"; // Import any custom CSS if needed
 
