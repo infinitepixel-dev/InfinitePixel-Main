@@ -1,20 +1,24 @@
-/*updated changes to splash page 11/2023*/
+.bg {
+  background-image: url("/public/nebulaBG.jpg");
+  background-size: cover;
+  height: 100dvh;
+  width: 100dvw;
+  z-index: 1;
+}
 
-.bg{
-    background-image:url('/public/nebulaBG.jpg');
-    background-size:cover;
-    height: 100vh;
-    width: 100vw;
-    z-index: 1;
-  }
+h1 {
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 5em;
+  text-shadow: 1px 5px 10px #000;
+}
 
-  h1{
-    text-align:center;
-    z-index: 2;
-    display: flex;
-    justify-content:center;
-    align-items:center;
-    color: #fff;
-    font-size: 5em;
-    text-shadow: 1px 5px 10px #000
-  }
+.infinite-pixel-copyright {
+  top: 30em;
+  position: relative;
+  text-align: center;
+}

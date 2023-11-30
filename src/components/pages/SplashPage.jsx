@@ -1,7 +1,9 @@
-/*updated changes to splash page 11/2023*/
-
 import { useEffect } from "react";
-import "./SplashPage.css"; // Import any custom CSS if needed
+import { Row, Col } from "react-bootstrap";
+import "./SplashPage.css";
+import { Animated } from "react-animated-css";
+
+let currentYear = new Date().getFullYear(); //current year
 
 function SplashPage() {
   useEffect(() => {
@@ -18,14 +20,32 @@ function SplashPage() {
   }, []); // Add an empty dependency array if you only want this effect to run once
 
   return (
-    <div className="container-fluid d-flex justify-content-center align-items-center bg">
-      <div className="row">
-        <div className="col">
-          <h1>Infinite Pixel</h1>
-          <h1>Coming Soon</h1>
-        </div>
-      </div>
-    </div>
+    <>
+      <Row className="d-flex text-center text-container bg">
+        <Col className="splashHeadings">
+          <Animated
+            animationIn="fadeIn"
+            animationInDuration={5000}
+            animationInDelay={1000}
+            isVisible={true}
+          >
+            <h1>Infinite Pixel</h1>
+          </Animated>
+          <Animated
+            animationIn="fadeIn"
+            animationInDuration={5000}
+            animationInDelay={1000}
+            isVisible={true}
+          >
+            <h1>Coming Soon</h1>
+            <div className="infinite-pixel-copyright">
+              {" "}
+              <h3>© InfinitePixel {currentYear}</h3>
+            </div>
+          </Animated>
+        </Col>
+      </Row>
+    </>
   );
 }
 
