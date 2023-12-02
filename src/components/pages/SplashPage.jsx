@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import "./SplashPage.css";
 import { Animated } from "react-animated-css";
@@ -5,7 +6,18 @@ import { Animated } from "react-animated-css";
 let currentYear = new Date().getFullYear(); //current year
 
 function SplashPage() {
-  // You can remove the useEffect hook if you are using react-animated-css
+  useEffect(() => {
+    const headings = document.querySelectorAll("h1");
+
+    headings.forEach(function (heading) {
+      heading.classList.add(
+        "animate__animated",
+        "animate__fadeIn",
+        "animate__duration-5s",
+        "animate__delay-1s"
+      );
+    });
+  }, []); // Add an empty dependency array if you only want this effect to run once
 
   return (
     <>
