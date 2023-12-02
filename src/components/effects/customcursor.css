@@ -20,3 +20,11 @@
   transform: translate(-50%, -50%);
   transition: background-color 0.3s;
 }
+/* Create media query for mobile devices to hide the ring around the pointer */
+@media (max-width: 480px) {
+  .custom-cursor {
+    display: none;
+    border:none;
+  }
+ 
+}
