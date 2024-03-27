@@ -2,7 +2,6 @@
   background-size: cover;
   width: 100dvw;
   height: 100dvh;
-  z-index: -1;
 }
 
 /* media query for mobile to rotate image 90 degress */
