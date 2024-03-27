@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import "./SplashPage.css";
 import { Animated } from "react-animated-css";
-import bgImage from "../../assets/nebulaBG.webp";
+import bgImage from "../../../public/nebulaBG.webp";
 
 function SplashPage() {
   useEffect(() => {
