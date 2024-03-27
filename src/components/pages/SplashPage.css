@@ -1,5 +1,5 @@
 .bg {
-  background-image: url("/public/nebulaBG.jpg");
+  background-image: url("../../assets/nebulaBG.webp");
   background-size: cover;
   height: 100dvh;
   width: 100dvw;
