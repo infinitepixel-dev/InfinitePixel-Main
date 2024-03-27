@@ -3,7 +3,7 @@ import "./App.css";
 // import FoodTruckList from "./components/api-testing";
 import logo from "./assets/logo.svg";
 
-let developerMode = true; //set to false when deploying to production
+let developerMode = false; //set to false when deploying to production
 let displaySplashPage = true; //set to true when deploying to production
 
 // MUST BE IMPORTED ON ALL COMPONENTS
