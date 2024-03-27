@@ -3,8 +3,6 @@ import { Row, Col } from "react-bootstrap";
 import "./SplashPage.css";
 import { Animated } from "react-animated-css";
 
-let currentYear = new Date().getFullYear(); //current year
-
 function SplashPage() {
   useEffect(() => {
     const headings = document.querySelectorAll("h1");
@@ -38,10 +36,6 @@ function SplashPage() {
             isVisible={true}
           >
             <h1>Coming Soon</h1>
-            <div className="infinite-pixel-copyright">
-              {" "}
-              <h3>© InfinitePixel {currentYear}</h3>
-            </div>
           </Animated>
         </Col>
       </Row>

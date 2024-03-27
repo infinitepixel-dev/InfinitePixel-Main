@@ -8,6 +8,7 @@ let displaySplashPage = true; //set to true when deploying to production
 
 // MUST BE IMPORTED ON ALL COMPONENTS
 import DynamicComponentLoader from "./dynamicComponentLoader";
+import "./app.css";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -93,6 +94,7 @@ function App() {
           <div className="container-item">
             <h3 className="footer">© InfinitePixel {currentYear}</h3>
           </div>
+
           {/* <FoodTruckList /> */}
         </div>
       )}
