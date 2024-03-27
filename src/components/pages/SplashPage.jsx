@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import "./SplashPage.css";
 import { Animated } from "react-animated-css";
+import bgImage from "../../assets/nebulaBG.webp";
 
 function SplashPage() {
   useEffect(() => {
@@ -19,6 +20,7 @@ function SplashPage() {
 
   return (
     <>
+      <img id="bg" src={bgImage} alt="background" className="bgImage" />
       <Row className="d-flex text-center text-container bg">
         <Col className="splashHeadings">
           <Animated
