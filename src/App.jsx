@@ -3,7 +3,7 @@ import "./App.css";
 // import FoodTruckList from "./components/api-testing";
 import logo from "./assets/logo.svg";
 
-let developerMode = false; //set to false when deploying to production
+let developerMode = true; //set to false when deploying to production
 let displaySplashPage = true; //set to true when deploying to production
 
 // MUST BE IMPORTED ON ALL COMPONENTS
@@ -55,13 +55,12 @@ function App() {
       ) : (
         <div className="appContainer">
           <div className="container-item">
-            <div className="container-item">
-              <DynamicComponentLoader componentName="NavigationBar" />
-            </div>
-            {/* set image z-index */}
+            <DynamicComponentLoader componentName="NavigationBar" />
           </div>
 
-          <div>
+          <div className="container-item">
+            {/* set image z-index */}
+
             <img
               className="logo"
               src={logo}

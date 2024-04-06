@@ -4,7 +4,14 @@ const CustomCursor = () => {
   const cursorRef = useRef(null);
 
   useEffect(() => {
-    const colors = ["#7bc950", "#2d2b75", "#e92f5e", "#fbcf7f", "#fca723"];
+    const colors = [
+      "#7bc950",
+      "#2d2b75",
+      "#e92f5e",
+      "#fbcf7f",
+      "#fca723",
+      "#87ceeb",
+    ];
 
     const animateCursor = (e) => {
       const { clientX: x, clientY: y } = e.touches ? e.touches[0] : e;
