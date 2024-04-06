@@ -14,12 +14,15 @@ const CustomCursor = () => {
     ];
 
     const animateCursor = (e) => {
-      const { clientX: x, clientY: y } = e.touches ? e.touches[0] : e;
-      const cursor = cursorRef.current;
+      // Get the x and y coordinates of the cursor relative to the entire document
+      const { pageX: x, pageY: y } = e.touches ? e.touches[0] : e;
 
-      cursor.style.left = `${x}px`;
-      cursor.style.top = `${y}px`;
+      const cursor = cursorRef.current; // Gets the cursor element
 
+      cursor.style.left = `${x}px`; // Set the left position of the cursor
+      cursor.style.top = `${y}px`; // Set the top position of the cursor
+
+      // Pixel effects
       const pixel = document.createElement("div");
       pixel.style.width = "2px";
       pixel.style.height = "2px";
@@ -27,13 +30,14 @@ const CustomCursor = () => {
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
       pixel.style.background = randomColor;
 
-      pixel.style.position = "absolute";
-      pixel.style.pointerEvents = "none";
-      pixel.style.transform = "translate(-50%, -50%)";
-      pixel.style.left = `${x}px`;
-      pixel.style.top = `${y}px`;
+      pixel.style.position = "absolute"; // Set the position of the pixel to absolute
+      pixel.style.pointerEvents = "none"; // Disable pointer events on the pixel
+      pixel.style.transform = "translate(-50%, -50%)"; // Center the pixel
+      pixel.style.left = `${x}px`; // Set the left position of the pixel
+      pixel.style.top = `${y}px`; // Set the top position of the pixel
       document.body.appendChild(pixel);
 
+      // Pixel animation calculation
       const angle = Math.random() * (2 * Math.PI);
       const distance = 20;
       pixel.animate(
