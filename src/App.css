@@ -5,6 +5,7 @@
 
 .appContainer {
   width: 100dvw;
+  height: 100dvh;
   display: grid;
 
   justify-content: center; /*Centers items horizontally*/

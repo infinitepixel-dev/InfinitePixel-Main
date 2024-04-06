@@ -55,13 +55,22 @@ function App() {
       ) : (
         <div className="appContainer">
           <div className="container-item">
-            <DynamicComponentLoader componentName="NavigationBar" />
+            <div className="container-item">
+              <DynamicComponentLoader componentName="NavigationBar" />
+            </div>
+            {/* set image z-index */}
           </div>
 
-          <div className="container-item">
-            <img className="logo" src={logo} alt="Infinite-Pixel" />
+          <div>
+            <img
+              className="logo"
+              src={logo}
+              alt="Infinite-Pixel"
+              style={{ zIndex: "-1" }}
+            />
             <h1>Infinite Pixel!</h1>
           </div>
+
           {/* I want my navbar here maybe??? */}
 
           {/* Pretend Component A is a Feature The client hasn't paid for, but we natively implemented */}
