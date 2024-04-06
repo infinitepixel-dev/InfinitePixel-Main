@@ -3,7 +3,7 @@ import "./App.css";
 // import FoodTruckList from "./components/api-testing";
 import logo from "./assets/logo.svg";
 
-let developerMode = false; //set to false when deploying to production
+let developerMode = true; //set to false when deploying to production
 let displaySplashPage = true; //set to true when deploying to production
 
 // MUST BE IMPORTED ON ALL COMPONENTS
@@ -59,7 +59,14 @@ function App() {
           </div>
 
           <div className="container-item">
-            <img className="logo" src={logo} alt="Infinite-Pixel" />
+            {/* set image z-index */}
+
+            <img
+              className="logo"
+              src={logo}
+              alt="Infinite-Pixel"
+              style={{ zIndex: "-1" }}
+            />
             <h1>Infinite Pixel!</h1>
           </div>
           {/* I want my navbar here maybe??? */}

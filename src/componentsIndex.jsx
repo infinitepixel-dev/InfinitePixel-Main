@@ -15,7 +15,7 @@ export const getComponent = async (componentName) => {
         module = await import("./components/effects/figure8.jsx");
         break;
       case "NavigationBar":
-        module = await import("./components/effects/navigation.jsx");
+        module = await import("./components/corecomponents/navigationBar.jsx");
         break;
       // ... add more cases for other components
       default:
