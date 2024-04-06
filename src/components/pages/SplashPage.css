@@ -1,9 +1,14 @@
-.bg {
-  background-image: url("/public/nebulaBG.jpg");
+#bg {
   background-size: cover;
-  height: 100dvh;
   width: 100dvw;
-  z-index: 1;
+  height: 100dvh;
+}
+
+/* media query for mobile to rotate image 90 degress */
+@media only screen and (max-width: 600px) {
+  #bg {
+    transform: rotate(90deg);
+  }
 }
 
 h1 {
