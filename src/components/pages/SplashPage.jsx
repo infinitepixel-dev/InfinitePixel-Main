@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
-import "./SplashPage.css";
+// import "./SplashPage.css";
 import { Animated } from "react-animated-css";
 import bgImage from "../../../public/nebulaBG.webp";
 
@@ -20,27 +19,34 @@ function SplashPage() {
 
   return (
     <>
-      <img id="bg" src={bgImage} alt="background" className="bgImage" />
-      <Row className="d-flex text-center text-container bg">
-        <Col className="splashHeadings">
+      <div className="flex items-center justify-center w-full h-screen">
+        <img
+          src={bgImage}
+          alt="background"
+          className="absolute inset-0 object-cover w-full h-full"
+          style={{ zIndex: -1 }}
+        />
+        <div className="z-10 text-center">
           <Animated
             animationIn="fadeIn"
             animationInDuration={5000}
             animationInDelay={1000}
             isVisible={true}
           >
-            <h1>Infinite Pixel</h1>
+            <h1 className="text-4xl font-bold text-white">Infinite Pixel</h1>
           </Animated>
           <Animated
             animationIn="fadeIn"
             animationInDuration={5000}
-            animationInDelay={1000}
+            animationInDelay={2000}
             isVisible={true}
           >
-            <h1>Coming Soon</h1>
+            <h2 className="mt-4 text-2xl font-semibold text-white">
+              Coming Soon
+            </h2>
           </Animated>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </>
   );
 }
