@@ -1,31 +1,21 @@
-//REVIEW V2 Version 2 of the import loader
+//NOTE Component Loader V3
+import componentsRegistry from "./componentsRegistry";
 
 export const getComponent = async (componentName) => {
-  let module;
+  console.log(`Requesting component: ${componentName}`); // Debugging line
 
   try {
-    switch (componentName) {
-      case "SplashPage":
-        module = await import("./components/pages/SplashPage.jsx");
-        break;
-      case "Customcursor":
-        module = await import("./components/effects/customcursor.jsx");
-        break;
-      case "Figure8":
-        module = await import("./components/effects/figure8.jsx");
-        break;
-      case "NavigationBar":
-        module = await import("./components/effects/navigation.jsx");
-        break;
-      // ... add more cases for other components
-      default:
-        console.warn(`Path not found for component: ${componentName}`);
-        return null;
+    const componentLoader = componentsRegistry[componentName];
+
+    if (!componentLoader) {
+      console.warn(`Path not found for component: ${componentName}`);
+      return null;
     }
 
+    const module = await componentLoader();
     return module.default;
   } catch (error) {
-    // console.warn(`Component not found: ${componentName}`, error);
+    console.warn(`Component not found: ${componentName}`, error);
     return null;
   }
 };
