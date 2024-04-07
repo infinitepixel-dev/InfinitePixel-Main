@@ -89,6 +89,7 @@ body {
 .middle-bar.open {
   background-color: var(--secondary-color);
   transition: 0.4s;
+  width: 15px;
 }
 
 /*NOTE arrow bar pseudo-element */
@@ -110,7 +111,7 @@ body {
 /* Modifies the arrow position and rotation when the .open class is applied */
 .arrow-bar.open .bar::after {
   position: absolute; /* Confirms the position is absolute for clarity */
-  right: 24px; /* Moves the arrow to the end of the bar */
+  right: 14px; /* Moves the arrow to the end of the bar */
   top: -4px; /* Keeps the vertical position consistent */
   transform: rotate(
     180deg
@@ -141,7 +142,7 @@ body {
 .sidebar.open {
   left: 0; /* Show sidebar */
   z-index: 10;
-  backdrop-filter: blur(5px); /* Apply blur effect to content behind sidebar */
+  backdrop-filter: blur(8px); /* Apply blur effect to content behind sidebar */
 }
 
 /*NOTE menu icon click */

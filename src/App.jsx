@@ -1,33 +1,17 @@
-import { useState } from "react";
-import "./App.css";
+import { useState } from "react"
+import "./App.css"
 
 // Image Assets
-import logo from "./assets/logo.svg";
-import barberShop from "./assets/barberShop.png";
+import logo from "./assets/logo.svg"
+import barberShop from "./assets/barberShop.png"
 
-import DynamicComponentLoader from "./dynamicComponentLoader";
+import DynamicComponentLoader from "./dynamicComponentLoader"
 
 function App() {
-  const [count, setCount] = useState(0);
-  let developerMode = true; // Set to false when deploying to production
-  let displaySplashPage = true; // Set to true when deploying to production
+  let developerMode = true // Set to false when deploying to production
+  let displaySplashPage = true // Set to true when deploying to production
 
-  let currentYear = new Date().getFullYear(); // Current year
-
-  // Random number generator
-  let random = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
-
-  const displayInfinity = () => {
-    for (let i = 0; i < 100; i++) {
-      console.log("loop iteration: ", i);
-      if (count >= 1000) {
-        console.log("Infinity Reached");
-        setCount(() => "∞");
-      } else if (count < 1000) {
-        setCount((count) => count + random);
-      }
-    }
-  };
+  let currentYear = new Date().getFullYear() // Current year
 
   return (
     <>
@@ -63,15 +47,15 @@ function App() {
                 alt="Infinite-Pixel"
                 style={{ zIndex: "-1" }}
               />
-
-              <h1 className="text-6xl leading-5">Infinite Pixel!</h1>
             </div>
 
             <div className="col-span-6 row-span-1 m-10 text-center">
               {/* card to display the barbershop image */}
               <div className="grid grid-cols-6 gap-4">
                 <div className="col-span-6">
-                  <h2>Check out what we&apos;ve done!</h2>
+                  <h2 className="text-center">
+                    Check out what we&apos;ve done!
+                  </h2>
                 </div>
 
                 <div className="col-span-6">
@@ -98,15 +82,6 @@ function App() {
             {/*NOTE Pixel Counter Testing */}
             <div className="content-center md:col-span-2">
               <div className="grid row-span-3 text-center grid-rows-subgrid gap4">
-                <div className="mt-4 text-center">
-                  <button
-                    className="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded hover:bg-blue-700"
-                    onClick={displayInfinity}
-                  >
-                    Pixel Counter {count}
-                  </button>
-                </div>
-
                 <h3 className="text-2xl leading-relaxed">
                   © InfinitePixel {currentYear}
                 </h3>
@@ -119,7 +94,7 @@ function App() {
         //!SECTION Main Content Container - BEGIN
       )}
     </>
-  );
+  )
 }
 
-export default App;
+export default App
