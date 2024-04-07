@@ -9,7 +9,7 @@ import DynamicComponentLoader from "./dynamicComponentLoader";
 
 function App() {
   const [count, setCount] = useState(0);
-  let developerMode = true; // Set to false when deploying to production
+  let developerMode = false; // Set to false when deploying to production
   let displaySplashPage = true; // Set to true when deploying to production
 
   let currentYear = new Date().getFullYear(); // Current year

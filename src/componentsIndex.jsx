@@ -11,9 +11,6 @@ export const getComponent = async (componentName) => {
       case "Customcursor":
         module = await import("./components/effects/customcursor.jsx");
         break;
-      case "Figure8":
-        module = await import("./components/effects/figure8.jsx");
-        break;
       case "NavigationBar":
         module = await import("./components/corecomponents/navigationBar.jsx");
         break;

@@ -2,13 +2,28 @@
 .custom-cursor {
   width: 20px;
   height: 20px;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   border-radius: 50%;
   position: absolute;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 9999;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+/* Adding a small dot in the center */
+.custom-cursor::after {
+  content: "";
+  display: block;
+  width: 4px; /* Size of the center dot */
+  height: 4px; /* Size of the center dot */
+  background-color: rgb(255, 255, 255); /* Color of the center dot */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
 }
 
 .pixel {
@@ -23,7 +38,6 @@
 @media (max-width: 480px) {
   .custom-cursor {
     display: none;
-    border:none;
+    border: none;
   }
- 
 }
