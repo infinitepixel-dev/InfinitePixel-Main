@@ -11,16 +11,16 @@ body {
 
 /* default page colors using var */
 :root {
-  --primary-color: #6e1dc5;
-  --secondary-color: #c0c0c0;
-  --secondary-color-10: #c0c0c02c;
-  --tertiary-color: #333;
-  --green: #7bc950;
-  --blue: #2d2b75;
-  --red: #e92f5e;
-  --yellow: #fbcf7f;
-  --orange: #fca723;
-  --light-blue: #87ceeb;
+  --primary-color: #6e1dc5; /* purple-700  */
+  --secondary-color: #c0c0c0; /* stone-300  */
+  --secondary-color-10: #c0c0c02c; /* stone-300 at 10% opacity */
+  --tertiary-color: #333333; /* zinc-800  */
+  --green: #7bc950; /* lime-400  */
+  --blue: #2d2b75; /* indigo-900  */
+  --red: #e92f5e; /* rose-500  */
+  --yellow: #fbcf7f; /* orange-300  */
+  --orange: #fca723; /* amber-400  */
+  --light-blue: #87ceeb; /* sky-300  */
 }
 
 /*SECTION Navigation Menu - BEGIN */
