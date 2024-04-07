@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 // import "./SplashPage.css";
-import { Animated } from "react-animated-css";
+// import { Animated } from "react-animated-css";
 // import bgImage from "../../../public/nebulaBG.webp";
 
 function SplashPage() {
@@ -36,26 +36,13 @@ function SplashPage() {
         /> */}
 
         <div className="z-10 text-center">
-          <Animated
-            animationIn="fadeIn"
-            animationInDuration={5000}
-            animationInDelay={1000}
-            isVisible={true}
-          >
-            <div className="pr-1.5 overflow-hidden text-5xl font-bold text-sky-300 border-r-4 animate-typing whitespace-nowrap border-r-white">
-              <h1 className="text-6xl font-bold text-white">Infinite Pixel</h1>
-            </div>
-          </Animated>
-          <Animated
-            animationIn="fadeIn"
-            animationInDuration={5000}
-            animationInDelay={2000}
-            isVisible={true}
-          >
-            <h2 className="mt-4 text-3xl font-semibold text-white">
-              <span className="text-rose-500 ">Coming Soon</span>
-            </h2>
-          </Animated>
+          <div className="pr-1.5 overflow-hidden text-5xl font-bold text-sky-300 border-r-4 animate-typing whitespace-nowrap border-r-white">
+            <h1 className="text-6xl font-bold text-white">Infinite Pixel</h1>
+          </div>
+
+          <h2 className="mt-4 text-3xl font-semibold text-white">
+            <span className="text-rose-500 ">Coming Soon</span>
+          </h2>
         </div>
       </div>
     </>

@@ -1,23 +1,22 @@
-import { useState } from "react"
-import "./App.css"
+import "./App.css";
 
 // Image Assets
-import logo from "./assets/logo.svg"
-import barberShop from "./assets/barberShop.png"
+import logo from "./assets/logo.svg";
+import barberShop from "./assets/barberShop.png";
 
-import DynamicComponentLoader from "./dynamicComponentLoader"
+import DynamicComponentLoader from "./dynamicComponentLoader";
 
 function App() {
-  let developerMode = true // Set to false when deploying to production
-  let displaySplashPage = true // Set to true when deploying to production
+  let developerMode = false; // Set to false when deploying to production
+  let displaySplashPage = true; // Set to true when deploying to production
 
-  let currentYear = new Date().getFullYear() // Current year
+  let currentYear = new Date().getFullYear(); // Current year
 
   return (
     <>
       {/*SECTION Effect Components - BEGIN */}
       {/*NOTE Displays a custom mouse cursor for desktop/mobile */}
-      <DynamicComponentLoader componentName="Customcursor" />
+      <DynamicComponentLoader componentName="CustomCursor" />
       {/*!SECTION Effect Components - BEGIN */}
 
       {/*SECTION Splashpage - BEGIN */}
@@ -94,7 +93,7 @@ function App() {
         //!SECTION Main Content Container - BEGIN
       )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
