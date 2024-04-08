@@ -1,13 +1,13 @@
 import "./App.css";
 
 // Image Assets
-import logo from "./assets/logo.svg";
+// import logo from "./assets/logo.svg";
 import barberShop from "./assets/barberShop.png";
 
 import DynamicComponentLoader from "./dynamicComponentLoader";
 
 function App() {
-  let developerMode = false; // Set to false when deploying to production
+  let developerMode = true; // Set to false when deploying to production
   let displaySplashPage = true; // Set to true when deploying to production
 
   let currentYear = new Date().getFullYear(); // Current year
@@ -22,8 +22,8 @@ function App() {
       {/*SECTION Splashpage - BEGIN */}
       {!developerMode && displaySplashPage ? (
         <>
-          <div className="grid grid-cols-6 gap-4 rows-4">
-            <div className="col-span-6">
+          <div className="grid grid-cols-12 gap-4 rows-4">
+            <div className="col-span-12">
               {/*NOTE Displays the Splashpage component */}
               <DynamicComponentLoader componentName="SplashPage" />
             </div>
@@ -37,27 +37,18 @@ function App() {
           <DynamicComponentLoader componentName="NavigationBar" />
 
           {/*NOTE Main Content Grid Container - BEGIN */}
-          <div className="grid grid-cols-6 gap-4 rows-16">
-            {/* NOTE Infinite Pixel Logo and heading */}
-            <div className="col-span-4 col-start-2 text-center">
-              <img
-                className="mx-auto"
-                src={logo}
-                alt="Infinite-Pixel"
-                style={{ zIndex: "-1" }}
-              />
-            </div>
-
+          <div className="grid grid-cols-12 gap-1 h-dvh w-dvw">
+            {/* Row 1 */}
             <div className="col-span-6 row-span-1 m-10 text-center">
               {/* card to display the barbershop image */}
               <div className="grid grid-cols-6 gap-4">
-                <div className="col-span-6">
+                <div className="col-span-6 column">
                   <h2 className="text-center">
                     Check out what we&apos;ve done!
                   </h2>
                 </div>
 
-                <div className="col-span-6">
+                <div className="col-span-6 column">
                   <img
                     src={barberShop}
                     alt="barberShop"
@@ -68,18 +59,23 @@ function App() {
             </div>
 
             {/*NOTE Best Component Ever!!!!! - Takes remaining space on medium screens and one-third on large screens */}
-            <div className="col-span-2 col-start-1 ">
+            <div className="col-span-2 col-start-1 column">
               <DynamicComponentLoader
+                className="column"
                 componentName="Bestcomponent ever!!!!!"
                 prop1="blahblahblah"
               />
             </div>
 
             {/*NOTE Component B and Pixel Counter - Full Row on small screens, full width on medium and two-thirds on large screens */}
-            <DynamicComponentLoader componentName="ComponentB" prop1="value1" />
+            <DynamicComponentLoader
+              className="column"
+              componentName="ComponentB"
+              prop1="value1"
+            />
 
             {/*NOTE Pixel Counter Testing */}
-            <div className="content-center md:col-span-2">
+            <div className="content-center column md:col-span-2">
               <div className="grid row-span-3 text-center grid-rows-subgrid gap4">
                 <h3 className="text-2xl leading-relaxed">
                   © InfinitePixel {currentYear}

@@ -16,3 +16,12 @@ a,
 .interactive-element {
   cursor: none !important; /* Add !important to ensure the override */
 }
+
+/* dev - properties */
+.column {
+  border: 1px solid white;
+}
+
+/* .grid-cols-12 {
+  border: 1px solid white;
+} */

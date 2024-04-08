@@ -26,70 +26,75 @@ body {
 /*SECTION Navigation Menu - BEGIN */
 
 /*NOTE Navigation bar */
-.navMenu {
+/* .navMenu {
   position: fixed;
   margin: 18px;
-}
+} */
 
 /*SECTION Hamburger Style - BEGIN */
 
 /*NOTE Hamburger icon */
 /* Targets the container of the menu icon, applying a flexbox layout to arrange its children */
-.menu-icon {
-  display: flex; /* Enables flexbox layout */
-  flex-direction: column; /* Stacks flex items vertically */
-  justify-content: space-between; /* Distributes space evenly between the items, creating gaps */
-  width: 30px; /* Sets the total width of the hamburger icon */
-  height: 30px; /* Sets the total height of the hamburger icon */
-  cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+/* .menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
   z-index: 20;
   position: absolute;
-}
+} */
 
 /*NOTE arrow bar */
 /* Common styles for the bars of the hamburger menu */
-.bar,
+/* .bar,
 .arrow-bar .bar {
-  height: 4px; /* Sets the thickness of each bar */
-
-  width: 30px; /* Defines the width of each bar */
-  position: relative; /* Sets the positioning context for pseudo-elements */
-}
+  height: 4px;
+  width: 30px;
+  position: relative;
+} */
 
 /*NOTE arrow bar top/bottom */
-.top-bar {
-  background-color: var(--red); /* Sets the color of the bars */
+/* .top-bar {
+  background-color: var(--red);
   transition: 0.4s;
-}
+} */
 
-.bottom-bar {
-  background-color: var(--light-blue); /* Sets the color of the bars */
-  transition: 0.4s;
-}
-
-.top-bar.open,
+/* .top-bar.open,
 .bottom-bar.open {
   background-color: var(--green);
   transition: 0.4s;
-}
+} */
 
-.bottom-bar.open {
+/* .bottom-bar {
+  background-color: var(--light-blue);
+  transition: 0.4s;
+} */
+
+/* .bottom-bar.open {
   background-color: var(--orange);
   transition: 0.4s;
-}
+} */
 
 /*NOTE arrow bar middle */
 .middle-bar {
-  height: 4px; /* Sets the thickness of each bar */
-  background-color: var(--primary-color);
-  width: 30px; /* Defines the width of each bar */
-  position: relative; /* Sets the positioning context for pseudo-elements */
+  /* height: 4px; */
+  /* background-color: var(--primary-color); */
+  /* width: 30px; */
+  position: relative;
 }
 
-.middle-bar.open {
+/* .middle-bar.open {
   background-color: var(--secondary-color);
   transition: 0.4s;
   width: 15px;
+} */
+
+/* middle bar when open gets remove */
+.middle-bar.open::before {
+  width: 30px;
+  transition: 0.4s;
 }
 
 /*NOTE arrow bar pseudo-element */
@@ -119,6 +124,7 @@ body {
   transition: 0.5s; /* Ensures the rotation has a smooth transition */
   border-color: transparent transparent transparent var(--secondary-color);
 }
+
 /*!SECTION Hamburger Style - END */
 
 /*SECTION Side Menu Style - BEGIN */
@@ -133,16 +139,16 @@ body {
   overflow-x: hidden; /* Prevent horizontal scroll */
   backdrop-filter: blur(5px); /* Apply blur effect to content behind sidebar */
   transition: 0.5s, backdrop-filter; /* Smooth transition for showing/hiding */
-  padding-top: 60px; /* Space for content */
+  /* padding-top: 60px; */
   z-index: 1; /* Ensure it's above other content */
 }
 
 /*NOTE sidebar open */
 /* Class to toggle visibility */
 .sidebar.open {
-  left: 0; /* Show sidebar */
-  z-index: 10;
-  backdrop-filter: blur(8px); /* Apply blur effect to content behind sidebar */
+  left: 0;
+  /* z-index: 10; */
+  /* backdrop-filter: blur(8px); */
 }
 
 /*NOTE menu icon click */
@@ -179,3 +185,18 @@ main {
 }
 
 /*!SECTION Main Content - END */
+#customNav {
+  position: fixed;
+  /* margin: 5px; */
+  /* border: 1px solid red; */
+  /* width: 175px !important; */
+  /* z-index: 9999; */
+}
+
+#logoColBlank {
+  width: 0%;
+}
+
+#logoCol {
+  width: 100%;
+}
