@@ -1,7 +1,7 @@
 /* Custom Mouse Animation */
 .custom-cursor {
-  width: 20px;
-  height: 20px;
+  width: 5px;
+  height: 5px;
   /* border: 2px solid white; */
   border-radius: 50%;
   position: absolute;
@@ -11,12 +11,29 @@
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
+/* Set the outglow to 100px */
+.custom-cursor::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-color: #ffffff10;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  box-shadow: 0px 0 8px #0054888c;
+}
+
 /* Adding a small dot in the center */
 .custom-cursor::after {
   content: "";
   display: block;
-  width: 4px; /* Size of the center dot */
-  height: 4px; /* Size of the center dot */
+  width: 2px; /* Size of the center dot */
+  height: 2px; /* Size of the center dot */
   background-color: rgb(255, 255, 255); /* Color of the center dot */
   border-radius: 50%;
   position: absolute;
