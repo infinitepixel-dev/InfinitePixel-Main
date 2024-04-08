@@ -7,7 +7,7 @@ import barberShop from "./assets/barberShop.png";
 import DynamicComponentLoader from "./dynamicComponentLoader";
 
 function App() {
-  let developerMode = true; // Set to false when deploying to production
+  let developerMode = false; // Set to false when deploying to production
   let displaySplashPage = true; // Set to true when deploying to production
 
   let currentYear = new Date().getFullYear(); // Current year

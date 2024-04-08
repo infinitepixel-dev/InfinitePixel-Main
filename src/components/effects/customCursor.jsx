@@ -35,7 +35,7 @@ const CustomCursor = () => {
     const animatePixel = (pixel, startX, startY) => {
       const angle = Math.random() * (2 * Math.PI);
       // Increase the range and variability of distances
-      const distance = Math.random() * 50 + 10; // Increased variability
+      const distance = Math.random() * 50 + 15; // Increased variability
       let progress = 0;
       const duration = 2000; // Keep or adjust duration based on testing
 
