@@ -1,3 +1,8 @@
+/* disable horizontal scroll */
+:root {
+  overflow-x: hidden;
+}
+
 /* Disable mouse pointer for buttons and interactive elements */
 body {
   /* cursor: none; */
@@ -8,9 +13,9 @@ body {
 /* Define the cursor style for specific elements where you want the pointer disabled */
 button,
 a,
-/* .interactive-element {
+.interactive-element {
   cursor: none !important;
-} */
+}
 
 /* dev - properties */
 .column {
