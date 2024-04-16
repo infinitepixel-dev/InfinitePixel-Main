@@ -1,0 +1,27 @@
+/*SECTION Hero.jsx background Page 1 - BEGIN */
+/* css var for opacity */
+:root {
+  --opacity: 0.42;
+}
+
+.bg-color1 {
+  background: #e92f5e; /* rose-500 */
+  opacity: var(--opacity);
+}
+
+.bg-color2 {
+  background: #7bc950; /* lime-400 */
+  opacity: var(--opacity);
+}
+
+.bg-color3 {
+  background: #87ceeb; /* sky-300 */
+  opacity: var(--opacity);
+}
+
+.bg-color4 {
+  background: #6e1dc5; /* violet-800 */
+  opacity: var(--opacity);
+}
+
+/*SECTION Hero.jsx background Page 1 - END */

@@ -1,25 +1,6 @@
-/*SECTION App.jsx background Page 1 - BEGIN */
-.bg-color1 {
-  background: #e92f5e;
-}
-
-.bg-color2 {
-  background: #7bc950;
-}
-
-.bg-color3 {
-  background: #87ceeb;
-}
-
-.bg-color4 {
-  background: #6e1dc5;
-}
-
-/*SECTION App.jsx background Page 1 - END */
-
 /* Disable mouse pointer for buttons and interactive elements */
 body {
-  cursor: none;
+  /* cursor: none; */
   /* overflow: hidden; */
   touch-action: manipulation;
 }
@@ -27,9 +8,9 @@ body {
 /* Define the cursor style for specific elements where you want the pointer disabled */
 button,
 a,
-.interactive-element {
-  cursor: none !important; /* Add !important to ensure the override */
-}
+/* .interactive-element {
+  cursor: none !important;
+} */
 
 /* dev - properties */
 .column {
@@ -39,3 +20,8 @@ a,
 /* .grid-cols-12 {
   border: 1px solid white;
 } */
+
+.gridContainer {
+  position: relative; /* Establishes a new positioning context */
+  overflow: hidden; /* Ensures no spill-over */
+}
