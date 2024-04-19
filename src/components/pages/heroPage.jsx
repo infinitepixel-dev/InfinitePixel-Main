@@ -30,7 +30,7 @@ function HeroPage() {
   const backGroundBorderRadius = 50;
 
   return (
-    <div className="relative col-span-12 row-start-2 overflow-hidden md:col-span-4 md:col-start-2 lg:col-end-4">
+    <div className="relative overflow-hidden">
       {/*NOTE Background Colors */}
 
       <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} />
@@ -91,7 +91,7 @@ function HeroPage() {
       {/* Sub-grid for Page 1 */}
       <div
         id="heroPageElement"
-        className="z-10 grid w-full h-screen grid-cols-12 gap-1 overflow-auto grid-rows-7 column"
+        className="z-10 grid w-full h-screen grid-cols-12 gap-1 mb-8 overflow-auto grid-rows-7 column"
       >
         {/* Add your rows and columns inside the sub-grid */}
 
@@ -101,26 +101,25 @@ function HeroPage() {
             <span className="text-4xl leading-7 md:text-5xl">
               For Your Brand
             </span>
+            <button
+              className="mt-5 text-5xl leading-normal tracking-tight text-center duration-700 bg-yellow-600 md:text-2x1 hover:bg-yellow-500"
+              style={{
+                position: "relative",
+                width: "350px",
+                height: "89px",
+                // left: "148px",
+                // top: "485px",
+                color: "black",
+                borderRadius: "15px",
+              }}
+            >
+              Get Started
+            </button>
           </div>
-
-          <button
-            className="mt-5 text-5xl leading-normal tracking-tight text-center duration-700 bg-yellow-600 md:text-2x1 hover:bg-yellow-500"
-            style={{
-              position: "absolute",
-              width: "350px",
-              height: "89px",
-              // left: "148px",
-              // top: "485px",
-              color: "black",
-              borderRadius: "15px",
-            }}
-          >
-            Get Started
-          </button>
         </div>
 
         {/* section for Web Design, Data Transfer, SEO, and Web Design */}
-        <div className="grid col-span-8 col-start-3 row-span-2 row-start-6 grid-cols-subgrid">
+        <div className="grid grid-cols-1 col-span-8 col-start-3 row-span-2 row-start-6 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {/* Web Design */}
           <div className="col-span-2 row-span-2">
             <div className="text-2xl font-bold leading-normal tracking-normal md:text-3xl">
