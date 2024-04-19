@@ -1,7 +1,4 @@
-// Hero - Page 1
-import "./heroPage.css"
-
-function HeroPage() {
+function Page2() {
   return (
     <div className="relative col-span-12 row-span-1 row-start-1 overflow-hidden">
       {/*NOTE Background Colors */}
@@ -54,4 +51,4 @@ function HeroPage() {
   )
 }
 
-export default HeroPage
+export default Page2
