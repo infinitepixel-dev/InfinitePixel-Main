@@ -1,5 +1,5 @@
 // Hero - Page 1
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./heroPage.css";
 
 import DynamicComponentLoader from "../../dynamicComponentLoader";
@@ -26,8 +26,59 @@ function HeroPage() {
     });
   }, 1000);
 
-  const backGroundBlurAmount = 400;
+  const backGroundBlurAmount = 210;
   const backGroundBorderRadius = 50;
+
+  //new code
+  const orbRef1 = useRef([]);
+  const orbRef2 = useRef([]);
+  const orbRef3 = useRef([]);
+  const orbRef4 = useRef([]);
+  const orbRef5 = useRef([]);
+
+  useEffect(() => {
+    // Set initial positions for all orbs, storing them in refs
+    const setupOrbs = (orbRefs) => {
+      for (let i = 0; i < orbRefs.current.length; i++) {
+        const orb = orbRefs.current[i];
+        orb.initialLeft = orb.offsetLeft;
+        orb.initialTop = orb.offsetTop;
+      }
+    };
+
+    setupOrbs(orbRef1);
+    setupOrbs(orbRef2);
+    setupOrbs(orbRef3);
+    setupOrbs(orbRef4);
+    setupOrbs(orbRef5);
+
+    const moveOrbs = (orbRefs) => {
+      for (let i = 0; i < orbRefs.current.length; i++) {
+        const orb = orbRefs.current[i];
+        // Generate new positions within 25% of their original position
+        const deltaX = (Math.random() * 2 - 1) * 0.5 * orb.initialLeft;
+        const deltaY = (Math.random() * 2 - 1) * 0.5 * orb.initialTop;
+        orb.style.left = `${orb.initialLeft + deltaX}px`;
+        orb.style.top = `${orb.initialTop + deltaY}px`;
+        orb.style.transform = `scale(${2 + Math.random() * 0.1})`;
+        // return to normal size after 2 seconds
+        setTimeout(() => {
+          orb.style.transform = "scale(1)";
+        }, 2000);
+      }
+    };
+
+    const intervalId = setInterval(() => {
+      moveOrbs(orbRef1);
+      moveOrbs(orbRef2);
+      moveOrbs(orbRef3);
+      moveOrbs(orbRef4);
+      moveOrbs(orbRef5);
+    }, 500); // Update positions every second
+
+    return () => clearInterval(intervalId);
+  }, []);
+  //new code
 
   return (
     <div className="relative overflow-hidden">
@@ -35,10 +86,13 @@ function HeroPage() {
 
       <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} />
 
+      {/* randomly move the orbs around the page */}
+
       {/* only allow the custom cursor component to work inside of heroPage */}
       {/* rose */}
       <div
-        className="absolute col-start-1 row-start-6 bg-color1"
+        ref={(el) => (orbRef1.current[0] = el)}
+        className="orb absolute col-start-1 row-start-6 bg-color1"
         style={{
           width: "50%",
           height: "50%",
@@ -51,12 +105,18 @@ function HeroPage() {
       ></div>
       {/* lime */}
       <div
-        className="absolute col-start-2 row-start-3 bg-color2"
+        ref={(el) => (orbRef2.current[0] = el)}
+        className="orb absolute col-start-2 row-start-3 bg-color2"
         style={{
-          width: "40%",
-          height: "60%",
-          left: "25%",
-          top: "25%",
+          width: "35%",
+          height: "45%",
+          left: "-20%",
+          top: "-12%",
+
+          // width: "40%",
+          // height: "60%",
+          // left: "25%",
+          // top: "25%",
           filter: `blur(${backGroundBlurAmount}px)`,
           borderRadius: `${backGroundBorderRadius}%`,
           zIndex: "-1",
@@ -64,7 +124,8 @@ function HeroPage() {
       ></div>
       {/* sky */}
       <div
-        className="absolute bg-color3"
+        ref={(el) => (orbRef3.current[0] = el)}
+        className="orb absolute bg-color3"
         style={{
           width: "30%",
           height: "40%",
@@ -77,12 +138,33 @@ function HeroPage() {
       ></div>
       {/* violet */}
       <div
-        className="absolute bg-color4"
+        ref={(el) => (orbRef4.current[0] = el)}
+        className="orb absolute bg-color4"
         style={{
-          width: "35%",
-          height: "45%",
-          left: "72%",
-          top: "50%",
+          // width: "35%",
+          // height: "45%",
+          // left: "-20%",
+          // top: "-12%",
+
+          width: "40%",
+          height: "60%",
+          left: "25%",
+          top: "25%",
+
+          filter: `blur(${backGroundBlurAmount}px)`,
+          borderRadius: `${backGroundBorderRadius}%`,
+          zIndex: "-1",
+        }}
+      ></div>
+      {/* Yellow */}
+      <div
+        ref={(el) => (orbRef5.current[0] = el)}
+        className="orb absolute bg-color5"
+        style={{
+          width: "50%",
+          height: "50%",
+          left: "70%",
+          top: "70%",
           filter: `blur(${backGroundBlurAmount}px)`,
           borderRadius: `${backGroundBorderRadius}%`,
           zIndex: "-1",

@@ -4,23 +4,34 @@
   --opacity: 1;
 }
 
+.orb {
+  transition: top 5s ease, left 10s ease, transform 8s ease; /* Smooth transition for top and left properties */
+}
+
 .bg-color1 {
-  background: #e92f5e; /* rose-500 */
+  background: #eb174c; /* rose-500 */
   opacity: var(--opacity);
 }
 
 .bg-color2 {
-  background: #7bc950; /* lime-400 */
+  background: #58b327; /* lime-400 */
   opacity: var(--opacity);
 }
 
 .bg-color3 {
-  background: #87ceeb; /* sky-300 */
+  /* background: #87ceeb; sky-300 */
+  /* blue-600 */
+  background: #0186f2;
   opacity: var(--opacity);
 }
 
 .bg-color4 {
-  background: #6e1dc5; /* violet-800 */
+  background: #6d0ed3; /* violet-800 */
+  opacity: var(--opacity);
+}
+
+.bg-color5 {
+  background: #f7c137; /* yellow-500 */
   opacity: var(--opacity);
 }
 
