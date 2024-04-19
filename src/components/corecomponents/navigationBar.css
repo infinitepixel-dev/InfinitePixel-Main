@@ -190,7 +190,7 @@ main {
   /* margin: 5px; */
   /* border: 1px solid red; */
   /* width: 175px !important; */
-  /* z-index: 9999; */
+  z-index: 9999;
 }
 
 #logoColBlank {

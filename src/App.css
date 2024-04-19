@@ -1,11 +1,11 @@
-#root {
-  height: 100dvh;
-  width: 100dvw;
+/* disable horizontal scroll */
+:root {
+  overflow-x: hidden;
 }
 
 /* Disable mouse pointer for buttons and interactive elements */
 body {
-  cursor: none;
+  /* cursor: none; */
   /* overflow: hidden; */
   touch-action: manipulation;
 }
@@ -14,7 +14,7 @@ body {
 button,
 a,
 .interactive-element {
-  cursor: none !important; /* Add !important to ensure the override */
+  cursor: none !important;
 }
 
 /* dev - properties */
@@ -25,3 +25,8 @@ a,
 /* .grid-cols-12 {
   border: 1px solid white;
 } */
+
+.gridContainer {
+  position: relative; /* Establishes a new positioning context */
+  overflow: hidden; /* Ensures no spill-over */
+}
