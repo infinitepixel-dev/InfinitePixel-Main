@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      opacity: {
+        2: ".02",
+      },
       keyframes: {
         typing: {
           "0%": {
@@ -43,4 +46,4 @@ export default {
     },
   },
   plugins: [],
-};
+}
