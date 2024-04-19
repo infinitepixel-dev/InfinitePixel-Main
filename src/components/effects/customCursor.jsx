@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
-import "./customCursor.css";
+import PropTypes from "prop-types";
 
-const CustomCursor = () => {
+const CustomCursor = ({ fade }) => {
   const cursorRef = useRef(null);
   const pixels = useRef([]);
   const availablePixels = useRef([]);
 
   useEffect(() => {
+    // if fade is true do not continue the useEffect
+
     const colors = [
       "#7bc950",
       "#2d2b75",
@@ -80,17 +82,23 @@ const CustomCursor = () => {
       }
     };
 
+    const pixelsToRemove = pixels.current.slice(); // Copy the value of pixels.current to a new variable
+
     document.addEventListener("mousemove", animateCursor);
     document.addEventListener("touchmove", animateCursor);
 
     return () => {
       document.removeEventListener("mousemove", animateCursor);
       document.removeEventListener("touchmove", animateCursor);
-      pixels.current.forEach((pixel) => pixel.remove()); // Cleanup pixels
+      pixelsToRemove.forEach((pixel) => pixel.remove()); // Use the new variable in the cleanup function
     };
   }, []);
 
-  return <div className="custom-cursor" ref={cursorRef}></div>;
+  return <>{fade ? <></> : <div ref={cursorRef} className="cursor"></div>}</>;
+};
+
+CustomCursor.propTypes = {
+  fade: PropTypes.bool,
 };
 
 export default CustomCursor;
