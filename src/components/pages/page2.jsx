@@ -32,7 +32,7 @@ function HeroPage() {
             <p className="pt-3 mt-2 text-2xl information-botom">
               If you are looking to streamline your business, enhance user
               experience, or bring your ideas to life.{" "}
-              <span>Infinite Pixel</span>
+              <span className="text-purple-800">Infinite Pixel </span>
               is here to help your reach your goals.
             </p>
             <button
