@@ -102,14 +102,11 @@ function HeroPage() {
               For Your Brand
             </span>
             <button
-              className="mt-5 text-5xl leading-normal tracking-tight text-center duration-700 bg-yellow-600 md:text-2x1 hover:bg-yellow-500"
+              className="mt-5 text-5xl leading-normal tracking-tight text-center duration-700 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
               style={{
                 position: "relative",
                 width: "350px",
                 height: "89px",
-                // left: "148px",
-                // top: "485px",
-                color: "black",
                 borderRadius: "15px",
               }}
             >
