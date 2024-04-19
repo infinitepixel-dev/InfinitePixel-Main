@@ -19,7 +19,7 @@ function App() {
     <>
       {/*SECTION Effect Components - BEGIN */}
       {/*NOTE Displays a custom mouse cursor for desktop/mobile */}
-      <DynamicComponentLoader componentName="CustomCursor" />
+
       {/*!SECTION Effect Components - BEGIN */}
 
       {/*SECTION Splashpage - BEGIN */}
