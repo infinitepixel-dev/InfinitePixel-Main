@@ -1,3 +1,5 @@
+import sectionbg from "../../assets/sectionbg.jpg"
+
 function Page2() {
   return (
     <div className="relative col-span-12 row-span-1 row-start-1 overflow-hidden">
@@ -5,7 +7,7 @@ function Page2() {
 
       {/* Sub-grid for Page 1 */}
       <div className="relative">
-        {/* Background image with opacity */}
+
         {/*NOTE Convert JPG TO SVG */}
         <div
           className="absolute inset-0 bg-[url('/src/assets/sectionbg.jpg')] bg-cover bg-center opacity-[.03]"
