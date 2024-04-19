@@ -1,18 +1,16 @@
-// Hero - Page 1
-import "./heroPage.css"
 import sectionbg from "../../assets/sectionbg.jpg"
 
-function HeroPage() {
+function Page2() {
   return (
     <div className="relative col-span-12 row-span-1 row-start-1 overflow-hidden">
       {/*NOTE Background Colors */}
 
       {/* Sub-grid for Page 1 */}
       <div className="relative">
-        {/* Background image with opacity */}
+
         {/*NOTE Convert JPG TO SVG */}
         <div
-          className="absolute inset-0 bg-[url('/src/assets/sectionbg.jpg')] bg-cover bg-center opacity-5"
+          className="absolute inset-0 bg-[url('/src/assets/sectionbg.jpg')] bg-cover bg-center opacity-[.03]"
           style={{ zIndex: -1 }}
         />
         <div className="z-10 grid w-full h-screen grid-cols-12 grid-rows-6 gap-1 overflow-auto column">
@@ -55,4 +53,4 @@ function HeroPage() {
   )
 }
 
-export default HeroPage
+export default Page2
