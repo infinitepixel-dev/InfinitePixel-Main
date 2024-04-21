@@ -81,7 +81,7 @@ function HeroPage() {
   //new code
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden overscroll-none">
       {/*NOTE Background Colors */}
 
       <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} />
@@ -176,24 +176,24 @@ function HeroPage() {
       {/* Sub-grid for Page 1 */}
       <div
         id="heroPageElement"
-        className="z-10 grid w-full h-screen gap-1 mb-8 grid-cols-8 overflow-auto grid-rows-8 md:grid-cols-8 lg:grid-cols-12 column"
+        className="overflow-hidden z-10 grid w-full h-screen gap-1 mb-8 grid-cols-8 grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column"
       >
         {/* Add your rows and columns inside the sub-grid */}
 
-        <div className="col-start-2 col-end-7 col-span-7 xl:col-start-2 xl:col-span-3 text-5xl row-start-2 font-bold leading-normal tracking-normal self-center">
+        <div className="col-start-2 col-end-7 col-span-7 xs:text-5xl xl:col-start-2 xl:col-span-3 text-5xl row-start-2 xs:row-start-1 font-bold leading-normal tracking-normal">
           Developing Responsive Websites
           <span className=""> For Your Brand</span>
         </div>
 
         {/* Uses self-start and self-end to align within the cells*/}
-        <button className="col-start-2 row-start-4 col-end-8 xl:row-start-3 xl:col-start-2 xl:col-span-3 text-5xl rounded-lg leading-normal tracking-tight text-center duration-700 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700 self-center">
+        <button className="col-start-2 row-start-4 col-end-8 xs:row-start-3 xs:mt-16 lg:row-start-3 xl:row-start-3 xl:col-start-2 xl:col-span-3 text-5xl rounded-lg leading-normal tracking-tight text-center duration-700 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700 self-center">
           Get Started
         </button>
 
         {/* section for Web Design, Data Transfer, SEO, and Web Design */}
-        <div className="grid grid-cols-1 row-start-5 col-start-2 col-span-6 lg:grid-cols-4 lg:col-start-2 lg:col-end-12 lg:row-start-5 xl:row-start-6 xl:grid-cols-8">
+        <div className="grid grid-cols-1 row-start-5 col-start-2 col-span-6 xs:row-start-4 lg:grid-cols-8 lg:col-start-2 lg:col-end-12 lg:row-start-4 xl:row-start-6 xl:grid-cols-8">
           {/* Web Design - Adjusted for responsive behavior */}
-          <div className="m-3 xs:row-start-1 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-1">
+          <div className="xl:m-3 xs:mt-16 lg:mt-6 xs:row-start-1 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:row-start-1 lg:col-start-1 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-1">
             <hr className="w-full border-t-2 border-gray-300" />
             <div className="mt-2 font-bold text-base leading-normal tracking-normal sm:text-xl lg:text-3xl">
               Web Design
@@ -203,9 +203,9 @@ function HeroPage() {
               devices.
             </div>
           </div>
+
           {/* Data Transfer - Responsive adjustments */}
-          {/* sub grid */}
-          <div className="m-3 xs:row-start-2 xs:col-start-2 xs:col-span-6 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-3">
+          <div className="xl:m-3 xs:mt-6 xs:row-start-2 xs:col-start-2 xs:col-span-6 lg:row-start-1 lg:col-start-5 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-3">
             <hr className="w-full border-t-2 border-gray-300" />
             <div className="mt-2 text-xl font-bold leading-normal tracking-normal sm:text-2xl lg:text-3xl">
               Data Transfer
@@ -214,8 +214,9 @@ function HeroPage() {
               We transfer your existing website to a modern platform with ease.
             </div>
           </div>
+
           {/* SEO - Adjusted for responsive grid */}
-          <div className="m-3 xs:row-start-3 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-5">
+          <div className="xl:m-3 xs:mt-6 xs:row-start-3 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:row-start-3 lg:col-start-1 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-5">
             <hr className="w-full border-t-2 border-gray-300" />
             <div className="mt-2 text-xl font-bold leading-normal tracking-normal sm:text-2xl lg:text-3xl">
               SEO
@@ -224,8 +225,9 @@ function HeroPage() {
               We help your website rank higher in search engines.
             </div>
           </div>
+
           {/* Additional Web Design Section if needed, or use for another service */}
-          <div className="m-3 xs:row-start-4 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-7">
+          <div className="xl:m-3 xs:mt-6 xs:row-start-4 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:row-start-3 lg:col-start-5 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-7">
             <hr className="w-full border-t-2 border-gray-300" />
             <div className="mt-2 text-xl font-bold leading-normal tracking-normal sm:text-2xl lg:text-3xl">
               More Web Design

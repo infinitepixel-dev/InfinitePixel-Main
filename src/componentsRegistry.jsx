@@ -3,7 +3,7 @@ const componentsRegistry = {
   SplashPage: () => import("./components/pages/splashPage.jsx"),
   NavigationBar: () => import("./components/corecomponents/navigationBar.jsx"),
   HeroPage: () => import("./components/pages/heroPage.jsx"),
-  Page2: () => import("./components/pages/page2.jsx"),
+  AboutUs: () => import("./components/pages/aboutUs.jsx"),
   // Add more components here
 };
 
