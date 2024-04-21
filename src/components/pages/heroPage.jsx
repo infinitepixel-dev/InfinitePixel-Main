@@ -180,13 +180,13 @@ function HeroPage() {
       >
         {/* Add your rows and columns inside the sub-grid */}
 
-        <div className="col-start-2 col-end-7 col-span-7 xs:text-5xl xl:col-start-2 xl:col-span-3 text-5xl row-start-2 xs:row-start-1 font-bold leading-normal tracking-normal">
+        <div className="col-start-2 col-end-7 col-span-7 xs:text-5xl xl:row-start-2 xl:col-start-2 xl:col-span-3 text-5xl row-start-2 xs:row-start-1 font-bold leading-normal tracking-normal">
           Developing Responsive Websites
           <span className=""> For Your Brand</span>
         </div>
 
         {/* Uses self-start and self-end to align within the cells*/}
-        <button className="col-start-2 row-start-4 col-end-8 xs:row-start-3 xs:mt-16 lg:row-start-3 xl:row-start-3 xl:col-start-2 xl:col-span-3 text-5xl rounded-lg leading-normal tracking-tight text-center duration-700 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700 self-center">
+        <button className="col-start-2 row-start-4 col-end-8 xs:row-start-3 xs:mt-16 lg:row-start-3 xl:row-start-2 xl:mt-48 xl:col-start-2 xl:col-span-3 text-5xl rounded-lg leading-normal tracking-tight text-center duration-700 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700 self-center">
           Get Started
         </button>
 
