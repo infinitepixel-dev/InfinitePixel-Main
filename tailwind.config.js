@@ -8,6 +8,7 @@ export default {
       md: "768px",
       lg: "1029px",
       xl: "1280px",
+      xxl: "1440px",
     },
     extend: {
       keyframes: {
@@ -50,4 +51,4 @@ export default {
     },
   },
   plugins: ["prettier-plugin-tailwindcss"],
-};
+}
