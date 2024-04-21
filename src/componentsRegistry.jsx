@@ -4,7 +4,8 @@ const componentsRegistry = {
   NavigationBar: () => import("./components/corecomponents/navigationBar.jsx"),
   HeroPage: () => import("./components/pages/heroPage.jsx"),
   AboutUs: () => import("./components/pages/aboutUs.jsx"),
+  Payments: () => import("./components/pages/payments.jsx"),
   // Add more components here
-};
+}
 
-export default componentsRegistry;
+export default componentsRegistry
