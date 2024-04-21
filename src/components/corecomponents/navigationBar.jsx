@@ -49,29 +49,6 @@ const SidebarHamburger = () => {
             isOpen ? "open" : ""
           }`}
         >
-          {/* row 1 - BEGIN */}
-          <div className="col-start-1 row-start-1">
-            <div className="flex">
-              {/* <div className="ml-16" id="logoColBlank"></div> */}
-              <div
-                className="flex-shrink-0 h-0 mt-0 ml-16 align-top scale-150"
-                id="logoCol"
-              >
-                {/* Removed margin-left as grid places it in the second column */}
-                {/*FIXME style if isOpen show img otherwise hide image */}
-                {/* <img
-                  style={{
-                    transition: "5s ease-in-out",
-                  }}
-                  src={logo}
-                  alt="Logo"
-                /> */}
-              </div>
-              {/* flex end */}
-            </div>
-          </div>
-          {/* row 1 - END */}
-
           {/* row 2 - BEGIN */}
           <div className="row-start-2 content-center">
             <div className="grid gap-4 grid-cols-subgrid ">
@@ -93,7 +70,7 @@ const SidebarHamburger = () => {
               {/* row 6 */}
 
               <img
-                className="col-start-1 col-end-2 row-start-8 pl-5 scale-150"
+                className="col-start-1 col-end-2 row-start-8 pl-4 scale-150"
                 // style={{
                 //   transition: "1s ease-in-out",
                 // }}
