@@ -19,6 +19,12 @@ body {
 }
 
 .snap-page {
+  animation: none;
   scroll-snap-align: start;
-  height: 100vh; /* ensures each snap point is the height of the viewport */
+  height: 100svh; /* ensures each snap point is the height of the viewport */
 }
+
+/* delay the snap and smoothly bounce it in */
+/* .snap-page {
+  animation: snap 5s cubic-bezier(1.22, 1, 0.36, 1);
+} */
