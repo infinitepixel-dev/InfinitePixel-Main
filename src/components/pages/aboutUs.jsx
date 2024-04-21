@@ -11,12 +11,12 @@ function AboutSection() {
       />
       <div className="z-10 grid w-full h-screen grid-cols-8 gap-1 mb-8 overflow-hidden grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column">
         {/* Add your rows and columns inside the sub-grid */}
-        <h1 className="row-start-1 mt-10 text-6xl font-bold leading-tight tracking-normal xl:col-start-2 xl:col-span-3 xs:text-5xl xs:col-start-2 xs:col-span-7 xl:text-5xl md:col-span-5 md:col-start-2 drop-shadow-lg md:row-start-1">
+        <h1 className="row-start-1 mt-10 font-bold leading-tight tracking-normal capitalize xxl:text-7xl xl:col-start-2 xl:col-span-3 xs:text-5xl xs:col-start-2 xs:col-span-7 xl:text-5xl md:col-span-5 md:col-start-2 drop-shadow-lg md:row-start-1">
           We design and develop modern mobile first websites to solve real
           business problems
         </h1>
-        <div className="mt-10 text-2xl xs:row-start-3 xs:text-1xl xs:col-start-2 xs:col-span-6 md:col-span-4 md:col-start-2 md:row-start-4">
-          <p className="information-top">
+        <div className="mt-10 text-2xl xs:row-start-3 xxl:row-start-5 xs:text-1xl xs:col-start-2 xs:col-span-6 md:col-span-4 md:col-start-2 md:row-start-4">
+          <p className="normal information-top">
             If you are just starting a new business, or looking to redesign your
             current website. Infinite Pixel has you covered, our team has a vast
             array of expertise in Design & Implementation, Ecommerce, and
