@@ -9,9 +9,9 @@ function AboutSection() {
         className="absolute inset-0 bg-[url('/src/assets/sectionbg.jpg')] bg-cover bg-center opacity-[.03]"
         style={{ zIndex: -1 }}
       />
-      <div className="overflow-hidden z-10 grid w-full h-screen gap-1 mb-8 grid-cols-8 grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column">
+      <div className="z-10 grid w-full h-screen grid-cols-8 gap-1 mb-8 overflow-hidden grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column">
         {/* Add your rows and columns inside the sub-grid */}
-        <h1 className="row-start-1 mt-10 text-6xl xs:text-3xl xs:col-start-2 xs:col-span-7 font-bold leading-tight tracking-normal md:col-span-5 md:col-start-2 drop-shadow-lg md:row-start-1">
+        <h1 className="row-start-1 mt-10 text-6xl font-bold leading-tight tracking-normal xl:col-start-2 xl:col-span-3 xs:text-5xl xs:col-start-2 xs:col-span-7 xl:text-5xl md:col-span-5 md:col-start-2 drop-shadow-lg md:row-start-1">
           We design and develop modern mobile first websites to solve real
           business problems
         </h1>
@@ -23,7 +23,7 @@ function AboutSection() {
             Marketing/SEO.
           </p>
 
-          <p className="pt-3 mt-2  information-botom">
+          <p className="pt-3 mt-2 information-botom">
             If you are looking to streamline your business, enhance user
             experience, or bring your ideas to life.{" "}
             <span className="text-purple-800">Infinite Pixel </span>
@@ -31,12 +31,12 @@ function AboutSection() {
           </p>
         </div>
 
-        <button className="xs:mt-36 text-4xl xs:col-start-2 xs:row-start-7 col-span-6 p-5 xl:col-span-3 xl:col-start-2 xl:row-start-5 rounded-lg leading-none tracking-tight text-center duration-700 drop-shadow-xl text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800 self-center">
+        <button className="self-center col-span-6 p-5 text-4xl leading-none tracking-tight text-center duration-700 rounded-lg xs:mt-36 xs:col-start-2 xs:row-start-7 xl:col-span-3 xl:col-start-2 xl:row-start-7 xl:m-2 drop-shadow-xl text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
           Start Your Project
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-export default AboutSection;
+export default AboutSection
