@@ -1,19 +1,10 @@
-import "./App.css"
+import DynamicComponentLoader from "./dynamicComponentLoader";
 
-// Image Assets
-// import logo from "./assets/logo.svg";
-
-// eslint-disable-next-line no-unused-vars
-import barberShop from "./assets/barberShop.png"
-
-import DynamicComponentLoader from "./dynamicComponentLoader"
+import "./App.css";
 
 function App() {
-  let developerMode = true // Set to false when deploying to production
-  let displaySplashPage = true // Set to true when deploying to production
-
-  // eslint-disable-next-line no-unused-vars
-  let currentYear = new Date().getFullYear() // Current year
+  let developerMode = true; // Set to false when deploying to production
+  let displaySplashPage = true; // Set to true when deploying to production
 
   return (
     <>
@@ -36,23 +27,28 @@ function App() {
         //!SECTION Splashpage - END
         //SECTION Main Content Container - BEGIN
         <>
-          {/*NOTE Navigation Bar - Displays the Navigation Bar outside of grid container */}
-          <DynamicComponentLoader componentName="NavigationBar" />
-          {/* Page 1 */}
-          <DynamicComponentLoader componentName="HeroPage" />
-          {/* Page 2 */}
-          <DynamicComponentLoader componentName="AboutUs" />
-
-          {/* Page 3 */}
-          <DynamicComponentLoader componentName="Payments" />
-
-          {/* Page 4 - footer */}
-          <DynamicComponentLoader componentName="Page4" />
+          <div className="snap-container">
+            {/* Navigation Bar - Consider fixing the position if required */}
+            <DynamicComponentLoader componentName="NavigationBar" />
+            <div className="snap-page">
+              <DynamicComponentLoader componentName="HeroPage" />
+            </div>
+            <div className="snap-page">
+              <DynamicComponentLoader componentName="AboutUs" />
+            </div>
+            <div className="snap-page">
+              <DynamicComponentLoader componentName="Payments" />
+            </div>
+            <div className="snap-page">
+              <DynamicComponentLoader componentName="Page4" />{" "}
+              {/* Assuming this is your footer */}
+            </div>
+          </div>
         </>
         //!SECTION Main Content Container - BEGIN
       )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

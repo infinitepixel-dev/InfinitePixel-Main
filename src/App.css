@@ -10,14 +10,15 @@ body {
   touch-action: manipulation;
 }
 
-/* Define the cursor style for specific elements where you want the pointer disabled */
-button,
-a,
-.interactive-element {
-  /* cursor: none !important; */
+/* Add this to your App.css or equivalent file */
+.snap-container {
+  scroll-snap-type: y mandatory; /* ensure snapping occurs along the y-axis */
+  overflow-y: scroll;
+  height: 100vh; /* corrected from 100dvh */
+  scroll-behavior: smooth; /* enables smooth scrolling */
 }
 
-/* dev - properties */
-.column {
-  /* border: 1px solid white; */
+.snap-page {
+  scroll-snap-align: start;
+  height: 100vh; /* ensures each snap point is the height of the viewport */
 }
