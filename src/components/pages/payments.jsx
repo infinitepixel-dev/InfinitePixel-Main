@@ -28,34 +28,35 @@ function CheckIcon() {
 
 export function PricingCard() {
   return (
-    <div className="grid w-full h-screen grid-cols-12 gap-2 overflow-hidden grid-rows-8">
+    <div className="grid w-full h-screen grid-cols-12 gap-2 grid-rows-8">
       <Card
         color="bg-slate-600"
         variant="gradient"
-        className="grid col-span-2 col-start-2 row-span-5 row-start-2 p-8 rounded-md shadow-md grid-rows-8 grid-cols-subgrid bg-slate-800"
+        className="grid col-span-2 col-start-2 grid-rows-2 row-start-2 p-8 rounded-md shadow-md row-span-8 grid-cols-subgrid bg-slate-800"
       >
         <CardHeader
           floated={false}
           shadow={false}
           color="transparent"
-          className="col-span-2 row-start-2 pb-8 m-0 mb-8 text-center border-b rounded-none border-white/10"
+          className="col-span-2 row-start-1 text-center text-gray-699"
         >
           <Typography
             variant="small"
             color="white"
-            className="row-start-1 uppercase text-2x1"
+            className="uppercase text-2x1"
           >
             Starter Package
           </Typography>
           <Typography
             variant="h1"
             color="white"
-            className="flex justify-center gap-1 mt-6 font-normal text-7xl"
+            className="flex justify-center gap-1 mt-4 font-normal text-7xl"
           >
-            <span className="mt-2 text-4xl">$</span>250{" "}
+            <span className="text-3xl ">$</span>
+            250{" "}
           </Typography>
         </CardHeader>
-        <CardBody className="col-span-2 row-span-2 row-start-3 p-0">
+        <CardBody className="col-span-2 row-span-2 row-start-2 p-0">
           <ul className="flex flex-col gap-4">
             <li className="flex items-center gap-4">
               <span className="p-1 bg-green-700 border rounded-full border-slate-300">
