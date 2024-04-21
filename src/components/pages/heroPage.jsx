@@ -193,7 +193,7 @@ function HeroPage() {
         {/* Uses self-start and self-end to align within the cells*/}
         <a
           href="#paymentInformation"
-          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg xs:col-span-5 xs:row-start-3 xs:mt-12 lg:row-start-3 xl:row-start-2 xl:mt-48 xl:col-start-2 xl:col-span-3 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
+          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg xl:mb-20 xs:col-span-5 xl:p-2 xs:row-start-3 xs:mt-12 lg:row-start-3 xl:row-start-6 xl: xl:col-start-2 xl:col-span-3 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
         >
           Get Started
         </a>
