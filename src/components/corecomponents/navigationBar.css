@@ -1,13 +1,4 @@
 /*NOTE Removes page styling */
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #333;
-} */
 
 /* default page colors using var */
 :root {
@@ -25,57 +16,7 @@ body {
 
 /*SECTION Navigation Menu - BEGIN */
 
-/*NOTE Navigation bar */
-/* .navMenu {
-  position: fixed;
-  margin: 18px;
-} */
-
 /*SECTION Hamburger Style - BEGIN */
-
-/*NOTE Hamburger icon */
-/* Targets the container of the menu icon, applying a flexbox layout to arrange its children */
-/* .menu-icon {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  z-index: 20;
-  position: absolute;
-} */
-
-/*NOTE arrow bar */
-/* Common styles for the bars of the hamburger menu */
-/* .bar,
-.arrow-bar .bar {
-  height: 4px;
-  width: 30px;
-  position: relative;
-} */
-
-/*NOTE arrow bar top/bottom */
-/* .top-bar {
-  background-color: var(--red);
-  transition: 0.4s;
-} */
-
-/* .top-bar.open,
-.bottom-bar.open {
-  background-color: var(--green);
-  transition: 0.4s;
-} */
-
-/* .bottom-bar {
-  background-color: var(--light-blue);
-  transition: 0.4s;
-} */
-
-/* .bottom-bar.open {
-  background-color: var(--orange);
-  transition: 0.4s;
-} */
 
 /*NOTE arrow bar middle */
 .middle-bar {
@@ -141,7 +82,9 @@ body {
   transition: 0.5s, backdrop-filter; /* Smooth transition for showing/hiding */
   /* padding-top: 60px; */
   z-index: 1; /* Ensure it's above other content */
-  /* blur the right edge*/
+  /* Apply a mask image that fades from left (opaque) to right (transparent) */
+  -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  mask-image: linear-gradient(to right, black 90%, transparent 100%);
 }
 
 /*NOTE sidebar open */
