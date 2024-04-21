@@ -5,7 +5,48 @@
 }
 
 .orb {
-  transition: top 5s ease, left 10s ease, transform 8s ease; /* Smooth transition for top and left properties */
+  transition:
+    top 5s ease,
+    left 10s ease,
+    transform 8s ease; /* Smooth transition for top and left properties */
+}
+
+/* New media queries for mobile devices */
+@media (max-width: 768px) {
+  .bg-color1,
+  .bg-color2,
+  .bg-color3,
+  .bg-color4,
+  .bg-color5 {
+    width: 30%; /* Smaller orbs on mobile */
+    height: 30%;
+  }
+
+  .bg-color1 {
+    /* Adjust positions for mobile */
+    left: 10%;
+    top: 50%;
+  }
+
+  .bg-color2 {
+    left: 40%;
+    top: 10%;
+  }
+
+  .bg-color3 {
+    left: 15%;
+    top: 70%;
+  }
+
+  .bg-color4 {
+    left: 60%;
+    top: 50%;
+  }
+
+  .bg-color5 {
+    left: 80%;
+    top: 20%;
+  }
 }
 
 .bg-color1 {

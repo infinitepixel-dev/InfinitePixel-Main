@@ -14,19 +14,10 @@ body {
 button,
 a,
 .interactive-element {
-  cursor: none !important;
+  /* cursor: none !important; */
 }
 
 /* dev - properties */
 .column {
   /* border: 1px solid white; */
-}
-
-/* .grid-cols-12 {
-  border: 1px solid white;
-} */
-
-.gridContainer {
-  position: relative; /* Establishes a new positioning context */
-  overflow: hidden; /* Ensures no spill-over */
 }

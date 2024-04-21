@@ -53,13 +53,18 @@ function HeroPage() {
     setupOrbs(orbRef5);
 
     const moveOrbs = (orbRefs) => {
+      const screenWidth = window.innerWidth;
+      const isMobile = screenWidth < 768;
+      const maxMovement = isMobile ? 30 : 60; // Maximum pixel movement
+
       for (let i = 0; i < orbRefs.current.length; i++) {
         const orb = orbRefs.current[i];
-        // Generate new positions within 25% of their original position
-        const deltaX = (Math.random() * 2 - 1) * 0.5 * orb.initialLeft;
-        const deltaY = (Math.random() * 2 - 1) * 0.5 * orb.initialTop;
+        // Generate new positions within a specific pixel range
+        const deltaX = (Math.random() * 2 - 1) * maxMovement; // New fixed range instead of percentage
+        const deltaY = (Math.random() * 2 - 1) * maxMovement;
         orb.style.left = `${orb.initialLeft + deltaX}px`;
         orb.style.top = `${orb.initialTop + deltaY}px`;
+
         orb.style.transform = `scale(${2 + Math.random() * 0.1})`;
         // return to normal size after 2 seconds
         setTimeout(() => {
