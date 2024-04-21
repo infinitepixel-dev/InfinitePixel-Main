@@ -5,7 +5,7 @@ import {
   CardFooter,
   Typography,
   Button,
-} from "@material-tailwind/react"
+} from "@material-tailwind/react";
 
 function CheckIcon() {
   return (
@@ -23,13 +23,13 @@ function CheckIcon() {
         d="M4.5 12.75l6 6 9-13.5"
       />
     </svg>
-  )
+  );
 }
 
 export function PricingCard() {
   return (
     <div
-      className="grid w-full h-screen grid-cols-12 gap-2 grid-rows-8"
+      className="grid w-full h-svh grid-cols-12 gap-2 grid-rows-8"
       id="paymentInformation"
     >
       <Card
@@ -118,6 +118,6 @@ export function PricingCard() {
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }
-export default PricingCard
+export default PricingCard;
