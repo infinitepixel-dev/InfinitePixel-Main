@@ -12,7 +12,7 @@ const SidebarHamburger = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1" id="customNav">
+      <div className="grid grid-cols-2" id="customNav">
         {/* Hamburger and Logo in the same row using grid */}
         {/* Hamburger Icon */}
         {/* row 1 - BEGIN */}
@@ -45,7 +45,7 @@ const SidebarHamburger = () => {
         {/* row 1 - END */}
 
         <div
-          className={`grid grid-cols-2 grid-rows-7 sidebar z-10 p-3 backdrop-filter backdrop-blur-md transition-all duration-500 ease-in-out col-span-1 col-start-2 ${
+          className={`grid grid-cols-2 grid-rows-10 sidebar z-10 p-3 backdrop-filter backdrop-blur-md transition-all duration-500 ease-in-out col-span-1 col-start-2 ${
             isOpen ? "open" : ""
           }`}
         >
@@ -58,14 +58,14 @@ const SidebarHamburger = () => {
                 id="logoCol"
               >
                 {/* Removed margin-left as grid places it in the second column */}
-                {/* style if isOpen show img otherwise hide image */}
-                <img
+                {/*FIXME style if isOpen show img otherwise hide image */}
+                {/* <img
                   style={{
                     transition: "5s ease-in-out",
                   }}
                   src={logo}
                   alt="Logo"
-                />
+                /> */}
               </div>
               {/* flex end */}
             </div>
@@ -73,8 +73,8 @@ const SidebarHamburger = () => {
           {/* row 1 - END */}
 
           {/* row 2 - BEGIN */}
-          <div className="row-start-2">
-            <div className="grid gap-4 grid-cols-subgrid">
+          <div className="row-start-2 content-center">
+            <div className="grid gap-4 grid-cols-subgrid ">
               <a href="#" className="block text-lg">
                 Home
               </a>
@@ -90,6 +90,16 @@ const SidebarHamburger = () => {
               <a href="#" className="block text-lg">
                 Contact
               </a>
+              {/* row 6 */}
+
+              <img
+                className="col-start-1 col-end-2 row-start-8 pl-5 scale-150"
+                // style={{
+                //   transition: "1s ease-in-out",
+                // }}
+                src={logo}
+                alt="Logo"
+              />
             </div>
           </div>
           {/* Row 2 - END */}

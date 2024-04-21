@@ -41,7 +41,7 @@ function App() {
           {/* Page 1 */}
           <DynamicComponentLoader componentName="HeroPage" />
           {/* Page 2 */}
-          <DynamicComponentLoader componentName="Page2" />
+          <DynamicComponentLoader componentName="AboutUs" />
 
           {/* Page 3 */}
           <DynamicComponentLoader componentName="Page3" />
