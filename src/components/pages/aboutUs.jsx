@@ -9,7 +9,7 @@ function AboutSection() {
         className="absolute inset-0 bg-[url('/src/assets/sectionbg.jpg')] bg-cover bg-center opacity-[.03]"
         style={{ zIndex: -1 }}
       />
-      <div className="z-10 grid w-full h-screen grid-cols-8 gap-1 mb-8 overflow-hidden grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column">
+      <div className="z-10 grid w-full h-svh grid-cols-8 gap-1 mb-8 overflow-hidden grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column">
         {/* Add your rows and columns inside the sub-grid */}
         <h1 className="row-start-1 mt-10 text-6xl font-bold leading-tight tracking-normal xl:col-start-2 xl:col-span-3 xs:text-5xl xs:col-start-2 xs:col-span-7 xl:text-5xl md:col-span-5 md:col-start-2 drop-shadow-lg md:row-start-1">
           We design and develop modern mobile first websites to solve real
@@ -36,7 +36,7 @@ function AboutSection() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default AboutSection
+export default AboutSection;

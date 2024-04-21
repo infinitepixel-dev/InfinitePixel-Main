@@ -9,6 +9,7 @@ export default {
       lg: "1029px",
       xl: "1280px",
       xxl: "1440px",
+      galaxyS23Ultra: "384px",
     },
     extend: {
       keyframes: {
@@ -51,4 +52,4 @@ export default {
     },
   },
   plugins: ["prettier-plugin-tailwindcss"],
-}
+};

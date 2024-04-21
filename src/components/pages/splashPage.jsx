@@ -27,7 +27,7 @@ function SplashPage() {
         </div>
       </div> */}
 
-      <div className="flex items-center justify-center w-full h-screen bg-slate-900">
+      <div className="flex items-center justify-center w-full h-svh bg-slate-900">
         {/* <img
           src={bgImage}
           alt="background"
