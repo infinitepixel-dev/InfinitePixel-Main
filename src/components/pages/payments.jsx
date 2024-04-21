@@ -28,7 +28,10 @@ function CheckIcon() {
 
 export function PricingCard() {
   return (
-    <div className="grid w-full h-screen grid-cols-12 gap-2 grid-rows-8">
+    <div
+      className="grid w-full h-screen grid-cols-12 gap-2 grid-rows-8"
+      id="paymentInformation"
+    >
       <Card
         color="bg-slate-600"
         variant="gradient"
