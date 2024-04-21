@@ -191,9 +191,12 @@ function HeroPage() {
         </div>
 
         {/* Uses self-start and self-end to align within the cells*/}
-        <button className="col-start-2 row-start-4 col-end-8 xs:row-start-3 xs:mt-16 lg:row-start-3 xl:row-start-2 xl:mt-48 xl:col-start-2 xl:col-span-3 text-5xl rounded-lg leading-normal tracking-tight text-center duration-700 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700 self-center">
+        <a
+          href="#paymentInformation"
+          className="col-start-2 row-start-4 col-end-8 xs:row-start-3 xs:mt-16 lg:row-start-3 xl:row-start-2 xl:mt-48 xl:col-start-2 xl:col-span-3 text-5xl rounded-lg leading-normal tracking-tight text-center duration-700 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700 self-center"
+        >
           Get Started
-        </button>
+        </a>
 
         {/* section for Web Design, Data Transfer, SEO, and Web Design */}
         <div className="grid grid-cols-1 row-start-5 col-start-2 col-span-6 xs:row-start-4 lg:grid-cols-8 lg:col-start-2 lg:col-end-12 lg:row-start-4 xl:row-start-6 xl:grid-cols-8">
