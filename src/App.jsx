@@ -1,19 +1,19 @@
-import "./App.css";
+import "./App.css"
 
 // Image Assets
 // import logo from "./assets/logo.svg";
 
 // eslint-disable-next-line no-unused-vars
-import barberShop from "./assets/barberShop.png";
+import barberShop from "./assets/barberShop.png"
 
-import DynamicComponentLoader from "./dynamicComponentLoader";
+import DynamicComponentLoader from "./dynamicComponentLoader"
 
 function App() {
-  let developerMode = true; // Set to false when deploying to production
-  let displaySplashPage = true; // Set to true when deploying to production
+  let developerMode = true // Set to false when deploying to production
+  let displaySplashPage = true // Set to true when deploying to production
 
   // eslint-disable-next-line no-unused-vars
-  let currentYear = new Date().getFullYear(); // Current year
+  let currentYear = new Date().getFullYear() // Current year
 
   return (
     <>
@@ -44,7 +44,7 @@ function App() {
           <DynamicComponentLoader componentName="AboutUs" />
 
           {/* Page 3 */}
-          <DynamicComponentLoader componentName="Page3" />
+          <DynamicComponentLoader componentName="Payments" />
 
           {/* Page 4 - footer */}
           <DynamicComponentLoader componentName="Page4" />
@@ -52,7 +52,7 @@ function App() {
         //!SECTION Main Content Container - BEGIN
       )}
     </>
-  );
+  )
 }
 
-export default App;
+export default App
