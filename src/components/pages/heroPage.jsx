@@ -1,88 +1,88 @@
 // Hero - Page 1
-import { useState, useEffect, useRef } from "react";
-import "./heroPage.css";
+import { useState, useEffect, useRef } from "react"
+import "./heroPage.css"
 
-import DynamicComponentLoader from "../../dynamicComponentLoader";
+import DynamicComponentLoader from "../../dynamicComponentLoader"
 
 function HeroPage() {
-  const [inHeroPage, setinHeroPage] = useState(false);
+  const [inHeroPage, setinHeroPage] = useState(false)
 
   //wait for the page to load
   setTimeout(() => {
-    let hero = document.getElementById("heroPageElement");
+    let hero = document.getElementById("heroPageElement")
 
     // //add mouses hover edvent listener to heroPageElement
     hero.addEventListener("mouseover", () => {
       // console.log("mouse over hero page");
-      setinHeroPage(false);
-    });
+      setinHeroPage(false)
+    })
 
     //if the mouse leaves the heroPageElement, set inHeroPage to false
     hero.addEventListener("mouseleave", () => {
       // console.log("mouse left hero page");
       //allow the opacity of the custom cursor to fade out
 
-      setinHeroPage(true);
-    });
-  }, 1000);
+      setinHeroPage(true)
+    })
+  }, 1000)
 
-  const backGroundBlurAmount = 210;
-  const backGroundBorderRadius = 50;
+  const backGroundBlurAmount = 210
+  const backGroundBorderRadius = 50
 
   //new code
-  const orbRef1 = useRef([]);
-  const orbRef2 = useRef([]);
-  const orbRef3 = useRef([]);
-  const orbRef4 = useRef([]);
-  const orbRef5 = useRef([]);
+  const orbRef1 = useRef([])
+  const orbRef2 = useRef([])
+  const orbRef3 = useRef([])
+  const orbRef4 = useRef([])
+  const orbRef5 = useRef([])
 
   useEffect(() => {
     // Set initial positions for all orbs, storing them in refs
     const setupOrbs = (orbRefs) => {
       for (let i = 0; i < orbRefs.current.length; i++) {
-        const orb = orbRefs.current[i];
-        orb.initialLeft = orb.offsetLeft;
-        orb.initialTop = orb.offsetTop;
+        const orb = orbRefs.current[i]
+        orb.initialLeft = orb.offsetLeft
+        orb.initialTop = orb.offsetTop
       }
-    };
+    }
 
-    setupOrbs(orbRef1);
-    setupOrbs(orbRef2);
-    setupOrbs(orbRef3);
-    setupOrbs(orbRef4);
-    setupOrbs(orbRef5);
+    setupOrbs(orbRef1)
+    setupOrbs(orbRef2)
+    setupOrbs(orbRef3)
+    setupOrbs(orbRef4)
+    setupOrbs(orbRef5)
 
     const moveOrbs = (orbRefs) => {
-      const screenWidth = window.innerWidth;
-      const isMobile = screenWidth < 768;
-      const maxMovement = isMobile ? 30 : 60; // Maximum pixel movement
+      const screenWidth = window.innerWidth
+      const isMobile = screenWidth < 768
+      const maxMovement = isMobile ? 30 : 60 // Maximum pixel movement
 
       for (let i = 0; i < orbRefs.current.length; i++) {
-        const orb = orbRefs.current[i];
+        const orb = orbRefs.current[i]
         // Generate new positions within a specific pixel range
-        const deltaX = (Math.random() * 2 - 1) * maxMovement; // New fixed range instead of percentage
-        const deltaY = (Math.random() * 2 - 1) * maxMovement;
-        orb.style.left = `${orb.initialLeft + deltaX}px`;
-        orb.style.top = `${orb.initialTop + deltaY}px`;
+        const deltaX = (Math.random() * 2 - 1) * maxMovement // New fixed range instead of percentage
+        const deltaY = (Math.random() * 2 - 1) * maxMovement
+        orb.style.left = `${orb.initialLeft + deltaX}px`
+        orb.style.top = `${orb.initialTop + deltaY}px`
 
-        orb.style.transform = `scale(${2 + Math.random() * 0.1})`;
+        orb.style.transform = `scale(${2 + Math.random() * 0.1})`
         // return to normal size after 2 seconds
         setTimeout(() => {
-          orb.style.transform = "scale(1)";
-        }, 2000);
+          orb.style.transform = "scale(1)"
+        }, 2000)
       }
-    };
+    }
 
     const intervalId = setInterval(() => {
-      moveOrbs(orbRef1);
-      moveOrbs(orbRef2);
-      moveOrbs(orbRef3);
-      moveOrbs(orbRef4);
-      moveOrbs(orbRef5);
-    }, 500); // Update positions every second
+      moveOrbs(orbRef1)
+      moveOrbs(orbRef2)
+      moveOrbs(orbRef3)
+      moveOrbs(orbRef4)
+      moveOrbs(orbRef5)
+    }, 500) // Update positions every second
 
-    return () => clearInterval(intervalId);
-  }, []);
+    return () => clearInterval(intervalId)
+  }, [])
   //new code
 
   return (
@@ -181,29 +181,29 @@ function HeroPage() {
       {/* Sub-grid for Page 1 */}
       <div
         id="heroPageElement"
-        className="overflow-hidden z-10 grid w-full h-screen gap-1 grid-cols-8 grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column"
+        className="z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column"
       >
         {/* Add your rows and columns inside the sub-grid */}
 
-        <div className="col-start-2 col-end-7 col-span-7 xs:text-5xl xl:row-start-2 xl:col-start-2 xl:col-span-3 text-5xl row-start-2 xs:row-start-1 font-bold leading-normal tracking-normal">
+        <div className="col-span-7 col-start-2 col-end-7 lg:mt-[-.7em] row-start-2 text-5xl font-bold leading-normal tracking-normal lg:text-8xl xs:text-5xl xl:row-start-2 xl:col-start-2 xl:col-span-3 xs:row-start-2 xs:mt-[-1.8em]">
           Developing Responsive Websites
-          <span className=""> For Your Brand</span>
+          <span className="lg:mt-[10em]"> For Your Brand</span>
         </div>
 
         {/* Uses self-start and self-end to align within the cells*/}
         <a
           href="#paymentInformation"
-          className="col-start-2 row-start-4 col-end-8 xs:row-start-3 xs:mt-16 lg:row-start-3 xl:row-start-2 xl:mt-48 xl:col-start-2 xl:col-span-3 text-5xl rounded-lg leading-normal tracking-tight text-center duration-700 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700 self-center"
+          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg xs:col-span-5 xs:row-start-3 xs:mt-12 lg:row-start-3 xl:row-start-2 xl:mt-48 xl:col-start-2 xl:col-span-3 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
         >
           Get Started
         </a>
 
         {/* section for Web Design, Data Transfer, SEO, and Web Design */}
-        <div className="grid grid-cols-1 row-start-5 col-start-2 col-span-6 xs:row-start-4 lg:grid-cols-8 lg:col-start-2 lg:col-end-12 lg:row-start-4 xl:row-start-6 xl:grid-cols-8">
+        <div className="grid grid-cols-1 col-span-6 col-start-2 row-start-5 xl:row-start-7 xs:row-start-4 lg:grid-cols-8 lg:col-start-2 lg:col-end-12 lg:row-start-4 xl:grid-cols-8">
           {/* Web Design - Adjusted for responsive behavior */}
           <div className="xl:m-3 xs:mt-16 lg:mt-6 xs:row-start-1 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:row-start-1 lg:col-start-1 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-1">
             <hr className="w-full border-t-2 border-gray-300" />
-            <div className="mt-2 font-bold text-base leading-normal tracking-normal sm:text-xl lg:text-3xl">
+            <div className="mt-2 text-base font-bold leading-normal tracking-normal sm:text-xl lg:text-3xl">
               Web Design
             </div>
             <div className="mt-2 text-sm sm:text-lg lg:text-xl">
@@ -248,7 +248,7 @@ function HeroPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default HeroPage;
+export default HeroPage
