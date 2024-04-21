@@ -6,6 +6,19 @@ function App() {
   let developerMode = true; // Set to false when deploying to production
   let displaySplashPage = true; // Set to true when deploying to production
 
+  // delay by .05s
+  setTimeout(() => {
+    document.querySelector(".snap-container").addEventListener("wheel", (e) => {
+      e.preventDefault(); // Prevent the default wheel behavior
+      const container = e.currentTarget;
+      if (e.deltaY > 0) {
+        container.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+      } else {
+        container.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
+      }
+    });
+  }, 500);
+
   return (
     <>
       {/*SECTION Effect Components - BEGIN */}
