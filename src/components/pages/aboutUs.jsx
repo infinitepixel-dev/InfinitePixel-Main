@@ -37,8 +37,10 @@ function AboutSection() {
         </button>
 
         {/* Carousel */}
-
-        <DynamicComponentLoader componentName="AboutUsCarousel" />
+        {/* if mobile don't show the carousel */}
+        {window.innerWidth > 1024 && (
+          <DynamicComponentLoader componentName="AboutUsCarousel" />
+        )}
       </div>
     </div>
   );
