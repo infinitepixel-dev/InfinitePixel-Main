@@ -8,6 +8,17 @@
   display: none;
 }
 
+#blur {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  backdrop-filter: blur(100px);
+}
+
 .orb {
   transition:
     top 5s ease,
