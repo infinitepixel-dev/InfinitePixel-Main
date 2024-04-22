@@ -26,7 +26,7 @@ function HeroPage() {
     });
   }, 1000);
 
-  const backGroundBlurAmount = 210;
+  const backGroundBlurAmount = 100;
   const backGroundBorderRadius = 50;
 
   //new code
@@ -177,7 +177,10 @@ function HeroPage() {
             zIndex: "-1",
           }}
         ></div>
+
+        <div id="blur"></div>
       </>
+
       {/* Sub-grid for Page 1 */}
       <div
         id="heroPageElement"
@@ -193,13 +196,13 @@ function HeroPage() {
         {/* Uses self-start and self-end to align within the cells*/}
         <a
           href="#paymentInformation"
-          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg d1440:text-5xl galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-6 galaxyS23Ultra:row-start-2 d1440:row-start-5 d1440:p-4 d1440:col-span-2 d1440:col-start-2 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
+          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg d1440:text-5xl galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-6 galaxyS23Ultra:row-start-2 galaxyS23Ultra:mt-8 d1440:row-start-5 d1440:p-4 d1440:col-span-2 d1440:col-start-2 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
         >
           Get Started
         </a>
 
         {/* section for Web Design, Data Transfer, SEO, and Web Design */}
-        <div className="grid grid-cols-1 col-span-6 col-start-2 row-start-5 galaxyS23Ultra:mt-6 galaxyS23Ultra:row-start-3 xl:row-start-7 xs:row-start-4 lg:grid-cols-8 lg:col-start-2 lg:col-end-12 lg:row-start-4 xl:grid-cols-8">
+        <div className="grid grid-cols-1 col-span-6 col-start-2 row-start-5 galaxyS23Ultra:mt-6 galaxyS23Ultra:row-start-3 d1440:row-start-4 ">
           {/* Web Design - Adjusted for responsive behavior */}
           <div className="xl:m-3 galaxyS23Ultra:mt-0 xs:mt-16 lg:mt-6 xs:row-start-1 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:row-start-1 lg:col-start-1 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-1">
             <hr className="w-full border-t-2 border-gray-300" />
