@@ -181,7 +181,7 @@ function HeroPage() {
       {/* Sub-grid for Page 1 */}
       <div
         id="heroPageElement"
-        className="z-10 grid w-full h-svh grid-cols-8 overflow-hidden grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column"
+        className="z-10 grid w-full grid-cols-8 overflow-hidden h-dvh grid-rows-8 galaxyS23Ultra:grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column"
       >
         {/* Add your rows and columns inside the sub-grid */}
 
@@ -203,7 +203,7 @@ function HeroPage() {
           {/* Web Design - Adjusted for responsive behavior */}
           <div className="xl:m-3 galaxyS23Ultra:mt-0 xs:mt-16 lg:mt-6 xs:row-start-1 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:row-start-1 lg:col-start-1 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-1">
             <hr className="w-full border-t-2 border-gray-300" />
-            <div className="mt-2 galaxyS23Ultra:mt-1 text-base font-bold leading-normal tracking-normal sm:text-xl lg:text-3xl">
+            <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-xl lg:text-3xl">
               Web Design
             </div>
             <div className="mt-2 text-sm sm:text-lg lg:text-xl">
@@ -213,9 +213,9 @@ function HeroPage() {
           </div>
 
           {/* Data Transfer - Responsive adjustments */}
-          <div className="xl:m-3 xs:mt-6  xs:row-start-2 xs:col-start-2 xs:col-span-6 lg:row-start-1 lg:col-start-5 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-3">
+          <div className="xl:m-3 xs:mt-6 xs:row-start-2 xs:col-start-2 xs:col-span-6 lg:row-start-1 lg:col-start-5 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-3">
             <hr className="w-full border-t-2 border-gray-300" />
-            <div className="mt-2 galaxyS23Ultra:mt-1 text-xl font-bold leading-normal tracking-normal sm:text-2xl lg:text-3xl">
+            <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
               Data Transfer
             </div>
             <div className="mt-2 text-lg leading-7 sm:text-xl lg:text-xl">
@@ -226,7 +226,7 @@ function HeroPage() {
           {/* SEO - Adjusted for responsive grid */}
           <div className="xl:m-3 xs:mt-6 xs:row-start-3 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:row-start-3 lg:col-start-1 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-5">
             <hr className="w-full border-t-2 border-gray-300" />
-            <div className="mt-2 galaxyS23Ultra:mt-1 text-xl font-bold leading-normal tracking-normal sm:text-2xl lg:text-3xl">
+            <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
               SEO
             </div>
             <div className="mt-2 text-lg leading-7 sm:text-xl lg:text-xl">
@@ -237,7 +237,7 @@ function HeroPage() {
           {/* Additional Web Design Section if needed, or use for another service */}
           <div className="xl:m-3 xs:mt-6 xs:row-start-4 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:row-start-3 lg:col-start-5 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-7">
             <hr className="w-full border-t-2 border-gray-300" />
-            <div className="mt-2 galaxyS23Ultra:mt-1 text-xl font-bold leading-normal tracking-normal sm:text-2xl lg:text-3xl">
+            <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
               More Web Design
             </div>
             <div className="mt-2 text-lg leading-7 sm:text-xl lg:text-xl">
