@@ -29,13 +29,13 @@ function CheckIcon() {
 export function PricingCard() {
   return (
     <div
-      className="grid w-full h-svh grid-cols-12 gap-2 grid-rows-8"
+      className="grid w-full grid-cols-12 gap-2 h-dvh grid-rows-8 galaxyS23Ultra:grid-rows-6 galaxyS23Ultra:gap-0 galaxyS23Ultra:col-span-8"
       id="paymentInformation"
     >
       <Card
         color="bg-slate-600"
         variant="gradient"
-        className="grid col-span-2 col-start-2 grid-rows-2 row-start-2 p-8 rounded-md shadow-md row-span-8 grid-cols-subgrid bg-slate-800"
+        className="grid col-span-2 col-start-2 grid-rows-2 row-start-2 p-8 rounded-md shadow-md galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-10 row-span-8 grid-cols-subgrid bg-slate-800"
       >
         <CardHeader
           floated={false}
