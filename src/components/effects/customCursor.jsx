@@ -7,7 +7,19 @@ const CustomCursor = ({ fade }) => {
   const availablePixels = useRef([]);
 
   useEffect(() => {
-    // if fade is true do not continue the useEffect
+    // if fade is true slowly set the opacity of the cursor to 0
+    if (fade) {
+      //check if the cursorRef is null, if it is, slowly fade out the previous cursors effects
+      if (cursorRef.current) {
+        cursorRef.current.style.transition = "opacity 5s";
+      } else {
+        pixels.current.forEach((pixel) => {
+          //set the opacity over 5s to 0
+          pixel.style.transition = "opacity 5s";
+        });
+        return;
+      }
+    }
 
     const colors = [
       "#7bc950",
@@ -92,7 +104,7 @@ const CustomCursor = ({ fade }) => {
       document.removeEventListener("touchmove", animateCursor);
       pixelsToRemove.forEach((pixel) => pixel.remove()); // Use the new variable in the cleanup function
     };
-  }, []);
+  }, [fade]);
 
   return <>{fade ? <></> : <div ref={cursorRef} className="cursor"></div>}</>;
 };

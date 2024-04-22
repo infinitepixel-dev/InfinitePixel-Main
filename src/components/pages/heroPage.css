@@ -4,6 +4,10 @@
   --opacity: 1;
 }
 
+:root::-webkit-scrollbar {
+  display: none;
+}
+
 .orb {
   transition:
     top 5s ease,
