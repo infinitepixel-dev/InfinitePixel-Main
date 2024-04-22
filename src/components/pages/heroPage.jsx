@@ -181,7 +181,7 @@ function HeroPage() {
       {/* Sub-grid for Page 1 */}
       <div
         id="heroPageElement"
-        className="z-10 grid w-full grid-cols-8 overflow-hidden h-dvh grid-rows-8 galaxyS23Ultra:grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column"
+        className="z-10 grid w-full h-screen grid-cols-8 overflow-hidden grid-rows-8 galaxyS23Ultra:grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column"
       >
         {/* Add your rows and columns inside the sub-grid */}
 

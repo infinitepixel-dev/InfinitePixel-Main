@@ -1,5 +1,5 @@
 // About Us - Page 2
-import DynamicComponentLoader from "../../DynamicComponentLoader";
+import DynamicComponentLoader from "../../dynamicComponentLoader";
 
 function AboutSection() {
   return (
@@ -10,7 +10,7 @@ function AboutSection() {
         className="absolute inset-0 bg-[url('/src/assets/sectionbg.jpg')] bg-cover bg-center opacity-[.03]"
         style={{ zIndex: -1 }}
       />
-      <div className="z-10 grid w-full grid-cols-8 gap-1 overflow-hidden h-dvh grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column">
+      <div className="z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8 d1440:grid-cols-12 column">
         {/* Add your rows and columns inside the sub-grid */}
         <div className="col-span-7 d1440:col-start-2 d1440:col-span-7 d1440:col-end-7 col-start-2 col-end-7 galaxyS23Ultra:col-start-2 galaxyS23Ultra:text-2xl galaxyS23Ultra:col-span-6 lg:mt-[-.7em] row-start-2 text-5xl font-bold leading-normal tracking-normal lg:text-8xl xs:text-5xl xl:row-start-2 xl:col-start-2 xl:col-span-3 xs:row-start-2 xs:mt-[-1.8em]">
           We design and develop modern mobile first websites to solve real
