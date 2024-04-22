@@ -76,7 +76,7 @@
   top: 0;
   width: 175px; /* Sidebar width */
   height: 100%; /* Full-height */
-  background-color: #031d37d1; /* Change as needed */
+  background-color: #031d3793; /* Change as needed */
   overflow-x: hidden; /* Prevent horizontal scroll */
   backdrop-filter: blur(10px); /* Apply blur effect to content behind sidebar */
   transition: 0.5s, backdrop-filter; /* Smooth transition for showing/hiding */
