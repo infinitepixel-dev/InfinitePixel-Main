@@ -100,10 +100,7 @@ function App() {
             <div className="snap-page">
               <DynamicComponentLoader componentName="Payments" />
             </div>
-            <div className="snap-page">
-              <DynamicComponentLoader componentName="Page4" />{" "}
-              {/* Assuming this is your footer */}
-            </div>
+            {/* Page 4 - Footer */}
           </div>
         </>
         //!SECTION Main Content Container - BEGIN
