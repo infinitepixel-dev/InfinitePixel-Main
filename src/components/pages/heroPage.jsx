@@ -193,7 +193,7 @@ function HeroPage() {
         {/* Uses self-start and self-end to align within the cells*/}
         <a
           href="#paymentInformation"
-          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-6 galaxyS23Ultra:row-start-2 xxl:row-start-5 xxl:p-4 xxl:col-span-2 xxl:col-start-2 xl:mb-20 xs:col-span-5 xl:p-2 xs:row-start-3 xs:mt-12 lg:row-start-3 xl:row-start-6 xl: xl:col-start-2 xl:col-span-3 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
+          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg d1440:text-5xl galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-6 galaxyS23Ultra:row-start-2 d1440:row-start-5 d1440:p-4 d1440:col-span-2 d1440:col-start-2 xl:mb-20 xs:col-span-5 xl:p-2 xs:row-start-3 xs:mt-12 lg:row-start-3 xl:row-start-6 xl: xl:col-start-2 xl:col-span-3 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
         >
           Get Started
         </a>
@@ -203,10 +203,10 @@ function HeroPage() {
           {/* Web Design - Adjusted for responsive behavior */}
           <div className="xl:m-3 galaxyS23Ultra:mt-0 xs:mt-16 lg:mt-6 xs:row-start-1 xs:col-start-2 xs:col-span-6 sm:col-span-2 lg:row-start-1 lg:col-start-1 lg:col-span-2 xl:col-span-2 xl:row-start-1 xl:col-start-1">
             <hr className="w-full border-t-2 border-gray-300" />
-            <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-xl lg:text-3xl">
+            <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 galaxyS23Ultra:text-xl sm:text-xl lg:text-3xl">
               Web Design
             </div>
-            <div className="mt-2 text-sm sm:text-lg lg:text-xl">
+            <div className="mt-2 text-sm galaxyS23Ultra:text-sm sm:text-lg lg:text-xl">
               We create modern and responsive websites that look great on all
               devices.
             </div>
@@ -218,7 +218,7 @@ function HeroPage() {
             <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
               Data Transfer
             </div>
-            <div className="mt-2 text-lg leading-7 sm:text-xl lg:text-xl">
+            <div className="mt-2 text-lg leading-7 sm:text-xl galaxyS23Ultra:text-sm lg:text-xl">
               We transfer your existing website to a modern platform with ease.
             </div>
           </div>
@@ -229,7 +229,7 @@ function HeroPage() {
             <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
               SEO
             </div>
-            <div className="mt-2 text-lg leading-7 sm:text-xl lg:text-xl">
+            <div className="mt-2 text-lg leading-7 galaxyS23Ultra:text-sm sm:text-xl lg:text-xl">
               We help your website rank higher in search engines.
             </div>
           </div>
@@ -240,7 +240,7 @@ function HeroPage() {
             <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
               More Web Design
             </div>
-            <div className="mt-2 text-lg leading-7 sm:text-xl lg:text-xl">
+            <div className="mt-2 text-lg leading-7 sm:text-xl galaxyS23Ultra:text-sm lg:text-xl">
               Advanced solutions for web design challenges.
             </div>
           </div>
