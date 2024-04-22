@@ -30,16 +30,16 @@ function AboutUsCarousel() {
     );
 
   return (
-    <div className="relative bg-rose-500 grid overflow-hidden overscroll-none d1440:grid-rows-8 d1440:row-end-8 d1440:row-start-2 d1440:col-start-8 d1440:col-span-4">
+    <div className="relative grid overflow-hidden bg-rose-500 overscroll-none d1440:grid-rows-8 galaxyS23Ultra:grid-rows-6 galaxyS23Ultra:rows-end-6 d1440:row-span-6 d1440:row-start-2 d1440:col-start-8 d1440:col-span-4 galaxyS23Ultra:col-span-2">
       <div
-        className="absolute inset-0 bg-cover bg-center z-0"
+        className="absolute inset-0 z-0 bg-center bg-cover"
         style={{ backgroundImage: "url(`path/to/your/image.jpg`)" }}
       />
-      <div className="d1440:row-start-1 z-10 grid grid-cols-1 d1440:row-span-7 gap-1 overflow-hidden h-full">
+      <div className="z-10 grid h-full grid-cols-1 gap-1 overflow-hidden d1440:row-start-1 galaxyS23Ultra:row-start-1 d1440:row-span-7 galaxyS23Ultra:row-span-2">
         {visibleItems.map((item, index) => (
           <div
             key={index}
-            className="grid grid-cols-subgrid grid-rows-subgrid w-full h-1/3 items-center justify-center border-b border-white"
+            className="grid items-center justify-center w-full border-b border-white grid-cols-subgrid grid-rows-subgrid h-1/3"
           >
             <img src={item.image} alt="" className="w-1/2" />
             {item.websiteName}
