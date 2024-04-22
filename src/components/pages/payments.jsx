@@ -58,7 +58,7 @@ export function PricingCard() {
         <Card
           color="blue-gray"
           variant="gradient"
-          className="grid col-span-2 col-start-2 row-start-2 rounded-md shadow-md d1440:grid-rows-6 d1440:grid-cols-6 galaxyS23Ultra:row-start-1 galaxyS23Ultra:mt-3 galaxyS23Ultra:mb-3 galaxyS23Ultra:ml-4 galaxyS23Ultra:row-span-2 d1440:row-start-2 d1440:row-span-4 d1440:col-span-2 d1440:col-start-3 galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-10 bg-slate-800"
+          className="grid col-span-2 col-start-2 row-start-2 rounded-md shadow-md d1440:grid-rows-6 d1440:grid-cols-6 galaxyS23Ultra:row-start-1 galaxyS23Ultra:mt-3 galaxyS23Ultra:mb-16 galaxyS23Ultra:ml-4 galaxyS23Ultra:row-span-2 d1440:row-start-2 d1440:row-span-4 d1440:col-span-2 d1440:col-start-3 galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-10 bg-slate-800"
         >
           <CardHeader
             shadow={false}
@@ -143,7 +143,7 @@ export function PricingCard() {
               </div>
             </div>
           </CardBody>
-          <CardFooter className="col-span-1 row-start-7 p-0 mt-12 galaxyS23Ultra:ml-2 d1440:row-start-6 d1440:col-start-2 d1440:col-span-4 galaxyS23Ultra:mt-0 galaxyS23Ultra:col-start-1 galaxyS23Ultra:row-start-3">
+          <CardFooter className="col-span-1 row-start-7 p-0 mt-12 galaxyS23Ultra:ml-2 d1440:row-start-6 d1440:col-start-2 d1440:col-span-4 galaxyS23Ultra:mt-0 galaxyS23Ultra:col-start-1 galaxyS23Ultra:row-start-2">
             <Button
               size="lg"
               color="white"
@@ -161,7 +161,7 @@ export function PricingCard() {
         <Card
           color="blue-gray"
           variant="gradient"
-          className="grid col-span-2 col-start-2 row-start-2 rounded-md shadow-md d1440:grid-rows-6 d1440:grid-cols-6 galaxyS23Ultra:row-start-3 galaxyS23Ultra:mt-3 galaxyS23Ultra:mb-3 galaxyS23Ultra:ml-4 galaxyS23Ultra:row-span-2 d1440:row-start-2 d1440:row-span-4 d1440:col-span-2 d1440:col-start-6 galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-10 bg-slate-800"
+          className="grid col-span-2 col-start-2 row-start-2 rounded-md shadow-md d1440:grid-rows-6 d1440:grid-cols-6 galaxyS23Ultra:row-start-3 galaxyS23Ultra:mt-6 galaxyS23Ultra:mb-16 galaxyS23Ultra:ml-4 galaxyS23Ultra:row-span-2 d1440:row-start-2 d1440:row-span-4 d1440:col-span-2 d1440:col-start-6 galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-10 bg-slate-800"
         >
           <CardHeader
             shadow={false}
@@ -246,7 +246,7 @@ export function PricingCard() {
               </div>
             </div>
           </CardBody>
-          <CardFooter className="col-span-1 row-start-7 p-0 mt-12 galaxyS23Ultra:ml-2 d1440:row-start-6 d1440:col-start-2 d1440:col-span-4 galaxyS23Ultra:mt-0 galaxyS23Ultra:col-start-1 galaxyS23Ultra:row-start-3">
+          <CardFooter className="col-span-1 row-start-7 p-0 mt-12 galaxyS23Ultra:ml-2 d1440:row-start-6 d1440:col-start-2 d1440:col-span-4 galaxyS23Ultra:mt-0 galaxyS23Ultra:col-start-1 galaxyS23Ultra:row-start-2">
             <Button
               size="lg"
               color="white"
@@ -264,7 +264,7 @@ export function PricingCard() {
         <Card
           color="blue-gray"
           variant="gradient"
-          className="grid col-span-2 col-start-2 row-start-2 rounded-md shadow-md d1440:grid-rows-6 d1440:grid-cols-6 galaxyS23Ultra:row-start-5 galaxyS23Ultra:mt-3 galaxyS23Ultra:mb-3 galaxyS23Ultra:ml-4 galaxyS23Ultra:row-span-2 d1440:row-start-2 d1440:row-span-4 d1440:col-span-2 d1440:col-start-9 galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-10 bg-slate-800"
+          className="grid col-span-2 col-start-2 row-start-2 rounded-md shadow-md d1440:grid-rows-6 d1440:grid-cols-6 galaxyS23Ultra:row-start-5 galaxyS23Ultra:mt-0 galaxyS23Ultra:mb-16 galaxyS23Ultra:ml-4 galaxyS23Ultra:row-span-2 d1440:row-start-2 d1440:row-span-4 d1440:col-span-2 d1440:col-start-9 galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-10 bg-slate-800"
         >
           <CardHeader
             shadow={false}
@@ -349,7 +349,7 @@ export function PricingCard() {
               </div>
             </div>
           </CardBody>
-          <CardFooter className="col-span-1 row-start-7 p-0 mt-12 galaxyS23Ultra:ml-2 d1440:row-start-6 d1440:col-start-2 d1440:col-span-4 galaxyS23Ultra:mt-0 galaxyS23Ultra:col-start-1 galaxyS23Ultra:row-start-3">
+          <CardFooter className="col-span-1 row-start-7 p-0 mt-12 galaxyS23Ultra:ml-2 d1440:row-start-5 d1440:col-start-2 d1440:col-span-4 galaxyS23Ultra:mt-0 galaxyS23Ultra:col-start-1 galaxyS23Ultra:row-start-2">
             <Button
               size="lg"
               color="white"

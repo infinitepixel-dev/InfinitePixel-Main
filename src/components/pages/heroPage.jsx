@@ -86,7 +86,7 @@ function HeroPage() {
   //new code
 
   return (
-    <div className="relative overflow-hidden overscroll-none">
+    <div className="relative overflow-hidden h-dvh overscroll-none">
       {/*NOTE Background Colors */}
 
       <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} />
@@ -181,7 +181,7 @@ function HeroPage() {
       {/* Sub-grid for Page 1 */}
       <div
         id="heroPageElement"
-        className="z-10 grid w-full h-screen grid-cols-8 overflow-hidden grid-rows-8 galaxyS23Ultra:grid-rows-8 md:grid-cols-8 lg:grid-rows-5 lg:grid-cols-12 xl:grid-rows-8 xl:grid-cols-12 column"
+        className="z-10 grid w-full h-screen grid-cols-8 overflow-hidden grid-rows-8 galaxyS23Ultra:grid-rows-8 column"
       >
         {/* Add your rows and columns inside the sub-grid */}
 
@@ -193,7 +193,7 @@ function HeroPage() {
         {/* Uses self-start and self-end to align within the cells*/}
         <a
           href="#paymentInformation"
-          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg d1440:text-5xl galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-6 galaxyS23Ultra:row-start-2 d1440:row-start-5 d1440:p-4 d1440:col-span-2 d1440:col-start-2 xl:mb-20 xs:col-span-5 xl:p-2 xs:row-start-3 xs:mt-12 lg:row-start-3 xl:row-start-6 xl: xl:col-start-2 xl:col-span-3 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
+          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg d1440:text-5xl galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-6 galaxyS23Ultra:row-start-2 d1440:row-start-5 d1440:p-4 d1440:col-span-2 d1440:col-start-2 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
         >
           Get Started
         </a>
