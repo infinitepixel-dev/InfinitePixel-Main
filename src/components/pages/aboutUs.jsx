@@ -1,4 +1,5 @@
 // About Us - Page 2
+import DynamicComponentLoader from "../../DynamicComponentLoader";
 
 function AboutSection() {
   return (
@@ -34,6 +35,10 @@ function AboutSection() {
         <button className="self-center col-span-6 p-5 text-4xl leading-none tracking-tight text-center duration-700 rounded-lg d1440:p-6 d1440:col-start-3 d1440:col-span-2 d1440:row-start-6 galaxyS23Ultra:row-start-6 galaxyS23Ultra:mt-48 xs:mt-36 xs:col-start-2 xs:row-start-7 xl:col-span-3 xl:col-start-2 xl:row-start-7 xl:m-2 drop-shadow-xl text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
           Start Your Project
         </button>
+
+        {/* Carousel */}
+
+        <DynamicComponentLoader componentName="AboutUsCarousel" />
       </div>
     </div>
   );
