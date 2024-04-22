@@ -9,6 +9,14 @@ export default {
       lg: "1029px",
       xl: "1280px",
       xxl: "1440px",
+      d1080: "1080px",
+      d1440: "1440px",
+      galaxyS23Ultra: "384px",
+      galaxyS23Ultra_Landscape: "693px",
+      iphone13ProMax: "414px",
+      iphone13ProMax_Landscape: "896px",
+      iphone15ProMax: "428px",
+      iphone15ProMax_Landscape: "926px",
     },
     extend: {
       keyframes: {
@@ -51,4 +59,4 @@ export default {
     },
   },
   plugins: ["prettier-plugin-tailwindcss"],
-}
+};

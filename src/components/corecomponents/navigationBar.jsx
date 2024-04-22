@@ -12,7 +12,7 @@ const SidebarHamburger = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2" id="customNav">
+      <div className="grid grid-cols-2 h-svh" id="customNav">
         {/* Hamburger and Logo in the same row using grid */}
         {/* Hamburger Icon */}
         {/* row 1 - BEGIN */}
@@ -45,12 +45,12 @@ const SidebarHamburger = () => {
         {/* row 1 - END */}
 
         <div
-          className={`grid grid-cols-2 grid-rows-10 sidebar z-10 p-3 backdrop-filter backdrop-blur-md transition-all duration-500 ease-in-out col-span-1 col-start-2 ${
+          className={`h-svh grid grid-cols-2 grid-rows-10 galaxyS23Ultra:grid-rows-6 sidebar z-10 p-3 backdrop-filter backdrop-blur-md transition-all duration-500 ease-in-out col-span-1 col-start-2 ${
             isOpen ? "open" : ""
           }`}
         >
           {/* row 2 - BEGIN */}
-          <div className="row-start-2 content-center">
+          <div className="row-start-2 galaxyS23Ultra:row-start-3 content-center">
             <div className="grid gap-4 grid-cols-subgrid ">
               <a href="#" className="block text-lg">
                 Home
