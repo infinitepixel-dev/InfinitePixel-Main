@@ -1,9 +1,9 @@
 // Hero - Page 1
-import { useState, useEffect, useRef } from "react";
-import "./heroPage.css";
+import { useState, useEffect, useRef } from "react"
+import "./heroPage.css"
 
-import DynamicComponentLoader from "../../dynamicComponentLoader";
-import { deviceConfig } from "../../../deviceConfig"; // Import the style configuration
+import DynamicComponentLoader from "../../dynamicComponentLoader"
+import { deviceConfig } from "../../../deviceConfig" // Import the style configuration
 
 function HeroPage() {
   //SECTION Set device type - BEGIN
@@ -11,113 +11,113 @@ function HeroPage() {
   //NOTE Gets the device type based on the screen width
   const getDeviceType = () => {
     const matchedDevice = deviceConfig.find((d) => {
-      let match = window.matchMedia(d.query).matches;
+      let match = window.matchMedia(d.query).matches
       if (match) {
-        console.log("Matched Device: ", d.type);
+        console.log("Matched Device: ", d.type)
       }
-      return match;
-    });
+      return match
+    })
     return matchedDevice
       ? matchedDevice.layout.heroPage
-      : deviceConfig[0].layout.heroPage; // Default to first configuration if no match found
-  };
+      : deviceConfig[0].layout.heroPage // Default to first configuration if no match found
+  }
 
   //NOTE State for the device layout
-  const [deviceLayout, setDeviceLayout] = useState(getDeviceType());
-  console.log("Device Layout: ", deviceLayout);
-  console.log("Device container: ", deviceLayout.heroPageContainer);
+  const [deviceLayout, setDeviceLayout] = useState(getDeviceType())
+  console.log("Device Layout: ", deviceLayout)
+  console.log("Device container: ", deviceLayout.heroPageContainer)
 
   //NOTE Update the device layout state when the window is resized
   useEffect(() => {
     const handleResize = () => {
-      setDeviceLayout(getDeviceType());
-    };
+      setDeviceLayout(getDeviceType())
+    }
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize)
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
   //!SECTION Set device type - END
 
-  const [inHeroPage, setinHeroPage] = useState(false);
+  const [inHeroPage, setinHeroPage] = useState(false)
 
   //wait for the page to load
   setTimeout(() => {
-    let hero = document.getElementById("heroPageElement");
+    let hero = document.getElementById("heroPageElement")
 
     // //add mouses hover edvent listener to heroPageElement
     hero.addEventListener("mouseover", () => {
       // console.log("mouse over hero page");
-      setinHeroPage(false);
-    });
+      setinHeroPage(false)
+    })
 
     //if the mouse leaves the heroPageElement, set inHeroPage to false
     hero.addEventListener("mouseleave", () => {
       // console.log("mouse left hero page");
       //allow the opacity of the custom cursor to fade out
 
-      setinHeroPage(true);
-    });
-  }, 1000);
+      setinHeroPage(true)
+    })
+  }, 1000)
 
-  const backGroundBlurAmount = 100;
-  const backGroundBorderRadius = 50;
+  const backGroundBlurAmount = 100
+  const backGroundBorderRadius = 50
 
   //new code
-  const orbRef1 = useRef([]);
-  const orbRef2 = useRef([]);
-  const orbRef3 = useRef([]);
-  const orbRef4 = useRef([]);
-  const orbRef5 = useRef([]);
+  const orbRef1 = useRef([])
+  const orbRef2 = useRef([])
+  const orbRef3 = useRef([])
+  const orbRef4 = useRef([])
+  const orbRef5 = useRef([])
 
   useEffect(() => {
     // Set initial positions for all orbs, storing them in refs
     const setupOrbs = (orbRefs) => {
       for (let i = 0; i < orbRefs.current.length; i++) {
-        const orb = orbRefs.current[i];
-        orb.initialLeft = orb.offsetLeft;
-        orb.initialTop = orb.offsetTop;
+        const orb = orbRefs.current[i]
+        orb.initialLeft = orb.offsetLeft
+        orb.initialTop = orb.offsetTop
       }
-    };
+    }
 
-    setupOrbs(orbRef1);
-    setupOrbs(orbRef2);
-    setupOrbs(orbRef3);
-    setupOrbs(orbRef4);
-    setupOrbs(orbRef5);
+    setupOrbs(orbRef1)
+    setupOrbs(orbRef2)
+    setupOrbs(orbRef3)
+    setupOrbs(orbRef4)
+    setupOrbs(orbRef5)
 
     const moveOrbs = (orbRefs) => {
-      const screenWidth = window.innerWidth;
-      const isMobile = screenWidth < 768;
-      const maxMovement = isMobile ? 30 : 60; // Maximum pixel movement
+      const screenWidth = window.innerWidth
+      const isMobile = screenWidth < 768
+      const maxMovement = isMobile ? 30 : 60 // Maximum pixel movement
 
       for (let i = 0; i < orbRefs.current.length; i++) {
-        const orb = orbRefs.current[i];
+        const orb = orbRefs.current[i]
         // Generate new positions within a specific pixel range
-        const deltaX = (Math.random() * 2 - 1) * maxMovement; // New fixed range instead of percentage
-        const deltaY = (Math.random() * 2 - 1) * maxMovement;
-        orb.style.left = `${orb.initialLeft + deltaX}px`;
-        orb.style.top = `${orb.initialTop + deltaY}px`;
+        const deltaX = (Math.random() * 2 - 1) * maxMovement // New fixed range instead of percentage
+        const deltaY = (Math.random() * 2 - 1) * maxMovement
+        orb.style.left = `${orb.initialLeft + deltaX}px`
+        orb.style.top = `${orb.initialTop + deltaY}px`
 
-        orb.style.transform = `scale(${2 + Math.random() * 0.1})`;
+        orb.style.transform = `scale(${2 + Math.random() * 0.1})`
         // return to normal size after 2 seconds
         setTimeout(() => {
-          orb.style.transform = "scale(1)";
-        }, 2000);
+          orb.style.transform = "scale(1)"
+        }, 2000)
       }
-    };
+    }
 
     const intervalId = setInterval(() => {
-      moveOrbs(orbRef1);
-      moveOrbs(orbRef2);
-      moveOrbs(orbRef3);
-      moveOrbs(orbRef4);
-      moveOrbs(orbRef5);
-    }, 500); // Update positions every second
+      moveOrbs(orbRef1)
+      moveOrbs(orbRef2)
+      moveOrbs(orbRef3)
+      moveOrbs(orbRef4)
+      moveOrbs(orbRef5)
+    }, 500) // Update positions every second
 
-    return () => clearInterval(intervalId);
-  }, []);
+    return () => clearInterval(intervalId)
+  }, [])
   //new code
 
   return (
@@ -280,7 +280,7 @@ function HeroPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default HeroPage;
+export default HeroPage

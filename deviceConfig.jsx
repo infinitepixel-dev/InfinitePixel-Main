@@ -32,6 +32,10 @@ export const deviceConfig = [
     type: "d1920", // 1080p Desktop
     query: "(max-width: 1920px)",
     layout: {
+      paymentPage: {
+        paymentsPageContainer: "relative overflow-hidden h-dvh overscroll-none",
+        PricingCardContainer: "z-10 grid-cols-3 grid-rows-6",
+      },
       heroPage: {
         heroPageElement:
           "z-10 grid w-full h-screen grid-cols-8 overflow-hidden grid-rows-8 column",
@@ -136,4 +140,4 @@ export const deviceConfig = [
     },
   },
   // Add other device configurations here, similar to the one above.
-];
+]

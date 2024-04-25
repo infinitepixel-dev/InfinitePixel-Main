@@ -5,7 +5,9 @@ import {
   CardFooter,
   Typography,
   Button,
-} from "@material-tailwind/react";
+} from "@material-tailwind/react"
+import { useState, useEffect, useRef } from "react"
+import { deviceConfig } from "../../../deviceConfig" // Import the style configuration
 
 function CheckIcon() {
   return (
@@ -23,7 +25,7 @@ function CheckIcon() {
         d="M4.5 12.75l6 6 9-13.5"
       />
     </svg>
-  );
+  )
 }
 
 function ShoppingCartIcon() {
@@ -47,18 +49,51 @@ function ShoppingCartIcon() {
         d="M7 18a2 2 0 11-4 0 2 2 0 014 0zm14 0a2 2 0 11-4 0 2 2 0 014 0z"
       />
     </svg>
-  );
+  )
 }
 
 export function PricingCard() {
+  //SECTION Set device type - BEGIN
+
+  //NOTE Gets the device type based on the screen width
+  const getDeviceType = () => {
+    const matchedDevice = deviceConfig.find((d) => {
+      let match = window.matchMedia(d.query).matches
+      if (match) {
+        console.log("Matched Device: ", d.type)
+      }
+      return match
+    })
+    return matchedDevice
+      ? matchedDevice.layout.payments
+      : deviceConfig[0].layout.payments // Default to first configuration if no match found
+  }
+
+  //NOTE State for the device layout
+  const [deviceLayout, setDeviceLayout] = useState(getDeviceType())
+  console.log("Device Layout: ", deviceLayout)
+  console.log("Device container: ", deviceLayout.paymentsPageContainer)
+
+  //NOTE Update the device layout state when the window is resized
+  useEffect(() => {
+    const handleResize = () => {
+      setDeviceLayout(getDeviceType())
+    }
+
+    window.addEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+  //!SECTION Set device type - END
   return (
-    <div className="overflow-hidden overscroll-none" id="paymentInformation">
+    <div className={deviceLayout.paymentsPageContainer}>
       <div className="z-10 grid w-full h-screen gap-1 overflow-hidden galaxyS23Ultra:gap-0 d1440:grid-cols-12 d1440:grid-rows-6 galaxyS23Ultra:grid-cols-12 galaxyS23Ultra:grid-rows-6">
         {/* Card 1 */}
         <Card
           color="blue-gray"
           variant="gradient"
-          className="grid col-span-2 col-start-2 row-start-2 rounded-md shadow-md d1440:grid-rows-6 d1440:grid-cols-6 galaxyS23Ultra:row-start-1 galaxyS23Ultra:mt-3 galaxyS23Ultra:mb-16 galaxyS23Ultra:ml-4 galaxyS23Ultra:row-span-2 d1440:row-start-2 d1440:row-span-4 d1440:col-span-2 d1440:col-start-3 galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-10 bg-slate-800"
+          className={deviceLayout.PricingCardContainer}
         >
           <CardHeader
             shadow={false}
@@ -364,6 +399,6 @@ export function PricingCard() {
         </Card>
       </div>
     </div>
-  );
+  )
 }
-export default PricingCard;
+export default PricingCard
