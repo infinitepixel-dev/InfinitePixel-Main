@@ -1,4 +1,4 @@
-//Device configuration for different screen sizes
+//Device configuration for different screen sizes ie. mobile, tablet, desktop, etc.
 const deviceConfig = [
   //m384
   {
@@ -230,9 +230,9 @@ const deviceConfig = [
         },
         heroServices: () => {
           return (
-            <div className="grid self-center grid-cols-12 col-span-6 col-start-2 row-start-5 ">
+            <div className="grid self-center grid-cols-12 col-span-12 col-start-1 row-start-5 ">
               {/* Web Design - Adjusted for responsive behavior */}
-              <div className="col-span-2 col-start-3 px-4">
+              <div className="col-span-3 col-start-1 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 galaxyS23Ultra:text-xl sm:text-xl lg:text-3xl">
                   Web Design
@@ -244,7 +244,7 @@ const deviceConfig = [
               </div>
 
               {/* Data Transfer - Responsive adjustments */}
-              <div className="col-span-2 col-start-5 px-4">
+              <div className="col-span-3 col-start-4 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   Data Transfer
@@ -256,7 +256,7 @@ const deviceConfig = [
               </div>
 
               {/* SEO - Adjusted for responsive grid */}
-              <div className="col-span-2 col-start-7 px-4">
+              <div className="col-span-3 col-start-7 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   SEO
@@ -267,7 +267,7 @@ const deviceConfig = [
               </div>
 
               {/* Additional Web Design Section if needed, or use for another service */}
-              <div className="col-span-2 col-start-9 px-4">
+              <div className="col-span-3 col-start-10 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   More Web Design
