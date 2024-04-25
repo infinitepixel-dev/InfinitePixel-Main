@@ -1,4 +1,4 @@
-//Device configuration for different screen sizes
+//Device configuration for different screen sizes ie. mobile, tablet, desktop, etc.
 const deviceConfig = [
   //m384
   {
