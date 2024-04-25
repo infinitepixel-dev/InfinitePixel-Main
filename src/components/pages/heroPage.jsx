@@ -3,8 +3,43 @@ import { useState, useEffect, useRef } from "react";
 import "./heroPage.css";
 
 import DynamicComponentLoader from "../../dynamicComponentLoader";
+import { deviceConfig } from "../../../deviceConfig"; // Import the style configuration
 
 function HeroPage() {
+  //SECTION Set device type - BEGIN
+
+  //NOTE Gets the device type based on the screen width
+  const getDeviceType = () => {
+    const matchedDevice = deviceConfig.find((d) => {
+      let match = window.matchMedia(d.query).matches;
+      if (match) {
+        console.log("Matched Device: ", d.type);
+      }
+      return match;
+    });
+    return matchedDevice
+      ? matchedDevice.layout.heroPage
+      : deviceConfig[0].layout.heroPage; // Default to first configuration if no match found
+  };
+
+  //NOTE State for the device layout
+  const [deviceLayout, setDeviceLayout] = useState(getDeviceType());
+  console.log("Device Layout: ", deviceLayout);
+  console.log("Device container: ", deviceLayout.heroPageContainer);
+
+  //NOTE Update the device layout state when the window is resized
+  useEffect(() => {
+    const handleResize = () => {
+      setDeviceLayout(getDeviceType());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  //!SECTION Set device type - END
+
   const [inHeroPage, setinHeroPage] = useState(false);
 
   //wait for the page to load
@@ -86,7 +121,7 @@ function HeroPage() {
   //new code
 
   return (
-    <div className="relative overflow-hidden h-dvh overscroll-none">
+    <div className={deviceLayout.heroPageContainer}>
       {/*NOTE Background Colors */}
 
       <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} />
@@ -182,24 +217,18 @@ function HeroPage() {
       </>
 
       {/* Sub-grid for Page 1 */}
-      <div
-        id="heroPageElement"
-        className="z-10 grid w-full h-screen grid-cols-8 overflow-hidden grid-rows-8 galaxyS23Ultra:grid-rows-8 column"
-      >
+      <div id="heroPageElement" className={deviceLayout.heroPageElement}>
         {/* Add your rows and columns inside the sub-grid */}
 
-        <div className="col-span-7 col-start-2 col-end-7 galaxyS23Ultra:col-start-2 galaxyS23Ultra:text-2xl galaxyS23Ultra:col-span-6 lg:mt-[-.7em] row-start-2 text-5xl font-bold leading-normal tracking-normal lg:text-8xl xs:text-5xl xl:row-start-2 xl:col-start-2 xl:col-span-3 xs:row-start-2 xs:mt-[-1.8em]">
-          Developing Responsive Websites
-          <span className="lg:mt-[10em]"> For Your Brand</span>
+        <div className={deviceLayout.heroTitle1}>
+          Developing Responsive Websites{" "}
+          <div className={deviceLayout.heroTitle2}>For Your Brand</div>
         </div>
 
         {/* Uses self-start and self-end to align within the cells*/}
-        <a
-          href="#paymentInformation"
-          className="self-center col-start-2 col-end-8 row-start-4 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg d1440:text-5xl galaxyS23Ultra:col-start-2 galaxyS23Ultra:col-span-6 galaxyS23Ultra:row-start-2 galaxyS23Ultra:mt-8 d1440:row-start-5 d1440:p-4 d1440:col-span-2 d1440:col-start-2 text-slate-150 bg-violet-600 md:text-2x1 hover:bg-violet-700"
-        >
-          Get Started
-        </a>
+        <div className={deviceLayout.getStartedButton}>
+          <a href="#paymentInformation">Get Started</a>
+        </div>
 
         {/* section for Web Design, Data Transfer, SEO, and Web Design */}
         <div className="grid grid-cols-1 col-span-6 col-start-2 row-start-5 galaxyS23Ultra:mt-6 galaxyS23Ultra:row-start-3 d1440:row-start-4 ">
