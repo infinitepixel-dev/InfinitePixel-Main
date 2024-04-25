@@ -15,7 +15,7 @@ const deviceConfig = [
         heroTitle: () => {
           return (
             <>
-              <div className="col-span-6 col-start-2 text-xl mt-3 font-bold leading-normal tracking-normal px-1">
+              <div className="col-span-6 col-start-2 px-1 mt-3 text-xl font-bold leading-normal tracking-normal">
                 Developing Responsive Websites
                 <div className="row-start-2">For Your Brand</div>
               </div>
@@ -35,9 +35,9 @@ const deviceConfig = [
 
         heroServices: () => {
           return (
-            <div className="col-span-6 col-start-2 row-start-5 self-center">
+            <div className="self-center col-span-6 col-start-2 row-start-5">
               {/* Web Design - Adjusted for responsive behavior */}
-              <div className="col-start-1 mb-4 mt-8">
+              <div className="col-start-1 mt-8 mb-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 galaxyS23Ultra:text-xl sm:text-xl lg:text-3xl">
                   Web Design
@@ -61,7 +61,7 @@ const deviceConfig = [
               </div>
 
               {/* SEO - Adjusted for responsive grid */}
-              <div className="col-start-3 col-span-2 mb-4">
+              <div className="col-span-2 col-start-3 mb-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   SEO
@@ -72,7 +72,202 @@ const deviceConfig = [
               </div>
 
               {/* Additional Web Design Section if needed, or use for another service */}
-              <div className="col-start-3 col-span-2 mb-4">
+              <div className="col-span-2 col-start-3 mb-4">
+                <hr className="w-full border-t-2 border-gray-300" />
+                <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
+                  More Web Design
+                </div>
+                <div className="mt-2 text-lg leading-7 sm:text-xl galaxyS23Ultra:text-sm lg:text-xl">
+                  Advanced solutions for web design challenges.
+                </div>
+              </div>
+              {/* sub grid end */}
+            </div>
+          );
+        },
+        heroBackground: (
+          orbRefs,
+          backGroundBlurAmount,
+          backGroundBorderRadius
+        ) => {
+          // console.log("orbRefs: ", orbRefs);
+          return (
+            <>
+              <div
+                ref={(el) => {
+                  if (orbRefs[0]) {
+                    orbRefs[0].current = el;
+                  }
+                }}
+                className="absolute col-start-1 row-start-6 orb bg-color1"
+                style={{
+                  width: "50%",
+                  height: "50%",
+                  left: "-10%",
+                  top: "60%",
+                  filter: `blur(${backGroundBlurAmount}px)`,
+                  borderRadius: `${backGroundBorderRadius}%`,
+                  zIndex: "-1",
+                }}
+              ></div>
+              {/* lime */}
+              <div
+                ref={(el) => {
+                  if (orbRefs[1]) {
+                    orbRefs[1].current = el;
+                  }
+                }}
+                className="absolute col-start-2 row-start-3 orb bg-color2"
+                style={{
+                  width: "35%",
+                  height: "45%",
+                  left: "-20%",
+                  top: "-12%", // width: "40%", // height: "60%", //
+                  filter: `blur(${backGroundBlurAmount}px)`,
+                  borderRadius: `${backGroundBorderRadius}%`,
+                  zIndex: "-1",
+                }}
+              ></div>
+              {/* sky */}
+              <div
+                ref={(el) => {
+                  if (orbRefs[2]) {
+                    orbRefs[2].current = el;
+                  }
+                }}
+                className="absolute orb bg-color3"
+                style={{
+                  width: "30%",
+                  height: "40%",
+                  left: "65%",
+                  top: "-15%",
+                  filter: `blur(${backGroundBlurAmount}px)`,
+                  borderRadius: `${backGroundBorderRadius}%`,
+                  zIndex: "-1",
+                }}
+              ></div>
+              {/* violet */}
+              <div
+                ref={(el) => {
+                  if (orbRefs[3]) {
+                    orbRefs[3].current = el;
+                  }
+                }}
+                className="absolute orb bg-color4"
+                style={{
+                  width: "40%",
+                  height: "60%",
+                  left: "25%",
+                  top: "25%",
+                  filter: `blur(${backGroundBlurAmount}px)`,
+                  borderRadius: `${backGroundBorderRadius}%`,
+                  zIndex: "-1",
+                }}
+              ></div>
+              {/* Yellow */}
+              <div
+                ref={(el) => {
+                  if (orbRefs[4]) {
+                    orbRefs[4].current = el;
+                  }
+                }}
+                className="absolute orb bg-color5"
+                style={{
+                  width: "50%",
+                  height: "50%",
+                  left: "70%",
+                  top: "70%",
+                  filter: `blur(${backGroundBlurAmount}px)`,
+                  borderRadius: `${backGroundBorderRadius}%`,
+                  zIndex: "-1",
+                }}
+              ></div>
+
+              <div id="blur"></div>
+            </>
+          );
+        },
+      },
+      navigationBar: {
+        navbarElement: "grid w-full h-16 grid-cols-8 overflow-hidden",
+        navbarLogo: "col-start-2 col-end-3 self-center",
+        navbarMenu: "col-start-4 col-end-7 row-start-1 self-center",
+        navbarMenuItem: "ml-4 text-lg font-bold leading-7 tracking-normal",
+      },
+    },
+  },
+  //t1440p
+  {
+    type: "t1440p", // 1440p Tablet
+    query: "(max-width: 1237px) and (max-height: 1327px)",
+    layout: {
+      heroPage: {
+        d1440: "just a test",
+        heroPageContainer: "relative overflow-hidden h-dvh overscroll-none",
+        heroPageElement:
+          "grid w-full h-screen grid-cols-8 overflow-hidden grid-rows-8",
+        heroTitle: () => {
+          return (
+            <>
+              <div className="row-start-1 self-center col-span-6 col-start-2 font-medium leading-tight tracking-normal text-center text-7xl">
+                Developing Responsive
+              </div>
+              <div className="row-start-1 self-center col-span-6 mt-44 col-start-2 font-medium leading-tight tracking-normal text-center text-7xl">
+                Websites
+              </div>
+              <div className="row-start-2 self-center col-span-6 col-start-2 font-medium text-center text-7xl">
+                For Your Brand
+              </div>
+            </>
+          );
+        },
+        getStartedButton: () => {
+          return (
+            <div className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
+              <a href="#paymentInformation">Get Started</a>
+            </div>
+          );
+        },
+        heroServices: () => {
+          return (
+            <div className="grid self-center grid-cols-12 col-span-6 col-start-2 row-start-5 ">
+              {/* Web Design - Adjusted for responsive behavior */}
+              <div className="col-span-2 col-start-3 px-4">
+                <hr className="w-full border-t-2 border-gray-300" />
+                <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 galaxyS23Ultra:text-xl sm:text-xl lg:text-3xl">
+                  Web Design
+                </div>
+                <div className="mt-2 text-sm galaxyS23Ultra:text-sm sm:text-lg lg:text-xl">
+                  We create modern and responsive websites that look great on
+                  all devices.
+                </div>
+              </div>
+
+              {/* Data Transfer - Responsive adjustments */}
+              <div className="col-span-2 col-start-5 px-4">
+                <hr className="w-full border-t-2 border-gray-300" />
+                <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
+                  Data Transfer
+                </div>
+                <div className="mt-2 text-lg leading-7 sm:text-xl galaxyS23Ultra:text-sm lg:text-xl">
+                  We transfer your existing website to a modern platform with
+                  ease.
+                </div>
+              </div>
+
+              {/* SEO - Adjusted for responsive grid */}
+              <div className="col-span-2 col-start-7 px-4">
+                <hr className="w-full border-t-2 border-gray-300" />
+                <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
+                  SEO
+                </div>
+                <div className="mt-2 text-lg leading-7 galaxyS23Ultra:text-sm sm:text-xl lg:text-xl">
+                  We help your website rank higher in search engines.
+                </div>
+              </div>
+
+              {/* Additional Web Design Section if needed, or use for another service */}
+              <div className="col-span-2 col-start-9 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   More Web Design
@@ -211,10 +406,10 @@ const deviceConfig = [
         heroTitle: () => {
           return (
             <>
-              <div className="col-span-8 col-start-2 col-end-9 text-8xl font-medium leading-tight tracking-normal">
+              <div className="col-span-8 col-start-2 col-end-9 font-medium leading-tight tracking-normal text-8xl">
                 Developing Responsive Websites
               </div>
-              <div className="self-center col-start-3 col-span-4 font-medium text-center row-start-2 text-8xl">
+              <div className="self-center col-span-4 col-start-3 row-start-2 font-medium text-center text-8xl">
                 For Your Brand
               </div>
             </>
@@ -222,7 +417,7 @@ const deviceConfig = [
         },
         getStartedButton: () => {
           return (
-            <div className="self-center col-start-3 col-end-7 row-start-3 mt-0 p-5 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
+            <div className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
               <a href="#paymentInformation">Get Started</a>
             </div>
           );
@@ -233,9 +428,9 @@ const deviceConfig = [
 
         heroServices: () => {
           return (
-            <div className=" grid grid-cols-12 col-span-6 col-start-2 row-start-5 self-center">
+            <div className="grid self-center grid-cols-12 col-span-6 col-start-2 row-start-5 ">
               {/* Web Design - Adjusted for responsive behavior */}
-              <div className="col-start-3 col-span-2 px-4">
+              <div className="col-span-2 col-start-3 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 galaxyS23Ultra:text-xl sm:text-xl lg:text-3xl">
                   Web Design
@@ -247,7 +442,7 @@ const deviceConfig = [
               </div>
 
               {/* Data Transfer - Responsive adjustments */}
-              <div className="col-start-5 col-span-2 px-4">
+              <div className="col-span-2 col-start-5 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   Data Transfer
@@ -259,7 +454,7 @@ const deviceConfig = [
               </div>
 
               {/* SEO - Adjusted for responsive grid */}
-              <div className="col-start-7 col-span-2 px-4">
+              <div className="col-span-2 col-start-7 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   SEO
@@ -270,7 +465,7 @@ const deviceConfig = [
               </div>
 
               {/* Additional Web Design Section if needed, or use for another service */}
-              <div className="col-start-9 col-span-2 px-4">
+              <div className="col-span-2 col-start-9 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   More Web Design
@@ -408,10 +603,10 @@ const deviceConfig = [
         heroTitle: () => {
           return (
             <>
-              <div className="col-span-6 col-start-2 self-center text-center text-8xl font-medium leading-tight tracking-normal">
+              <div className="self-center col-span-6 col-start-2 font-medium leading-tight tracking-normal text-center text-8xl">
                 Developing Responsive Websites
               </div>
-              <div className="self-center col-start-3 col-span-4 font-medium text-center row-start-2 text-8xl">
+              <div className="self-center col-span-4 col-start-3 row-start-2 font-medium text-center text-8xl">
                 For Your Brand
               </div>
             </>
@@ -419,16 +614,16 @@ const deviceConfig = [
         },
         getStartedButton: () => {
           return (
-            <div className="self-center col-start-3 col-end-7 row-start-3 mt-0 p-5 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
+            <div className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
               <a href="#paymentInformation">Get Started</a>
             </div>
           );
         },
         heroServices: () => {
           return (
-            <div className=" grid grid-cols-12 col-span-6 col-start-2 row-start-5 self-center">
+            <div className="grid self-center grid-cols-12 col-span-6 col-start-2 row-start-5 ">
               {/* Web Design - Adjusted for responsive behavior */}
-              <div className="col-start-3 col-span-2 px-4">
+              <div className="col-span-2 col-start-3 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 galaxyS23Ultra:text-xl sm:text-xl lg:text-3xl">
                   Web Design
@@ -440,7 +635,7 @@ const deviceConfig = [
               </div>
 
               {/* Data Transfer - Responsive adjustments */}
-              <div className="col-start-5 col-span-2 px-4">
+              <div className="col-span-2 col-start-5 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   Data Transfer
@@ -452,7 +647,7 @@ const deviceConfig = [
               </div>
 
               {/* SEO - Adjusted for responsive grid */}
-              <div className="col-start-7 col-span-2 px-4">
+              <div className="col-span-2 col-start-7 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   SEO
@@ -463,7 +658,7 @@ const deviceConfig = [
               </div>
 
               {/* Additional Web Design Section if needed, or use for another service */}
-              <div className="col-start-9 col-span-2 px-4">
+              <div className="col-span-2 col-start-9 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   More Web Design
@@ -587,6 +782,9 @@ const deviceConfig = [
       },
     },
   },
+  //TODO d1440p - mac
+  //5120x1440
+
   //d2560p
   {
     type: "d2560p", // 2560p Desktop
@@ -601,10 +799,10 @@ const deviceConfig = [
         heroTitle: () => {
           return (
             <>
-              <div className="col-span-6 col-start-2 self-center text-center text-8xl font-medium leading-tight tracking-normal">
+              <div className="self-center col-span-6 col-start-2 font-medium leading-tight tracking-normal text-center text-8xl">
                 Developing Responsive Websites
               </div>
-              <div className="self-center col-start-3 col-span-4 font-medium text-center row-start-2 text-8xl">
+              <div className="self-center col-span-4 col-start-3 row-start-2 font-medium text-center text-8xl">
                 For Your Brand
               </div>
             </>
@@ -612,16 +810,16 @@ const deviceConfig = [
         },
         getStartedButton: () => {
           return (
-            <div className="self-center col-start-3 col-end-7 row-start-3 mt-0 p-5 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
+            <div className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
               <a href="#paymentInformation">Get Started</a>
             </div>
           );
         },
         heroServices: () => {
           return (
-            <div className=" grid grid-cols-12 col-span-6 col-start-2 row-start-5 self-center">
+            <div className="grid self-center grid-cols-12 col-span-6 col-start-2 row-start-5 ">
               {/* Web Design - Adjusted for responsive behavior */}
-              <div className="col-start-3 col-span-2 px-4">
+              <div className="col-span-2 col-start-3 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 galaxyS23Ultra:text-xl sm:text-xl lg:text-3xl">
                   Web Design
@@ -633,7 +831,7 @@ const deviceConfig = [
               </div>
 
               {/* Data Transfer - Responsive adjustments */}
-              <div className="col-start-5 col-span-2 px-4">
+              <div className="col-span-2 col-start-5 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   Data Transfer
@@ -645,7 +843,7 @@ const deviceConfig = [
               </div>
 
               {/* SEO - Adjusted for responsive grid */}
-              <div className="col-start-7 col-span-2 px-4">
+              <div className="col-span-2 col-start-7 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   SEO
@@ -656,7 +854,7 @@ const deviceConfig = [
               </div>
 
               {/* Additional Web Design Section if needed, or use for another service */}
-              <div className="col-start-9 col-span-2 px-4">
+              <div className="col-span-2 col-start-9 px-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 sm:text-2xl lg:text-3xl">
                   More Web Design
