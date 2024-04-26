@@ -24,6 +24,10 @@ body {
   height: 100svh; /* ensures each snap point is the height of the viewport */
 }
 
+.icon-span {
+  padding-right: 8px;
+}
+
 /* delay the snap and smoothly bounce it in */
 /* .snap-page {
   animation: snap 5s cubic-bezier(1.22, 1, 0.36, 1);

@@ -1,58 +1,58 @@
 // Hero - Page 1
-import { useState, useEffect, useRef } from "react";
-import "./heroPage.css";
+import { useState, useEffect, useRef } from "react"
+import "./heroPage.css"
 
-import DynamicComponentLoader from "../../dynamicComponentLoader";
-import { useDeviceConfig } from "../../useDeviceLayout"; // Adjust the path as necessary
+import DynamicComponentLoader from "../../dynamicComponentLoader"
+import { useDeviceConfig } from "../../useDeviceLayout" // Adjust the path as necessary
 
 function HeroPage() {
-  const deviceLayout = useDeviceConfig();
-  const [inHeroPage, setInHeroPage] = useState(false);
+  const deviceLayout = useDeviceConfig()
+  const [inHeroPage, setInHeroPage] = useState(false)
 
-  const orbRefs = useRef(Array.from({ length: 5 }, () => ({ current: null })));
-  const backGroundBlurAmount = 100;
-  const backGroundBorderRadius = 50;
+  const orbRefs = useRef(Array.from({ length: 5 }, () => ({ current: null })))
+  const backGroundBlurAmount = 100
+  const backGroundBorderRadius = 50
 
   useEffect(() => {
-    const hero = document.getElementById("heroPageElement");
+    const hero = document.getElementById("heroPageElement")
     if (hero) {
-      const onMouseOver = () => setInHeroPage(true);
-      const onMouseLeave = () => setInHeroPage(false);
+      const onMouseOver = () => setInHeroPage(true)
+      const onMouseLeave = () => setInHeroPage(false)
 
-      hero.addEventListener("mouseover", onMouseOver);
-      hero.addEventListener("mouseleave", onMouseLeave);
+      hero.addEventListener("mouseover", onMouseOver)
+      hero.addEventListener("mouseleave", onMouseLeave)
 
       return () => {
-        hero.removeEventListener("mouseover", onMouseOver);
-        hero.removeEventListener("mouseleave", onMouseLeave);
-      };
+        hero.removeEventListener("mouseover", onMouseOver)
+        hero.removeEventListener("mouseleave", onMouseLeave)
+      }
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     const moveOrbs = () => {
       orbRefs.current.forEach((ref) => {
         if (ref.current) {
           // Check if the element exists
-          const maxMovement = window.innerWidth < 768 ? 30 : 60;
-          const deltaX = (Math.random() * 2 - 1) * maxMovement;
-          const deltaY = (Math.random() * 2 - 1) * maxMovement;
-          ref.current.style.left = `${parseFloat(ref.current.style.left || 0) + deltaX}px`;
-          ref.current.style.top = `${parseFloat(ref.current.style.top || 0) + deltaY}px`;
-          ref.current.style.transform = `scale(${2 + Math.random() * 0.1})`;
+          const maxMovement = window.innerWidth < 768 ? 30 : 60
+          const deltaX = (Math.random() * 2 - 1) * maxMovement
+          const deltaY = (Math.random() * 2 - 1) * maxMovement
+          ref.current.style.left = `${parseFloat(ref.current.style.left || 0) + deltaX}px`
+          ref.current.style.top = `${parseFloat(ref.current.style.top || 0) + deltaY}px`
+          ref.current.style.transform = `scale(${2 + Math.random() * 0.1})`
 
           setTimeout(() => {
             if (ref.current) {
-              ref.current.style.transform = "scale(1)";
+              ref.current.style.transform = "scale(1)"
             }
-          }, 2000);
+          }, 2000)
         }
-      });
-    };
+      })
+    }
 
-    const intervalId = setInterval(moveOrbs, 500);
-    return () => clearInterval(intervalId);
-  }, []);
+    const intervalId = setInterval(moveOrbs, 500)
+    return () => clearInterval(intervalId)
+  }, [])
 
   //new code
   // console.log(deviceLayout.heroPage);
@@ -83,7 +83,7 @@ function HeroPage() {
         {/* section for the orbs */}
       </div>
     </div>
-  );
+  )
 }
 
-export default HeroPage;
+export default HeroPage

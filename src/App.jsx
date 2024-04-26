@@ -1,71 +1,71 @@
-import DynamicComponentLoader from "./dynamicComponentLoader";
+import DynamicComponentLoader from "./dynamicComponentLoader"
 
-import "./App.css";
+import "./App.css"
 
 function App() {
-  let developerMode = true; // Set to false when deploying to production
-  let displaySplashPage = true; // Set to true when deploying to production
+  let developerMode = true // Set to false when deploying to production
+  let displaySplashPage = true // Set to true when deploying to production
 
   // Wait for 0.5 seconds before initializing event listeners
   setTimeout(() => {
     // Select all anchor links that link to an ID
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", function (e) {
-        e.preventDefault(); // Prevent the default anchor click behavior
+        e.preventDefault() // Prevent the default anchor click behavior
 
         // The target element to scroll to
-        const targetId = this.getAttribute("href");
-        const targetElement = document.querySelector(targetId);
+        const targetId = this.getAttribute("href")
+        const targetElement = document.querySelector(targetId)
 
         if (targetElement) {
           // Scroll to the target element smoothly
-          targetElement.scrollIntoView({ behavior: "smooth" });
+          targetElement.scrollIntoView({ behavior: "smooth" })
         }
-      });
-    });
+      })
+    })
 
-    const container = document.querySelector(".snap-container");
+    const container = document.querySelector(".snap-container")
 
     // Function to handle scrolling
     function handleScroll(deltaY) {
       if (deltaY > 0) {
-        container.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+        container.scrollBy({ top: window.innerHeight, behavior: "smooth" })
       } else {
-        container.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
+        container.scrollBy({ top: -window.innerHeight, behavior: "smooth" })
       }
     }
 
     // Event listener for mouse wheel
     container.addEventListener("wheel", (e) => {
-      e.preventDefault(); // Prevent default wheel behavior
-      handleScroll(e.deltaY);
-    });
+      e.preventDefault() // Prevent default wheel behavior
+      handleScroll(e.deltaY)
+    })
 
     // Variables for touch event handling
-    let startY = 0;
-    let touchMove = false;
+    let startY = 0
+    let touchMove = false
 
     // Event listener for touch start
     container.addEventListener("touchstart", (e) => {
-      startY = e.touches[0].clientY;
-      touchMove = false;
-    });
+      startY = e.touches[0].clientY
+      touchMove = false
+    })
 
     // Event listener for touch move
     container.addEventListener("touchmove", (e) => {
-      e.preventDefault(); // Prevent default touch behavior
-      touchMove = true;
-    });
+      e.preventDefault() // Prevent default touch behavior
+      touchMove = true
+    })
 
     // Event listener for touch end
     container.addEventListener("touchend", (e) => {
       if (touchMove) {
-        const endY = e.changedTouches[0].clientY;
-        const deltaY = startY - endY;
-        handleScroll(deltaY);
+        const endY = e.changedTouches[0].clientY
+        const deltaY = startY - endY
+        handleScroll(deltaY)
       }
-    });
-  }, 500);
+    })
+  }, 500)
 
   return (
     <>
@@ -106,7 +106,7 @@ function App() {
         //!SECTION Main Content Container - BEGIN
       )}
     </>
-  );
+  )
 }
 
-export default App;
+export default App
