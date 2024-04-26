@@ -24,7 +24,7 @@ const deviceConfig = [
         },
         getStartedButton: () => {
           return (
-            <div className="self-center col-start-2 col-end-8 row-start-2 mt-8 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
+            <div className="self-center col-start-2 col-span-6 row-start-2 mt-10 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
               <a href="#paymentInformation">Get Started</a>
             </div>
           );

@@ -59,11 +59,8 @@ function HeroPage() {
   return (
     <div className={deviceLayout.heroPage.heroPageContainer}>
       {/*NOTE Background Colors */}
-
       <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} />
-
       {/* randomly move the orbs around the page */}
-
       {/* only allow the custom cursor component to work inside of heroPage */}
       {/* deviceLayout.heroPage.heroBackground is a template, return as jsx  */}
       {deviceLayout.heroPage.heroBackground(
@@ -71,19 +68,15 @@ function HeroPage() {
         backGroundBlurAmount,
         backGroundBorderRadius
       )}
-
       {/* Sub-grid for Page 1 */}
       <div
         id="heroPageElement"
         className={`${deviceLayout.heroPage.heroPageElement}`}
       >
         {/* Add your rows and columns inside the sub-grid */}
-
         {deviceLayout.heroPage.heroTitle()}
-
         {/* Uses self-start and self-end to align within the cells*/}
         {deviceLayout.heroPage.getStartedButton()}
-
         {/* section for Web Design, Data Transfer, SEO, and Web Design */}
         {deviceLayout.heroPage.heroServices()}
 
