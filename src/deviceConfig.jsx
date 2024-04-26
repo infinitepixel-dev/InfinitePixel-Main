@@ -1,8 +1,9 @@
-import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6"
+import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6";
 
 //Device configuration for different screen sizes ie. mobile, tablet, desktop, etc.
 const deviceConfig = [
-  //m384
+  //SECTION Mobile Configurations
+  //NOTE m384
   {
     type: "m384", // Galaxy S23 Ultra
     query: "(max-width: 384px) and (max-height: 824px)",
@@ -22,14 +23,17 @@ const deviceConfig = [
                 <div className="row-start-2">For Your Brand</div>
               </div>
             </>
-          )
+          );
         },
         getStartedButton: () => {
           return (
-            <div className="self-center col-start-2 col-span-6 row-start-2 mt-10 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
-              <a href="#paymentInformation">Get Started</a>
-            </div>
-          )
+            <a
+              href="#paymentInformation"
+              className="self-center col-start-2 col-span-6 row-start-2 mt-10 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800"
+            >
+              Get Started
+            </a>
+          );
         },
         // "self-center col-start-2 col-end-8 row-start-2 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-5xl",
         //output getStartedButton as JSX:
@@ -85,7 +89,7 @@ const deviceConfig = [
               </div>
               {/* sub grid end */}
             </div>
-          )
+          );
         },
         heroBackground: (
           orbRefs,
@@ -98,7 +102,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[0]) {
-                    orbRefs[0].current = el
+                    orbRefs[0].current = el;
                   }
                 }}
                 className="absolute col-start-1 row-start-6 orb bg-color1"
@@ -116,7 +120,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[1]) {
-                    orbRefs[1].current = el
+                    orbRefs[1].current = el;
                   }
                 }}
                 className="absolute col-start-2 row-start-3 orb bg-color2"
@@ -134,7 +138,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[2]) {
-                    orbRefs[2].current = el
+                    orbRefs[2].current = el;
                   }
                 }}
                 className="absolute orb bg-color3"
@@ -152,7 +156,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[3]) {
-                    orbRefs[3].current = el
+                    orbRefs[3].current = el;
                   }
                 }}
                 className="absolute orb bg-color4"
@@ -170,7 +174,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[4]) {
-                    orbRefs[4].current = el
+                    orbRefs[4].current = el;
                   }
                 }}
                 className="absolute orb bg-color5"
@@ -187,7 +191,7 @@ const deviceConfig = [
 
               <div id="blur"></div>
             </>
-          )
+          );
         },
       },
       navigationBar: {
@@ -198,7 +202,9 @@ const deviceConfig = [
       },
     },
   },
-  //t1440p
+  //!SECTION Mobile Configurations End
+  //SECTION Tablet Configurations
+  //NOTE t1440p
   {
     type: "t1440p", // 1440p Tablet
     query: "(max-width: 1237px) and (max-height: 1327px)",
@@ -221,14 +227,17 @@ const deviceConfig = [
                 For Your Brand
               </div>
             </>
-          )
+          );
         },
         getStartedButton: () => {
           return (
-            <div className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
-              <a href="#paymentInformation">Get Started</a>
-            </div>
-          )
+            <a
+              href="#paymentInformation"
+              className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800"
+            >
+              Get Started
+            </a>
+          );
         },
         heroServices: () => {
           return (
@@ -280,7 +289,7 @@ const deviceConfig = [
               </div>
               {/* sub grid end */}
             </div>
-          )
+          );
         },
         heroBackground: (
           orbRefs,
@@ -293,7 +302,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[0]) {
-                    orbRefs[0].current = el
+                    orbRefs[0].current = el;
                   }
                 }}
                 className="absolute col-start-1 row-start-6 orb bg-color1"
@@ -311,7 +320,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[1]) {
-                    orbRefs[1].current = el
+                    orbRefs[1].current = el;
                   }
                 }}
                 className="absolute col-start-2 row-start-3 orb bg-color2"
@@ -329,7 +338,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[2]) {
-                    orbRefs[2].current = el
+                    orbRefs[2].current = el;
                   }
                 }}
                 className="absolute orb bg-color3"
@@ -347,7 +356,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[3]) {
-                    orbRefs[3].current = el
+                    orbRefs[3].current = el;
                   }
                 }}
                 className="absolute orb bg-color4"
@@ -365,7 +374,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[4]) {
-                    orbRefs[4].current = el
+                    orbRefs[4].current = el;
                   }
                 }}
                 className="absolute orb bg-color5"
@@ -382,7 +391,7 @@ const deviceConfig = [
 
               <div id="blur"></div>
             </>
-          )
+          );
         },
       },
       navigationBar: {
@@ -393,7 +402,9 @@ const deviceConfig = [
       },
     },
   },
-  //d1080p
+  //!SECTION Tablet Configurations End
+  //SECTION Desktop Configurations
+  //NOTE d1080p
   {
     type: "d1080p", // 1080p Desktop
     query: "(max-width: 1920px) and (max-height: 1080px)",
@@ -415,14 +426,17 @@ const deviceConfig = [
                 For Your Brand
               </div>
             </>
-          )
+          );
         },
         getStartedButton: () => {
           return (
-            <div className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
-              <a href="#paymentInformation">Get Started</a>
-            </div>
-          )
+            <a
+              href="#paymentInformation"
+              className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800"
+            >
+              Get Started
+            </a>
+          );
         },
         // "self-center col-start-2 col-end-8 row-start-2 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-5xl",
         //output getStartedButton as JSX:
@@ -478,7 +492,7 @@ const deviceConfig = [
               </div>
               {/* sub grid end */}
             </div>
-          )
+          );
         },
         serviceDescription: "mt-2 text-lg leading-7",
         heroBackground: (
@@ -492,7 +506,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[0]) {
-                    orbRefs[0].current = el
+                    orbRefs[0].current = el;
                   }
                 }}
                 className="absolute col-start-1 row-start-6 orb bg-color1"
@@ -510,7 +524,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[1]) {
-                    orbRefs[1].current = el
+                    orbRefs[1].current = el;
                   }
                 }}
                 className="absolute col-start-2 row-start-3 orb bg-color2"
@@ -528,7 +542,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[2]) {
-                    orbRefs[2].current = el
+                    orbRefs[2].current = el;
                   }
                 }}
                 className="absolute orb bg-color3"
@@ -546,7 +560,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[3]) {
-                    orbRefs[3].current = el
+                    orbRefs[3].current = el;
                   }
                 }}
                 className="absolute orb bg-color4"
@@ -564,7 +578,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[4]) {
-                    orbRefs[4].current = el
+                    orbRefs[4].current = el;
                   }
                 }}
                 className="absolute orb bg-color5"
@@ -581,7 +595,7 @@ const deviceConfig = [
 
               <div id="blur"></div>
             </>
-          )
+          );
         },
       },
       navigationBar: {
@@ -758,12 +772,12 @@ const deviceConfig = [
                 </div>
               </div>
             </div>
-          )
+          );
         },
       },
     },
   },
-  //d1440p
+  //NOTE d1440p
   {
     type: "d1440p", // 1440p Desktop
     query: "(max-width: 2560px) and (max-height: 1440px)",
@@ -935,7 +949,7 @@ const deviceConfig = [
                 </div>
               </div>
             </div>
-          )
+          );
         },
       },
       heroPage: {
@@ -953,14 +967,17 @@ const deviceConfig = [
                 For Your Brand
               </div>
             </>
-          )
+          );
         },
         getStartedButton: () => {
           return (
-            <div className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
-              <a href="#paymentInformation">Get Started</a>
-            </div>
-          )
+            <a
+              href="#paymentInformation"
+              className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800"
+            >
+              Get Started
+            </a>
+          );
         },
         heroServices: () => {
           return (
@@ -1012,7 +1029,7 @@ const deviceConfig = [
               </div>
               {/* sub grid end */}
             </div>
-          )
+          );
         },
         heroBackground: (
           orbRefs,
@@ -1025,7 +1042,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[0]) {
-                    orbRefs[0].current = el
+                    orbRefs[0].current = el;
                   }
                 }}
                 className="absolute col-start-1 row-start-6 orb bg-color1"
@@ -1043,7 +1060,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[1]) {
-                    orbRefs[1].current = el
+                    orbRefs[1].current = el;
                   }
                 }}
                 className="absolute col-start-2 row-start-3 orb bg-color2"
@@ -1061,7 +1078,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[2]) {
-                    orbRefs[2].current = el
+                    orbRefs[2].current = el;
                   }
                 }}
                 className="absolute orb bg-color3"
@@ -1079,7 +1096,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[3]) {
-                    orbRefs[3].current = el
+                    orbRefs[3].current = el;
                   }
                 }}
                 className="absolute orb bg-color4"
@@ -1097,7 +1114,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[4]) {
-                    orbRefs[4].current = el
+                    orbRefs[4].current = el;
                   }
                 }}
                 className="absolute orb bg-color5"
@@ -1114,7 +1131,7 @@ const deviceConfig = [
 
               <div id="blur"></div>
             </>
-          )
+          );
         },
       },
       navigationBar: {
@@ -1128,7 +1145,7 @@ const deviceConfig = [
   //TODO d1440p - mac
   //5120x1440
 
-  //d2560p
+  //NOTE d2560p
   {
     type: "d2560p", // 2560p Desktop
     query: "(max-width: 3840px) and (max-height: 2560px)",
@@ -1149,14 +1166,17 @@ const deviceConfig = [
                 For Your Brand
               </div>
             </>
-          )
+          );
         },
         getStartedButton: () => {
           return (
-            <div className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800">
-              <a href="#paymentInformation">Get Started</a>
-            </div>
-          )
+            <a
+              href="#paymentInformation"
+              className="self-center col-start-3 col-end-7 row-start-3 p-5 mt-0 text-4xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800"
+            >
+              Get Started
+            </a>
+          );
         },
         heroServices: () => {
           return (
@@ -1208,7 +1228,7 @@ const deviceConfig = [
               </div>
               {/* sub grid end */}
             </div>
-          )
+          );
         },
         heroBackground: (
           orbRefs,
@@ -1221,7 +1241,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[0]) {
-                    orbRefs[0].current = el
+                    orbRefs[0].current = el;
                   }
                 }}
                 className="absolute col-start-1 row-start-6 orb bg-color1"
@@ -1239,7 +1259,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[1]) {
-                    orbRefs[1].current = el
+                    orbRefs[1].current = el;
                   }
                 }}
                 className="absolute col-start-2 row-start-3 orb bg-color2"
@@ -1257,7 +1277,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[2]) {
-                    orbRefs[2].current = el
+                    orbRefs[2].current = el;
                   }
                 }}
                 className="absolute orb bg-color3"
@@ -1275,7 +1295,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[3]) {
-                    orbRefs[3].current = el
+                    orbRefs[3].current = el;
                   }
                 }}
                 className="absolute orb bg-color4"
@@ -1293,7 +1313,7 @@ const deviceConfig = [
               <div
                 ref={(el) => {
                   if (orbRefs[4]) {
-                    orbRefs[4].current = el
+                    orbRefs[4].current = el;
                   }
                 }}
                 className="absolute orb bg-color5"
@@ -1310,7 +1330,7 @@ const deviceConfig = [
 
               <div id="blur"></div>
             </>
-          )
+          );
         },
       },
       navigationBar: {
@@ -1321,8 +1341,8 @@ const deviceConfig = [
       },
     },
   },
-
+  //!SECTION Desktop Configurations End
   // Add other device configurations here, similar to the one above.
-]
+];
 
-export default deviceConfig
+export default deviceConfig;

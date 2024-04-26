@@ -5,10 +5,10 @@ import {
   CardFooter,
   Typography,
   Button,
-} from "@material-tailwind/react"
-import { useState, useEffect, useRef } from "react"
-import { useDeviceConfig } from "../../useDeviceLayout" // Adjust the path as necessary
-import { FaCircleCheck } from "react-icons/fa6"
+} from "@material-tailwind/react";
+import { useState, useEffect, useRef } from "react";
+import { useDeviceConfig } from "../../useDeviceLayout"; // Adjust the path as necessary
+import { FaCircleCheck } from "react-icons/fa6";
 
 function CheckIcon() {
   return (
@@ -26,7 +26,7 @@ function CheckIcon() {
         d="M4.5 12.75l6 6 9-13.5"
       />
     </svg>
-  )
+  );
 }
 
 function ShoppingCartIcon() {
@@ -50,13 +50,19 @@ function ShoppingCartIcon() {
         d="M7 18a2 2 0 11-4 0 2 2 0 014 0zm14 0a2 2 0 11-4 0 2 2 0 014 0z"
       />
     </svg>
-  )
+  );
 }
 
 export function PricingCard() {
-  const deviceLayout = useDeviceConfig()
+  const deviceLayout = useDeviceConfig();
 
-  return <>{deviceLayout.paymentsPage.paymentCardContainer()}</>
+  return (
+    <>
+      <div id="paymentInformation">
+        {deviceLayout.paymentsPage.paymentCardContainer()}
+      </div>
+    </>
+  );
 }
 
-export default PricingCard
+export default PricingCard;
