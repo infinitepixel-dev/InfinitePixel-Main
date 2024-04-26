@@ -13,11 +13,12 @@ function HeroPage() {
   const backGroundBlurAmount = 100;
   const backGroundBorderRadius = 50;
 
+  //NOTE Used to check if the cursor is in the hero page
   useEffect(() => {
     const hero = document.getElementById("heroPageElement");
     if (hero) {
-      const onMouseOver = () => setInHeroPage(true);
-      const onMouseLeave = () => setInHeroPage(false);
+      const onMouseOver = () => setInHeroPage(false);
+      const onMouseLeave = () => setInHeroPage(true);
 
       hero.addEventListener("mouseover", onMouseOver);
       hero.addEventListener("mouseleave", onMouseLeave);
@@ -27,8 +28,11 @@ function HeroPage() {
         hero.removeEventListener("mouseleave", onMouseLeave);
       };
     }
-  }, []);
 
+    console.log("In Hero Page:", inHeroPage);
+  }, [inHeroPage]);
+
+  //NOTE Used to move the orbs in the background around the page
   useEffect(() => {
     const moveOrbs = () => {
       orbRefs.current.forEach((ref) => {
@@ -55,39 +59,40 @@ function HeroPage() {
     return () => clearInterval(intervalId);
   }, []);
 
-  //new code
-  // console.log(deviceLayout.heroPage);
   return (
-    <div className={deviceLayout.heroPage.heroPageContainer}>
-      {/*NOTE Background Colors */}
-      {/* if in the container dislay the cursor otherwise fade it */}
-      {inHeroPage ? (
-        <DynamicComponentLoader componentName="CustomCursor" />
-      ) : null}
-      {/* <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} /> */}
-      {/* randomly move the orbs around the page */}
-      {/* only allow the custom cursor component to work inside of heroPage */}
-      {/* deviceLayout.heroPage.heroBackground is a template, return as jsx  */}
-      {deviceLayout.heroPage.heroBackground(
-        orbRefs,
-        backGroundBlurAmount,
-        backGroundBorderRadius
-      )}
-      {/* Sub-grid for Page 1 */}
-      <div
-        id="heroPageElement"
-        className={`${deviceLayout.heroPage.heroPageElement}`}
-      >
-        {/* Add your rows and columns inside the sub-grid */}
-        {deviceLayout.heroPage.heroTitle()}
-        {/* Uses self-start and self-end to align within the cells*/}
-        {deviceLayout.heroPage.getStartedButton()}
-        {/* section for Web Design, Data Transfer, SEO, and Web Design */}
-        {deviceLayout.heroPage.heroServices()}
+    <>
+      <div className={deviceLayout.heroPage.heroPageContainer}>
+        {/*NOTE Background Colors */}
+        {/* if in the container dislay the cursor otherwise fade it */}
+        <DynamicComponentLoader
+          componentName="CustomCursor"
+          fade={inHeroPage}
+        />
+        {/* <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} /> */}
+        {/* randomly move the orbs around the page */}
+        {/* only allow the custom cursor component to work inside of heroPage */}
+        {/* deviceLayout.heroPage.heroBackground is a template, return as jsx  */}
+        {deviceLayout.heroPage.heroBackground(
+          orbRefs,
+          backGroundBlurAmount,
+          backGroundBorderRadius
+        )}
+        {/* Sub-grid for Page 1 */}
+        <div
+          id="heroPageElement"
+          className={`${deviceLayout.heroPage.heroPageElement}`}
+        >
+          {/* Add your rows and columns inside the sub-grid */}
+          {deviceLayout.heroPage.heroTitle()}
+          {/* Uses self-start and self-end to align within the cells*/}
+          {deviceLayout.heroPage.getStartedButton()}
+          {/* section for Web Design, Data Transfer, SEO, and Web Design */}
+          {deviceLayout.heroPage.heroServices()}
 
-        {/* section for the orbs */}
+          {/* section for the orbs */}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

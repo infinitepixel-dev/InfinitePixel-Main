@@ -6,7 +6,7 @@ const SidebarHamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    console.log("Menu has been", isOpen ? "closed" : "opened");
+    // console.log("Menu has been", isOpen ? "closed" : "opened");
     setIsOpen(!isOpen);
   };
 

@@ -7,7 +7,7 @@
 body {
   /* cursor: none; */
   /* overflow: hidden; */
-  touch-action: manipulation;
+  /* touch-action: manipulation; */
 }
 
 /* Add this to your App.css or equivalent file */

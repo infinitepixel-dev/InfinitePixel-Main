@@ -1,25 +1,27 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 const CustomCursor = ({ fade }) => {
   const cursorRef = useRef(null);
   const pixels = useRef([]);
   const availablePixels = useRef([]);
+  const [cursorOpacity, setCursorOpacity] = useState(1); // State to control cursor opacity
 
+  // Set up the transition for the cursor on mount
   useEffect(() => {
-    // if fade is true slowly set the opacity of the cursor to 0
-    if (fade) {
-      //check if the cursorRef is null, if it is, slowly fade out the previous cursors effects
-      if (cursorRef.current) {
-        cursorRef.current.style.transition = "opacity 5s";
-      } else {
-        pixels.current.forEach((pixel) => {
-          //set the opacity over 5s to 0
-          pixel.style.transition = "opacity 5s";
-        });
-        return;
-      }
+    if (cursorRef.current) {
+      cursorRef.current.style.transition = "opacity 0.5s ease-out";
     }
+  }, []);
+
+  // Adjust cursor opacity based on the fade prop
+  useEffect(() => {
+    setCursorOpacity(fade ? 0 : 1);
+  }, [fade]);
+
+  // Animation logic for pixels, skipped if cursor is faded out
+  useEffect(() => {
+    if (cursorOpacity === 0) return; // Skip animations when cursor is faded out
 
     const colors = [
       "#7bc950",
@@ -30,9 +32,7 @@ const CustomCursor = ({ fade }) => {
       "#87ceeb",
     ];
 
-    // Initialize pixel elements
     for (let i = 0; i < 230; i++) {
-      // Adjust the number based on performance and effect
       const pixel = document.createElement("div");
       pixel.className = "pixel";
       pixel.style.width = "2px";
@@ -48,10 +48,9 @@ const CustomCursor = ({ fade }) => {
 
     const animatePixel = (pixel, startX, startY) => {
       const angle = Math.random() * (2 * Math.PI);
-      // Increase the range and variability of distances
-      const distance = Math.random() * 50 + 15; // Increased variability
+      const distance = Math.random() * 50 + 15;
       let progress = 0;
-      const duration = 2000; // Keep or adjust duration based on testing
+      const duration = 2000;
 
       const animate = () => {
         const elapsedTime = progress * duration;
@@ -66,14 +65,14 @@ const CustomCursor = ({ fade }) => {
         pixel.style.left = `${x}px`;
         pixel.style.top = `${y}px`;
         pixel.style.opacity = String(1 - progress);
-
-        // Adjust progress rate for a more dynamic movement, if needed
         progress += 8 / duration;
         requestAnimationFrame(animate);
       };
 
       requestAnimationFrame(animate);
     };
+
+    const pixelsToRemove = [...pixels.current]; // Create a local copy of pixels.current
 
     const animateCursor = (e) => {
       const { pageX: x, pageY: y } = e.touches ? e.touches[0] : e;
@@ -88,13 +87,10 @@ const CustomCursor = ({ fade }) => {
         pixel.style.top = `${y}px`;
         pixel.style.opacity = 1;
         pixel.style.backgroundColor =
-          colors[Math.floor(Math.random() * colors.length)]; // Set random color
-
+          colors[Math.floor(Math.random() * colors.length)];
         animatePixel(pixel, x, y);
       }
     };
-
-    const pixelsToRemove = pixels.current.slice(); // Copy the value of pixels.current to a new variable
 
     document.addEventListener("mousemove", animateCursor);
     document.addEventListener("touchmove", animateCursor);
@@ -102,11 +98,17 @@ const CustomCursor = ({ fade }) => {
     return () => {
       document.removeEventListener("mousemove", animateCursor);
       document.removeEventListener("touchmove", animateCursor);
-      pixelsToRemove.forEach((pixel) => pixel.remove()); // Use the new variable in the cleanup function
+      pixelsToRemove.forEach((pixel) => pixel.remove());
     };
-  }, [fade]);
+  }, [cursorOpacity]); // Depend on the cursorOpacity state
 
-  return <>{fade ? <></> : <div ref={cursorRef} className="cursor"></div>}</>;
+  return (
+    <div
+      ref={cursorRef}
+      className="cursor"
+      style={{ opacity: cursorOpacity }}
+    ></div>
+  );
 };
 
 CustomCursor.propTypes = {
