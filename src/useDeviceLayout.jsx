@@ -22,8 +22,16 @@ export const DeviceLayoutProvider = ({ children, deviceConfig }) => {
   const getDeviceType = useCallback(() => {
     const matchedDevice = deviceConfig.find((d) => {
       let match = window.matchMedia(d.query).matches;
+
       if (match) {
         console.log("Matched Device: ", d.type);
+        console.log("Viewport Width: ", window.innerWidth);
+        console.log("Viewport Height: ", window.innerHeight, "\n");
+      }
+      //else state to output the users view port dimensions
+      else {
+        // console.clear();
+        console.log("Unsupported Device:");
       }
       return match;
     });
