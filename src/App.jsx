@@ -1,14 +1,11 @@
 import DynamicComponentLoader from "./dynamicComponentLoader";
-import { useDeviceConfig } from "./useDeviceLayout"; // Adjust the path as necessary
 
 import "./App.css";
 
 function App() {
-  const deviceLayout = useDeviceConfig();
   let developerMode = true; // Set to false when deploying to production
   let displaySplashPage = true; // Set to true when deploying to production
 
-  console.log("Device Layout: ", deviceLayout);
   // Wait for 0.5 seconds before initializing event listeners
   setTimeout(() => {
     // Select all anchor links that link to an ID
@@ -94,30 +91,19 @@ function App() {
           <div
             className="mx-auto container-fluid snap-container"
             //if device layout is true then overflow-hidden
-            style={{
-              overflow: deviceLayout.unsupportedDevice ? "hidden" : "auto",
-              touchAction: deviceLayout.unsupportedDevice ? "none" : "auto",
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
           >
             <DynamicComponentLoader componentName="NavigationBar" />
 
             <div className="snap-page">
               <DynamicComponentLoader componentName="HeroPage" />
             </div>
-            {deviceLayout.unsupportedDevice ? (
-              ""
-            ) : (
-              <>
-                <div className="snap-page">
-                  <DynamicComponentLoader componentName="AboutUs" />
-                </div>
-                <div className="snap-page">
-                  <DynamicComponentLoader componentName="Payments" />
-                </div>
-              </>
-            )}
+
+            <div className="snap-page">
+              <DynamicComponentLoader componentName="AboutUs" />
+            </div>
+            <div className="snap-page">
+              <DynamicComponentLoader componentName="Payments" />
+            </div>
           </div>
         </>
         //!SECTION Main Content Container - BEGIN
