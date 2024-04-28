@@ -63,7 +63,7 @@ function HeroPage() {
   //INFO Hero Container
   const defaultHeroContainer =
     "z-10 grid w-full h-screen grid-cols-8 overflow-hidden grid-rows-8 column";
-  const mobileHeroContainer = "";
+  const mobileHeroContainer = " mobile:grid-cols-4 mobile:grid-rows-6";
   const tabletHeroContainer = "";
   const tabletXLHeroContainer = "";
   const laptopHeroContainer = "";
@@ -72,44 +72,62 @@ function HeroPage() {
 
   //INFO Hero Title
   const defaultHeroTitle =
-    "col-span-6 col-start-2 text-md text-center self-center font-bold leading-normal tracking-normal";
-  const mobileHeroTitle = "";
+    "col-span-8 col-start-1 text-md text-center self-center font-bold leading-normal tracking-normal";
+  const mobileHeroTitle =
+    " mobile:text-lg mobile:row-start-1 mobile:col-span-4 mobile:col-start-1";
   const tabletHeroTitle = "";
   const tabletXLHeroTitle = "";
   const laptopHeroTitle = "";
   const desktopHeroTitle = "";
-  const desktopXLHeroTitle = "desktopXL:text-6xl desktopXL:row-start-2";
+  const desktopXLHeroTitle = "desktopXL:text-6xl desktopXL:row-start-1";
 
   //INFO Hero Get Started Button
   const defaultHeroGetStartedButton =
     "self-center col-start-2 col-span-6 row-start-2 mb-12 text-3xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800 shadow-xl";
-  const mobileGetStartedButton = "";
+  const mobileGetStartedButton =
+    "mobile:col-start-1 mobile:col-span-4 mobile:row-start-2 mobile:mb-16 mobile:mx-16";
   const tabletGetStartedButton = "";
   const tabletXLGetStartedButton = "";
   const laptopGetStartedButton = "";
   const desktopGetStartedButton = "";
   const desktopXLGetStartedButton =
-    "desktopXL:col-start-4 desktop:col-span-2 desktopXL:row-start-3 desktopXL:py-6 desktopXL:mt-28 ";
+    "desktopXL:col-start-2 desktop:col-span-2 desktopXL:row-start-2 desktopXL:py-6 desktopXL:mt-28 ";
 
   //INFO Hero Services
   const default_HeroServicesContainer =
-    "grid self-center col-start-2 col-span-6 row-start-4 gap-12";
-  const desktopXL_HeroServicesContainer = "desktopXL:row-start-5";
+    "grid self-center text-center col-start-1 col-span-12 row-start-4";
+  const mobile_HeroServicesContainer =
+    "mobile:grid-cols-4 mobile:col-span-4 mobile:row-start-4 mobile:mx-4 mobile:gap-12";
+  const desktopXL_HeroServicesContainer =
+    "desktopXL:grid-cols-11 desktopXL:row-start-4 desktopXL:mt-48";
 
+  //NOTE Web Services
   const default_webServicesContainer = "col-start-1 col-span-2";
+  const mobile_webServicesContainer =
+    "mobile:col-start-1 mobile:col-span-2 mobile:row-start-2";
   const desktopXL_WebServicesContainer =
-    "desktopXL:col-start-1 desktopXL:row-start-1";
+    "desktopXL:col-start-1 desktopXL:col-span-2 desktopXL:row-start-1";
 
-  const default_dataTransferContainer = "col-start-1 col-span-2";
+  //NOTE Data Transfer Services
+  const default_dataTransferContainer = "col-start-3 col-span-2";
+  const mobile_dataTransferContainer =
+    "mobile:col-start-3 mobile:col-span-2 mobile:row-start-2";
   const desktopXL_dataTransferContainer =
-    "desktopXL:col-start-4 desktopXL:row-start-1";
+    "desktopXL:col-start-4 desktopXL:col-span-2 desktopXL:row-start-1";
 
-  const default_SEOContainer = "col-span-2 col-start-3";
-  const desktopXL_SEOContainer = "desktopXL:col-start-7 desktopXL:row-start-1";
+  //NOTE SEO Services
+  const default_SEOContainer = "col-start-3 col-span-2 ";
+  const mobile_SEOContainer =
+    "mobile:col-start-1 mobile:col-span-2 mobile:row-start-4";
+  const desktopXL_SEOContainer =
+    "desktopXL:col-start-7 desktopXL:col-span-2 desktopXL:row-start-1";
 
+  //NOTE Additional Web Design Services
   const default_additionalWebDesignContainer = "col-span-2 col-start-4";
+  const mobile_additionalWebDesignContainer =
+    "mobile:col-start-3 mobile:col-span-2 mobile:row-start-4";
   const desktopXL_additionalWebDesignContainer =
-    "desktopXL:col-start-10 desktopXL:row-start-1";
+    "desktopXL:col-start-10 desktopXL:col-span-2 desktopXL:row-start-1";
 
   return (
     <>
@@ -274,17 +292,18 @@ function HeroPage() {
             <div
               className={`
             ${default_HeroServicesContainer}
+            ${mobile_HeroServicesContainer}
             ${desktopXL_HeroServicesContainer}
             `}
             >
               <div
-                className={`${default_webServicesContainer} ${desktopXL_WebServicesContainer}`}
+                className={`${default_webServicesContainer} ${mobile_webServicesContainer} ${desktopXL_WebServicesContainer}`}
               >
                 <hr className="border-t-2 border-gray-300" />
-                <div className="mt-2 text-base font-bold leading-normal tracking-normal desktopXL:text-3xl">
+                <div className="mt-2 text-xl font-bold leading-normal tracking-normal">
                   Web Design
                 </div>
-                <div className="mt-2 text-sm desktopXL:text-3xl">
+                <div className="mt-2 text-md desktopXL:text-3xl">
                   We create modern and responsive websites that look great on
                   all devices.
                 </div>
@@ -292,13 +311,13 @@ function HeroPage() {
 
               {/* Data Transfer - Responsive adjustments */}
               <div
-                className={`${default_dataTransferContainer} ${desktopXL_dataTransferContainer}`}
+                className={`${default_dataTransferContainer} ${mobile_dataTransferContainer} ${desktopXL_dataTransferContainer}`}
               >
-                <hr className="w-full border-t-2 border-gray-300" />
+                <hr className="border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal">
                   Data Transfer
                 </div>
-                <div className="mt-2 text-lg leading-7">
+                <div className="mt-2 text-md desktopXL:text-3xl">
                   We transfer your existing website to a modern platform with
                   ease.
                 </div>
@@ -308,14 +327,15 @@ function HeroPage() {
               <div
                 className={`
               ${default_SEOContainer}}
+              ${mobile_SEOContainer}
               ${desktopXL_SEOContainer}
               `}
               >
-                <hr className="w-full border-t-2 border-gray-300" />
+                <hr className="border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal">
                   SEO
                 </div>
-                <div className="mt-2 text-lg leading-7">
+                <div className="mt-2 text-md desktopXL:text-3xl">
                   We help your website rank higher in search engines.
                 </div>
               </div>
@@ -324,14 +344,15 @@ function HeroPage() {
               <div
                 className={`
                 ${default_additionalWebDesignContainer}
+                ${mobile_additionalWebDesignContainer}
                 ${desktopXL_additionalWebDesignContainer}
                 `}
               >
-                <hr className="w-full border-t-2 border-gray-300" />
+                <hr className="border-t-2 border-gray-300" />
                 <div className="mt-2 text-xl font-bold leading-normal tracking-normal">
                   More Web Design
                 </div>
-                <div className="mt-2 text-lg leading-7">
+                <div className="mt-2 text-md desktopXL:text-3xl">
                   Advanced solutions for web design challenges.
                 </div>
               </div>
