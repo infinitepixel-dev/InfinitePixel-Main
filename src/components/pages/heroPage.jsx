@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Hero - Page 1
 import { useState, useEffect, useRef } from "react";
 import "./heroPage.css";
@@ -59,9 +60,44 @@ function HeroPage() {
     return () => clearInterval(intervalId);
   }, []);
 
+  //NOTE - Device Layouts
+  //INFO Hero Container
+  const mobileHeroContainer = "";
+  const tabletHeroContainer = "";
+  const tabletXLHeroContainer = "";
+  const laptopHeroContainer = "";
+  const desktopHeroContainer = "";
+  const desktopXLHeroContainer = "";
+  //INFO Hero Title
+  const mobileHeroTitle =
+    "mobile:text-lg mobile:mt-0 mobile:mb-2 mobile:text-center mobile:self-center mobile:font-bold mobile:leading-normal mobile:tracking-normal";
+  const tabletHeroTitle =
+    "tablet:text-2xl tablet:mt-0 tablet:mb-2 tablet:text-center tablet:self-center tablet:font-bold tablet:leading-normal tablet:tracking-normal";
+  const tabletXLHeroTitle =
+    "tabletXL:text-3xl tabletXL:mt-0 tabletXL:mb-2 tabletXL:text-center tabletXL:self-center tabletXL:font-bold tabletXL:leading-normal tabletXL:tracking-normal";
+  const laptopHeroTitle = "";
+  const desktopHeroTitle = "";
+  const desktopXLHeroTitle = "";
+  //INFO Hero Get Started Button
+  const mobileGetStartedButton = "";
+  const tabletGetStartedButton = "";
+  const tabletXLGetStartedButton = "";
+  const laptopGetStartedButton = "";
+  const desktopGetStartedButton = "";
+  const desktopXLGetStartedButton = "";
+  //INFO Hero Services
+  const mobileHeroServices = "";
+  const tabletHeroServices = "";
+  const tabletXLHeroServices = "";
+  const laptopHeroServices = "";
+  const desktopHeroServices = "";
+  const desktopXLHeroServices = "";
+
   return (
     <>
-      <div className="relative overflow-hidden h-dvh overscroll-none">
+      <div
+        className={`relative overflow-hidden h-dvh overscroll-none ${mobileHeroContainer}`}
+      >
         {/*NOTE Background Colors */}
         {/* if in the container dislay the cursor otherwise fade it */}
         <DynamicComponentLoader
@@ -164,18 +200,21 @@ function HeroPage() {
           <div id="blur"></div>
         </>
 
+        {/*INFO Hero Container */}
         <div
           id="heroPageElement"
           className="z-10 grid w-full h-screen grid-cols-8 overflow-hidden grid-rows-8 column"
         >
-          {/* Add your rows and columns inside the sub-grid */}
+          {/*INFO Hero Title */}
           <>
-            <div className="col-span-6 col-start-2 px-1 mt-0 mb-2 text-md text-center self-center font-bold leading-normal tracking-normal">
+            <div
+              className={`col-span-6 col-start-2 px-1 mt-0 mb-2 text-md text-center self-center font-bold leading-normal tracking-normal ${mobileHeroTitle} ${tabletHeroTitle} ${tabletXLHeroTitle} ${laptopHeroTitle} ${desktopHeroTitle} ${desktopXLHeroTitle}`}
+            >
               Developing Responsive Websites
               <div className="row-start-2">For Your Brand</div>
             </div>
           </>
-          {/* Uses self-start and self-end to align within the cells*/}
+          {/*INFO Hero Get Started Button */}
           <>
             <a
               href="#paymentInformation"
@@ -185,14 +224,14 @@ function HeroPage() {
             </a>
 
             {/* SECTION Services */}
-            {/* section for Web Design, Data Transfer, SEO, and Web Design */}
+            {/*INFO Hero Services */}
             <div className="self-center col-span-6 col-start-2 row-start-5">
               <div className="col-start-1 mt-8 mb-4">
                 <hr className="w-full border-t-2 border-gray-300" />
                 <div className="mt-2 text-base font-bold leading-normal tracking-normal galaxyS23Ultra:mt-1 galaxyS23Ultra:text-xl sm:text-xl lg:text-3xl">
                   Web Design
                 </div>
-                <div className="mt-2 text-sm galaxyS23Ultra:text-sm sm:text-lg lg:text-xl">
+                <div className="mt-2 text-sm">
                   We create modern and responsive websites that look great on
                   all devices.
                 </div>
