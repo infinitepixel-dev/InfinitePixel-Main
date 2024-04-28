@@ -1,9 +1,44 @@
+// Payments - Page 3
+
+import { useEffect, useContext, useRef } from "react";
+import { NavigationContext } from "../../context/navigationContext";
+
 import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6";
 
 export function PricingCard() {
+  const { setIsPaymentsPage } = useContext(NavigationContext);
+  const ref = useRef(null); // Reference to the component's DOM element
+
+  // Intersection Observer to detect when the component is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        setIsPaymentsPage(entry.isIntersecting);
+      },
+      {
+        root: null, // Using the viewport as the container
+        rootMargin: "0px",
+        threshold: 0.1, // 10% of the element should be visible
+      }
+    );
+
+    // Attach the observer to the ref element
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    // Clean up observer on component unmount
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [setIsPaymentsPage]);
+
   return (
     <>
-      <div id="paymentInformation">
+      <div ref={ref} id="paymentInformation">
         <div className="items-center justify-center">
           <span className="grid row-start-3 p-2 text-5xl text-center">
             Pricing
