@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 // Hero - Page 1
 import { useState, useEffect, useRef } from "react";
-import "./heroPage.css";
 
 import DynamicComponentLoader from "../../dynamicComponentLoader";
 
@@ -28,7 +27,7 @@ function HeroPage() {
   }, [inHeroPage]);
 
   //NOTE Used to move the orbs in the background around the page
-  const backGroundBlurAmount = 100; //Adjusts orbs blur amount
+  const backGroundBlurAmount = 150; //Adjusts orbs blur amount
   const backGroundBorderRadius = 50; //Adjusts orbs border radius
 
   //Creates an array of references to the orbs
@@ -83,7 +82,7 @@ function HeroPage() {
 
   //INFO Hero Get Started Button
   const defaultHeroGetStartedButton =
-    "self-center col-start-2 col-span-6 row-start-2 mb-12 text-3xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800 mobileGetStartedButton";
+    "self-center col-start-2 col-span-6 row-start-2 mb-12 text-3xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800 shadow-xl";
   const mobileGetStartedButton = "";
   const tabletGetStartedButton = "";
   const tabletXLGetStartedButton = "";
@@ -124,6 +123,7 @@ function HeroPage() {
 
         {/* NOTE Background */}
         <>
+          {/* Rose Orb */}
           <div
             ref={(el) => {
               if (orbRefs[0]) {
@@ -132,16 +132,17 @@ function HeroPage() {
             }}
             className="absolute col-start-1 row-start-6 orb bg-color1"
             style={{
-              width: "50%",
+              width: "35%",
               height: "50%",
-              left: "-10%",
+              left: "-15%",
               top: "60%",
               filter: `blur(${backGroundBlurAmount}px)`,
               borderRadius: `${backGroundBorderRadius}%`,
               zIndex: "-1",
+              background: "#eb174c",
             }}
           ></div>
-          {/* lime */}
+          {/* lime Orb */}
           <div
             ref={(el) => {
               if (orbRefs[1]) {
@@ -151,15 +152,16 @@ function HeroPage() {
             className="absolute col-start-2 row-start-3 orb bg-color2"
             style={{
               width: "35%",
-              height: "45%",
-              left: "-20%",
+              height: "50%",
+              left: "-15%",
               top: "-12%", // width: "40%", // height: "60%", //
               filter: `blur(${backGroundBlurAmount}px)`,
               borderRadius: `${backGroundBorderRadius}%`,
               zIndex: "-1",
+              background: "#58b327",
             }}
           ></div>
-          {/* sky */}
+          {/* violet Orb */}
           <div
             ref={(el) => {
               if (orbRefs[2]) {
@@ -168,16 +170,17 @@ function HeroPage() {
             }}
             className="absolute orb bg-color3"
             style={{
-              width: "30%",
-              height: "40%",
-              left: "65%",
+              width: "35%",
+              height: "50%",
+              left: "75%",
               top: "-15%",
               filter: `blur(${backGroundBlurAmount}px)`,
               borderRadius: `${backGroundBorderRadius}%`,
               zIndex: "-1",
+              background: "#6d0ed3",
             }}
           ></div>
-          {/* violet */}
+          {/* sky Orb */}
           <div
             ref={(el) => {
               if (orbRefs[3]) {
@@ -186,16 +189,17 @@ function HeroPage() {
             }}
             className="absolute orb bg-color4"
             style={{
-              width: "40%",
-              height: "60%",
+              width: "50%",
+              height: "50%",
               left: "25%",
               top: "25%",
               filter: `blur(${backGroundBlurAmount}px)`,
               borderRadius: `${backGroundBorderRadius}%`,
               zIndex: "-1",
+              background: "#0186f2",
             }}
           ></div>
-          {/* Yellow */}
+          {/* Yellow Orb */}
           <div
             ref={(el) => {
               if (orbRefs[4]) {
@@ -204,13 +208,14 @@ function HeroPage() {
             }}
             className="absolute orb bg-color5"
             style={{
-              width: "50%",
+              width: "35%",
               height: "50%",
-              left: "70%",
+              left: "75%",
               top: "70%",
               filter: `blur(${backGroundBlurAmount}px)`,
               borderRadius: `${backGroundBorderRadius}%`,
               zIndex: "-1",
+              background: "#f7c137",
             }}
           ></div>
 

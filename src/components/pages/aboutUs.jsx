@@ -1,9 +1,43 @@
 // About Us - Page 2
+
+import { useEffect, useContext, useRef } from "react";
+import { NavigationContext } from "../../context/navigationContext";
+
 import DynamicComponentLoader from "../../dynamicComponentLoader";
 
 function AboutSection() {
+  const { setIsAboutPage } = useContext(NavigationContext);
+  const ref = useRef(null); // Reference to the component's DOM element
+
+  // Intersection Observer to detect when the component is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        setIsAboutPage(entry.isIntersecting);
+      },
+      {
+        root: null, // Using the viewport as the container
+        rootMargin: "0px",
+        threshold: 0.1, // 10% of the element should be visible
+      }
+    );
+
+    // Attach the observer to the ref element
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    // Clean up observer on component unmount
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [setIsAboutPage]);
+
   return (
-    <div className="relative overflow-hidden overscroll-none">
+    <div ref={ref} className="relative overflow-hidden overscroll-none">
       {/* Background image with opacity */}
       {/*NOTE Convert JPG TO SVG */}
       <div

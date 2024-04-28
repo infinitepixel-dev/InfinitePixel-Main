@@ -1,9 +1,21 @@
-import { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useState, useContext } from "react";
 import "./navigationBar.css"; // Ensure this path is correct
 import logo from "../../assets/logo.svg";
+import { NavigationContext } from "../../context/navigationContext";
 
 const SidebarHamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {
+    isContactPage,
+    isPaymentsPage,
+    isAboutPage,
+    isHomePage,
+    // If you need to set these states from here, you can also destructure setIsContactPage, etc.
+  } = useContext(NavigationContext);
+  console.clear();
+  console.log("isPaymentsPage", isPaymentsPage);
+  console.log("isAboutPage", isAboutPage);
 
   const toggleMenu = () => {
     // console.log("Menu has been", isOpen ? "closed" : "opened");
@@ -45,12 +57,25 @@ const SidebarHamburger = () => {
         {/* row 1 - END */}
 
         <div
-          className={`h-svh grid grid-cols-2 grid-rows-10 galaxyS23Ultra:grid-rows-6 sidebar z-10 p-3 backdrop-filter backdrop-blur-md transition-all duration-500 ease-in-out col-span-1 col-start-2 ${
+          className={`h-svh grid grid-cols-2 grid-rows-10 sidebar z-10 p-3 backdrop-filter backdrop-blur-md transition-all duration-500 ease-in-out col-span-1 col-start-2 ${
             isOpen ? "open" : ""
           }`}
+          // if on the payments page change the sidebar background color
+          //payments page one color
+          //about page another color
+
+          style={{
+            backgroundColor: isPaymentsPage
+              ? "#d9d9d91d"
+              : isAboutPage
+                ? "#58b3271d"
+                : "",
+          }}
         >
+          {/* row 1 - BEGIN */}
+
           {/* row 2 - BEGIN */}
-          <div className="row-start-2 galaxyS23Ultra:row-start-3 content-center">
+          <div className="row-start-2 content-center">
             <div className="grid gap-4 grid-cols-subgrid ">
               <a href="#" className="block text-lg">
                 Home
