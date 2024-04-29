@@ -66,7 +66,7 @@ const SidebarHamburger = () => {
 
           style={{
             backgroundColor: isPaymentsPage
-              ? "#d9d9d91d"
+              ? "#4657d743"
               : isAboutPage
                 ? "#58b3271d"
                 : "",
@@ -76,7 +76,7 @@ const SidebarHamburger = () => {
 
           {/* row 2 - BEGIN */}
           <div className="row-start-2 content-center">
-            <div className="grid gap-4 grid-cols-subgrid ">
+            <div className="grid gap-4 grid-cols-subgrid containerBG">
               <a href="#" className="block text-lg">
                 Home
               </a>
@@ -95,7 +95,7 @@ const SidebarHamburger = () => {
               {/* row 6 */}
 
               <img
-                className="col-start-1 col-end-2 row-start-8 pl-4 scale-150"
+                className="col-start-1 col-end-2 row-start-8 pl-4 scale-100"
                 // style={{
                 //   transition: "1s ease-in-out",
                 // }}
