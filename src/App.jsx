@@ -94,13 +94,17 @@ function App() {
           >
             <DynamicComponentLoader componentName="NavigationBar" />
 
-            <div className="snap-page">
+            {/*NOTE Hero - Page 1 */}
+            {/* <div className="snap-page">
               <DynamicComponentLoader componentName="HeroPage" />
-            </div>
+            </div> */}
 
-            <div className="snap-page">
+            {/*NOTE About Us - Page 2 */}
+            {/* <div className="snap-page">
               <DynamicComponentLoader componentName="AboutUs" />
-            </div>
+            </div> */}
+
+            {/*NOTE Payments - Page 3 */}
             <div className="snap-page">
               <DynamicComponentLoader componentName="Payments" />
             </div>

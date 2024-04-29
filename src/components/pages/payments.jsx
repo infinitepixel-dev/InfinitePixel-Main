@@ -45,7 +45,7 @@ export function PricingCard() {
   const tabletXLPaymentsContainer = "";
   const laptopPaymentsContainer = "";
   const desktopPaymentsContainer = "";
-  const desktopXLPaymentsContainer = "";
+  const desktopXLPaymentsContainer = "desktopXL:grid-cols-10";
 
   //INFO Payments Title
   const defaultPaymentsTitle =
@@ -76,7 +76,8 @@ export function PricingCard() {
   const tabletXLPaymentsCardContainer = "";
   const laptopPaymentsCardContainer = "";
   const desktopPaymentsCardContainer = "";
-  const desktopXLPaymentsCardContainer = "";
+  const desktopXLPaymentsCardContainer =
+    "desktopXL:col-span-8 desktopXL:col-start-2";
 
   //INFO Card 1
   const defaultCard1Container =
@@ -87,7 +88,8 @@ export function PricingCard() {
   const tabletXLCard1Container = "";
   const laptopCard1Container = "";
   const desktopCard1Container = "";
-  const desktopXLCard1Container = "";
+  const desktopXLCard1Container =
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-2 desktopXL:row-span-4";
 
   //INFO Card 2
   const defaultCard2Container =
@@ -100,7 +102,8 @@ export function PricingCard() {
   const tabletXLCard2Container = "";
   const laptopCard2Container = "";
   const desktopCard2Container = "";
-  const desktopXLCard2Container = "";
+  const desktopXLCard2Container =
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-5 desktopXL:row-span-4";
 
   //INFO Card 3
   const defaultCard3Container =
@@ -112,7 +115,8 @@ export function PricingCard() {
   const tabletXLCard3Container = "";
   const laptopCard3Container = "";
   const desktopCard3Container = "";
-  const desktopXLCard3Container = "";
+  const desktopXLCard3Container =
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-8 desktopXL:row-span-4";
 
   return (
     <>
@@ -235,7 +239,7 @@ export function PricingCard() {
                 <span className="text-sky-800">100% Ownership Rights</span>
               </li>
             </ul>
-            <button className="p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 self-center">
+            <button className="p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 desktopXL:col-start-2 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl self-center">
               Order Now
             </button>
           </div>
@@ -291,7 +295,7 @@ export function PricingCard() {
                 <span className="text-sky-800">100% Ownership Rights</span>
               </li>
             </ul>
-            <button className="p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 self-center">
+            <button className="p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 desktopXL:col-start-2 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl self-center">
               Order Now
             </button>
           </div>
@@ -347,7 +351,7 @@ export function PricingCard() {
                 <span className="text-sky-800">100% Ownership Rights</span>
               </li>
             </ul>
-            <button className="p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 self-center">
+            <button className="p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 desktopXL:col-start-2 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl self-center">
               Order Now
             </button>
           </div>

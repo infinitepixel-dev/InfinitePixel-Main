@@ -147,3 +147,14 @@ main {
 #logoCol {
   width: 100%;
 }
+
+.test {
+  color: #4657d743;
+}
+
+.containerBG {
+  background-color: #0000003b;
+  /* background width */
+  width: 150px;
+  margin-left: -3px;
+}
