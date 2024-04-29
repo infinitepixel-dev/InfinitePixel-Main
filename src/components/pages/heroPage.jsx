@@ -74,7 +74,7 @@ function HeroPage() {
   const defaultHeroTitle =
     "col-span-8 col-start-1 text-md text-center self-center font-bold leading-normal tracking-normal";
   const mobileHeroTitle =
-    " mobile:text-lg mobile:row-start-1 mobile:col-span-4 mobile:col-start-1";
+    " mobile:text-2xl mobile:row-start-1 mobile:row-span-2 mobile:col-span-2 mobile:col-start-2 mobile:mb-20";
   const tabletHeroTitle = "";
   const tabletXLHeroTitle = "";
   const laptopHeroTitle = "";
@@ -83,9 +83,9 @@ function HeroPage() {
 
   //INFO Hero Get Started Button
   const defaultHeroGetStartedButton =
-    "self-center col-start-2 col-span-6 row-start-2 mb-12 text-3xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800 shadow-xl";
+    "self-center col-start-2 col-span- p-5 row-start-2 mb-12 text-3xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800 shadow-xl";
   const mobileGetStartedButton =
-    "mobile:col-start-1 mobile:col-span-4 mobile:row-start-2 mobile:mb-16 mobile:mx-16";
+    "mobile:col-start-1 mobile:col-span-4 mobile:row-start-2 mobile:text-2xl mobile:row-span-2 mobile:mb-6 mobile:mx-16";
   const tabletGetStartedButton = "";
   const tabletXLGetStartedButton = "";
   const laptopGetStartedButton = "";
@@ -97,7 +97,7 @@ function HeroPage() {
   const default_HeroServicesContainer =
     "grid self-center text-center col-start-1 col-span-12 row-start-4";
   const mobile_HeroServicesContainer =
-    "mobile:grid-cols-4 mobile:col-span-4 mobile:row-start-4 mobile:mx-4 mobile:gap-12";
+    "mobile:grid-cols-4 mobile:col-span-4 mobile:row-start-4 mobile:row-span-2 mobile:mx-4 mobile:gap-4";
   const desktopXL_HeroServicesContainer =
     "desktopXL:grid-cols-11 desktopXL:row-start-4 desktopXL:mt-48";
 
