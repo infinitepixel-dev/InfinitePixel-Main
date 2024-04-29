@@ -83,8 +83,10 @@
   /* padding-top: 60px; */
   z-index: 1; /* Ensure it's above other content */
   /* Apply a mask image that fades from left (opaque) to right (transparent) */
-  -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
-  mask-image: linear-gradient(to right, black 95%, transparent 100%);
+  /* -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%); */
+  /* mask-image: linear-gradient(to right, black 99%, transparent 100%); */
+  /* box shadow */
+  box-shadow: -58px 0px 30px 50px #000000;
 }
 
 /*NOTE sidebar open */
@@ -134,6 +136,7 @@ main {
   /* margin: 5px; */
   /* border: 1px solid red; */
   /* width: 175px !important; */
+
   z-index: 9999;
 }
 
