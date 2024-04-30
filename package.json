@@ -11,10 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.1",
     "@material-tailwind/react": "^2.1.9",
     "@rollup/plugin-dynamic-import-vars": "^2.1.2",
     "animate.css": "^4.1.1",
     "axios": "^1.6.8",
+    "gsap": "^3.12.5",
     "matter-js": "^0.19.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

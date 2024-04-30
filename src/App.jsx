@@ -95,14 +95,14 @@ function App() {
             <DynamicComponentLoader componentName="NavigationBar" />
 
             {/*NOTE Hero - Page 1 */}
-            {/* <div className="snap-page">
+            <div className="snap-page">
               <DynamicComponentLoader componentName="HeroPage" />
-            </div> */}
+            </div>
 
             {/*NOTE About Us - Page 2 */}
-            {/* <div className="snap-page">
+            <div className="snap-page">
               <DynamicComponentLoader componentName="AboutUs" />
-            </div> */}
+            </div>
 
             {/*NOTE Payments - Page 3 */}
             <div className="snap-page">
