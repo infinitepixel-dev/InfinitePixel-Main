@@ -1,122 +1,156 @@
 /* eslint-disable no-unused-vars */
 // Payments - Page 3
 
-import { useEffect, useContext, useRef } from "react";
-import { NavigationContext } from "../../context/navigationContext";
+import { useEffect, useContext, useRef } from "react"
+import { NavigationContext } from "../../context/navigationContext"
 
-import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6";
+import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6"
 
 export function PricingCard() {
-  const { setIsPaymentsPage } = useContext(NavigationContext);
-  const ref = useRef(null); // Reference to the component's DOM element
+  const { setIsPaymentsPage } = useContext(NavigationContext)
+  const ref = useRef(null) // Reference to the component's DOM element
 
   // Intersection Observer to detect when the component is in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        const [entry] = entries;
-        setIsPaymentsPage(entry.isIntersecting);
+        const [entry] = entries
+        setIsPaymentsPage(entry.isIntersecting)
       },
       {
         root: null, // Using the viewport as the container
         rootMargin: "0px",
         threshold: 0.1, // 10% of the element should be visible
       }
-    );
+    )
 
     // Attach the observer to the ref element
     if (ref.current) {
-      observer.observe(ref.current);
+      observer.observe(ref.current)
     }
 
     // Clean up observer on component unmount
     return () => {
       if (ref.current) {
-        observer.unobserve(ref.current);
+        observer.unobserve(ref.current)
       }
-    };
-  }, [setIsPaymentsPage]);
+    }
+  }, [setIsPaymentsPage])
 
   //INFO Payments Container
   const defaultPaymentsContainer =
-    "z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8";
-  const mobilePaymentsContainer = "mobile:grid-cols-8";
-  const tabletPaymentsContainer = "";
-  const tabletXLPaymentsContainer = "";
-  const laptopPaymentsContainer = "";
-  const desktopPaymentsContainer = "";
-  const desktopXLPaymentsContainer = "desktopXL:grid-cols-10";
+    "z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8"
+  const mobilePaymentsContainer = "mobile:grid-cols-8"
+  const tabletPaymentsContainer = ""
+  const tabletXLPaymentsContainer = ""
+  const laptopPaymentsContainer = ""
+  const desktopPaymentsContainer = ""
+  const desktopXLPaymentsContainer = "desktopXL:grid-cols-10"
 
   //INFO Payments Title
   const defaultPaymentsTitle =
-    "row-start-1 p-2 text-5xl text-center font-bold leading-normal tracking-normal";
+    "row-start-1 p-2 text-5xl text-center font-bold leading-normal tracking-normal"
   const mobilePaymentsTitle =
-    "mobile:col-start-4 mobile:col-span-2 mobile:text-2xl mobile:row-start-1";
-  const tabletPaymentsTitle = "";
-  const tabletXLPaymentsTitle = "";
-  const laptopPaymentsTitle = "";
-  const desktopPaymentsTitle = "";
-  const desktopXLPaymentsTitle = "";
+    "mobile:col-start-4 mobile:col-span-2 mobile:text-2xl mobile:row-start-1"
+  const tabletPaymentsTitle = ""
+  const tabletXLPaymentsTitle = ""
+  const laptopPaymentsTitle = ""
+  const desktopPaymentsTitle = ""
+  const desktopXLPaymentsTitle = ""
 
   //INFO Contact Details
   const defaultContactDetails =
-    "row-start-2 col-start-2 col-span-6 p-5 italic self-center text-center text-1xl";
-  const mobileContactDetails = "";
-  const tabletContactDetails = "";
-  const tabletXLContactDetails = "";
-  const laptopContactDetails = "";
-  const desktopContactDetails = "";
-  const desktopXLContactDetails = "";
-
-  //INFO Payments Card Container
-  const defaultPaymentsCardContainer = "";
-  const mobilePaymentsCardContainer =
-    "mobile:row-start-3 mobile:col-start-2 mobile:col-span-6";
-  const tabletPaymentsCardContainer = "";
-  const tabletXLPaymentsCardContainer = "";
-  const laptopPaymentsCardContainer = "";
-  const desktopPaymentsCardContainer = "";
-  const desktopXLPaymentsCardContainer =
-    "desktopXL:col-span-8 desktopXL:col-start-2";
+    "row-start-2 col-start-2 col-span-6 p-5 italic self-center text-center text-1xl"
+  const mobileContactDetails = ""
+  const tabletContactDetails = ""
+  const tabletXLContactDetails = ""
+  const laptopContactDetails = ""
+  const desktopContactDetails = ""
+  const desktopXLContactDetails = ""
 
   //INFO Card 1
   const defaultCard1Container =
-    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-2 p-4 rounded-lg shadow-lg bg-slate-100";
+    "grid grid-cols-8 desktopXL:grid-cols-8 desktopXL:grid-rows-10 desktopXL:grid-rows-10 grid-rows-4 col-span-1 col-start-2 row-start-2 p-4 rounded-lg shadow-lg bg-slate-100"
   const mobileCard1Container =
-    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-3 row-span-2";
-  const tabletCard1Container = "";
-  const tabletXLCard1Container = "";
-  const laptopCard1Container = "";
-  const desktopCard1Container = "";
+    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-3 row-span-2"
+  const tabletCard1Container = ""
+  const tabletXLCard1Container = ""
+  const laptopCard1Container = ""
+  const desktopCard1Container = ""
   const desktopXLCard1Container =
-    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-2 desktopXL:row-span-4";
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-2 desktopXL:row-span-4"
+
+  //INFO Card 1 - Plan Name
+  const defaultCard1PlanName =
+    "text-lg font-bold text-center text-sky-800 mobile:col-start-5 mobile:col-span-4 mobile:row-start-1"
+  const mobileCard1PlanName = ""
+  const tabletCard1PlanName = ""
+  const tabletXLCard1PlanName = ""
+  const laptopCard1PlanName = ""
+  const desktopCard1PlanName = ""
+  const desktopXLCard1PlanName =
+    "desktopXL:col-start-1 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-2xl"
+
+  //INFO Card 1 - Main Price
+  const defaultCard1MainPrice =
+    "mb-4 text-5xl font-bold text-center text-blue-600 mobile:col-start-5 mobile:col-span-4 mobile:row-start-2"
+  const mobileCard1MainPrice = ""
+  const tabletCard1MainPrice = ""
+  const tabletXLCard1MainPrice = ""
+  const laptopCard1MainPrice = ""
+  const desktopCard1MainPrice = ""
+  const desktopXLCard1MainPrice =
+    "desktopXL: col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-5xl"
+
+  //INFO Card 1 -Features
+  const defaultCard1Features = "text-sm pt-5"
+  const mobileCard1Features =
+    "mobile:col-start-1 mobile:mt-3 mobile:col-span-4 mobile:row-start-1"
+  const tabletCard1Features = ""
+  const tabletXLCard1Features = ""
+  const laptopCard1Features = ""
+  const desktopCard1Features = ""
+  const desktopXLCard1Features =
+    "desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:col-span-8 desktopXL:text-sm"
+
+  //INFO Card 1 - Button
+  const defaultCard1Button =
+    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700"
+  const mobileCard1Button =
+    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1"
+  const tabletCard1Button = ""
+  const tabletXLCard1Button = ""
+  const laptopCard1Button = ""
+  const desktopCard1Button = ""
+  const desktopXLCard1Button =
+    "desktopXL:col-start-1 desktopXL:row-start-9 desktopXL:mt-14 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl"
 
   //INFO Card 2
   const defaultCard2Container =
-    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-4 p-4 rounded-lg shadow-lg bg-slate-100";
+    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-4 p-4 rounded-lg shadow-lg bg-slate-100"
 
   const mobileCard2Container =
-    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-5 row-span-2";
+    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-5 row-span-2"
 
-  const tabletCard2Container = "";
-  const tabletXLCard2Container = "";
-  const laptopCard2Container = "";
-  const desktopCard2Container = "";
+  const tabletCard2Container = ""
+  const tabletXLCard2Container = ""
+  const laptopCard2Container = ""
+  const desktopCard2Container = ""
   const desktopXLCard2Container =
-    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-5 desktopXL:row-span-4";
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-5 desktopXL:row-span-4"
 
   //INFO Card 3
   const defaultCard3Container =
-    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-6 p-4 rounded-lg shadow-lg bg-slate-100";
+    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-6 p-4 rounded-lg shadow-lg bg-slate-100"
 
   const mobileCard3Container =
-    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-7 row-span-2";
-  const tabletCard3Container = "";
-  const tabletXLCard3Container = "";
-  const laptopCard3Container = "";
-  const desktopCard3Container = "";
+    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-7 row-span-2"
+  const tabletCard3Container = ""
+  const tabletXLCard3Container = ""
+  const laptopCard3Container = ""
+  const desktopCard3Container = ""
   const desktopXLCard3Container =
-    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-8 desktopXL:row-span-4";
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-8 desktopXL:row-span-4"
 
   return (
     <>
@@ -176,18 +210,6 @@ export function PricingCard() {
             </a>
           </div>
 
-          {/* INFO Payments Card Container */}
-          {/* <div
-            className={`
-          ${defaultPaymentsCardContainer}
-          ${mobilePaymentsCardContainer}
-          ${tabletPaymentsCardContainer}
-          ${tabletXLPaymentsCardContainer}
-          ${laptopPaymentsCardContainer}
-          ${desktopPaymentsCardContainer}
-          ${desktopXLPaymentsCardContainer}
-          `}
-          > */}
           {/*INFO Card 1 */}
           <div
             className={`
@@ -200,46 +222,89 @@ export function PricingCard() {
             ${desktopXLCard1Container}
             `}
           >
-            <h2 className="mb-4 text-lg font-bold text-center text-sky-800 mobile:col-start-5 mobile:col-span-4 mobile:row-start-1">
+            {/*INFO Card 1 - Plan Name */}
+            <h2
+              className={`
+            ${defaultCard1PlanName}
+            ${mobileCard1PlanName}
+            ${tabletCard1PlanName}
+            ${tabletXLCard1PlanName}
+            ${laptopCard1PlanName}
+            ${desktopCard1PlanName}
+            ${desktopXLCard1PlanName}
+            `}
+            >
               <FaUser className="inline-block mr-1" size={20} />
               <span>Basic Plan</span>
             </h2>
-            <div className="mb-4 text-5xl font-bold text-center text-blue-600 mobile:col-start-5 mobile:col-span-4 mobile:row-start-2">
+            {/*INFO Card 1 - Main Price */}
+            <div
+              className={`
+            ${defaultCard1MainPrice}
+            ${mobileCard1MainPrice}
+            ${tabletCard1MainPrice}
+            ${laptopCard1MainPrice}
+            ${desktopCard1MainPrice}
+            ${desktopXLCard1MainPrice}
+            `}
+            >
               $300
             </div>
-            <ul className="text-sm mobile:col-start-1 mobile:mt-3 mobile:col-span-4 mobile:row-start-1">
-              <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+            {/*INFO Card 1 -Features */}
+            <ul
+              className={`
+            ${defaultCard1Features}
+            ${mobileCard1Features}
+            ${tabletCard1Features}
+            ${tabletXLCard1Features}
+            ${laptopCard1Features}
+            ${desktopCard1Features}
+            ${desktopXLCard1Features}
+            `}
+            >
+              <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
                 <span className="icon-span">
                   <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                 </span>
                 <span className="text-sky-800"> Up To 5 Pages</span>
               </li>
-              <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+              <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
                 <span className="icon-span">
                   <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                 </span>
                 <span className="text-sky-800">Unlimited Revisions</span>
               </li>
-              <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+              <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
                 <span className="icon-span">
                   <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                 </span>
                 <span className="text-sky-800">100% Ownership Rights</span>
               </li>
-              <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+              <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
                 <span className="icon-span">
                   <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                 </span>
                 <span className="text-sky-800">Contact Form</span>
               </li>
-              <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+              <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
                 <span className="icon-span">
                   <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                 </span>
                 <span className="text-sky-800">100% Ownership Rights</span>
               </li>
             </ul>
-            <button className="p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 desktopXL:col-start-2 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl self-center">
+            {/*INFO Card 1 - Button */}
+            <button
+              className={`
+            ${defaultCard1Button}
+            ${mobileCard1Button}
+            ${tabletCard1Button}
+            ${tabletXLCard1Button}
+            ${laptopCard1Button}
+            ${desktopCard1Button}
+            ${desktopXLCard1Button}
+            `}
+            >
               Order Now
             </button>
           </div>
@@ -295,7 +360,7 @@ export function PricingCard() {
                 <span className="text-sky-800">100% Ownership Rights</span>
               </li>
             </ul>
-            <button className="p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 desktopXL:col-start-2 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl self-center">
+            <button className="self-center p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 desktopXL:col-start-2 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl">
               Order Now
             </button>
           </div>
@@ -351,7 +416,7 @@ export function PricingCard() {
                 <span className="text-sky-800">100% Ownership Rights</span>
               </li>
             </ul>
-            <button className="p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 desktopXL:col-start-2 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl self-center">
+            <button className="self-center p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 desktopXL:col-start-2 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl">
               Order Now
             </button>
           </div>
@@ -360,7 +425,7 @@ export function PricingCard() {
       {/* </div> */}
       {/* </div> */}
     </>
-  );
+  )
 }
 
-export default PricingCard;
+export default PricingCard
