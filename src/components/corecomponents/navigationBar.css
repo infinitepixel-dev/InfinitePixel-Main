@@ -133,10 +133,6 @@ main {
 /*!SECTION Main Content - END */
 #customNav {
   position: fixed;
-  /* margin: 5px; */
-  /* border: 1px solid red; */
-  /* width: 175px !important; */
-
   z-index: 9999;
 }
 
@@ -148,13 +144,7 @@ main {
   width: 100%;
 }
 
+/* used to grab quick hex codes */
 .test {
-  color: #4657d743;
-}
-
-.containerBG {
-  background-color: #0000003b;
-  /* background width */
-  width: 150px;
-  margin-left: -3px;
+  color: #4657d723;
 }

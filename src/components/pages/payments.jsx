@@ -122,7 +122,7 @@ export function PricingCard() {
     <>
       <div
         ref={ref}
-        className="relative overflow-hidden overscroll-none"
+        className="relative h-lvh overflow-hidden overscroll-none"
         id="paymentInformation"
       >
         {/* add a bg div? */}
