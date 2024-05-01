@@ -3,7 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-      mobile: "320px",
+      mobileSM: "320px",
+
+      mobile: "370px",
       // => @media (min-width: 320px) { ... }
 
       tablet: "640px",

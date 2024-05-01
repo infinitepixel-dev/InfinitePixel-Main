@@ -13,9 +13,9 @@ const SidebarHamburger = () => {
     isHomePage,
     // If you need to set these states from here, you can also destructure setIsContactPage, etc.
   } = useContext(NavigationContext);
-  console.clear();
-  console.log("isPaymentsPage", isPaymentsPage);
-  console.log("isAboutPage", isAboutPage);
+  // console.clear();
+  // console.log("isPaymentsPage", isPaymentsPage);
+  // console.log("isAboutPage", isAboutPage);
 
   const toggleMenu = () => {
     // console.log("Menu has been", isOpen ? "closed" : "opened");
@@ -24,7 +24,7 @@ const SidebarHamburger = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 h-svh" id="customNav">
+      <div className="h-lvh" id="customNav">
         {/* Hamburger and Logo in the same row using grid */}
         {/* Hamburger Icon */}
         {/* row 1 - BEGIN */}
@@ -57,7 +57,7 @@ const SidebarHamburger = () => {
         {/* row 1 - END */}
 
         <div
-          className={`h-svh grid grid-cols-2 grid-rows-10 sidebar z-10 p-3 backdrop-filter backdrop-blur-md transition-all duration-500 ease-in-out col-span-1 col-start-2 ${
+          className={`grid grid-cols-2 grid-rows-10 sidebar z-10 p-3 backdrop-filter backdrop-blur-md transition-all duration-500 ease-in-out col-span-1 col-start-2 ${
             isOpen ? "open" : ""
           }`}
           // if on the payments page change the sidebar background color
@@ -75,8 +75,24 @@ const SidebarHamburger = () => {
           {/* row 1 - BEGIN */}
 
           {/* row 2 - BEGIN */}
-          <div className="row-start-2 content-center">
-            <div className="grid gap-4 grid-cols-subgrid containerBG">
+          <div className="row-start-2 text-center ml-1">
+            <div
+              className="containerBG py-10"
+              style={{
+                backgroundColor: "#0000008b",
+                width: "180px",
+                marginLeft: "-16px",
+                /* -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%); */
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent, black 18%, black 88%, transparent 100%)",
+                // add to the bottom
+                // maskImage:
+                //   "linear-gradient(to top, black 90%, transparent 100%)",
+                // add to the top
+
+                /* mask-image: linear-gradient(to right, black 99%, transparent 100%); */
+              }}
+            >
               <a href="#" className="block text-lg">
                 Home
               </a>
@@ -93,17 +109,17 @@ const SidebarHamburger = () => {
                 Contact
               </a>
               {/* row 6 */}
-
-              <img
-                className="col-start-1 col-end-2 row-start-8 pl-4 scale-100"
-                // style={{
-                //   transition: "1s ease-in-out",
-                // }}
-                src={logo}
-                alt="Logo"
-              />
             </div>
+            <div className="blur"></div>
           </div>
+          <img
+            className="col-start-1 col-span-2 row-start-10 pl-1 scale-75"
+            // style={{
+            //   transition: "1s ease-in-out",
+            // }}
+            src={logo}
+            alt="Logo"
+          />
           {/* Row 2 - END */}
         </div>
       </div>

@@ -39,7 +39,7 @@ function AboutSection() {
   //NOTE - Device Layouts
   //INFO About Us Container
   const defaultAboutUsContainer =
-    "z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8";
+    "z-10 grid h-lvh grid-cols-8 overflow-hidden grid-rows-8";
   const mobileAboutUsContainer = "";
   const tabletAboutUsContainer = "";
   const tabletXLAboutUsContainer = "";
@@ -79,12 +79,14 @@ function AboutSection() {
   const desktopXLStartYourProjectButton = "";
 
   return (
-    <div ref={ref} className="relative overflow-hidden overscroll-none">
+    <div ref={ref} className="relative overflow-hidden h-lvh overscroll-none">
       {/* Background image with opacity */}
       {/*TODO Convert JPG TO SVG */}
       <div
         className="absolute inset-0 bg-[url('/src/assets/sectionbg.jpg')] bg-cover bg-center opacity-[.03]"
-        style={{ zIndex: -1 }}
+        style={{
+          zIndex: -1,
+        }}
       />
       {/* INFO About Us Container */}
       <div
