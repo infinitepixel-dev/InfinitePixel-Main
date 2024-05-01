@@ -1,5 +1,3 @@
-//FIXME - Resolve resolutions with Chrome on android. Opera GX mobile appears fine
-
 /* eslint-disable no-unused-vars */
 // Hero - Page 1
 import { useState, useEffect, useRef } from "react";
@@ -11,6 +9,148 @@ import DynamicComponentLoader from "../../dynamicComponentLoader";
 function HeroPage() {
   //NOTE Used to check if the cursor is in the hero page
   const [inHeroPage, setInHeroPage] = useState(false);
+
+  const [isVisible, setIsVisible] = useState(true);
+
+  const heroRef = useRef(null);
+
+  function displayBG() {
+    return (
+      <>
+        {/* Rose Orb */}
+        <div
+          ref={(el) => {
+            if (orbRefs[0]) {
+              orbRefs[0].current = el;
+            }
+          }}
+          className="absolute col-start-1 row-start-6 orb bg-color1"
+          style={{
+            width: "35%",
+            height: "50%",
+            left: "-15%",
+            top: "60%",
+
+            filter: `blur(${backGroundBlurAmount}px)`,
+            borderRadius: `${backGroundBorderRadius}%`,
+            zIndex: "-2",
+            background: "#eb174c71",
+            opacity: isVisible ? 1 : 0,
+            transition: "opacity 0.5s ease-out",
+          }}
+        ></div>
+        {/* lime Orb */}
+        <div
+          ref={(el) => {
+            if (orbRefs[1]) {
+              orbRefs[1].current = el;
+            }
+          }}
+          className="absolute col-start-2 row-start-3 orb bg-color2"
+          style={{
+            width: "35%",
+            height: "50%",
+            left: "-15%",
+            top: "-12%", // width: "40%", // height: "60%", //
+            filter: `blur(${backGroundBlurAmount}px)`,
+            borderRadius: `${backGroundBorderRadius}%`,
+            zIndex: "-2",
+            background: "#58b32771",
+            opacity: isVisible ? 1 : 0,
+            transition: "opacity 0.5s ease-out",
+          }}
+        ></div>
+        {/* violet Orb */}
+        <div
+          ref={(el) => {
+            if (orbRefs[2]) {
+              orbRefs[2].current = el;
+            }
+          }}
+          className="absolute orb bg-color3"
+          style={{
+            width: "35%",
+            height: "50%",
+            left: "75%",
+            top: "-15%",
+            filter: `blur(${backGroundBlurAmount}px)`,
+            borderRadius: `${backGroundBorderRadius}%`,
+            zIndex: "-2",
+            background: "#6d0ed371",
+            opacity: isVisible ? 1 : 0,
+            transition: "opacity 0.5s ease-out",
+          }}
+        ></div>
+        {/* sky Orb */}
+        <div
+          ref={(el) => {
+            if (orbRefs[3]) {
+              orbRefs[3].current = el;
+            }
+          }}
+          className="absolute orb bg-color4"
+          style={{
+            width: "50%",
+            height: "50%",
+            left: "25%",
+            top: "25%",
+            filter: `blur(${backGroundBlurAmount}px)`,
+            borderRadius: `${backGroundBorderRadius}%`,
+            zIndex: "-2",
+            background: "#0186f271",
+            opacity: isVisible ? 1 : 0,
+            transition: "opacity 0.5s ease-out",
+          }}
+        ></div>
+        {/* Yellow Orb */}
+        <div
+          ref={(el) => {
+            if (orbRefs[4]) {
+              orbRefs[4].current = el;
+            }
+          }}
+          className="absolute orb bg-color5"
+          style={{
+            width: "35%",
+            height: "50%",
+            left: "75%",
+            top: "70%",
+            filter: `blur(${backGroundBlurAmount}px)`,
+            borderRadius: `${backGroundBorderRadius}%`,
+            zIndex: "-2",
+            background: "#f7c13771",
+            opacity: isVisible ? 1 : 0,
+            transition: "opacity 0.5s ease-out",
+          }}
+        ></div>
+      </>
+    );
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const isVisible = entries[0].isIntersecting;
+        setIsVisible(isVisible);
+      },
+      { threshold: 0.8 } //0.8 means 80% of the element is visible
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => observer.disconnect(); // Cleanup more generically
+  }, []);
+
+  //if the hero page is left set isVisble to false
+  useEffect(() => {
+    if (!isVisible) {
+      setInHeroPage(false);
+    }
+
+    console.log("isVisible", isVisible);
+  }, [isVisible]);
 
   useEffect(() => {
     const hero = document.getElementById("heroPageElement");
@@ -26,8 +166,6 @@ function HeroPage() {
         hero.removeEventListener("mouseleave", onMouseLeave, { passive: true });
       };
     }
-
-    console.log("In Hero Page:", inHeroPage);
   }, [inHeroPage]);
 
   //NOTE Used to move the orbs in the background around the page
@@ -66,7 +204,7 @@ function HeroPage() {
   //SECTION Device Layouts
   //INFO Hero Container
   const default_HeroContainer =
-    "z-10 grid w-full h-lvh grid-cols-12 overflow-hidden grid-rows-8";
+    "grid grid-cols-12 grid-rows-8 z-10  h-lvh overflow-hidden";
   const mobileSM_HeroContainer = "mobileSM:grid-cols-4 mobileSM:grid-rows-6";
   const mobile_HeroContainer = "mobile:grid-cols-4 mobile:grid-rows-6";
   const tablet_HeroContainer = "";
@@ -138,7 +276,7 @@ function HeroPage() {
   const webhrRef1 = useRef(null);
 
   useEffect(() => {
-    console.log("Animating...");
+    // console.log("Animating...");
     gsap.fromTo(
       webDRef1.current,
       {
@@ -188,7 +326,6 @@ function HeroPage() {
   const webhrRef2 = useRef(null);
 
   useEffect(() => {
-    console.log("Animating...");
     gsap.fromTo(
       webDRef2.current,
       {
@@ -238,7 +375,6 @@ function HeroPage() {
   const webhrRef3 = useRef(null);
 
   useEffect(() => {
-    console.log("Animating...");
     gsap.fromTo(
       webDRef3.current,
       {
@@ -288,7 +424,6 @@ function HeroPage() {
   const webhrRef4 = useRef(null);
 
   useEffect(() => {
-    console.log("Animating...");
     gsap.fromTo(
       webDRef4.current,
       {
@@ -324,126 +459,29 @@ function HeroPage() {
   //SECTION JSX Structure
   return (
     <>
-      <div className={`relative overflow-hidden h-screen overscroll-none`}>
-        {/*NOTE Background Colors */}
-        {/* if in the container dislay the cursor otherwise fade it */}
-        <DynamicComponentLoader
-          componentName="CustomCursor"
-          fade={inHeroPage}
-        />
+      {/*NOTE Custom Cursor */}
+      {/* if in the container dislay the cursor otherwise fade it */}
+      <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} />
 
-        {/* NOTE Background */}
-        <>
-          {/* Overlay */}
-          <div
-            className="absolute"
-            style={{
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              zIndex: "-1", // This should be higher than the orbs' zIndex but lower than the content above the overlay
-              //blur
-              backdropFilter: `blur(100px)`,
-            }}
-          ></div>
+      {/*NOTE Background Colors */}
+      <div
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          zIndex: "-1", // Ensure this layer is above some elements and below others
+          backdropFilter: isVisible ? "blur(50px)" : "blur(0px)",
+          transition: "backdrop-filter 0.5s ease-out, opacity 0.5s ease-out",
 
-          {/* Rose Orb */}
-          <div
-            ref={(el) => {
-              if (orbRefs[0]) {
-                orbRefs[0].current = el;
-              }
-            }}
-            className="absolute col-start-1 row-start-6 orb bg-color1"
-            style={{
-              width: "35%",
-              height: "50%",
-              left: "-15%",
-              top: "60%",
-              filter: `blur(${backGroundBlurAmount}px)`,
-              borderRadius: `${backGroundBorderRadius}%`,
-              zIndex: "-2",
-              background: "#eb174c71",
-            }}
-          ></div>
-          {/* lime Orb */}
-          <div
-            ref={(el) => {
-              if (orbRefs[1]) {
-                orbRefs[1].current = el;
-              }
-            }}
-            className="absolute col-start-2 row-start-3 orb bg-color2"
-            style={{
-              width: "35%",
-              height: "50%",
-              left: "-15%",
-              top: "-12%", // width: "40%", // height: "60%", //
-              filter: `blur(${backGroundBlurAmount}px)`,
-              borderRadius: `${backGroundBorderRadius}%`,
-              zIndex: "-2",
-              background: "#58b32771",
-            }}
-          ></div>
-          {/* violet Orb */}
-          <div
-            ref={(el) => {
-              if (orbRefs[2]) {
-                orbRefs[2].current = el;
-              }
-            }}
-            className="absolute orb bg-color3"
-            style={{
-              width: "35%",
-              height: "50%",
-              left: "75%",
-              top: "-15%",
-              filter: `blur(${backGroundBlurAmount}px)`,
-              borderRadius: `${backGroundBorderRadius}%`,
-              zIndex: "-2",
-              background: "#6d0ed371",
-            }}
-          ></div>
-          {/* sky Orb */}
-          <div
-            ref={(el) => {
-              if (orbRefs[3]) {
-                orbRefs[3].current = el;
-              }
-            }}
-            className="absolute orb bg-color4"
-            style={{
-              width: "50%",
-              height: "50%",
-              left: "25%",
-              top: "25%",
-              filter: `blur(${backGroundBlurAmount}px)`,
-              borderRadius: `${backGroundBorderRadius}%`,
-              zIndex: "-2",
-              background: "#0186f271",
-            }}
-          ></div>
-          {/* Yellow Orb */}
-          <div
-            ref={(el) => {
-              if (orbRefs[4]) {
-                orbRefs[4].current = el;
-              }
-            }}
-            className="absolute orb bg-color5"
-            style={{
-              width: "35%",
-              height: "50%",
-              left: "75%",
-              top: "70%",
-              filter: `blur(${backGroundBlurAmount}px)`,
-              borderRadius: `${backGroundBorderRadius}%`,
-              zIndex: "-2",
-              background: "#f7c13771",
-            }}
-          ></div>
-        </>
+          overflow: "hidden", //hide excess background
+        }}
+      />
+
+      <div
+        ref={heroRef}
+        className={`relative overflow-hidden w-lvh h-lvh overscroll-none`}
+      >
+        {displayBG()}
 
         {/*INFO Hero Container */}
         <div

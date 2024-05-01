@@ -13,9 +13,9 @@ const SidebarHamburger = () => {
     isHomePage,
     // If you need to set these states from here, you can also destructure setIsContactPage, etc.
   } = useContext(NavigationContext);
-  console.clear();
-  console.log("isPaymentsPage", isPaymentsPage);
-  console.log("isAboutPage", isAboutPage);
+  // console.clear();
+  // console.log("isPaymentsPage", isPaymentsPage);
+  // console.log("isAboutPage", isAboutPage);
 
   const toggleMenu = () => {
     // console.log("Menu has been", isOpen ? "closed" : "opened");

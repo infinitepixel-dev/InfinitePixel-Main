@@ -36,35 +36,51 @@ function App() {
     }
 
     // Event listener for mouse wheel
-    container.addEventListener("wheel", (e) => {
-      e.preventDefault(); // Prevent default wheel behavior
-      handleScroll(e.deltaY);
-    });
+    container.addEventListener(
+      "wheel",
+      (e) => {
+        e.preventDefault(); // Prevent default wheel behavior
+        handleScroll(e.deltaY);
+      },
+      { passive: false }
+    );
 
     // Variables for touch event handling
     let startY = 0;
     let touchMove = false;
 
     // Event listener for touch start
-    container.addEventListener("touchstart", (e) => {
-      startY = e.touches[0].clientY;
-      touchMove = false;
-    });
+    container.addEventListener(
+      "touchstart",
+      (e) => {
+        startY = e.touches[0].clientY;
+        touchMove = false;
+      },
+      { passive: false }
+    );
 
     // Event listener for touch move
-    container.addEventListener("touchmove", (e) => {
-      e.preventDefault(); // Prevent default touch behavior
-      touchMove = true;
-    });
+    container.addEventListener(
+      "touchmove",
+      (e) => {
+        e.preventDefault(); // Prevent default touch behavior
+        touchMove = true;
+      },
+      { passive: false }
+    );
 
     // Event listener for touch end
-    container.addEventListener("touchend", (e) => {
-      if (touchMove) {
-        const endY = e.changedTouches[0].clientY;
-        const deltaY = startY - endY;
-        handleScroll(deltaY);
-      }
-    });
+    container.addEventListener(
+      "touchend",
+      (e) => {
+        if (touchMove) {
+          const endY = e.changedTouches[0].clientY;
+          const deltaY = startY - endY;
+          handleScroll(deltaY);
+        }
+      },
+      { passive: false }
+    );
   }, 500);
 
   return (
