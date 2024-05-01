@@ -12,8 +12,22 @@ function HeroPage() {
   const [inHeroPage, setInHeroPage] = useState(false);
 
   const [isVisible, setIsVisible] = useState(true);
+  const [desktopAnimation, setDesktopAnimation] = useState(false);
 
   const heroRef = useRef(null);
+
+  useEffect(() => {
+    //output the window viewport size
+    const handleResize = () => {
+      console.clear();
+      console.log(window.innerWidth, window.innerHeight);
+      if (window.innerWidth > 1535) {
+        setDesktopAnimation(true);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -181,35 +195,39 @@ function HeroPage() {
   const webhrRef2 = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(
-      webDRef2.current,
-      {
-        x: "200%", // Start off screen
-        opacity: 0, // Start with 0 opacity
-      },
-      {
-        delay: 0.5, // Delay of 0.5 seconds
-        duration: 4.2, // Duration of the animation in seconds
-        x: "0%", // End at the intended position
-        opacity: 1, // End with full opacity
-        ease: "power3.out", // Type of easing
-      }
-    );
+    if (desktopAnimation) {
+      return;
+    } else {
+      gsap.fromTo(
+        webDRef2.current,
+        {
+          x: "200%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 4.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
 
-    gsap.fromTo(
-      webhrRef2.current,
-      {
-        x: "200%", // Start off screen
-        opacity: 0, // Start with 0 opacity
-      },
-      {
-        delay: 0.5, // Delay of 0.5 seconds
-        duration: 4.2, // Duration of the animation in seconds
-        x: "0%", // End at the intended position
-        opacity: 1, // End with full opacity
-        ease: "power3.out", // Type of easing
-      }
-    );
+      gsap.fromTo(
+        webhrRef2.current,
+        {
+          x: "200%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 4.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+    }
   }, []);
 
   //INFO SEO Services
@@ -316,7 +334,10 @@ function HeroPage() {
     <>
       {/*NOTE Custom Cursor */}
       {/* if in the container dislay the cursor otherwise fade it */}
-      <DynamicComponentLoader componentName="CustomCursor" fade={inHeroPage} />
+      <DynamicComponentLoader
+        componentName="CustomCursor"
+        fade={isVisible ? false : true}
+      />
 
       {/*NOTE Background Colors */}
       <div
@@ -325,7 +346,7 @@ function HeroPage() {
           width: "100%",
           height: "100%",
           zIndex: "-1", // Ensure this layer is above some elements and below others
-          backdropFilter: isVisible ? "blur(50px)" : "blur(0px)",
+          backdropFilter: isVisible ? "blur(125px)" : "blur(0px)",
           transition: "backdrop-filter 0.5s ease-out, opacity 0.5s ease-out",
 
           overflow: "hidden", //hide excess background
