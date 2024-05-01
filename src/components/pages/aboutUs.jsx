@@ -39,7 +39,7 @@ function AboutSection() {
   //NOTE - Device Layouts
   //INFO About Us Container
   const defaultAboutUsContainer =
-    "z-10 grid w-full h-screen grid-cols-8 overflow-hidden grid-rows-8";
+    "z-10 grid h-lvh grid-cols-8 overflow-hidden grid-rows-8";
   const mobileAboutUsContainer = "";
   const tabletAboutUsContainer = "";
   const tabletXLAboutUsContainer = "";
