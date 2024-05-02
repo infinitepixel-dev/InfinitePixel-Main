@@ -12,22 +12,9 @@ function HeroPage() {
   const [inHeroPage, setInHeroPage] = useState(false);
 
   const [isVisible, setIsVisible] = useState(true);
-  const [desktopAnimation, setDesktopAnimation] = useState(false);
+  const [desktopAnimation, setDesktopAnimation] = useState("");
 
-  const heroRef = useRef(null);
-
-  useEffect(() => {
-    //output the window viewport size
-    const handleResize = () => {
-      console.clear();
-      console.log(window.innerWidth, window.innerHeight);
-      if (window.innerWidth > 1535) {
-        setDesktopAnimation(true);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-  }, []);
+  const heroRef = useRef(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -140,42 +127,8 @@ function HeroPage() {
   const desktopXL_WebServicesContainer =
     "desktopXL:col-start-1 desktopXL:col-span-3 desktopXL:row-start-1 desktopXL:mx-20";
 
-  //NOTE Web Services Animations
   const webDRef1 = useRef(null);
   const webhrRef1 = useRef(null);
-
-  useEffect(() => {
-    // console.log("Animating...");
-    gsap.fromTo(
-      webDRef1.current,
-      {
-        x: "-100%", // Start off screen
-        opacity: 0, // Start with 0 opacity
-      },
-      {
-        delay: 0.5, // Delay of 0.5 seconds
-        duration: 5.0, // Duration of the animation in seconds
-        x: "0%", // End at the intended position
-        opacity: 1, // End with full opacity
-        ease: "power3.out", // Type of easing
-      }
-    );
-
-    gsap.fromTo(
-      webhrRef1.current,
-      {
-        x: "-100%", // Start off screen
-        opacity: 0, // Start with 0 opacity
-      },
-      {
-        delay: 0.8, // Delay of 0.5 seconds
-        duration: 4.0, // Duration of the animation in seconds
-        x: "0%", // End at the intended position
-        opacity: 1, // End with full opacity
-        ease: "power3.out", // Type of easing
-      }
-    );
-  }, []);
 
   //INFO Data Transfer Services
   const default_dataTransferContainer = "col-start-5 col-span-2";
@@ -190,45 +143,8 @@ function HeroPage() {
   const desktopXL_dataTransferContainer =
     "desktopXL:col-start-4 desktopXL:col-span-3 desktopXL:row-start-1 desktopXL:mx-20";
 
-  //NOTE Data Transfer Services Animations
   const webDRef2 = useRef(null);
   const webhrRef2 = useRef(null);
-
-  useEffect(() => {
-    if (desktopAnimation) {
-      return;
-    } else {
-      gsap.fromTo(
-        webDRef2.current,
-        {
-          x: "200%", // Start off screen
-          opacity: 0, // Start with 0 opacity
-        },
-        {
-          delay: 0.5, // Delay of 0.5 seconds
-          duration: 4.2, // Duration of the animation in seconds
-          x: "0%", // End at the intended position
-          opacity: 1, // End with full opacity
-          ease: "power3.out", // Type of easing
-        }
-      );
-
-      gsap.fromTo(
-        webhrRef2.current,
-        {
-          x: "200%", // Start off screen
-          opacity: 0, // Start with 0 opacity
-        },
-        {
-          delay: 0.5, // Delay of 0.5 seconds
-          duration: 4.2, // Duration of the animation in seconds
-          x: "0%", // End at the intended position
-          opacity: 1, // End with full opacity
-          ease: "power3.out", // Type of easing
-        }
-      );
-    }
-  }, []);
 
   //INFO SEO Services
   const default_SEOContainer = "col-start-3 col-span-2 ";
@@ -243,41 +159,8 @@ function HeroPage() {
   const desktopXL_SEOContainer =
     "desktopXL:col-start-7 desktopXL:col-span-3 desktopXL:row-start-1 desktopXL:mx-20";
 
-  //NOTE SEO Services Animations
   const webDRef3 = useRef(null);
   const webhrRef3 = useRef(null);
-
-  useEffect(() => {
-    gsap.fromTo(
-      webDRef3.current,
-      {
-        x: "-100%", // Start off screen
-        opacity: 0, // Start with 0 opacity
-      },
-      {
-        delay: 0.5, // Delay of 0.5 seconds
-        duration: 4.2, // Duration of the animation in seconds
-        x: "0%", // End at the intended position
-        opacity: 1, // End with full opacity
-        ease: "power3.out", // Type of easing
-      }
-    );
-
-    gsap.fromTo(
-      webhrRef3.current,
-      {
-        x: "-100%", // Start off screen
-        opacity: 0, // Start with 0 opacity
-      },
-      {
-        delay: 0.5, // Delay of 0.5 seconds
-        duration: 4.2, // Duration of the animation in seconds
-        x: "0%", // End at the intended position
-        opacity: 1, // End with full opacity
-        ease: "power3.out", // Type of easing
-      }
-    );
-  }, []);
 
   //INFO Additional Web Design Services
   const default_additionalWebDesignContainer = "col-span-2 col-start-4";
@@ -292,41 +175,243 @@ function HeroPage() {
   const desktopXL_additionalWebDesignContainer =
     "desktopXL:col-start-10 desktopXL:col-span-3 desktopXL:row-start-1 desktopXL:mx-20";
 
-  //NOTE Additional Web Design Services Animations
   const webDRef4 = useRef(null);
   const webhrRef4 = useRef(null);
 
+  //INFO Services Animations
   useEffect(() => {
-    gsap.fromTo(
-      webDRef4.current,
-      {
-        x: "200%", // Start off screen
-        opacity: 0, // Start with 0 opacity
-      },
-      {
-        delay: 0.8, // Delay of 0.5 seconds
-        duration: 4.0, // Duration of the animation in seconds
-        x: "0%", // End at the intended position
-        opacity: 1, // End with full opacity
-        ease: "power3.out", // Type of easing
+    const handleResize = () => {
+      // console.clear();
+      console.log(window.innerWidth, window.innerHeight);
+      //DesktopXL
+      if (window.innerWidth > 1535) {
+        setDesktopAnimation(true);
       }
-    );
+      //ALL Other Resolutions under DesktopXL
+      else if (window.innerWidth < 1535) {
+        setDesktopAnimation(false);
+      }
+    };
 
-    gsap.fromTo(
-      webhrRef4.current,
-      {
-        x: "200%", // Start off screen
-        opacity: 0, // Start with 0 opacity
-      },
-      {
-        delay: 0.5, // Delay of 0.5 seconds
-        duration: 5.0, // Duration of the animation in seconds
-        x: "0%", // End at the intended position
-        opacity: 1, // End with full opacity
-        ease: "power3.out", // Type of easing
-      }
-    );
-  }, []);
+    handleResize();
+
+    //NOTE Web Services Animations
+    if (desktopAnimation || desktopAnimation === false) {
+      //
+      // } else if (!desktopAnimation) {
+      gsap.fromTo(
+        webhrRef1.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "-100%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.8, // Delay of 0.5 seconds
+          duration: 4.0, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+
+      gsap.fromTo(
+        webDRef1.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "-100%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 5.0, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+    }
+
+    //NOTE Data Transfer Services Animations
+    if (desktopAnimation) {
+      console.log("Animating...", desktopAnimation);
+      gsap.fromTo(
+        webhrRef2.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "0%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 1.5, // Delay of 0.5 seconds
+          duration: 10.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          y: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+
+      gsap.fromTo(
+        webDRef2.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "%", // Start off screen
+          y: "300%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 4.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          y: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+    } else if (desktopAnimation === false) {
+      console.log("Mobile Animating...", desktopAnimation);
+      gsap.fromTo(
+        webhrRef2.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "200%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 4.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+
+      gsap.fromTo(
+        webDRef2.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "200%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 4.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+    }
+
+    //NOTE SEO Services Animations
+    if (desktopAnimation) {
+      gsap.fromTo(
+        webhrRef3.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "0%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 1.5, // Delay of 0.5 seconds
+          duration: 10.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          y: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+
+      gsap.fromTo(
+        webDRef3.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "0%", // Start off screen
+          y: "300%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 4.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          y: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+    } else if (desktopAnimation === false) {
+      gsap.fromTo(
+        webhrRef3.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "-100%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 4.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+
+      gsap.fromTo(
+        webDRef3.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "-100%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 4.2, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+    }
+
+    //NOTE Additional Web Design Services Animations
+    if (desktopAnimation || desktopAnimation === false) {
+      //
+      // } else if (!desktopAnimation) {
+      gsap.fromTo(
+        webhrRef4.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "200%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          duration: 5.0, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+
+      gsap.fromTo(
+        webDRef4.current,
+        {
+          delay: 0.5, // Delay of 0.5 seconds
+          x: "200%", // Start off screen
+          opacity: 0, // Start with 0 opacity
+        },
+        {
+          delay: 0.8, // Delay of 0.5 seconds
+          duration: 4.0, // Duration of the animation in seconds
+          x: "0%", // End at the intended position
+          opacity: 1, // End with full opacity
+          ease: "power3.out", // Type of easing
+        }
+      );
+    }
+  }, [desktopAnimation]);
+
   //!SECTION Device Layouts
 
   //SECTION JSX Structure
