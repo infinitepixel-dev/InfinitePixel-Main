@@ -49,18 +49,18 @@ export function PricingCard() {
 
   //INFO Payments Title
   const defaultPaymentsTitle =
-    "row-start-1 p-2 text-5xl text-center font-bold leading-normal tracking-normal"
+    "row-start-2 p-2 text-2xl text-center font-bold leading-normal tracking-normal"
   const mobilePaymentsTitle =
     "mobile:col-start-4 mobile:col-span-2 mobile:text-2xl mobile:row-start-1"
   const tabletPaymentsTitle = ""
   const tabletXLPaymentsTitle = ""
   const laptopPaymentsTitle = ""
   const desktopPaymentsTitle = ""
-  const desktopXLPaymentsTitle = ""
+  const desktopXLPaymentsTitle = "text-7x1"
 
   //INFO Contact Details
   const defaultContactDetails =
-    "row-start-2 col-start-2 col-span-6 p-5 italic self-center text-center text-1xl"
+    "row-start-2 col-start-2 col-span-8 p-5 italic self-center text-center text-1xl"
   const mobileContactDetails = ""
   const tabletContactDetails = ""
   const tabletXLContactDetails = ""
