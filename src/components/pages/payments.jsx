@@ -127,11 +127,9 @@ export function PricingCard() {
 
   //INFO Card 2
   const defaultCard2Container =
-    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-4 p-4 rounded-lg shadow-lg bg-slate-100"
-
+    "grid grid-cols-8 desktopXL:grid-cols-8 desktopXL:grid-rows-10 desktopXL:grid-rows-10 grid-rows-4 col-span-1 col-start-2 row-start-2 p-4 rounded-lg shadow-lg bg-slate-100"
   const mobileCard2Container =
     "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-5 row-span-2"
-
   const tabletCard2Container = ""
   const tabletXLCard2Container = ""
   const laptopCard2Container = ""
@@ -139,10 +137,30 @@ export function PricingCard() {
   const desktopXLCard2Container =
     "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-5 desktopXL:row-span-4"
 
+  //INFO Card 2 - Plan Name
+  const defaultCard2PlanName =
+    "text-lg font-bold text-center text-sky-800 mobile:col-start-5 mobile:col-span-4 mobile:row-start-1"
+  const mobileCard2PlanName = ""
+  const tabletCard2PlanName = ""
+  const tabletXLCard2PlanName = ""
+  const laptopCard2PlanName = ""
+  const desktopCard2PlanName = ""
+  const desktopXLCard2PlanName = ""
+
+  //INFO Card 2 - Main Price
+
+  const defaultCard2MainPrice =
+    "mb-4 text-5xl font-bold text-center text-blue-600 mobile:col-start-5 mobile:col-span-4 mobile:row-start-2"
+  const mobileCard2MainPrice = ""
+  const tabletCard2MainPrice = ""
+  const tabletXLCard2MainPrice = ""
+  const laptopCard2MainPrice = ""
+  const desktopCard2MainPrice = ""
+  const desktopXLCard2MainPrice = ""
+
   //INFO Card 3
   const defaultCard3Container =
     "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-6 p-4 rounded-lg shadow-lg bg-slate-100"
-
   const mobileCard3Container =
     "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-7 row-span-2"
   const tabletCard3Container = ""
@@ -321,11 +339,31 @@ export function PricingCard() {
             ${desktopXLCard2Container}
             `}
           >
-            <h2 className="mb-4 text-lg font-bold text-center text-sky-800 mobile:col-start-5 mobile:col-span-4 mobile:row-start-1">
+            <h2
+              className={`
+            {defaultCard2PlanName}
+            {mobileCard2PlanName}
+            {tabletCard2PlanName}
+            {tabletXLCard2PlanName}
+            {laptopCard2PlanName}
+            {desktopCard2PlanName}
+            {desktopXLCard2PlanName}
+            `}
+            >
               <FaUser className="inline-block mr-1" size={20} />
               <span>Basic Plan</span>
             </h2>
-            <div className="mb-4 text-5xl font-bold text-center text-blue-600 mobile:col-start-5 mobile:col-span-4 mobile:row-start-2">
+            <div
+              className={`
+            {defaultCard2MainPrice}
+            {mobileCard2MainPrice}
+            {tabletCard2MainPrice}
+            {tabletXLCard2MainPrice}
+            {laptopCard2MainPrice}
+            {desktopCard2MainPrice}
+            {desktopXLCard2MainPrice}
+            `}
+            >
               $300
             </div>
             <ul className="text-sm mobile:col-start-1 mobile:mt-3 mobile:col-span-4 mobile:row-start-1">
