@@ -2,7 +2,7 @@
 // Payments - Page 3
 
 import { useEffect, useContext, useRef } from "react";
-import { NavigationContext } from "../../context/navigationContext";
+import { NavigationContext } from "../../../context/navigationContext";
 
 import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6";
 
@@ -75,7 +75,7 @@ export function PricingCard() {
   const desktopXL_ContactDetails =
     "desktopXL:col-start-2 desktopXL:row-start-1 desktopXL:mt-48";
 
-  // #region  Card 1
+  // #region Card 1
 
   //INFO Card 1
   const default_Card1Container =
@@ -182,7 +182,7 @@ export function PricingCard() {
         {/* add a bg div? */}
         {/* Background image with opacity */}
         {/* <div className="absolute inset-0 bg-[url('/src/assets/sectionbg.jpg')] bg-cover bg-center opacity-[.03]"> */}
-        {/* INFO Payments Container */}
+        {/*INFO-JSX Payments Container */}
         <div
           className={`
         ${default_PaymentsContainer}
@@ -195,7 +195,7 @@ export function PricingCard() {
         ${desktopXL_PaymentsContainer}
         `}
         >
-          {/* INFO Payments Title */}
+          {/*INFO Payments Title */}
           <span
             className={`
           ${default_PaymentsTitle}
@@ -211,7 +211,7 @@ export function PricingCard() {
             Pricing
           </span>
 
-          {/* INFO Contact Details */}
+          {/*INFO Contact Details */}
           <div
             className={`
           ${default_ContactDetails}
