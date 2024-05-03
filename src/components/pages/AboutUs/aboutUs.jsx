@@ -1,9 +1,9 @@
 // About Us - Page 2
 
 import { useEffect, useContext, useRef } from "react";
-import { NavigationContext } from "../../context/navigationContext";
+import { NavigationContext } from "../../../context/navigationContext";
 
-import DynamicComponentLoader from "../../dynamicComponentLoader";
+import DynamicComponentLoader from "../../../dynamicComponentLoader";
 
 function AboutSection() {
   const { setIsAboutPage } = useContext(NavigationContext);
