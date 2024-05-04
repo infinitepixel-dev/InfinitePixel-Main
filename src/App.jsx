@@ -6,6 +6,10 @@ function App() {
   let developerMode = true; // Set to false when deploying to production
   let displaySplashPage = true; // Set to true when deploying to production
 
+  //#region Event Listeners
+  //SECTION Event Listeners
+
+  //NOTE Timeout 0.5s
   // Wait for 0.5 seconds before initializing event listeners
   setTimeout(() => {
     // Select all anchor links that link to an ID
@@ -26,6 +30,7 @@ function App() {
 
     const container = document.querySelector(".snap-container");
 
+    //NOTE handleScroll function
     // Function to handle scrolling
     function handleScroll(deltaY) {
       if (deltaY > 0) {
@@ -35,6 +40,7 @@ function App() {
       }
     }
 
+    //NOTE mouse wheel/touch event listeners
     // Event listener for mouse wheel
     container.addEventListener(
       "wheel",
@@ -82,26 +88,24 @@ function App() {
       { passive: false }
     );
   }, 500);
+  //!SECTION Event Listeners
+  //#endregion
 
   return (
     <>
-      {/*SECTION Effect Components - BEGIN */}
-      {/*NOTE Displays a custom mouse cursor for desktop/mobile */}
-
-      {/*!SECTION Effect Components - BEGIN */}
-
       {/*SECTION Splashpage - BEGIN */}
       {!developerMode && displaySplashPage ? (
         <>
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12">
-              {/*NOTE Displays the Splashpage component */}
+              {/*INFO-JSX Displays the Splashpage component */}
               <DynamicComponentLoader componentName="SplashPage" />
             </div>
           </div>
         </>
       ) : (
         //!SECTION Splashpage - END
+
         //SECTION Main Content Container - BEGIN
         <>
           <div
@@ -110,25 +114,14 @@ function App() {
           >
             <DynamicComponentLoader componentName="NavigationBar" />
 
-            {/*NOTE Hero - Page 1 */}
-            <div className="snap-page">
-              <DynamicComponentLoader componentName="HeroPage" />
-            </div>
-
-            {/*NOTE About Us - Page 2 */}
-            <div className="snap-page">
-              <DynamicComponentLoader componentName="AboutUs" />
-            </div>
-
-            {/*NOTE Payments - Page 3 */}
-            <div className="snap-page">
-              <DynamicComponentLoader componentName="Payments" />
-            </div>
+            <DynamicComponentLoader componentName="SiteRoutes" />
           </div>
         </>
-        //!SECTION Main Content Container - BEGIN
       )}
+
+      {/*INFO-JSX Site Routes */}
     </>
+    //!SECTION Main Content Container - BEGIN
   );
 }
 

@@ -1,0 +1,5 @@
+.snap-page {
+  animation: none;
+  scroll-snap-align: start;
+  height: 100svh; /* ensures each snap point is the height of the viewport */
+}

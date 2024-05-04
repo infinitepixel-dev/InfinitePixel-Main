@@ -321,7 +321,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
         }
       );
     }
-  }, [desktopAnimation]);
+  }, [desktopAnimation, setDesktopAnimation]);
   //!SECTION Services Animations - End
   //#endregion
 
@@ -334,6 +334,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   ${tablet_HeroServicesContainer}
   ${tabletXL_HeroServicesContainer}
   ${laptop_HeroServicesContainer}
+  ${desktop_HeroServicesContainer}
   ${desktopXL_HeroServicesContainer}
   `}
     >
