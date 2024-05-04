@@ -44,7 +44,7 @@ function Login() {
       setIsLoggedIn(true);
     } else {
       // If email is not allowed, handle accordingly, e.g., showing an error message
-      alert("Access denied. Your email is not allowed.");
+
       handleLogout(); // Optionally logout immediately
     }
   };
