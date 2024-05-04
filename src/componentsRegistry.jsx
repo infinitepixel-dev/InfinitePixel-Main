@@ -6,6 +6,7 @@ const componentsRegistry = {
   AboutUs: () => import("./components/pages/AboutUs/aboutUs.jsx"),
   AboutUsCarousel: () => import("./components/menus/aboutUs-Carousel.jsx"),
   Payments: () => import("./components/pages/Payments/payments.jsx"),
+  FadeIn: () => import("./components/effects/animations/fadeIn.jsx"),
   SiteRoutes: () => import("./components/corecomponents/siteRoutes.jsx"),
   // Add more components here
 };

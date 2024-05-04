@@ -2,12 +2,16 @@
 // Hero - Page 1
 import React, { lazy, Suspense, useState, useEffect, useRef } from "react"; // React Library
 
-import DynamicComponentLoader from "../../../dynamicComponentLoader"; // Dynamic Component Loader
+// import DynamicComponentLoader from "../../../dynamicComponentLoader"; // Dynamic Component Loader
+
+const DynamicComponentLoader = lazy(
+  () => import("../../../dynamicComponentLoader")
+); // Lazy loaded Dynamic Component Loader
 // Lazy load the components
 const HeroBackground = lazy(() => import("./heroBackground")); // Lazy loaded Hero Background
 const Services = lazy(() => import("./services")); // Lazy loaded Services
 const ActionButton = lazy(() => import("../../buttons/actionButton")); // Lazy loaded Action Button
-const FadeIn = lazy(() => import("../../effects/animations/fadeIn")); // Lazy loaded Fade In animation
+// const FadeIn = lazy(() => import("../../effects/animations/fadeIn")); // Lazy loaded Fade In animation
 
 function HeroPage() {
   //NOTE Used to check if the cursor is in the hero page
@@ -39,7 +43,7 @@ function HeroPage() {
       setInHeroPage(false);
     }
 
-    console.log("isVisible", isVisible);
+    // console.log("isVisible", isVisible);
   }, [isVisible]);
 
   useEffect(() => {
@@ -184,7 +188,12 @@ function HeroPage() {
                 buttonText="Get Started"
                 hrefValue="#paymentInformation"
                 animation={
-                  <FadeIn duration={2.3} opacityStart={0} opacityEnd={1} />
+                  <DynamicComponentLoader
+                    componentName="FadeIn"
+                    duration={3.4}
+                    opacityStart={0}
+                    opacityEnd={1}
+                  />
                 }
               />
             </>
