@@ -6,6 +6,7 @@ import DynamicComponentLoader from "../../../dynamicComponentLoader"; // Dynamic
 import HeroBackground from "./heroBackground"; // Hero Background
 import Services from "./services"; // Services
 import ActionButton from "../../buttons/actionButton";
+import FadeIn from "../../effects/animations/fadeIn";
 
 function HeroPage() {
   //NOTE Used to check if the cursor is in the hero page
@@ -177,6 +178,9 @@ function HeroPage() {
               desktopXLClass={desktopXL_GetStartedButton}
               buttonText="Get Started"
               hrefValue="#paymentInformation"
+              animation={
+                <FadeIn duration={2.3} opacityStart={0} opacityEnd={1} />
+              }
             />
           </>
 
