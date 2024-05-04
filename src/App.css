@@ -5,11 +5,11 @@
 }
 
 /* Disable mouse pointer for buttons and interactive elements */
-body {
-  /* cursor: none; */
-  /* overflow: hidden; */
-  /* touch-action: manipulation; */
-}
+/* body {
+  cursor: none;
+  overflow: hidden;
+  touch-action: manipulation;
+} */
 
 /* Add this to your App.css or equivalent file */
 .snap-container {
@@ -17,12 +17,6 @@ body {
   overflow-y: scroll;
   height: 100vh; /* corrected from 100dvh */
   scroll-behavior: smooth; /* enables smooth scrolling */
-}
-
-.snap-page {
-  animation: none;
-  scroll-snap-align: start;
-  height: 100svh; /* ensures each snap point is the height of the viewport */
 }
 
 .icon-span {

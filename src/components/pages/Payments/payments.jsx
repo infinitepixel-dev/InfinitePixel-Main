@@ -12,6 +12,8 @@ export function PricingCard() {
 
   // Intersection Observer to detect when the component is in view
   useEffect(() => {
+    const currentRef = ref.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -25,14 +27,14 @@ export function PricingCard() {
     );
 
     // Attach the observer to the ref element
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     // Clean up observer on component unmount
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [setIsPaymentsPage]);
