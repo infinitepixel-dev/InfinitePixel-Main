@@ -22,6 +22,8 @@ export default {
 
       desktopXL: "1535px",
       // => @media (min-width: 1536px) { ... }
+      desktopXXL: "2320px",
+      // => @media (min-width: 2560px) { ... }
     },
     extend: {
       keyframes: {
@@ -64,4 +66,4 @@ export default {
     },
   },
   plugins: ["prettier-plugin-tailwindcss"],
-};
+}
