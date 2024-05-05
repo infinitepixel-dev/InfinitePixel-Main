@@ -133,7 +133,10 @@ function App() {
             className="mx-auto container-fluid snap-container"
             //if device layout is true then overflow-hidden
           >
-            <DynamicComponentLoader componentName="NavigationBar" />
+            <DynamicComponentLoader
+              developerMode={developerMode}
+              componentName="NavigationBar"
+            />
 
             <DynamicComponentLoader componentName="SiteRoutes" />
           </div>

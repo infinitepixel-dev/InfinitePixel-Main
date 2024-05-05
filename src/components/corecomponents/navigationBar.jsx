@@ -1,10 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import "./navigationBar.css"; // Ensure this path is correct
 import logo from "../../assets/logo.svg";
 import { NavigationContext } from "../../context/navigationContext";
 
-const SidebarHamburger = () => {
+const SidebarHamburger = ({ developerMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const {
     isContactPage,
@@ -93,22 +96,31 @@ const SidebarHamburger = () => {
                 /* mask-image: linear-gradient(to right, black 99%, transparent 100%); */
               }}
             >
-              <a href="#" className="block text-lg">
+              {/* navigate to / */}
+
+              <Link to="/" className="block text-lg">
                 Home
-              </a>
+              </Link>
               {/* row 3 */}
-              <a href="#" className="block text-lg">
+              <Link to="" className="block text-lg">
                 About
-              </a>
+              </Link>
               {/* row 4 */}
-              <a href="#" className="block text-lg">
+              <Link to="" className="block text-lg">
                 Services
-              </a>
+              </Link>
               {/* row 5 */}
-              <a href="#" className="block text-lg">
+              <Link to="" className="block text-lg">
                 Contact
-              </a>
+              </Link>
               {/* row 6 */}
+              {developerMode ? (
+                <Link to="/infini-docs" className="block text-lg">
+                  Infini-Docs
+                </Link>
+              ) : (
+                ""
+              )}
             </div>
             <div className="blur"></div>
           </div>
@@ -125,6 +137,10 @@ const SidebarHamburger = () => {
       </div>
     </>
   );
+};
+
+SidebarHamburger.propTypes = {
+  developerMode: PropTypes.bool,
 };
 
 export default SidebarHamburger;

@@ -367,7 +367,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
         </div>
 
         <div className="col-start-1 col-span-3 mt-4 font-bold desktopXL:text-2xl text-yellow-500">
-          <a href="">{">"} Learn More</a>
+          <a href="#">{">"} Learn More</a>
         </div>
       </div>
 
@@ -395,7 +395,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
         </div>
 
         <div className="col-start-1 col-span-3 mt-4 font-bold desktopXL:text-2xl text-purple-500">
-          <a href="">{">"} Learn More</a>
+          <a href="#">{">"} Learn More</a>
         </div>
       </div>
 
@@ -423,7 +423,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
         </div>
 
         <div className="col-start-1 col-span-3 mt-4 font-bold desktopXL:text-2xl text-green-500">
-          <a href="">{">"} Learn More</a>
+          <a href="#">{">"} Learn More</a>
         </div>
       </div>
 
@@ -451,7 +451,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
         </div>
 
         <div className="col-start-1 col-span-3 mt-4 font-bold desktopXL:text-2xl text-blue-500">
-          <a href="">{">"} Learn More</a>
+          <a href="#">{">"} Learn More</a>
         </div>
       </div>
     </div>
