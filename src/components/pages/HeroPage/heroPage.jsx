@@ -75,6 +75,7 @@ function HeroPage() {
   const desktop_HeroContainer = "";
   const desktopXL_HeroContainer =
     "desktopXL:grid-cols-12 desktopXL:grid-rows-8";
+  const desktopXXL_HeroContainer = "";
 
   //INFO Hero Title
   const default_HeroTitle =
@@ -89,13 +90,13 @@ function HeroPage() {
   const desktop_HeroTitle = "";
   const desktopXL_HeroTitle =
     "desktopXL:col-start-2 desktopXL:col-span-5 desktopXL:text-left desktopXL:row-start-2 desktopXL:text-8xl";
+  const desktopXXL_HeroTitle = "";
 
   //INFO Hero Get Started Button
   const default_HeroGetStartedButton =
     "self-center col-start-2 col-span-2 p-5 row-start-2 mb-12 text-3xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800 shadow-xl";
   const mobileSM_GetStartedButton =
     "mobileSM:col-start-1 mobileSM:col-span-4 mobileSM:row-start-2 mobileSM:text-2xl mobileSM:row-span-2 mobileSM:mb-14 mobileSM:mx-16";
-
   const mobile_GetStartedButton =
     "mobile:col-start-1 mobile:col-span-4 mobile:row-start-2 mobile:text-2xl mobile:row-span-2 mobile:mb-14 mobile:mx-16";
   const tablet_GetStartedButton = "";
@@ -104,6 +105,8 @@ function HeroPage() {
   const desktop_GetStartedButton = "";
   const desktopXL_GetStartedButton =
     "desktopXL:col-start-2 desktopXL:col-span-4 desktopXL:row-start-3 desktopXL:py-6 desktopXL:text-5xl desktopXL:self-center desktopXL:mx-0 desktopXL:mt-64 ";
+  const desktopXXL_GetStartedButton = "";
+
   //#endregion
 
   //!SECTION Device Layouts
@@ -155,6 +158,7 @@ function HeroPage() {
           ${laptop_HeroContainer}
           ${desktop_HeroContainer}
           ${desktopXL_HeroContainer}
+          ${desktopXXL_HeroContainer}
           `}
           >
             <>
@@ -169,6 +173,7 @@ function HeroPage() {
               ${laptop_HeroTitle}
               ${desktop_HeroTitle}
               ${desktopXL_HeroTitle}
+              ${desktopXXL_HeroTitle}
               `}
               >
                 Developing Responsive Websites
@@ -185,6 +190,7 @@ function HeroPage() {
                 laptopClass={laptop_GetStartedButton}
                 desktopClass={desktop_GetStartedButton}
                 desktopXLClass={desktopXL_GetStartedButton}
+                desktopXXLClass={desktopXXL_GetStartedButton}
                 buttonText="Get Started"
                 hrefValue="#paymentInformation"
                 animation={
