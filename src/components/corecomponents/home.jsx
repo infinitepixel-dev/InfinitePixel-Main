@@ -1,4 +1,5 @@
 import DynamicComponentLoader from "../../dynamicComponentLoader";
+
 import "./home.css";
 
 function Home() {

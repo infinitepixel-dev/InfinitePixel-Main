@@ -9,6 +9,7 @@ const FadeIn = ({
   opacityEnd,
   className,
 }) => {
+  console.log("Duration: ", duration);
   const elementRef = useRef();
 
   useEffect(() => {
