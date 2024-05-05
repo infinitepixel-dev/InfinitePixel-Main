@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 // Hero - Page 1
-import { useState, useEffect, useRef } from "react"; // React Library
+import React, { lazy, Suspense, useState, useEffect, useRef } from "react"; // React Library
 
 import DynamicComponentLoader from "../../../dynamicComponentLoader"; // Dynamic Component Loader
-import HeroBackground from "./heroBackground"; // Hero Background
-import Services from "./services"; // Services
-import ActionButton from "../../buttons/actionButton";
-import FadeIn from "../../effects/animations/fadeIn";
+// Lazy load the components
+const HeroBackground = lazy(() => import("./heroBackground")); // Lazy loaded Hero Background
+const Services = lazy(() => import("./services")); // Lazy loaded Services
+const ActionButton = lazy(() => import("../../buttons/actionButton")); // Lazy loaded Action Button
+const FadeIn = lazy(() => import("../../effects/animations/fadeIn")); // Lazy loaded Fade In animation
 
 function HeroPage() {
   //NOTE Used to check if the cursor is in the hero page
@@ -105,38 +106,43 @@ function HeroPage() {
 
   //SECTION JSX Structure
   return (
-    <>
-      {/*NOTE Custom Cursor */}
-      {/* if in the container dislay the cursor otherwise fade it */}
-      <DynamicComponentLoader
-        componentName="CustomCursor"
-        fade={isVisible ? false : true}
-      />
+    <Suspense
+      fallback={<div className="self-center text-center">Loading...</div>}
+    >
+      {" "}
+      {/* Provide a fallback while components are loading */}
+      <>
+        {/*NOTE Custom Cursor */}
+        {/* if in the container dislay the cursor otherwise fade it */}
+        <DynamicComponentLoader
+          componentName="CustomCursor"
+          fade={isVisible ? false : true}
+        />
 
-      {/*NOTE Background Colors */}
-      <div
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          zIndex: "-1", // Ensure this layer is above some elements and below others
-          backdropFilter: isVisible ? "blur(125px)" : "blur(0px)",
-          transition: "backdrop-filter 0.5s ease-out, opacity 0.5s ease-out",
-
-          overflow: "hidden", //hide excess background
-        }}
-      />
-
-      <div
-        ref={heroRef}
-        className={`relative overflow-hidden w-lvh h-lvh overscroll-none`}
-      >
-        <HeroBackground isVisible={isVisible} />
-
-        {/*INFO-JSX Hero Container */}
+        {/*NOTE Background Colors */}
         <div
-          id="heroPageElement"
-          className={`
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            zIndex: "-1", // Ensure this layer is above some elements and below others
+            backdropFilter: isVisible ? "blur(125px)" : "blur(0px)",
+            transition: "backdrop-filter 0.5s ease-out, opacity 0.5s ease-out",
+
+            overflow: "hidden", //hide excess background
+          }}
+        />
+
+        <div
+          ref={heroRef}
+          className={`relative overflow-hidden w-lvh h-lvh overscroll-none`}
+        >
+          <HeroBackground isVisible={isVisible} />
+
+          {/*INFO-JSX Hero Container */}
+          <div
+            id="heroPageElement"
+            className={`
           ${default_HeroContainer}
           ${mobileSM_HeroContainer}
           ${mobile_HeroContainer}
@@ -146,11 +152,11 @@ function HeroPage() {
           ${desktop_HeroContainer}
           ${desktopXL_HeroContainer}
           `}
-        >
-          <>
-            {/*INFO-JSX Hero Title */}
-            <div
-              className={`
+          >
+            <>
+              {/*INFO-JSX Hero Title */}
+              <div
+                className={`
               ${default_HeroTitle}
               ${mobileSM_HeroTitle}
               ${mobile_HeroTitle}
@@ -160,38 +166,38 @@ function HeroPage() {
               ${desktop_HeroTitle}
               ${desktopXL_HeroTitle}
               `}
-            >
-              Developing Responsive Websites
-              <div className="row-start-2">For Your Brand</div>
-            </div>
+              >
+                Developing Responsive Websites
+                <div className="row-start-2">For Your Brand</div>
+              </div>
 
-            {/*INFO-JSX Hero Get Started Button */}
+              {/*INFO-JSX Hero Get Started Button */}
+              <ActionButton
+                defaultClass={default_HeroGetStartedButton}
+                mobileSMClass={mobileSM_GetStartedButton}
+                mobileClass={mobile_GetStartedButton}
+                tabletClass={tablet_GetStartedButton}
+                tabletXLClass={tabletXL_GetStartedButton}
+                laptopClass={laptop_GetStartedButton}
+                desktopClass={desktop_GetStartedButton}
+                desktopXLClass={desktopXL_GetStartedButton}
+                buttonText="Get Started"
+                hrefValue="#paymentInformation"
+                animation={
+                  <FadeIn duration={2.3} opacityStart={0} opacityEnd={1} />
+                }
+              />
+            </>
 
-            <ActionButton
-              defaultClass={default_HeroGetStartedButton}
-              mobileSMClass={mobileSM_GetStartedButton}
-              mobileClass={mobile_GetStartedButton}
-              tabletClass={tablet_GetStartedButton}
-              tabletXLClass={tabletXL_GetStartedButton}
-              laptopClass={laptop_GetStartedButton}
-              desktopClass={desktop_GetStartedButton}
-              desktopXLClass={desktopXL_GetStartedButton}
-              buttonText="Get Started"
-              hrefValue="#paymentInformation"
-              animation={
-                <FadeIn duration={2.3} opacityStart={0} opacityEnd={1} />
-              }
+            {/* INFO-JSX Services */}
+            <Services
+              desktopAnimation={desktopAnimation}
+              setDesktopAnimation={setDesktopAnimation}
             />
-          </>
-
-          {/* INFO-JSX Services */}
-          <Services
-            desktopAnimation={desktopAnimation}
-            setDesktopAnimation={setDesktopAnimation}
-          />
+          </div>
         </div>
-      </div>
-    </>
+      </>
+    </Suspense>
   );
   //!SECTION - JSX Structure - End
 }
