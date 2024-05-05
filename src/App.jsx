@@ -1,10 +1,31 @@
+import { useEffect } from "react";
+
 import DynamicComponentLoader from "./dynamicComponentLoader";
+import { logBreakpoints, logActiveBreakpoint } from "./components/breakpoints";
 
 import "./App.css";
 
 function App() {
   let developerMode = true; // Set to false when deploying to production
   let displaySplashPage = true; // Set to true when deploying to production
+  useEffect(() => {
+    if (developerMode) {
+      console.log("Developer Mode is active");
+    }
+  }, [developerMode]);
+  useEffect(() => {
+    logBreakpoints(); // Log all breakpoints once
+    const handleResize = () => {
+      logActiveBreakpoint(); // Log active breakpoint on resize
+    };
+    handleResize(); // Log active breakpoint on initial load
+    window.addEventListener("resize", handleResize); // Log active breakpoint on initial load
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   //#region Event Listeners
   //SECTION Event Listeners

@@ -1,9 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+
+import daisyui from "daisyui";
+//import from prettier-plugin-tailwindcss
+
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
       mobileSM: "320px",
+      // => @media (min-width: 320px) { ... }
 
       mobile: "370px",
       // => @media (min-width: 320px) { ... }
@@ -22,8 +27,9 @@ export default {
 
       desktopXL: "1535px",
       // => @media (min-width: 1536px) { ... }
+
       desktopXXL: "2320px",
-      // => @media (min-width: 2560px) { ... }
+      // => @media (min-width: 2320px) { ... }
     },
     extend: {
       keyframes: {
@@ -65,5 +71,5 @@ export default {
       },
     },
   },
-  plugins: ["prettier-plugin-tailwindcss"],
-}
+  plugins: ["prettier-plugin-tailwindcss", daisyui],
+};

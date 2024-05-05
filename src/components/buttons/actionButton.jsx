@@ -31,12 +31,13 @@ function ActionButton({
   laptopClass,
   desktopClass,
   desktopXLClass,
+  desktopXXLClass,
   buttonText,
   hrefValue,
   onClick,
   animation,
 }) {
-  const className = `${defaultClass} ${mobileSMClass} ${mobileClass} ${tabletClass} ${tabletXLClass} ${laptopClass} ${desktopClass} ${desktopXLClass}`;
+  const className = `${defaultClass} ${mobileSMClass} ${mobileClass} ${tabletClass} ${tabletXLClass} ${laptopClass} ${desktopClass} ${desktopXLClass} ${desktopXXLClass}`;
 
   const default_buttonContent = (
     <a
@@ -74,6 +75,7 @@ ActionButton.propTypes = {
   laptopClass: PropTypes.string,
   desktopClass: PropTypes.string,
   desktopXLClass: PropTypes.string,
+  desktopXXLClass: PropTypes.string,
   buttonText: PropTypes.string,
   hrefValue: PropTypes.string,
   onClick: PropTypes.func,
