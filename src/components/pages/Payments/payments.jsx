@@ -1,177 +1,280 @@
 /* eslint-disable no-unused-vars */
 // Payments - Page 3
 
-import { useEffect, useContext, useRef } from "react";
-import { NavigationContext } from "../../../context/navigationContext";
+import { useEffect, useContext, useRef } from "react"
+import { NavigationContext } from "../../../context/navigationContext"
 
-import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6";
+import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6"
 
 export function PricingCard() {
-  const { setIsPaymentsPage } = useContext(NavigationContext);
-  const ref = useRef(null); // Reference to the component's DOM element
+  const { setIsPaymentsPage } = useContext(NavigationContext)
+  const ref = useRef(null) // Reference to the component's DOM element
+
+  useEffect(() => {
+    const handleResize = () => {
+      // console.clear();
+      console.log(window.innerWidth, window.innerHeight)
+      //DesktopXL
+      if (window.innerWidth > 2280) {
+        console.log("Desktop XXL")
+        // setDesktopAnimation(true)
+      }
+      //ALL Other Resolutions under DesktopXL
+      else if (window.innerWidth < 1535) {
+        // setDesktopAnimation(false)
+      }
+    }
+    handleResize()
+  })
 
   // Intersection Observer to detect when the component is in view
   useEffect(() => {
-    const currentRef = ref.current;
+    const currentRef = ref.current
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const [entry] = entries;
-        setIsPaymentsPage(entry.isIntersecting);
+        const [entry] = entries
+        setIsPaymentsPage(entry.isIntersecting)
       },
       {
         root: null, // Using the viewport as the container
         rootMargin: "0px",
         threshold: 0.1, // 10% of the element should be visible
       }
-    );
+    )
 
     // Attach the observer to the ref element
     if (currentRef) {
-      observer.observe(currentRef);
+      observer.observe(currentRef)
     }
 
     // Clean up observer on component unmount
     return () => {
       if (currentRef) {
-        observer.unobserve(currentRef);
+        observer.unobserve(currentRef)
       }
-    };
-  }, [setIsPaymentsPage]);
+    }
+  }, [setIsPaymentsPage])
 
   //INFO Payments Container
 
   const default_PaymentsContainer =
-    "z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8";
-  const mobileSM_PaymentsContainer = "";
-  const mobile_PaymentsContainer = "mobile:grid-cols-8";
-  const tablet_PaymentsContainer = "";
-  const tabletXL_PaymentsContainer = "";
-  const laptop_PaymentsContainer = "";
-  const desktop_PaymentsContainer = "";
-  const desktopXL_PaymentsContainer = "desktopXL:grid-cols-10";
+    "z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8"
+  const mobileSM_PaymentsContainer = ""
+  const mobile_PaymentsContainer = "mobile:grid-cols-8"
+  const tablet_PaymentsContainer = ""
+  const tabletXL_PaymentsContainer = ""
+  const laptop_PaymentsContainer = ""
+  const desktop_PaymentsContainer = ""
+  const desktopXL_PaymentsContainer = "desktopXL:grid-cols-10"
+  const desktopXXL_PaymentsContainer = ""
 
   //INFO Payments Title
   const default_PaymentsTitle =
-    "row-start-2 p-2 text-2xl text-center font-bold leading-normal tracking-normal";
-  const mobileSM_PaymentsTitle = "";
+    "row-start-2 p-2 text-2xl text-center font-bold leading-normal tracking-normal"
+  const mobileSM_PaymentsTitle = ""
   const mobile_PaymentsTitle =
-    "mobile:col-start-4 mobile:col-span-2 mobile:text-2xl mobile:row-start-1";
-  const tablet_PaymentsTitle = "";
-  const tabletXL_PaymentsTitle = "";
-  const laptop_PaymentsTitle = "";
-  const desktop_PaymentsTitle = "";
+    "mobile:col-start-4 mobile:col-span-2 mobile:text-2xl mobile:row-start-1"
+  const tablet_PaymentsTitle = ""
+  const tabletXL_PaymentsTitle = ""
+  const laptop_PaymentsTitle = ""
+  const desktop_PaymentsTitle = ""
   const desktopXL_PaymentsTitle =
-    "desktopXL:text-8xl desktopXL:col-start-5 col-span-2 desktopXL:p-5";
+    "desktopXL:text-8xl desktopXL:col-start-5 col-span-2 desktopXL:p-5"
+  const desktopXXL_PaymentsTitle =
+    "desktopXXL:col-start-4 desktopXXL:col-span-4 desktopXXL:text-3x1"
 
   //INFO Contact Details
   const default_ContactDetails =
-    "row-start-2 col-start-2 col-span-8 p-5 italic self-center text-center text-1xl";
-  const mobileSM_ContactDetails = "";
+    "row-start-2 col-start-2 col-span-8 p-5 italic self-center text-center text-1xl"
+  const mobileSM_ContactDetails = ""
   const mobile_ContactDetails =
-    "mobile:col-start-1 mobile:row-start-1 mobile:mt-24 mobile:mb-0";
-  const tabletContactDetails = "";
-  const tabletXL_ContactDetails = "";
-  const laptop_ContactDetails = "";
-  const desktop_ContactDetails = "";
+    "mobile:col-start-1 mobile:row-start-1 mobile:mt-24 mobile:mb-0"
+  const tabletContactDetails = ""
+  const tabletXL_ContactDetails = ""
+  const laptop_ContactDetails = ""
+  const desktop_ContactDetails = ""
   const desktopXL_ContactDetails =
-    "desktopXL:col-start-2 desktopXL:row-start-1 desktopXL:mt-48";
+    "desktopXL:col-start-2 desktopXL:row-start-1 desktopXL:mt-48"
+  const desktopXXL_ContactDetails = ""
 
   // #region Card 1
 
-  //INFO Card 1
+  //INFO Card 1 - Container
   const default_Card1Container =
-    "grid grid-cols-8 grid-rows-4 col-span-8 col-start-2 row-start-2 p-4 rounded-lg shadow-lg bg-slate-100";
-  const mobileSM_Card1Container = "";
+    "grid grid-cols-8 grid-rows-4 col-span-8 col-start-2 row-start-2 p-4 rounded-lg shadow-lg bg-slate-100"
+  const mobileSM_Card1Container = ""
   const mobile_Card1Container =
-    "mobile:col-start-1 mobile:p-2 mobile:mx-2 mobile:col-span-8 mobile:row-start-3 row-span-2";
-  const tablet_Card1Container = "";
-  const tabletXL_Card1Container = "";
-  const laptop_Card1Container = "";
-  const desktop_Card1Container = "";
+    "mobile:col-start-1 mobile:p-2 mobile:mx-2 mobile:col-span-8 mobile:row-start-3 row-span-2"
+  const tablet_Card1Container = ""
+  const tabletXL_Card1Container = ""
+  const laptop_Card1Container = ""
+  const desktop_Card1Container = ""
   const desktopXL_Card1Container =
-    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:row-span-4";
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:row-span-4"
+  const desktopXXL_Card1Container = "grid-rows-8 p-0"
 
   //INFO Card 1 - Plan Name
-  const default_Card1PlanName = "text-lg font-bold text-center text-sky-800 ";
+  const default_Card1PlanName = "text-lg font-bold text-center text-sky-800 "
   const mobileSM_Card1PlanName =
-    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-1";
-  const mobile_Card1PlanName = "";
-  const tablet_Card1PlanName = "";
-  const tabletXL_Card1PlanName = "";
-  const laptop_Card1PlanName = "";
-  const desktop_Card1PlanName = "";
+    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-1"
+  const mobile_Card1PlanName = ""
+  const tablet_Card1PlanName = ""
+  const tabletXL_Card1PlanName = ""
+  const laptop_Card1PlanName = ""
+  const desktop_Card1PlanName = ""
   const desktopXL_Card1PlanName =
-    "desktopXL:col-start-1 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-2xl";
+    "desktopXL:col-start-2 desktopXL:p-0 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
+  const desktopXXL_Card1PlanName =
+    "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5"
 
   //INFO Card 1 - Main Price
   const default_Card1MainPrice =
-    "mb-4 text-5xl font-bold text-center text-blue-600";
+    "mb-4 text-5xl font-bold text-center text-blue-600"
   const mobileSM_Card1MainPrice =
-    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-2";
-  const mobile_Card1MainPrice = "";
-  const tablet_Card1MainPrice = "";
-  const tabletXL_Card1MainPrice = "";
-  const laptop_Card1MainPrice = "";
-  const desktop_Card1MainPrice = "";
+    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-2"
+  const mobile_Card1MainPrice = ""
+  const tablet_Card1MainPrice = ""
+  const tabletXL_Card1MainPrice = ""
+  const laptop_Card1MainPrice = ""
+  const desktop_Card1MainPrice = ""
   const desktopXL_Card1MainPrice =
-    "desktopXL: col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-5xl";
+    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-5xl"
+  const desktopXXL_Card1MainPrice =
+    "desktopXXL:col-start-3 desktopXXL:col-span-6 desktopXXL:row-start-2 desktopXXL:text-6xl"
 
   //INFO Card 1 -Features
-  const default_Card1Features = "text-sm pt-5";
+  const default_Card1Features = "text-sm pt-5"
   const mobile_Card1Features =
-    "mobile:col-start-1 mobile:mt-3 mobile:col-span-4 mobile:row-start-1";
-  const mobileSM_Card1Features = "";
-  const tablet_Card1Features = "";
-  const tabletXL_Card1Features = "";
-  const laptop_Card1Features = "";
-  const desktop_Card1Features = "";
+    "mobile:col-start-1 mobile:mt-3 mobile:col-span-4 mobile:row-start-1"
+  const mobileSM_Card1Features = ""
+  const tablet_Card1Features = ""
+  const tabletXL_Card1Features = ""
+  const laptop_Card1Features = ""
+  const desktop_Card1Features = ""
   const desktopXL_Card1Features =
-    "desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:col-span-8 desktopXL:text-sm";
+    "desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:col-span-8 desktopXL:text-sm desktopXL:space-y-1"
+  const desktopXXL_Card1Features =
+    "desktopXXL:col-start-2 desktopXXL:col-span-6 desktopXXL:row-start-3 desktopXXL:text-base desktopXXL:space-y-2"
+
+  //INFO Card 1 - Feature li
+  const defaultCard1li = "flex items-center p-2 mb-2"
+  const mobileSMCard1li = "mobile:mb-0 mobile:p-0 "
+  const mobileCard1li = ""
+  const tabletCard1li = ""
+  const tabletXLCard1li = ""
+  const laptopCard1li = ""
+  const desktopCard1li = ""
+  const desktopXLCard1li = "desktopXL:p-2"
+  const desktopXXLCard1li = ""
 
   //INFO Card 1 - Button
   const default_Card1Button =
-    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700";
-  const mobileSM_Card1Button = "";
+    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700"
+  const mobileSM_Card1Button = ""
   const mobile_Card1Button =
-    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1";
-  const tablet_Card1Button = "";
-  const tabletXL_Card1Button = "";
-  const laptop_Card1Button = "";
-  const desktop_Card1Button = "";
+    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1"
+  const tablet_Card1Button = ""
+  const tabletXL_Card1Button = ""
+  const laptop_Card1Button = ""
+  const desktop_Card1Button = ""
   const desktopXL_Card1Button =
-    "desktopXL:col-start-1 desktopXL:row-start-9 desktopXL:mt-14 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl";
+    "desktopXL:col-start-2 desktopXL:row-start-8 desktopXL:mb-8 desktopXL:col-span-8 "
+  const desktopXXL_Card1Button =
+    "desktopXXL:col-start-2 desktopXXL:row-start-7 desktopXXL:row-span-2 desktopXXL:m-0 desktopXXL:hover:drop-shadow-md desktopXXL:hover:drop-shadow-lg"
+
   // #endregion
 
   // #region Card 2
-  //INFO Card 2
+  //INFO Card 2 - container
   const default_Card2Container =
-    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-4 p-4 rounded-lg shadow-lg bg-slate-100";
-  const mobileSM_Card2Container = "";
+    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-4 p-4 rounded-lg shadow-lg bg-slate-100"
+  const mobileSM_Card2Container = ""
   const mobile_Card2Container =
-    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-5 mobile:row-span-2";
-  const tablet_Card2Container = "";
-  const tabletXL_Card2Container = "";
-  const laptop_Card2Container = "";
-  const desktop_Card2Container = "";
+    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-5 mobile:row-span-2"
+  const tablet_Card2Container = ""
+  const tabletXL_Card2Container = ""
+  const laptop_Card2Container = ""
+  const desktop_Card2Container = ""
   const desktopXL_Card2Container =
-    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-5 desktopXL:row-start-3 desktopXL:row-span-4";
+    "desktopXL:grid-cols-10 desktopXL:grid-rows-8 desktop:col-span-2 desktopXL:m-0 desktopXL:col-start-5 desktopXL:row-start-3 desktopXL:row-span-4"
+  const desktopXXL_Card2Container = "grid-rows-8 p-0"
+
+  //INFO Card 2 - Plan Name
+  const default_Card2PlanName = "text-lg font-bold text-center text-sky-800 "
+  const mobileSM_Card2PlanName =
+    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-1"
+  const mobile_Card2PlanName = ""
+  const tablet_Card2PlanName = ""
+  const tabletXL_Card2PlanName = ""
+  const laptop_Card2PlanName = ""
+  const desktop_Card2PlanName = ""
+  const desktopXL_Card2PlanName =
+    "desktopXL:col-start-2 desktopXL:p-0 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
+  const desktopXXL_Card2PlanName =
+    "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5"
+
+  //INFO Card 2 - Main Price
+  const default_Card2MainPrice =
+    "mb-4 text-5xl font-bold text-center text-blue-600"
+  const mobileSM_Card2MainPrice =
+    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-2"
+  const mobile_Card2MainPrice = ""
+  const tablet_Card2MainPrice = ""
+  const tabletXL_Card2MainPrice = ""
+  const laptop_Card2MainPrice = ""
+  const desktop_Card2MainPrice = ""
+  const desktopXL_Card2MainPrice =
+    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-6xl"
+  const desktopXXL_Card2MainPrice =
+    "desktopXXL:col-start-3 desktopXXL:col-span-6 desktopXXL:row-start-2 desktopXXL:text-6xl"
+
+  //INFO Card 2  -Features
+  const default_Card2Features = "text-sm pt-5"
+  const mobile_Card2Features =
+    "mobile:col-start-1 mobile:mt-3 mobile:col-span-4 mobile:row-start-1"
+  const mobileSM_Card2Features = ""
+  const tablet_Card2Features = ""
+  const tabletXL_Card2Features = ""
+  const laptop_Card2Features = ""
+  const desktop_Card2Features = ""
+  const desktopXL_Card2Features =
+    "desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:col-span-8 desktopXL:text-sm desktopXL:space-y-1"
+  const desktopXXL_Card2Features =
+    "desktopXXL:col-start-2 desktopXXL:col-span-6 desktopXXL:row-start-3 desktopXXL:text-base desktopXXL:space-y-4"
+
+  //INFO Card 2 - Button
+  const default_Card2Button =
+    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700"
+  const mobileSM_Card2Button = ""
+  const mobile_Card2Button =
+    "mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1"
+  const tablet_Card2Button = ""
+  const tabletXL_Card2Button = ""
+  const laptop_Card2Button = ""
+  const desktop_Card2Button = ""
+  const desktopXL_Card2Button =
+    "desktopXL:col-start-2 desktopXL:row-start-8 desktopXL:mb-8 desktopXL:col-span-8"
+  const desktopXXL_Card2Button =
+    "desktopXXL:col-start-2 desktopXXL:row-start-7 desktopXXL:row-span-2 desktopXXL:m-0 desktopXXL:hover:drop-shadow-md desktopXXL:hover:drop-shadow-lg"
+
   // #endregion
 
   // #region Card 3
 
   //INFO Card 3
   const default_Card3Container =
-    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-6 p-4 rounded-lg shadow-lg bg-slate-100";
-  const mobileSM_Card3Container = "";
+    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-6 p-4 rounded-lg shadow-lg bg-slate-100"
+  const mobileSM_Card3Container = ""
   const mobile_Card3Container =
-    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-7 mobile:row-span-2";
-  const tablet_Card3Container = "";
-  const tabletXL_Card3Container = "";
-  const laptop_Card3Container = "";
-  const desktop_Card3Container = "";
+    "mobile:col-start-1 mobile:p-2 mobile:m-2 mobile:col-span-8 mobile:row-start-7 mobile:row-span-2"
+  const tablet_Card3Container = ""
+  const tabletXL_Card3Container = ""
+  const laptop_Card3Container = ""
+  const desktop_Card3Container = ""
   const desktopXL_Card3Container =
-    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-8 desktopXL:row-start-3 desktopXL:row-span-4";
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:col-start-8 desktopXL:row-start-3 desktopXL:row-span-4"
+  const desktopXXL_Card3Container = ""
   // #endregion
 
   return (
@@ -195,6 +298,7 @@ export function PricingCard() {
         ${laptop_PaymentsContainer}
         ${desktop_PaymentsContainer}
         ${desktopXL_PaymentsContainer}
+        ${desktopXXL_PaymentsContainer}
         `}
         >
           {/*INFO Payments Title */}
@@ -208,6 +312,7 @@ export function PricingCard() {
           ${laptop_PaymentsTitle}
           ${desktop_PaymentsTitle}
           ${desktopXL_PaymentsTitle}
+          ${desktopXXL_PaymentsTitle}
           `}
           >
             Pricing
@@ -224,6 +329,7 @@ export function PricingCard() {
           ${laptop_ContactDetails}
           ${desktop_ContactDetails}
           ${desktopXL_ContactDetails}
+          ${desktopXXL_ContactDetails}
           `}
           >
             If you would like a custom quote please contact:{" "}
@@ -248,6 +354,8 @@ export function PricingCard() {
             ${laptop_Card1Container}
             ${desktop_Card1Container}
             ${desktopXL_Card1Container}
+            ${desktopXXL_Card1Container}
+
             `}
             >
               {/*INFO Card 1 - Plan Name */}
@@ -261,6 +369,7 @@ export function PricingCard() {
             ${laptop_Card1PlanName}
             ${desktop_Card1PlanName}
             ${desktopXL_Card1PlanName}
+            ${desktopXXL_Card1PlanName}
             `}
               >
                 <FaUser className="inline-block mr-1" size={20} />
@@ -277,6 +386,7 @@ export function PricingCard() {
             ${laptop_Card1MainPrice}
             ${desktop_Card1MainPrice}
             ${desktopXL_Card1MainPrice}
+            ${desktopXXL_Card1MainPrice}
             `}
               >
                 $300
@@ -292,33 +402,94 @@ export function PricingCard() {
             ${laptop_Card1Features}
             ${desktop_Card1Features}
             ${desktopXL_Card1Features}
+            ${desktopXXL_Card1Features}
             `}
               >
-                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
+                <li
+                  className={`
+                ${default_Card1Features}
+                ${mobileSM_Card1Features}
+                ${mobile_Card1Features}
+                ${tablet_Card1Features}
+                ${tabletXL_Card1Features}
+                ${laptop_Card1Features}
+                ${desktop_Card1Features}
+                ${desktopXL_Card1Features}
+                ${desktopXXL_Card1Features}
+                `}
+                >
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800"> Up To 5 Pages</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
+                <li
+                  className={`
+                ${default_Card1Features}
+                ${mobileSM_Card1Features}
+                ${mobile_Card1Features}
+                ${tablet_Card1Features}
+                ${tabletXL_Card1Features}
+                ${laptop_Card1Features}
+                ${desktop_Card1Features}
+                ${desktopXL_Card1Features}
+                ${desktopXXL_Card1Features}
+                `}
+                >
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800">Unlimited Revisions</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
+                <li
+                  className={`
+                ${default_Card1Features}
+                ${mobileSM_Card1Features}
+                ${mobile_Card1Features}
+                ${tablet_Card1Features}
+                ${tabletXL_Card1Features}
+                ${laptop_Card1Features}
+                ${desktop_Card1Features}
+                ${desktopXL_Card1Features}
+                ${desktopXXL_Card1Features}
+                `}
+                >
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
-                  <span className="text-sky-800">100% Ownership Rights</span>
+                  <span className="text-sky-800">All Source Code Provided</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
+                <li
+                  className={`
+                ${default_Card1Features}
+                ${mobileSM_Card1Features}
+                ${mobile_Card1Features}
+                ${tablet_Card1Features}
+                ${tabletXL_Card1Features}
+                ${laptop_Card1Features}
+                ${desktop_Card1Features}
+                ${desktopXL_Card1Features}
+                ${desktopXXL_Card1Features}
+                `}
+                >
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800">Contact Form</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
+                <li
+                  className={`
+                ${default_Card1Features}
+                ${mobileSM_Card1Features}
+                ${mobile_Card1Features}
+                ${tablet_Card1Features}
+                ${tabletXL_Card1Features}
+                ${laptop_Card1Features}
+                ${desktop_Card1Features}
+                ${desktopXL_Card1Features}
+                ${desktopXXL_Card1Features}
+                `}
+                >
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
@@ -336,6 +507,7 @@ export function PricingCard() {
             ${laptop_Card1Button}
             ${desktop_Card1Button}
             ${desktopXL_Card1Button}
+            ${desktopXXL_Card1Button}
             `}
               >
                 Order Now
@@ -353,48 +525,97 @@ export function PricingCard() {
             ${laptop_Card2Container}
             ${desktop_Card2Container}
             ${desktopXL_Card2Container}
+            ${desktopXXL_Card2Container}
             `}
             >
-              <h2 className="mb-4 text-lg font-bold text-center text-sky-800 mobile:col-start-5 mobile:col-span-4 mobile:row-start-1">
+              <h2
+                className={`
+              ${default_Card2PlanName}
+              ${mobileSM_Card2PlanName}
+              ${mobile_Card2PlanName}
+              ${tablet_Card2PlanName}
+              ${tabletXL_Card2PlanName}
+              ${laptop_Card2PlanName}
+              ${desktop_Card2PlanName}
+              ${desktopXL_Card2PlanName}
+              ${desktopXXL_Card2PlanName}
+              `}
+              >
                 <FaUser className="inline-block mr-1" size={20} />
-                <span>Basic Plan</span>
+                <span>Gold Plan</span>
               </h2>
-              <div className="mb-4 text-5xl font-bold text-center text-blue-600 mobile:col-start-5 mobile:col-span-4 mobile:row-start-2">
+              <div
+                className={`
+              ${default_Card2MainPrice}
+              ${mobileSM_Card2MainPrice}
+              ${mobile_Card2MainPrice}
+              ${tablet_Card2MainPrice}
+              ${tabletXL_Card2MainPrice}
+              ${laptop_Card2MainPrice}
+              ${desktop_Card2MainPrice}
+              ${desktopXL_Card2MainPrice}
+              ${desktopXXL_Card2MainPrice}
+              `}
+              >
                 $300
               </div>
-              <ul className="text-sm mobile:col-start-1 mobile:mt-3 mobile:col-span-4 mobile:row-start-1">
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+              <ul
+                className={`
+              ${default_Card2Features}
+              ${mobileSM_Card2Features}
+              ${mobile_Card2Features}
+              ${tablet_Card2Features}
+              ${tabletXL_Card2Features}
+              ${laptop_Card2Features}
+              ${desktop_Card2Features}
+              ${desktopXL_Card2Features}
+              ${desktopXXL_Card2Features}
+              `}
+              >
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800"> Up To 5 Pages</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800">Unlimited Revisions</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
-                  <span className="text-sky-800">100% Ownership Rights</span>
+                  <span className="text-sky-800">All Source Code Provided</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800">Contact Form</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800">100% Ownership Rights</span>
                 </li>
               </ul>
-              <button className="self-center p-2 m-4 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700 mobile:col-start-5 mobile:col-span-4 mobile:row-start-4 mobile:row-span-1 desktopXL:col-start-2 desktopXL:col-span-8 desktopXL:p-5 desktopXL:text-3xl">
+              <button
+                className={`
+              ${default_Card2Button}
+              ${mobileSM_Card2Button}
+              ${mobile_Card2Button}
+              ${tablet_Card2Button}
+              ${tabletXL_Card2Button}
+              ${laptop_Card2Button}
+              ${desktop_Card2Button}
+              ${desktopXL_Card2Button}
+              ${desktopXXL_Card2Button}
+              `}
+              >
                 Order Now
               </button>
             </div>
@@ -414,37 +635,37 @@ export function PricingCard() {
             >
               <h2 className="mb-4 text-lg font-bold text-center text-sky-800 mobile:col-start-5 mobile:col-span-4 mobile:row-start-1">
                 <FaUser className="inline-block mr-1" size={20} />
-                <span>Basic Plan</span>
+                <span>Platinum Plan</span>
               </h2>
               <div className="mb-4 text-5xl font-bold text-center text-blue-600 mobile:col-start-5 mobile:col-span-4 mobile:row-start-2">
                 $300
               </div>
               <ul className="text-sm mobile:col-start-1 mobile:mt-3 mobile:col-span-4 mobile:row-start-1">
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800"> Up To 5 Pages</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800">Unlimited Revisions</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
-                  <span className="text-sky-800">100% Ownership Rights</span>
+                  <span className="text-sky-800">All Source Code Provided</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
                   <span className="text-sky-800">Contact Form</span>
                 </li>
-                <li className="flex items-center p-2 mb-2 mobile:mb-0 mobile:p-0">
+                <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                   <span className="icon-span">
                     <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                   </span>
@@ -461,7 +682,7 @@ export function PricingCard() {
       {/* </div> */}
       {/* </div> */}
     </>
-  );
+  )
 }
 
-export default PricingCard;
+export default PricingCard
