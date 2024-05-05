@@ -21,6 +21,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const desktop_HeroServicesContainer = "";
   const desktopXL_HeroServicesContainer =
     "desktopXL:grid-cols-12 desktopXL:col-span-12 desktopXL:row-start-6 desktopXL:self-center desktopXL:mt-0";
+  const desktopXXL_HeroServicesContainer = "";
 
   //INFO Web Design
   const default_webServicesContainer = "col-start-2 col-span-2";
@@ -34,6 +35,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const desktop_WebServicesContainer = "";
   const desktopXL_WebServicesContainer =
     "desktopXL:col-start-1 desktopXL:col-span-3 desktopXL:row-start-1 desktopXL:mx-20";
+  const desktopXXL_WebServicesContainer = "";
 
   const webDRef1 = useRef(null);
   const webhrRef1 = useRef(null);
@@ -50,6 +52,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const desktop_dataTransferContainer = "";
   const desktopXL_dataTransferContainer =
     "desktopXL:col-start-4 desktopXL:col-span-3 desktopXL:row-start-1 desktopXL:mx-20";
+  const desktopXXL_dataTransferContainer = "";
 
   const webDRef2 = useRef(null);
   const webhrRef2 = useRef(null);
@@ -66,6 +69,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const desktop_SEOContainer = "";
   const desktopXL_SEOContainer =
     "desktopXL:col-start-7 desktopXL:col-span-3 desktopXL:row-start-1 desktopXL:mx-20";
+  const desktopXXL_SEOContainer = "";
 
   const webDRef3 = useRef(null);
   const webhrRef3 = useRef(null);
@@ -82,6 +86,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const desktop_additionalWebDesignContainer = "";
   const desktopXL_additionalWebDesignContainer =
     "desktopXL:col-start-10 desktopXL:col-span-3 desktopXL:row-start-1 desktopXL:mx-20";
+  const desktopXXL_additionalWebDesignContainer = "";
 
   const webDRef4 = useRef(null);
   const webhrRef4 = useRef(null);
@@ -92,8 +97,6 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   //SECTION Services Animations
   useEffect(() => {
     const handleResize = () => {
-      // console.clear();
-      console.log(window.innerWidth, window.innerHeight);
       //DesktopXL
       if (window.innerWidth > 1535) {
         setDesktopAnimation(true);
@@ -336,6 +339,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   ${laptop_HeroServicesContainer}
   ${desktop_HeroServicesContainer}
   ${desktopXL_HeroServicesContainer}
+  ${desktopXXL_HeroServicesContainer}
   `}
     >
       {/*INFO-JSX Web Design */}
@@ -349,7 +353,9 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
       ${tabletXL_webServicesContainer}
       ${laptop_webServicesContainer}
       ${desktop_WebServicesContainer}
-      ${desktopXL_WebServicesContainer}`}
+      ${desktopXL_WebServicesContainer}
+      ${desktopXXL_WebServicesContainer}
+    `}
       >
         <hr ref={webhrRef1} className="border-t-2 border-gray-300" />
         <div className="mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg">
@@ -376,7 +382,9 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
       ${tabletXL_dataTransferContainer}
       ${laptop_dataTransferContainer}
       ${desktop_dataTransferContainer}
-      ${desktopXL_dataTransferContainer}`}
+      ${desktopXL_dataTransferContainer}
+      ${desktopXXL_dataTransferContainer}
+      `}
       >
         <hr ref={webhrRef2} className="border-t-2 border-gray-300" />
         <div className="mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg">
@@ -403,6 +411,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
     ${laptop_SEOContainer}
     ${desktop_SEOContainer}
     ${desktopXL_SEOContainer}
+    ${desktopXXL_SEOContainer}
     `}
       >
         <hr ref={webhrRef3} className="border-t-2 border-gray-300" />
@@ -430,6 +439,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
       ${laptop_additionalWebDesignContainer}
       ${desktop_additionalWebDesignContainer}
       ${desktopXL_additionalWebDesignContainer}
+      ${desktopXXL_additionalWebDesignContainer}
       `}
       >
         <hr ref={webhrRef4} className="border-t-2 border-gray-300" />

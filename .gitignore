@@ -25,5 +25,5 @@ dist-ssr
 
 #custom files
 src/availableComponents.json
-logseq
-journels
+*logseq
+*journals
