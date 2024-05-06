@@ -13,22 +13,21 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const mobileSM_HeroServicesContainer =
     "mobileSM:grid-cols-4 mobileSM:col-span-4 mobileSM:row-start-4 mobileSM:row-span-2 mobileSM:mx-4 mobileSM:gap-4";
 
-  const mobile_HeroServicesContainer =
-    "mobile:grid-cols-4 mobile:col-span-4 mobile:row-start-4 mobile:row-span-2 mobile:mx-4 mobile:gap-4";
-  const tablet_HeroServicesContainer = "";
+  const mobile_HeroServicesContainer = "mobile:gap-4";
+  const tablet_HeroServicesContainer =
+    "tablet:row-start-4 tablet:gap-2 tablet:mt-2";
   const tabletXL_HeroServicesContainer = "";
   const laptop_HeroServicesContainer = "";
   const desktop_HeroServicesContainer = "";
   const desktopXL_HeroServicesContainer =
-    "desktopXL:grid-cols-12 desktopXL:col-span-12 desktopXL:row-start-6 desktopXL:self-center desktopXL:mt-0";
+    "desktopXL:grid-cols-12 desktopXL:col-span-12 desktopXL:row-start-6 desktopXL:gap-4 desktopXL:self-center desktopXL:mt-0";
   const desktopXXL_HeroServicesContainer = "";
 
   //INFO Web Design
   const default_webServicesContainer = "col-start-2 col-span-2";
   const mobileSM_webServicesContainer =
     "mobileSM:col-start-1 mobileSM:col-span-2 mobileSM:row-start-2";
-  const mobile_webServicesContainer =
-    "mobile:col-start-1 mobile:col-span-2 mobile:row-start-2";
+  const mobile_webServicesContainer = "";
   const tablet_webServicesContainer = "";
   const tabletXL_webServicesContainer = "";
   const laptop_webServicesContainer = "";
@@ -40,12 +39,22 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const webDRef1 = useRef(null);
   const webhrRef1 = useRef(null);
 
+  const default_webServiceTitle =
+    "mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg";
+  const mobileSM_webServiceTitle = "";
+  const mobile_webServiceTitle = "";
+  const tablet_webServiceTitle = "tablet:mt-1";
+  const tabletXL_webServiceTitle = "";
+  const laptop_webServiceTitle = "";
+  const desktop_webServiceTitle = "";
+  const desktopXL_webServiceTitle = "";
+  const desktopXXL_webServiceTitle = "";
+
   //INFO Data Transfer
   const default_dataTransferContainer = "col-start-5 col-span-2";
   const mobileSM_dataTransferContainer =
     "mobileSM:col-start-3 mobileSM:col-span-2 mobileSM:row-start-2";
-  const mobile_dataTransferContainer =
-    "mobile:col-start-3 mobile:col-span-2 mobile:row-start-2";
+  const mobile_dataTransferContainer = "";
   const tablet_dataTransferContainer = "";
   const tabletXL_dataTransferContainer = "";
   const laptop_dataTransferContainer = "";
@@ -57,12 +66,22 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const webDRef2 = useRef(null);
   const webhrRef2 = useRef(null);
 
+  const default_dataTransferTitle =
+    "mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg";
+  const mobileSM_dataTransferTitle = "";
+  const mobile_dataTransferTitle = "";
+  const tablet_dataTransferTitle = "tablet:mt-1";
+  const tabletXL_dataTransferTitle = "";
+  const laptop_dataTransferTitle = "";
+  const desktop_dataTransferTitle = "";
+  const desktopXL_dataTransferTitle = "";
+  const desktopXXL_dataTransferTitle = "";
+
   //INFO SEO
   const default_SEOContainer = "col-start-3 col-span-2 ";
   const mobileSM_SEOContainer =
     "mobileSM:col-start-1 mobileSM:col-span-2 mobileSM:row-start-4";
-  const mobile_SEOContainer =
-    "mobile:col-start-1 mobile:col-span-2 mobile:row-start-4";
+  const mobile_SEOContainer = "";
   const tablet_SEOContainer = "";
   const tabletXL_SEOContainer = "";
   const laptop_SEOContainer = "";
@@ -74,12 +93,22 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const webDRef3 = useRef(null);
   const webhrRef3 = useRef(null);
 
+  const default_SEOTitle =
+    "mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg";
+  const mobileSM_SEOTitle = "";
+  const mobile_SEOTitle = "";
+  const tablet_SEOTitle = "tablet:mt-1";
+  const tabletXL_SEOTitle = "";
+  const laptop_SEOTitle = "";
+  const desktop_SEOTitle = "";
+  const desktopXL_SEOTitle = "";
+  const desktopXXL_SEOTitle = "";
+
   //INFO Custom Solutions
   const default_additionalWebDesignContainer = "col-span-2 col-start-4";
   const mobileSM_additionalWebDesignContainer =
     "mobileSM:col-start-3 mobileSM:col-span-2 mobileSM:row-start-4";
-  const mobile_additionalWebDesignContainer =
-    "mobile:col-start-3 mobile:col-span-2 mobile:row-start-4";
+  const mobile_additionalWebDesignContainer = "";
   const tablet_additionalWebDesignContainer = "";
   const tabletXL_additionalWebDesignContainer = "";
   const laptop_additionalWebDesignContainer = "";
@@ -90,6 +119,17 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
 
   const webDRef4 = useRef(null);
   const webhrRef4 = useRef(null);
+
+  const default_customSolutionsTitle =
+    "mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg";
+  const mobileSM_customSolutionsTitle = "";
+  const mobile_customSolutionsTitle = "";
+  const tablet_customSolutionsTitle = "tablet:mt-1";
+  const tabletXL_customSolutionsTitle = "";
+  const laptop_customSolutionsTitle = "";
+  const desktop_customSolutionsTitle = "";
+  const desktopXL_customSolutionsTitle = "";
+  const desktopXXL_customSolutionsTitle = "";
   //!SECTION Services - End
   //#endregion
 
@@ -358,15 +398,27 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
     `}
       >
         <hr ref={webhrRef1} className="border-t-2 border-gray-300" />
-        <div className="mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg">
+        <div
+          className={`
+        ${default_webServiceTitle}
+        ${mobileSM_webServiceTitle}
+        ${mobile_webServiceTitle}
+        ${tablet_webServiceTitle}
+        ${tabletXL_webServiceTitle}
+        ${laptop_webServiceTitle}
+        ${desktop_webServiceTitle}
+        ${desktopXL_webServiceTitle}
+        ${desktopXXL_webServiceTitle}s
+        `}
+        >
           Web Design
         </div>
-        <div className="mt-2 text-md mobileSM:text-sm desktopXL:text-2xl">
+        <div className="mt-2 text-md mobileSM:text-sm tablet:mt-1 desktopXL:text-2xl">
           We create modern and responsive websites that look great on all
           devices.
         </div>
 
-        <div className="col-start-1 col-span-3 mt-4 font-bold desktopXL:text-2xl text-yellow-500">
+        <div className="col-start-1 col-span-3 mt-4 font-bold tablet:mt-2 desktopXL:mt-4 desktopXL:text-2xl text-yellow-500">
           <a href="#">{">"} Learn More</a>
         </div>
       </div>
@@ -387,14 +439,26 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
       `}
       >
         <hr ref={webhrRef2} className="border-t-2 border-gray-300" />
-        <div className="mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg">
+        <div
+          className={`
+        ${default_dataTransferTitle}
+        ${mobileSM_dataTransferTitle}
+        ${mobile_dataTransferTitle}
+        ${tablet_dataTransferTitle}
+        ${tabletXL_dataTransferTitle}
+        ${laptop_dataTransferTitle}
+        ${desktop_dataTransferTitle}
+        ${desktopXL_dataTransferTitle}
+        ${desktopXXL_dataTransferTitle}
+        `}
+        >
           Data Transfer
         </div>
-        <div className="mt-2 text-md mobileSM:text-sm desktopXL:text-2xl">
+        <div className="mt-2 text-md mobileSM:text-sm tablet:mt-1 desktopXL:text-2xl">
           We transfer your existing website to a modern platform with ease.
         </div>
 
-        <div className="col-start-1 col-span-3 mt-4 font-bold desktopXL:text-2xl text-purple-500">
+        <div className="col-start-1 col-span-3 mt-4 font-bold tablet:mt-2 desktopXL:mt-4 desktopXL:text-2xl text-purple-500">
           <a href="#">{">"} Learn More</a>
         </div>
       </div>
@@ -415,14 +479,26 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
     `}
       >
         <hr ref={webhrRef3} className="border-t-2 border-gray-300" />
-        <div className="mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg">
+        <div
+          className={`
+        ${default_SEOTitle}
+        ${mobileSM_SEOTitle}
+        ${mobile_SEOTitle}
+        ${tablet_SEOTitle}
+        ${tabletXL_SEOTitle}
+        ${laptop_SEOTitle}
+        ${desktop_SEOTitle}
+        ${desktopXL_SEOTitle}
+        ${desktopXXL_SEOTitle}
+        `}
+        >
           SEO
         </div>
-        <div className="mt-2 text-md mobileSM:text-sm desktopXL:text-2xl">
+        <div className="mt-2 text-md mobileSM:text-sm tablet:mt-1 desktopXL:text-2xl">
           We help your website rank higher in search engines.
         </div>
 
-        <div className="col-start-1 col-span-3 mt-4 font-bold desktopXL:text-2xl text-green-500">
+        <div className="col-start-1 col-span-3 mt-4 font-bold tablet:mt-2 desktopXL:mt-4 desktopXL:text-2xl text-green-500">
           <a href="#">{">"} Learn More</a>
         </div>
       </div>
@@ -443,14 +519,26 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
       `}
       >
         <hr ref={webhrRef4} className="border-t-2 border-gray-300" />
-        <div className="mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg">
+        <div
+          className={`
+        ${default_customSolutionsTitle}
+        ${mobileSM_customSolutionsTitle}
+        ${mobile_customSolutionsTitle}
+        ${tablet_customSolutionsTitle}
+        ${tabletXL_customSolutionsTitle}
+        ${laptop_customSolutionsTitle}
+        ${desktop_customSolutionsTitle}
+        ${desktopXL_customSolutionsTitle}
+        ${desktopXXL_customSolutionsTitle}
+        `}
+        >
           Custom Solutions
         </div>
-        <div className="mt-2 text-md mobileSM:text-sm desktopXL:text-2xl">
+        <div className="mt-2 text-md mobileSM:text-sm tablet:mt-1 desktopXL:text-2xl">
           Advanced, innovative solutions for complex web design challenges.
         </div>
 
-        <div className="col-start-1 col-span-3 mt-4 font-bold desktopXL:text-2xl text-blue-500">
+        <div className="col-start-1 col-span-3 mt-4 font-bold tablet:mt-2 desktopXL:mt-4 desktopXL:text-2xl text-blue-500">
           <a href="#">{">"} Learn More</a>
         </div>
       </div>

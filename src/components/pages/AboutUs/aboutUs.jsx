@@ -64,8 +64,9 @@ function AboutSection() {
 
   const desktop_AboutUsTitle =
     "desktop:col-start-1 desktop:col-span-5 desktop:text-left desktop:row-start-2 desktop:text-7xl desktop:mx-32 desktop:mb-32";
-  const desktopXL_AboutUsTitle = "";
-  const desktopXXL_AboutUsTitle = "";
+  const desktopXL_AboutUsTitle = "desktopXL:mt-32";
+  const desktopXXL_AboutUsTitle =
+    "desktopXXL:row-start-2 desktopXXL:col-end-5 desktopXXL:mt-20";
 
   //INFO About Us Information
   const default_AboutUsInformation =
@@ -77,8 +78,8 @@ function AboutSection() {
   const laptop_AboutUsInformation = "laptop:row-start-3";
   const desktop_AboutUsInformation =
     "desktop:col-start-1 desktop:row-start-3 desktop:col-span-4 desktop:m-32";
-  const desktopXL_AboutUsInformation = "";
-  const desktopXXL_AboutUsInformation = "";
+  const desktopXL_AboutUsInformation = "desktopXL:mt-44 desktopXL:text-xl";
+  const desktopXXL_AboutUsInformation = "desktopXXL:row-start-3";
 
   //INFO Start Your Project Button
   const default_StartYourProjectButton =
@@ -93,8 +94,9 @@ function AboutSection() {
     "laptop:col-start-4 laptop:row-start-3 laptop:mt-16 laptop:col-span-2";
   const desktop_StartYourProjectButton =
     " desktop:col-start-2 desktop:row-start-5 desktop:col-span-2";
-  const desktopXL_StartYourProjectButton = "";
-  const desktopXXL_StartYourProjectButton = "";
+  const desktopXL_StartYourProjectButton = "desktopXL:mt-32";
+  const desktopXXL_StartYourProjectButton =
+    "desktopXXL:col-start-2 desktopXXL:row-start-4";
 
   //INFO Carousel
   const default_Carousel =
@@ -106,8 +108,9 @@ function AboutSection() {
   const laptop_Carousel =
     "laptop:col-start-1 laptop:col-span-8 laptop:row-start-5 laptop:row-span-3";
   const desktop_Carousel = "";
-  const desktopXL_Carousel = "";
-  const desktopXXL_Carousel = "";
+  const desktopXL_Carousel =
+    "desktopXL:col-start-4 desktopXL:ml-64 desktopXL:row-start-2 desktopXL:row-span-5";
+  const desktopXXL_Carousel = "desktopXXL:row-start-2 desktopXXL:row-span-6";
 
   return (
     <div ref={ref} className="relative overflow-hidden h-lvh overscroll-none">
@@ -123,6 +126,7 @@ function AboutSection() {
       <div
         className={`
         ${default_AboutUsContainer}
+        ${mobileSM_AboutUsContainer}
         ${mobile_AboutUsContainer}
         ${tablet_AboutUsContainer}
         ${tabletXL_AboutUsContainer}
@@ -175,7 +179,7 @@ function AboutSection() {
           <p className="pt-3 mt-2 information-bottom">
             If you are looking to streamline your business, enhance user
             experience, or bring your ideas to life.{" "}
-            <span className="text-purple-800">Infinite Pixel </span>
+            <span className="text-green-500 font-bold">Infinite Pixel </span>
             is here to help your reach your goals.
           </p>
         </div>

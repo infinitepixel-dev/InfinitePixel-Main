@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa6";
-
+import barberShop from "./../../assets/barbershop.png";
 const CarouselWithButtons = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const images = [
-    "https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg",
+    barberShop,
     "https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg",
     "https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg",
     "https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg",
