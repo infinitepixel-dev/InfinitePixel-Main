@@ -147,7 +147,7 @@ function HeroPage() {
 
           {/*INFO-JSX Hero Container */}
           <div
-            id="heroPageElement"
+            id="heroPage"
             className={`
           ${default_HeroContainer}
           ${mobileSM_HeroContainer}
