@@ -68,7 +68,7 @@ function HeroPage() {
   const default_HeroContainer =
     "grid grid-cols-12 grid-rows-8 z-10  h-lvh overflow-hidden";
   const mobileSM_HeroContainer = "mobileSM:grid-cols-4 mobileSM:grid-rows-6";
-  const mobile_HeroContainer = "mobile:grid-cols-4 mobile:grid-rows-6";
+  const mobile_HeroContainer = "";
   const tablet_HeroContainer = "";
   const tabletXL_HeroContainer = "";
   const laptop_HeroContainer = "";
@@ -82,9 +82,8 @@ function HeroPage() {
     "col-span-8 col-start-1 text-md text-center self-center font-bold leading-normal tracking-normal";
   const mobileSM_HeroTitle =
     "mobileSM:text-2xl mobileSM:row-start-1 mobileSM:row-span-2 mobileSM:col-span-4 mobileSM:col-start-1 mobileSM:mb-20";
-  const mobile_HeroTitle =
-    "mobile:text-2xl mobile:row-start-1 mobile:row-span-2 mobile:col-span-2 mobile:col-start-2 mobile:mb-20";
-  const tablet_HeroTitle = "";
+  const mobile_HeroTitle = "mobile:col-start-2 mobile:col-span-2";
+  const tablet_HeroTitle = "tablet:col-start-2 tablet:text-xl tablet:mb-10";
   const tabletXL_HeroTitle = "";
   const laptop_HeroTitle = "";
   const desktop_HeroTitle = "";
@@ -97,16 +96,16 @@ function HeroPage() {
     "self-center col-start-2 col-span-2 p-5 row-start-2 mb-12 text-3xl leading-normal tracking-tight text-center duration-700 rounded-lg text-slate-100 bg-violet-700 md:text-2x1 hover:bg-violet-800 shadow-xl";
   const mobileSM_GetStartedButton =
     "mobileSM:col-start-1 mobileSM:col-span-4 mobileSM:row-start-2 mobileSM:text-2xl mobileSM:row-span-2 mobileSM:mb-14 mobileSM:mx-16";
-  const mobile_GetStartedButton =
-    "mobile:col-start-1 mobile:col-span-4 mobile:row-start-2 mobile:text-2xl mobile:row-span-2 mobile:mb-14 mobile:mx-16";
-  const tablet_GetStartedButton = "";
+  const mobile_GetStartedButton = "";
+  const tablet_GetStartedButton =
+    "tablet:col-start-2 tablet:col-span-2 tablet:mt-2 tablet:p-2 tablet:text-2xl";
   const tabletXL_GetStartedButton = "";
   const laptop_GetStartedButton = "";
   const desktop_GetStartedButton = "";
   const desktopXL_GetStartedButton =
-    "desktopXL:col-start-2 desktopXL:col-span-4 desktopXL:row-start-3 desktopXL:py-6 desktopXL:text-5xl desktopXL:self-center desktopXL:mx-0 desktopXL:mt-64 ";
+    "desktopXL:col-start-2 desktopXL:col-span-4 desktopXL:row-start-4 desktopXL:py-6 desktopXL:text-5xl desktopXL:self-center desktopXL:mx-0 desktopXL:mt-32 ";
   const desktopXXL_GetStartedButton = "";
-
+  -72;
   //#endregion
 
   //!SECTION Device Layouts
