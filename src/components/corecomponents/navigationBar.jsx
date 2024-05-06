@@ -69,10 +69,12 @@ const SidebarHamburger = ({ developerMode }) => {
 
           style={{
             backgroundColor: isPaymentsPage
-              ? "#4657d743"
+              ? "#0000009d"
               : isAboutPage
-                ? "#58b3271d"
+                ? "#1b1e308a"
                 : "",
+            //backdrop blur
+            backdropFilter: isAboutPage ? "blur(20px)" : "blur(0px)",
           }}
         >
           {/* row 1 - BEGIN */}
@@ -82,7 +84,7 @@ const SidebarHamburger = ({ developerMode }) => {
             <div
               className="containerBG py-10"
               style={{
-                backgroundColor: "#0000008b",
+                // backgroundColor: "#0000008b",
                 width: "180px",
                 marginLeft: "-16px",
                 /* -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%); */
@@ -98,21 +100,23 @@ const SidebarHamburger = ({ developerMode }) => {
             >
               {/* navigate to / */}
 
-              <Link to="/" className="block text-lg">
+              <a href="#heroPage" className="block text-lg">
                 Home
-              </Link>
+              </a>
               {/* row 3 */}
-              <Link to="" className="block text-lg">
+              <a href="#aboutUs" className="block text-lg">
                 About
-              </Link>
+              </a>
               {/* row 4 */}
+              <a href="#paymentInformation" className="block text-lg">
+                Pricing
+              </a>
+
+              {/* row 5 */}
               <Link to="" className="block text-lg">
                 Services
               </Link>
-              {/* row 5 */}
-              <Link to="" className="block text-lg">
-                Contact
-              </Link>
+
               {/* row 6 */}
               {developerMode ? (
                 <Link to="/infini-docs" className="block text-lg">

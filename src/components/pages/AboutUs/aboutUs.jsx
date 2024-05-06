@@ -124,6 +124,7 @@ function AboutSection() {
       />
       {/* INFO About Us Container */}
       <div
+        id="aboutUs"
         className={`
         ${default_AboutUsContainer}
         ${mobileSM_AboutUsContainer}
