@@ -59,7 +59,7 @@ export function PricingCard() {
   //INFO Payments Container
 
   const default_PaymentsContainer =
-    "z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8"
+    "z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8 bg-gradient-to-r from-zinc-50 to-zinc-400"
   const mobileSM_PaymentsContainer = "mobileSM:grid-cols-8"
   const mobile_PaymentsContainer = ""
   const tablet_PaymentsContainer = ""
@@ -71,7 +71,7 @@ export function PricingCard() {
 
   //INFO Payments Title
   const default_PaymentsTitle =
-    "row-start-2 p-2 text-2xl text-center font-bold leading-normal tracking-normal"
+    "row-start-2 p-2 text-2xl text-center font-bold leading-normal tracking-normal text-slate-800"
   const mobileSM_PaymentsTitle =
     "mobileSM:col-start-4 mobileSM:col-span-2 mobileSM:text-2xl mobileSM:row-start-1"
   const mobile_PaymentsTitle = ""
@@ -86,7 +86,7 @@ export function PricingCard() {
 
   //INFO Contact Details
   const default_ContactDetails =
-    "row-start-2 col-start-2 col-span-8 p-5 italic self-center text-center text-1xl"
+    "row-start-2 col-start-2 col-span-8 p-5 italic text-slate-800 self-center text-center text-1xl"
   const mobileSM_ContactDetails =
     "mobileSM:col-start-1 mobileSM:row-start-1 mobileSM:mt-24 mobileSM:mb-0"
   const mobile_ContactDetails = ""
@@ -102,7 +102,7 @@ export function PricingCard() {
 
   //INFO Card 1 - Container
   const default_Card1Container =
-    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-300 z-10"
+    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-800 z-10"
   const mobileSM_Card1Container =
     "mobileSM:grid-cols-8 mobileSM:col-start-1 mobileSM:col-span-8 mx-2 mobileSM:row-start-3 row-span-2"
   const mobile_Card1Container = ""
@@ -116,7 +116,7 @@ export function PricingCard() {
   const desktopXXL_Card1Container = "desktopXXL:p-0 desktopXXL:m-0"
 
   //INFO Card 1 - Plan Name
-  const default_Card1PlanName = "text-lg font-bold text-center text-sky-800 "
+  const default_Card1PlanName = "text-lg font-bold text-center text-slate-800"
   const mobileSM_Card1PlanName =
     "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-1"
   const mobile_Card1PlanName = ""
@@ -125,7 +125,7 @@ export function PricingCard() {
   const laptop_Card1PlanName = ""
   const desktop_Card1PlanName = ""
   const desktopXL_Card1PlanName =
-    "desktopXL:col-start-2 desktopXL:p-0 text-slate-50 mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
+    "desktopXL:col-start-2 desktopXL:p-0 mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
   const desktopXXL_Card1PlanName =
     "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5"
 
@@ -180,7 +180,7 @@ export function PricingCard() {
 
   //INFO Card 1 - Container
   const default_Card2Container =
-    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-300 z-10"
+    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-800 z-10"
   const mobileSM_Card2Container =
     "mobileSM:grid-cols-8 mobileSM:col-start-1 mobileSM:col-span-8 mx-2 mobileSM:row-start-3 row-span-2"
   const mobile_Card2Container = ""
@@ -194,7 +194,7 @@ export function PricingCard() {
   const desktopXXL_Card2Container = "desktopXXL:p-0 desktopXXL:m-0"
 
   //INFO Card 1 - Plan Name
-  const default_Card2PlanName = "text-lg font-bold text-center text-sky-800 "
+  const default_Card2PlanName = "text-lg font-bold text-center text-slate-800 "
   const mobileSM_Card2PlanName =
     "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-1"
   const mobile_Card2PlanName = ""
@@ -203,7 +203,7 @@ export function PricingCard() {
   const laptop_Card2PlanName = ""
   const desktop_Card2PlanName = ""
   const desktopXL_Card2PlanName =
-    "desktopXL:col-start-2 desktopXL:p-0 text-slate-50 mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
+    "desktopXL:col-start-2 desktopXL:p-0 desktopXL:mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
   const desktopXXL_Card2PlanName =
     "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5"
 
@@ -258,7 +258,7 @@ export function PricingCard() {
 
   //INFO Card 1 - Container
   const default_Card3Container =
-    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-300 z-10"
+    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-800 z-10"
   const mobileSM_Card3Container =
     "mobileSM:grid-cols-8 mobileSM:col-start-1 mobileSM:col-span-8 mx-2 mobileSM:row-start-3 row-span-2"
   const mobile_Card3Container = ""
@@ -272,7 +272,7 @@ export function PricingCard() {
   const desktopXXL_Card3Container = "desktopXXL:p-0 desktopXXL:m-0"
 
   //INFO Card 1 - Plan Name
-  const default_Card3PlanName = "text-lg font-bold text-center text-sky-800 "
+  const default_Card3PlanName = "text-lg font-bold text-center text-slate-800 "
   const mobileSM_Card3PlanName =
     "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-1"
   const mobile_Card3PlanName = ""
@@ -281,7 +281,7 @@ export function PricingCard() {
   const laptop_Card3PlanName = ""
   const desktop_Card3PlanName = ""
   const desktopXL_Card3PlanName =
-    "desktopXL:col-start-2 desktopXL:p-0 text-slate-50 mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
+    "desktopXL:col-start-2 desktopXL:p-0 mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
   const desktopXXL_Card3PlanName =
     "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5"
 
@@ -426,7 +426,7 @@ export function PricingCard() {
                   }}
                 >
                   <path
-                    fill="#5000ca"
+                    fill="#cd7f32"
                     fillOpacity="1"
                     d="M0,192L80,165.3C160,139,320,85,480,90.7C640,96,800,160,960,160C1120,160,1280,96,1360,64L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
                   ></path>
@@ -445,7 +445,7 @@ export function PricingCard() {
               `}
                 >
                   <FaUser className="inline-block mr-1" size={20} />
-                  <span>Gold Plan</span>
+                  <span>Bronze Plan</span>
                 </h2>
                 <div
                   className={`
@@ -480,19 +480,19 @@ export function PricingCard() {
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800"> Up To 5 Pages</span>
+                    <span className="text-slate-200"> Up To 5 Pages</span>
                   </li>
                   <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">Unlimited Revisions</span>
+                    <span className="text-slate-200">Unlimited Revisions</span>
                   </li>
                   <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800 ">
+                    <span className="text-slate-200 ">
                       All Source Code Provided
                     </span>
                   </li>
@@ -500,13 +500,15 @@ export function PricingCard() {
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">Contact Form</span>
+                    <span className="text-slate-200">Contact Form</span>
                   </li>
                   <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800 ">100% Ownership Rights</span>
+                    <span className="text-slate-200 ">
+                      100% Ownership Rights
+                    </span>
                   </li>
                 </ul>
                 <button
@@ -555,7 +557,7 @@ export function PricingCard() {
                   }}
                 >
                   <path
-                    fill="#5000ca"
+                    fill="#d3af37"
                     fillOpacity="1"
                     d="M0,192L80,165.3C160,139,320,85,480,90.7C640,96,800,160,960,160C1120,160,1280,96,1360,64L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
                   ></path>
@@ -609,19 +611,19 @@ export function PricingCard() {
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800"> Up To 5 Pages</span>
+                    <span className="text-slate-200"> Up To 5 Pages</span>
                   </li>
                   <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">Unlimited Revisions</span>
+                    <span className="text-slate-200">Unlimited Revisions</span>
                   </li>
                   <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800 ">
+                    <span className="text-slate-200 ">
                       All Source Code Provided
                     </span>
                   </li>
@@ -629,13 +631,15 @@ export function PricingCard() {
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">Contact Form</span>
+                    <span className="text-slate-200">Contact Form</span>
                   </li>
                   <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800 ">100% Ownership Rights</span>
+                    <span className="text-slate-200 ">
+                      100% Ownership Rights
+                    </span>
                   </li>
                 </ul>
                 <button
@@ -683,7 +687,7 @@ export function PricingCard() {
                   }}
                 >
                   <path
-                    fill="#5000ca"
+                    fill="#e5e4e2"
                     fillOpacity="1"
                     d="M0,192L80,165.3C160,139,320,85,480,90.7C640,96,800,160,960,160C1120,160,1280,96,1360,64L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
                   ></path>
@@ -702,7 +706,7 @@ export function PricingCard() {
               `}
                 >
                   <FaUser className="inline-block mr-1" size={20} />
-                  <span>Gold Plan</span>
+                  <span>Platinum Plan</span>
                 </h2>
                 <div
                   className={`
@@ -737,19 +741,19 @@ export function PricingCard() {
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800"> Up To 5 Pages</span>
+                    <span className="text-slate-200"> Up To 5 Pages</span>
                   </li>
                   <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">Unlimited Revisions</span>
+                    <span className="text-slate-200">Unlimited Revisions</span>
                   </li>
                   <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800 ">
+                    <span className="text-slate-200 ">
                       All Source Code Provided
                     </span>
                   </li>
@@ -757,13 +761,15 @@ export function PricingCard() {
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">Contact Form</span>
+                    <span className="text-slate-200">Contact Form</span>
                   </li>
                   <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800 ">100% Ownership Rights</span>
+                    <span className="text-slate-200 ">
+                      100% Ownership Rights
+                    </span>
                   </li>
                 </ul>
                 <button
