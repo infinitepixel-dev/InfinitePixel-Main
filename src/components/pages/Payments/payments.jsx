@@ -1,331 +1,334 @@
 /* eslint-disable no-unused-vars */
 // Payments - Page 3
 
-import { useEffect, useContext, useRef } from "react";
-import { NavigationContext } from "../../../context/navigationContext";
+import { useEffect, useContext, useRef } from "react"
+import { NavigationContext } from "../../../context/navigationContext"
 
-import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6";
+import { FaCircleCheck, FaUser, FaCheckDouble } from "react-icons/fa6"
 
 export function PricingCard() {
-  const { setIsPaymentsPage } = useContext(NavigationContext);
-  const ref = useRef(null); // Reference to the component's DOM element
+  const { setIsPaymentsPage } = useContext(NavigationContext)
+  const ref = useRef(null) // Reference to the component's DOM element
 
   useEffect(() => {
     const handleResize = () => {
       // console.clear();
-      console.log(window.innerWidth, window.innerHeight);
+      console.log(window.innerWidth, window.innerHeight)
       //DesktopXL
       if (window.innerWidth > 2280) {
-        console.log("Desktop XXL");
+        console.log("Desktop XXL")
         // setDesktopAnimation(true)
       }
       //ALL Other Resolutions under DesktopXL
       else if (window.innerWidth < 1535) {
         // setDesktopAnimation(false)
       }
-    };
-    handleResize();
-  });
+    }
+    handleResize()
+  })
 
   // Intersection Observer to detect when the component is in view
   useEffect(() => {
-    const currentRef = ref.current;
+    const currentRef = ref.current
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const [entry] = entries;
-        setIsPaymentsPage(entry.isIntersecting);
+        const [entry] = entries
+        setIsPaymentsPage(entry.isIntersecting)
       },
       {
         root: null, // Using the viewport as the container
         rootMargin: "0px",
         threshold: 0.1, // 10% of the element should be visible
       }
-    );
+    )
 
     // Attach the observer to the ref element
     if (currentRef) {
-      observer.observe(currentRef);
+      observer.observe(currentRef)
     }
 
     // Clean up observer on component unmount
     return () => {
       if (currentRef) {
-        observer.unobserve(currentRef);
+        observer.unobserve(currentRef)
       }
-    };
-  }, [setIsPaymentsPage]);
+    }
+  }, [setIsPaymentsPage])
 
   //INFO Payments Container
 
   const default_PaymentsContainer =
-    "z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8";
-  const mobileSM_PaymentsContainer = "mobileSM:grid-cols-8";
-  const mobile_PaymentsContainer = "";
-  const tablet_PaymentsContainer = "";
-  const tabletXL_PaymentsContainer = "";
-  const laptop_PaymentsContainer = "";
-  const desktop_PaymentsContainer = "";
-  const desktopXL_PaymentsContainer = "desktopXL:grid-cols-10";
-  const desktopXXL_PaymentsContainer = "";
+    "z-10 grid w-full h-screen grid-cols-8 gap-1 overflow-hidden grid-rows-8"
+  const mobileSM_PaymentsContainer = "mobileSM:grid-cols-8"
+  const mobile_PaymentsContainer = ""
+  const tablet_PaymentsContainer = ""
+  const tabletXL_PaymentsContainer = ""
+  const laptop_PaymentsContainer = ""
+  const desktop_PaymentsContainer = ""
+  const desktopXL_PaymentsContainer = "desktopXL:grid-cols-10"
+  const desktopXXL_PaymentsContainer = ""
 
   //INFO Payments Title
   const default_PaymentsTitle =
-    "row-start-2 p-2 text-2xl text-center font-bold leading-normal tracking-normal";
+    "row-start-2 p-2 text-2xl text-center font-bold leading-normal tracking-normal"
   const mobileSM_PaymentsTitle =
-    "mobileSM:col-start-4 mobileSM:col-span-2 mobileSM:text-2xl mobileSM:row-start-1";
-  const mobile_PaymentsTitle = "";
-  const tablet_PaymentsTitle = "";
-  const tabletXL_PaymentsTitle = "";
-  const laptop_PaymentsTitle = "";
-  const desktop_PaymentsTitle = "";
+    "mobileSM:col-start-4 mobileSM:col-span-2 mobileSM:text-2xl mobileSM:row-start-1"
+  const mobile_PaymentsTitle = ""
+  const tablet_PaymentsTitle = ""
+  const tabletXL_PaymentsTitle = ""
+  const laptop_PaymentsTitle = ""
+  const desktop_PaymentsTitle = ""
   const desktopXL_PaymentsTitle =
-    "desktopXL:text-8xl desktopXL:col-start-5 col-span-2 desktopXL:p-5";
+    "desktopXL:text-8xl desktopXL:col-start-5 col-span-2 desktopXL:p-5"
   const desktopXXL_PaymentsTitle =
-    "desktopXXL:col-start-4 desktopXXL:col-span-4 desktopXXL:text-3x1";
+    "desktopXXL:col-start-4 desktopXXL:col-span-4 desktopXXL:text-3x1"
 
   //INFO Contact Details
   const default_ContactDetails =
-    "row-start-2 col-start-2 col-span-8 p-5 italic self-center text-center text-1xl";
+    "row-start-2 col-start-2 col-span-8 p-5 italic self-center text-center text-1xl"
   const mobileSM_ContactDetails =
-    "mobileSM:col-start-1 mobileSM:row-start-1 mobileSM:mt-24 mobileSM:mb-0";
-  const mobile_ContactDetails = "";
-  const tabletContactDetails = "";
-  const tabletXL_ContactDetails = "";
-  const laptop_ContactDetails = "";
-  const desktop_ContactDetails = "";
+    "mobileSM:col-start-1 mobileSM:row-start-1 mobileSM:mt-24 mobileSM:mb-0"
+  const mobile_ContactDetails = ""
+  const tabletContactDetails = ""
+  const tabletXL_ContactDetails = ""
+  const laptop_ContactDetails = ""
+  const desktop_ContactDetails = ""
   const desktopXL_ContactDetails =
-    "desktopXL:col-start-2 desktopXL:row-start-1 desktopXL:mt-48";
-  const desktopXXL_ContactDetails = "";
+    "desktopXL:col-start-2 desktopXL:row-start-1 desktopXL:mt-48"
+  const desktopXXL_ContactDetails = ""
 
   // #region Card 1
 
   //INFO Card 1 - Container
   const default_Card1Container =
-    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-300 z-10";
+    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-300 z-10"
   const mobileSM_Card1Container =
-    "mobileSM:grid-cols-8 mobileSM:col-start-1 mobileSM:col-span-8 mx-2 mobileSM:row-start-3 row-span-2";
-  const mobile_Card1Container = "";
+    "mobileSM:grid-cols-8 mobileSM:col-start-1 mobileSM:col-span-8 mx-2 mobileSM:row-start-3 row-span-2"
+  const mobile_Card1Container = ""
 
-  const tablet_Card1Container = "";
-  const tabletXL_Card1Container = "";
-  const laptop_Card1Container = "";
-  const desktop_Card1Container = "";
+  const tablet_Card1Container = ""
+  const tabletXL_Card1Container = ""
+  const laptop_Card1Container = ""
+  const desktop_Card1Container = ""
   const desktopXL_Card1Container =
-    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:m-0 desktopXL:p-0 desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:row-span-4";
-  const desktopXXL_Card1Container = "desktopXXL:p-0 desktopXXL:m-0";
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:m-0 desktopXL:p-0 desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:row-span-4"
+  const desktopXXL_Card1Container = "desktopXXL:p-0 desktopXXL:m-0"
 
   //INFO Card 1 - Plan Name
-  const default_Card1PlanName = "text-lg font-bold text-center text-sky-800 ";
+  const default_Card1PlanName = "text-lg font-bold text-center text-sky-800 "
   const mobileSM_Card1PlanName =
-    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-1";
-  const mobile_Card1PlanName = "";
-  const tablet_Card1PlanName = "";
-  const tabletXL_Card1PlanName = "";
-  const laptop_Card1PlanName = "";
-  const desktop_Card1PlanName = "";
+    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-1"
+  const mobile_Card1PlanName = ""
+  const tablet_Card1PlanName = ""
+  const tabletXL_Card1PlanName = ""
+  const laptop_Card1PlanName = ""
+  const desktop_Card1PlanName = ""
   const desktopXL_Card1PlanName =
-    "desktopXL:col-start-2 desktopXL:p-0 text-slate-50 mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl";
+    "desktopXL:col-start-2 desktopXL:p-0 text-slate-50 mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
   const desktopXXL_Card1PlanName =
-    "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5";
+    "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5"
 
   //INFO Card 1 - Main Price
   const default_Card1MainPrice =
-    "mb-4 text-5xl font-bold text-center text-blue-600";
+    "mb-4 text-5xl font-bold text-center text-blue-600"
   const mobileSM_Card1MainPrice =
-    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-2";
-  const mobile_Card1MainPrice = "";
-  const tablet_Card1MainPrice = "";
-  const tabletXL_Card1MainPrice = "";
-  const laptop_Card1MainPrice = "";
-  const desktop_Card1MainPrice = "";
+    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-2"
+  const mobile_Card1MainPrice = ""
+  const tablet_Card1MainPrice = ""
+  const tabletXL_Card1MainPrice = ""
+  const laptop_Card1MainPrice = ""
+  const desktop_Card1MainPrice = ""
   const desktopXL_Card1MainPrice =
-    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-5xl";
+    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-5xl"
   const desktopXXL_Card1MainPrice =
-    "desktopXXL:col-start-3 desktopXXL:col-span-6 desktopXXL:row-start-2 desktopXXL:text-6xl";
+    "desktopXXL:col-start-2 desktopXXL:m-0 desktopXXL:row-start-2 desktopXXL:text-6xl"
 
   //INFO Card 1 - Features Container
-  const default_Card1FeaturesContainer = "text-sm pt-5";
+  const default_Card1FeaturesContainer = "text-sm pt-5"
   const mobileSM_Card1FeaturesContainer =
-    "mobileSM:col-start-1 mobileSM:mt-3 mobileSM:col-span-4 mobileSM:row-start-1";
-  const mobile_Card1FeaturesContainer = "";
+    "mobileSM:col-start-1 mobileSM:mt-3 mobileSM:col-span-4 mobileSM:row-start-1"
+  const mobile_Card1FeaturesContainer = ""
 
-  const tablet_Card1FeaturesContainer = "";
-  const tabletXL_Card1FeaturesContainer = "";
-  const laptop_Card1FeaturesContainer = "";
-  const desktop_Card1FeaturesContainer = "";
+  const tablet_Card1FeaturesContainer = ""
+  const tabletXL_Card1FeaturesContainer = ""
+  const laptop_Card1FeaturesContainer = ""
+  const desktop_Card1FeaturesContainer = ""
   const desktopXL_Card1FeaturesContainer =
-    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:mt-14 desktopXL:col-span-8 desktopXL:text-sm desktopXL:space-y-1";
+    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:mt-14 desktopXL:col-span-8 desktopXL:text-sm desktopXL:space-y-0"
   const desktopXXL_Card1FeaturesContainer =
-    "desktopXXL:col-start-2 desktopXXL:col-span-6 desktopXXL:row-start-3 desktopXXL:text-base desktopXXL:space-y-4";
+    "desktopXXL:col-start-2 desktopXXL:col-span-6 desktopXXL:m-0 desktopXXL:p-0 desktopXXL:row-start-3 desktopXXL:text-base desktopXXL:space-y-2"
 
   //INFO Card 1 - Button
   const default_Card1Button =
-    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700";
+    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700"
   const mobileSM_Card1Button =
-    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-4 mobileSM:row-span-1";
-  const mobile_Card1Button = "";
-  const tablet_Card1Button = "";
-  const tabletXL_Card1Button = "";
-  const laptop_Card1Button = "";
-  const desktop_Card1Button = "";
+    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-4 mobileSM:row-span-1"
+  const mobile_Card1Button = ""
+  const tablet_Card1Button = ""
+  const tabletXL_Card1Button = ""
+  const laptop_Card1Button = ""
+  const desktop_Card1Button = ""
   const desktopXL_Card1Button =
-    "desktopXL:col-start-2 desktopXL:row-start-8 desktopXL:mb-8 desktopXL:col-span-8 ";
+    "desktopXL:col-start-2 desktopXL:row-start-8 desktopXL:mb-8 desktopXL:col-span-8 "
   const desktopXXL_Card1Button =
-    "desktopXXL:col-start-2 desktopXXL:row-start-7 desktopXXL:row-span-2 desktopXXL:m-0 desktopXXL:hover:drop-shadow-md desktopXXL:hover:drop-shadow-lg";
+    "desktopXXL:col-start-2 desktopXXL:row-start-6 desktopXXL:hover:drop-shadow-md desktopXXL:hover:drop-shadow-lg"
 
   // #endregion
 
   // #region Card 2
-  //INFO Card 2 - container
+
+  //INFO Card 1 - Container
   const default_Card2Container =
-    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-2 row-start-4 p-4 rounded-lg shadow-lg bg-slate-100";
+    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-300 z-10"
   const mobileSM_Card2Container =
-    "mobileSM:col-start-1 mobileSM:p-2 mobileSM:m-2 mobileSM:col-span-8 mobileSM:row-start-5 mobileSM:row-span-2";
-  const mobile_Card2Container = "";
-  const tablet_Card2Container = "";
-  const tabletXL_Card2Container = "";
-  const laptop_Card2Container = "";
-  const desktop_Card2Container = "";
+    "mobileSM:grid-cols-8 mobileSM:col-start-1 mobileSM:col-span-8 mx-2 mobileSM:row-start-3 row-span-2"
+  const mobile_Card2Container = ""
+
+  const tablet_Card2Container = ""
+  const tabletXL_Card2Container = ""
+  const laptop_Card2Container = ""
+  const desktop_Card2Container = ""
   const desktopXL_Card2Container =
-    "desktopXL:grid-cols-10 desktopXL:grid-rows-8 desktop:col-span-2 desktopXL:m-0 desktopXL:col-start-5 desktopXL:row-start-3 desktopXL:row-span-4";
-  const desktopXXL_Card2Container = "grid-rows-8 p-0";
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:m-0 desktopXL:p-0 desktopXL:col-start-5 desktopXL:row-start-3 desktopXL:row-span-4"
+  const desktopXXL_Card2Container = "desktopXXL:p-0 desktopXXL:m-0"
 
-  //INFO Card 2 - Plan Name
-  const default_Card2PlanName = "text-lg font-bold text-center text-sky-800 ";
+  //INFO Card 1 - Plan Name
+  const default_Card2PlanName = "text-lg font-bold text-center text-sky-800 "
   const mobileSM_Card2PlanName =
-    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-1";
-  const mobile_Card2PlanName = "";
-  const tablet_Card2PlanName = "";
-  const tabletXL_Card2PlanName = "";
-  const laptop_Card2PlanName = "";
-  const desktop_Card2PlanName = "";
+    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-1"
+  const mobile_Card2PlanName = ""
+  const tablet_Card2PlanName = ""
+  const tabletXL_Card2PlanName = ""
+  const laptop_Card2PlanName = ""
+  const desktop_Card2PlanName = ""
   const desktopXL_Card2PlanName =
-    "desktopXL:col-start-2 desktopXL:p-0 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl";
+    "desktopXL:col-start-2 desktopXL:p-0 text-slate-50 mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
   const desktopXXL_Card2PlanName =
-    "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5";
+    "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5"
 
-  //INFO Card 2 - Main Price
+  //INFO Card 1 - Main Price
   const default_Card2MainPrice =
-    "mb-4 text-5xl font-bold text-center text-blue-600";
+    "mb-4 text-5xl font-bold text-center text-blue-600"
   const mobileSM_Card2MainPrice =
-    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-2";
-  const mobile_Card2MainPrice = "";
-  const tablet_Card2MainPrice = "";
-  const tabletXL_Card2MainPrice = "";
-  const laptop_Card2MainPrice = "";
-  const desktop_Card2MainPrice = "";
+    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-2"
+  const mobile_Card2MainPrice = ""
+  const tablet_Card2MainPrice = ""
+  const tabletXL_Card2MainPrice = ""
+  const laptop_Card2MainPrice = ""
+  const desktop_Card2MainPrice = ""
   const desktopXL_Card2MainPrice =
-    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-6xl";
+    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-5xl"
   const desktopXXL_Card2MainPrice =
-    "desktopXXL:col-start-3 desktopXXL:col-span-6 desktopXXL:row-start-2 desktopXXL:text-6xl";
+    "desktopXXL:col-start-2 desktopXXL:m-0 desktopXXL:row-start-2 desktopXXL:text-6xl"
 
-  //INFO Card 2  - Features Container
-  const default_Card2Features = "text-sm pt-5";
-  const mobileSM_Card2Features =
-    "mobileSM:col-start-1 mobileSM:mt-3 mobileSM:col-span-4 mobileSM:row-start-1";
-  const mobile_Card2Features = "";
-  const tablet_Card2Features = "";
-  const tabletXL_Card2Features = "";
-  const laptop_Card2Features = "";
-  const desktop_Card2Features = "";
-  const desktopXL_Card2Features =
-    "desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:col-span-8 desktopXL:text-sm desktopXL:space-y-1";
-  const desktopXXL_Card2Features =
-    "desktopXXL:col-start-2 desktopXXL:col-span-6 desktopXXL:row-start-3 desktopXXL:text-base desktopXXL:space-y-4";
+  //INFO Card 1 - Features Container
+  const default_Card2FeaturesContainer = "text-sm pt-5"
+  const mobileSM_Card2FeaturesContainer =
+    "mobileSM:col-start-1 mobileSM:mt-3 mobileSM:col-span-4 mobileSM:row-start-1"
+  const mobile_Card2FeaturesContainer = ""
 
-  //INFO Card 2 - Button
+  const tablet_Card2FeaturesContainer = ""
+  const tabletXL_Card2FeaturesContainer = ""
+  const laptop_Card2FeaturesContainer = ""
+  const desktop_Card2FeaturesContainer = ""
+  const desktopXL_Card2FeaturesContainer =
+    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:mt-14 desktopXL:col-span-8 desktopXL:text-sm desktopXL:space-y-0"
+  const desktopXXL_Card2FeaturesContainer =
+    "desktopXXL:col-start-2 desktopXXL:col-span-6 desktopXXL:m-0 desktopXXL:p-0 desktopXXL:row-start-3 desktopXXL:text-base desktopXXL:space-y-2"
+
+  //INFO Card 1 - Button
   const default_Card2Button =
-    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700";
+    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700"
   const mobileSM_Card2Button =
-    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-4 mobileSM:row-span-1";
-  const mobile_Card2Button = "";
-
-  const tablet_Card2Button = "";
-  const tabletXL_Card2Button = "";
-  const laptop_Card2Button = "";
-  const desktop_Card2Button = "";
+    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-4 mobileSM:row-span-1"
+  const mobile_Card2Button = ""
+  const tablet_Card2Button = ""
+  const tabletXL_Card2Button = ""
+  const laptop_Card2Button = ""
+  const desktop_Card2Button = ""
   const desktopXL_Card2Button =
-    "desktopXL:col-start-2 desktopXL:row-start-8 desktopXL:mb-8 desktopXL:col-span-8";
+    "desktopXL:col-start-2 desktopXL:row-start-8 desktopXL:mb-8 desktopXL:col-span-8 "
   const desktopXXL_Card2Button =
-    "desktopXXL:col-start-2 desktopXXL:row-start-7 desktopXXL:row-span-2 desktopXXL:m-0 desktopXXL:hover:drop-shadow-md desktopXXL:hover:drop-shadow-lg";
+    "desktopXXL:col-start-2 desktopXXL:row-start-6 desktopXXL:hover:drop-shadow-md desktopXXL:hover:drop-shadow-lg"
 
   // #endregion
 
   // #region Card 3
-  //INFO Card 3 - container
+
+  //INFO Card 1 - Container
   const default_Card3Container =
-    "grid grid-cols-8 grid-rows-4 col-span-1 col-start-1 row-start-4 p-4 rounded-lg shadow-lg bg-slate-100";
+    "grid grid-cols-8 relative grid-rows-4 col-span-8 col-start-2 row-start-2 rounded-lg shadow-lg bg-slate-300 z-10"
   const mobileSM_Card3Container =
-    "mobileSM:col-start-1 mobileSM:p-2 mobileSM:m-2 mobileSM:col-span-8 mobileSM:row-start-7 mobileSM:row-span-2";
-  const mobile_Card3Container = "";
-  const tablet_Card3Container = "";
-  const tabletXL_Card3Container = "";
-  const laptop_Card3Container = "";
-  const desktop_Card3Container = "";
+    "mobileSM:grid-cols-8 mobileSM:col-start-1 mobileSM:col-span-8 mx-2 mobileSM:row-start-3 row-span-2"
+  const mobile_Card3Container = ""
+
+  const tablet_Card3Container = ""
+  const tabletXL_Card3Container = ""
+  const laptop_Card3Container = ""
+  const desktop_Card3Container = ""
   const desktopXL_Card3Container =
-    "desktopXL:grid-cols-10 desktopXL:grid-rows-8 desktop:col-span-2 desktopXL:m-0 desktopXL:col-start-8 desktopXL:row-start-3 desktopXL:row-span-4";
-  const desktopXXL_Card3Container =
-    "desktopXXL:col-start-8 desktopXXL:col-span-2 desktopXXL:row-start-3 desktopXXL:row-span-4 desktopXXL:m-0 desktopXXL:hover:drop-shadow-md desktopXXL:hover:drop-shadow-lg";
+    "desktopXL:grid-cols-10 desktop:col-span-2 desktopXL:m-0 desktopXL:p-0 desktopXL:col-start-8 desktopXL:row-start-3 desktopXL:row-span-4"
+  const desktopXXL_Card3Container = "desktopXXL:p-0 desktopXXL:m-0"
 
-  //INFO Card 3 - Plan Name
-  const default_Card3PlanName = "text-lg font-bold text-center text-sky-800 ";
+  //INFO Card 1 - Plan Name
+  const default_Card3PlanName = "text-lg font-bold text-center text-sky-800 "
   const mobileSM_Card3PlanName =
-    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-1";
-  const mobile_Card3PlanName = "";
-  const tablet_Card3PlanName = "";
-  const tabletXL_Card3PlanName = "";
-  const laptop_Card3PlanName = "";
-  const desktop_Card3PlanName = "";
+    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-1"
+  const mobile_Card3PlanName = ""
+  const tablet_Card3PlanName = ""
+  const tabletXL_Card3PlanName = ""
+  const laptop_Card3PlanName = ""
+  const desktop_Card3PlanName = ""
   const desktopXL_Card3PlanName =
-    "desktopXL:col-start-2 desktopXL:p-0 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl";
+    "desktopXL:col-start-2 desktopXL:p-0 text-slate-50 mt-4 desktopXL:row-start-1 desktopXL:col-span-8 desktopXL:text-1xl"
   const desktopXXL_Card3PlanName =
-    "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5";
+    "desktopXXL:col-start-3 desktopXXL:col-span-6 p-5"
 
-  //INFO Card 3 - Main Price
+  //INFO Card 1 - Main Price
   const default_Card3MainPrice =
-    "mb-4 text-5xl font-bold text-center text-blue-600";
+    "mb-4 text-5xl font-bold text-center text-blue-600"
   const mobileSM_Card3MainPrice =
-    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-2";
-  const mobile_Card3MainPrice = "";
-  const tablet_Card3MainPrice = "";
-  const tabletXL_Card3MainPrice = "";
-  const laptop_Card3MainPrice = "";
-  const desktop_Card3MainPrice = "";
+    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-2"
+  const mobile_Card3MainPrice = ""
+  const tablet_Card3MainPrice = ""
+  const tabletXL_Card3MainPrice = ""
+  const laptop_Card3MainPrice = ""
+  const desktop_Card3MainPrice = ""
   const desktopXL_Card3MainPrice =
-    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-6xl";
+    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:col-span-8 desktopXL:text-5xl"
   const desktopXXL_Card3MainPrice =
-    "desktopXXL:col-start-3 desktopXXL:col-span-6 desktopXXL:row-start-2 desktopXXL:text-6xl";
+    "desktopXXL:col-start-2 desktopXXL:m-0 desktopXXL:row-start-2 desktopXXL:text-6xl"
 
-  //INFO Card 3 - Features Container
-  const default_Card3Features = "text-sm pt-5";
-  const mobileSM_Card3Features =
-    "mobileSM:col-start-1 mobileSM:mt-3 mobileSM:col-span-4 mobileSM:row-start-1";
-  const mobile_Card3Features = "";
-  const tablet_Card3Features = "";
-  const tabletXL_Card3Features = "";
-  const laptop_Card3Features = "";
-  const desktop_Card3Features = "";
-  const desktopXL_Card3Features =
-    "desktopXL:col-start-2 desktopXL:row-start-3 desktopXL:col-span-8 desktopXL:text-sm desktopXL:space-y-1";
-  const desktopXXL_Card3Features =
-    "desktopXXL:col-start-2 desktopXXL:col-span-6 desktopXXL:row-start-3 desktopXXL:text-base desktopXXL:space-y-4";
+  //INFO Card 1 - Features Container
+  const default_Card3FeaturesContainer = "text-sm pt-5"
+  const mobileSM_Card3FeaturesContainer =
+    "mobileSM:col-start-1 mobileSM:mt-3 mobileSM:col-span-4 mobileSM:row-start-1"
+  const mobile_Card3FeaturesContainer = ""
 
-  //INFO Card 3 - Button
+  const tablet_Card3FeaturesContainer = ""
+  const tabletXL_Card3FeaturesContainer = ""
+  const laptop_Card3FeaturesContainer = ""
+  const desktop_Card3FeaturesContainer = ""
+  const desktopXL_Card3FeaturesContainer =
+    "desktopXL:col-start-2 desktopXL:row-start-2 desktopXL:mt-14 desktopXL:col-span-8 desktopXL:text-sm desktopXL:space-y-0"
+  const desktopXXL_Card3FeaturesContainer =
+    "desktopXXL:col-start-2 desktopXXL:col-span-6 desktopXXL:m-0 desktopXXL:p-0 desktopXXL:row-start-3 desktopXXL:text-base desktopXXL:space-y-2"
+
+  //INFO Card 1 - Button
   const default_Card3Button =
-    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700";
+    "self-center p-2 m-3 mb-6 text-lg font-bold text-white duration-500 bg-blue-600 rounded hover:bg-blue-700"
   const mobileSM_Card3Button =
-    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-4 mobileSM:row-span-1";
-  const mobile_Card3Button = "";
-
-  const tablet_Card3Button = "";
-  const tabletXL_Card3Button = "";
-  const laptop_Card3Button = "";
-  const desktop_Card3Button = "";
+    "mobileSM:col-start-5 mobileSM:col-span-4 mobileSM:row-start-4 mobileSM:row-span-1"
+  const mobile_Card3Button = ""
+  const tablet_Card3Button = ""
+  const tabletXL_Card3Button = ""
+  const laptop_Card3Button = ""
+  const desktop_Card3Button = ""
   const desktopXL_Card3Button =
-    "desktopXL:col-start-2 desktopXL:row-start-8 desktopXL:mb-8 desktopXL:col-span-8";
+    "desktopXL:col-start-2 desktopXL:row-start-8 desktopXL:mb-8 desktopXL:col-span-8 "
   const desktopXXL_Card3Button =
-    "desktopXXL:col-start-2 desktopXXL:row-start-7 desktopXXL:row-span-2 desktopXXL:m-0 desktopXXL:hover:drop-shadow-md desktopXXL:hover:drop-shadow-lg";
+    "desktopXXL:col-start-2 desktopXXL:row-start-6 desktopXXL:hover:drop-shadow-md desktopXXL:hover:drop-shadow-lg"
 
   // #endregion
 
@@ -413,7 +416,7 @@ export function PricingCard() {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="100 0 900 278"
-                  className="col-start-1 row-start-1 row-span-2 col-span-full w-full rounded-lg"
+                  className="w-full col-start-1 row-span-2 row-start-1 rounded-lg col-span-full"
                   style={{
                     top: "0",
                     left: "0",
@@ -539,6 +542,24 @@ export function PricingCard() {
             ${desktopXXL_Card2Container}
             `}
               >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="100 0 900 278"
+                  className="w-full col-start-1 row-span-2 row-start-1 rounded-lg col-span-full"
+                  style={{
+                    top: "0",
+                    left: "0",
+                    position: "absolute",
+                    transform: "rotate(-180deg)",
+                    zIndex: -1,
+                  }}
+                >
+                  <path
+                    fill="#5000ca"
+                    fillOpacity="1"
+                    d="M0,192L80,165.3C160,139,320,85,480,90.7C640,96,800,160,960,160C1120,160,1280,96,1360,64L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+                  ></path>
+                </svg>
                 <h2
                   className={`
               ${default_Card2PlanName}
@@ -572,49 +593,49 @@ export function PricingCard() {
                 </div>
                 <ul
                   className={`
-              ${default_Card2Features}
-              ${mobileSM_Card2Features}
-              ${mobile_Card2Features}
-              ${tablet_Card2Features}
-              ${tabletXL_Card2Features}
-              ${laptop_Card2Features}
-              ${desktop_Card2Features}
-              ${desktopXL_Card2Features}
-              ${desktopXXL_Card2Features}
+              ${default_Card2FeaturesContainer}
+              ${mobileSM_Card2FeaturesContainer}
+              ${mobile_Card2FeaturesContainer}
+              ${tablet_Card2FeaturesContainer}
+              ${tabletXL_Card2FeaturesContainer}
+              ${laptop_Card2FeaturesContainer}
+              ${desktop_Card2FeaturesContainer}
+              ${desktopXL_Card2FeaturesContainer}
+              ${desktopXXL_Card2FeaturesContainer}
               `}
                 >
                   {/*INFO-JSX Card 1 - Feature li */}
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
                     <span className="text-sky-800"> Up To 5 Pages</span>
                   </li>
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
                     <span className="text-sky-800">Unlimited Revisions</span>
                   </li>
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">
+                    <span className="text-sky-800 ">
                       All Source Code Provided
                     </span>
                   </li>
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
                     <span className="text-sky-800">Contact Form</span>
                   </li>
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">100% Ownership Rights</span>
+                    <span className="text-sky-800 ">100% Ownership Rights</span>
                   </li>
                 </ul>
                 <button
@@ -649,6 +670,24 @@ export function PricingCard() {
             ${desktopXXL_Card3Container}
             `}
               >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="100 0 900 278"
+                  className="w-full col-start-1 row-span-2 row-start-1 rounded-lg col-span-full"
+                  style={{
+                    top: "0",
+                    left: "0",
+                    position: "absolute",
+                    transform: "rotate(-180deg)",
+                    zIndex: -1,
+                  }}
+                >
+                  <path
+                    fill="#5000ca"
+                    fillOpacity="1"
+                    d="M0,192L80,165.3C160,139,320,85,480,90.7C640,96,800,160,960,160C1120,160,1280,96,1360,64L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+                  ></path>
+                </svg>
                 <h2
                   className={`
               ${default_Card3PlanName}
@@ -682,49 +721,49 @@ export function PricingCard() {
                 </div>
                 <ul
                   className={`
-              ${default_Card3Features}
-              ${mobileSM_Card3Features}
-              ${mobile_Card3Features}
-              ${tablet_Card3Features}
-              ${tabletXL_Card3Features}
-              ${laptop_Card3Features}
-              ${desktop_Card3Features}
-              ${desktopXL_Card3Features}
-              ${desktopXXL_Card3Features}
+              ${default_Card3FeaturesContainer}
+              ${mobileSM_Card3FeaturesContainer}
+              ${mobile_Card3FeaturesContainer}
+              ${tablet_Card3FeaturesContainer}
+              ${tabletXL_Card3FeaturesContainer}
+              ${laptop_Card3FeaturesContainer}
+              ${desktop_Card3FeaturesContainer}
+              ${desktopXL_Card3FeaturesContainer}
+              ${desktopXXL_Card3FeaturesContainer}
               `}
                 >
                   {/*INFO-JSX Card 1 - Feature li */}
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
                     <span className="text-sky-800"> Up To 5 Pages</span>
                   </li>
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
                     <span className="text-sky-800">Unlimited Revisions</span>
                   </li>
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0  ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">
+                    <span className="text-sky-800 ">
                       All Source Code Provided
                     </span>
                   </li>
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
                     <span className="text-sky-800">Contact Form</span>
                   </li>
-                  <li className="flex items-center p-2 mb-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
+                  <li className="flex items-center p-2 mx-2 desktopXL:p-2 mobile:mb-0 mobile:p-0 ">
                     <span className="icon-span">
                       <FaCircleCheck size={18} style={{ color: "#20c600" }} />
                     </span>
-                    <span className="text-sky-800">100% Ownership Rights</span>
+                    <span className="text-sky-800 ">100% Ownership Rights</span>
                   </li>
                 </ul>
                 <button
@@ -750,7 +789,7 @@ export function PricingCard() {
       {/* </div> */}
       {/* </div> */}
     </>
-  );
+  )
 }
 
-export default PricingCard;
+export default PricingCard
