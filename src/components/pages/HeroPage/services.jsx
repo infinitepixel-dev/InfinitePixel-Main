@@ -408,7 +408,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
         ${laptop_webServiceTitle}
         ${desktop_webServiceTitle}
         ${desktopXL_webServiceTitle}
-        ${desktopXXL_webServiceTitle}s
+        ${desktopXXL_webServiceTitle}
         `}
         >
           Web Design
