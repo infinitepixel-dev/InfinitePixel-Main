@@ -74,7 +74,7 @@ const SidebarHamburger = ({ developerMode }) => {
                 ? "#1b1e308a"
                 : "",
             //backdrop blur
-            backdropFilter: isAboutPage ? "blur(20px)" : "blur(0px)",
+            backdropFilter: "blur(20px)",
           }}
         >
           {/* row 1 - BEGIN */}

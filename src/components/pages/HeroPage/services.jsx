@@ -12,7 +12,6 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
     "grid grid-cols-12 self-center text-center col-start-1 col-span-12 row-start-4";
   const mobileSM_HeroServicesContainer =
     "mobileSM:grid-cols-4 mobileSM:col-span-4 mobileSM:row-start-4 mobileSM:row-span-2 mobileSM:mx-4 mobileSM:gap-4";
-
   const mobile_HeroServicesContainer = "mobile:gap-4";
   const tablet_HeroServicesContainer =
     "tablet:row-start-4 tablet:gap-2 tablet:mt-2";
@@ -39,6 +38,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const webDRef1 = useRef(null);
   const webhrRef1 = useRef(null);
 
+  //INFO Web Design Title
   const default_webServiceTitle =
     "mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg";
   const mobileSM_webServiceTitle = "";
@@ -66,6 +66,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const webDRef2 = useRef(null);
   const webhrRef2 = useRef(null);
 
+  //INFO Data Transfer Title
   const default_dataTransferTitle =
     "mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg";
   const mobileSM_dataTransferTitle = "";
@@ -93,6 +94,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const webDRef3 = useRef(null);
   const webhrRef3 = useRef(null);
 
+  //INFO SEO Title
   const default_SEOTitle =
     "mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg";
   const mobileSM_SEOTitle = "";
@@ -120,6 +122,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
   const webDRef4 = useRef(null);
   const webhrRef4 = useRef(null);
 
+  //INFO Custom Solutions Title
   const default_customSolutionsTitle =
     "mt-2 text-3xl font-bold leading-normal tracking-normal mobileSM:text-lg mobile:text-lg";
   const mobileSM_customSolutionsTitle = "";
@@ -408,7 +411,7 @@ function Services({ desktopAnimation, setDesktopAnimation }) {
         ${laptop_webServiceTitle}
         ${desktop_webServiceTitle}
         ${desktopXL_webServiceTitle}
-        ${desktopXXL_webServiceTitle}s
+        ${desktopXXL_webServiceTitle}
         `}
         >
           Web Design

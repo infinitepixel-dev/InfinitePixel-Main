@@ -21,11 +21,11 @@ function HeroPage() {
 
   const heroRef = useRef(false);
 
+  //Intersection Observer for visibility detection
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        const isVisible = entries[0].isIntersecting;
-        setIsVisible(isVisible);
+        setIsVisible(entries[0].isIntersecting);
       },
       { threshold: 0.8 } //0.8 means 80% of the element is visible
     );
@@ -34,7 +34,7 @@ function HeroPage() {
       observer.observe(heroRef.current);
     }
 
-    return () => observer.disconnect(); // Cleanup more generically
+    return () => observer.disconnect(); //disconnect the observer when the component is unmounted
   }, []);
 
   //if the hero page is left set isVisble to false
@@ -46,6 +46,7 @@ function HeroPage() {
     // console.log("isVisible", isVisible);
   }, [isVisible]);
 
+  // Mouse event listeners
   useEffect(() => {
     const hero = document.getElementById("heroPageElement");
     if (hero) {
@@ -56,11 +57,11 @@ function HeroPage() {
       hero.addEventListener("mouseleave", onMouseLeave, { passive: true });
 
       return () => {
-        hero.removeEventListener("mouseover", onMouseOver, { passive: true });
-        hero.removeEventListener("mouseleave", onMouseLeave, { passive: true });
+        hero.removeEventListener("mouseover", onMouseOver);
+        hero.removeEventListener("mouseleave", onMouseLeave);
       };
     }
-  }, [inHeroPage]);
+  }, []);
 
   //#region Page Layout
   //SECTION Device Layouts
