@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import DynamicComponentLoader from "./dynamicComponentLoader";
 import { logBreakpoints, logActiveBreakpoint } from "./components/breakpoints";
-
 import "./App.css";
 
 function App() {
