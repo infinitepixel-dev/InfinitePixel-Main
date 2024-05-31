@@ -16,6 +16,10 @@ function Home() {
       <div className="snap-page">
         <DynamicComponentLoader componentName="Payments" />
       </div>
+      {/*INFO-JSX Footer */}
+      <div className="snap-page">
+        <DynamicComponentLoader componentName="Footer" />
+      </div>
     </>
   );
 }

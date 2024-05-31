@@ -8,6 +8,7 @@ const componentsRegistry = {
   Payments: () => import("./components/pages/Payments/payments.jsx"),
   FadeIn: () => import("./components/effects/animations/fadeIn.jsx"),
   SiteRoutes: () => import("./components/corecomponents/siteRoutes.jsx"),
+  Footer: () => import("./components/pages/Footer/footer.jsx"),
   // Add more components here
 };
 
