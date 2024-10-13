@@ -9,29 +9,31 @@ import {
   FaNodeJs,
   FaSass,
 } from "react-icons/fa"
-import { RiTailwindCssFill } from "react-icons/ri" // Correct import for Tailwind CSS icon
+import { RiTailwindCssFill } from "react-icons/ri"
 
 const WhatWeDo = () => {
   const iconsRef = useRef(null) // Ref for the icons container
 
   useEffect(() => {
-    const totalWidth = iconsRef.current.scrollWidth // Total width of the icons
-    const animationDuration = 30 // Duration for smooth scrolling
+    if (iconsRef.current) {
+      const totalWidth = iconsRef.current.scrollWidth // Total width of the icons
+      const animationDuration = 30 // Duration for smooth scrolling
 
-    // GSAP Infinite Scroll Animation for the icons only
-    gsap.to(iconsRef.current, {
-      x: `-${totalWidth / 2}px`, // Move the icons left horizontally based on half the total width
-      duration: animationDuration, // Duration for smooth scrolling
-      ease: "linear",
-      repeat: -1, // Infinite repeat
-      modifiers: {
-        x: gsap.utils.unitize((x) => {
-          const parsedX = parseFloat(x)
-          return `${parsedX % (totalWidth / 2)}px` // Reset position to create the illusion of infinite scrolling
-        }),
-      },
-    })
-  }, []) // Empty dependency array means this runs once on mount
+      // GSAP Infinite Scroll Animation for the icons only
+      gsap.to(iconsRef.current, {
+        x: `-${totalWidth / 2}px`, // Move the icons left horizontally based on half the total width
+        duration: animationDuration, // Duration for smooth scrolling
+        ease: "linear",
+        repeat: -1, // Infinite repeat
+        modifiers: {
+          x: gsap.utils.unitize((x) => {
+            const parsedX = parseFloat(x)
+            return `${parsedX % (totalWidth / 2)}px` // Reset position to create the illusion of infinite scrolling
+          }),
+        },
+      })
+    }
+  }, [iconsRef]) // Ensure the effect runs when iconsRef is available
 
   return (
     <section className="relative py-20 text-cyan-950 bg-slate-200">
@@ -49,7 +51,8 @@ const WhatWeDo = () => {
             We know the challenges small businesses face, and we focus on
             delivering stunning, functional websites that are affordable without
             sacrificing quality. Whether you&apos;re looking for an online
-            presence or e-commerce functionality, we&apos;ve got you covered.
+            presence or establishing a presence, Infinite Pixel has got you
+            covered.
           </p>
           <p>
             Our expert team builds sites optimized for performance, usability,
@@ -66,7 +69,7 @@ const WhatWeDo = () => {
         style={{ height: "25em" }}
       >
         <div
-          className="absolute flex items-center w-full h-16"
+          className="absolute z-10 flex items-center w-full h-16"
           style={{
             backgroundColor: "#D2B48C", // Custom tan color
             height: "10em", // Make the bar span the entire height
