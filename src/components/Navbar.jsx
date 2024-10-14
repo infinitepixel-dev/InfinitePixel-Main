@@ -1,20 +1,89 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { FaBars, FaTimes } from "react-icons/fa"
+import gsap from "gsap"
 import ReactLogo from "../assets/logo.svg"
 
 const Navbar = () => {
   // State to manage the open/close state of the mobile menu
   const [isOpen, setIsOpen] = useState(false)
+  // State to manage whether the navbar is over the specific background
+  const [isOverBg, setIsOverBg] = useState(false)
 
-  // Toggle the mobile menu open/closed
+  // Ref for the text element
+  const textRef = useRef(null)
+
+  // Toggle the mobile menu open/closed and manage scroll
   const toggleMenu = () => {
     setIsOpen(!isOpen)
+
+    if (!isOpen) {
+      // Disable scrolling when menu is open
+      document.body.classList.add("overflow-hidden")
+    } else {
+      // Re-enable scrolling when menu is closed
+      document.body.classList.remove("overflow-hidden")
+    }
   }
 
-  // Close the mobile menu
+  // Close the mobile menu and re-enable scrolling
   const closeMenu = () => {
     setIsOpen(false)
+    document.body.classList.remove("overflow-hidden")
   }
+
+  // Detect scroll and check if the navbar is over the specific background
+  useEffect(() => {
+    const handleScroll = () => {
+      const targetSection = document.querySelector(".bg-target")
+
+      if (targetSection) {
+        const rect = targetSection.getBoundingClientRect()
+
+        // If the navbar is over the section with the #E2E8F0 background
+        if (rect.top <= 0 && rect.bottom >= 0) {
+          setIsOverBg(true)
+        } else {
+          setIsOverBg(false)
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  // GSAP animation for hover
+  useEffect(() => {
+    const textElement = textRef.current
+
+    if (textElement) {
+      textElement.addEventListener("mouseenter", () => {
+        gsap.to(textElement, {
+          color: "#ff6347", // Change to a different color (e.g., tomato)
+          duration: 0.1,
+          ease: "power1.inOut",
+        })
+      })
+
+      textElement.addEventListener("mouseleave", () => {
+        gsap.to(textElement, {
+          color: isOverBg ? "#000000" : "#F1F5F9", // Black or slate depending on background
+          duration: 0.2,
+          ease: "power1.inOut",
+        })
+      })
+    }
+
+    return () => {
+      if (textElement) {
+        textElement.removeEventListener("mouseenter", null)
+        textElement.removeEventListener("mouseleave", null)
+      }
+    }
+  }, [isOverBg]) // Re-run effect when background color changes
 
   return (
     <nav className="fixed top-0 left-0 z-50 flex items-center justify-between w-full p-4 bg-transparent">
@@ -27,14 +96,19 @@ const Navbar = () => {
       <div className="flex items-center ml-auto">
         <a
           href="#"
-          className="z-20 hidden mr-4 text-lg font-semibold transition duration-300 text-slate-100 hover:text-slate-200 md:block"
+          ref={textRef}
+          className={`z-20 hidden mr-4 text-lg font-semibold transition duration-300 md:block ${
+            isOverBg ? "text-black" : "text-slate-100"
+          }`}
         >
           Let&apos;s Create Something Together
         </a>
         {/* Menu button for toggling mobile menu */}
         <button
           onClick={toggleMenu}
-          className="z-50 text-2xl text-white transition-transform duration-300 transform focus:outline-none"
+          className={`z-50 text-2xl transition-transform duration-300 transform focus:outline-none ${
+            isOverBg ? "text-black" : "text-white"
+          }`}
           aria-label="Menu button"
         >
           {/* Rotate the icon based on state */}
