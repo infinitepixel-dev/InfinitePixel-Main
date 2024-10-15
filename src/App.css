@@ -1,24 +1,71 @@
-/* disable horizontal scroll */
-:root {
-  overflow-x: hidden;
-  scrollbar-width: none;
+h2 {
+  font-family: Fustat, sans-serif;
+  font-weight: 700;
+}
+h6 {
+  font-family: Fustat, sans-serif;
+  font-weight: 200;
 }
 
-/* Disable mouse pointer for buttons and interactive elements */
-/* body {
-  cursor: none;
-  overflow: hidden;
-  touch-action: manipulation;
-} */
-
-/* Add this to your App.css or equivalent file */
-.snap-container {
-  scroll-snap-type: y mandatory; /* ensure snapping occurs along the y-axis */
-  overflow-y: scroll;
-  height: 100vh; /* corrected from 100dvh */
-  scroll-behavior: smooth; /* enables smooth scrolling */
+.hamburger2 .bar2,
+.hamburger3 .bar3,
+.hamburger4 .bar4 {
+  top: 13.5px;
 }
 
-.icon-span {
-  padding-right: 8px;
+.hamburger4 .bar5 {
+  bottom: 0px;
+}
+
+.hamburger4 .bar {
+  transition: all 0.4s ease-in-out, transform 0.4s ease-in-out 0.4s;
+}
+
+.hamburger4 .bar2 {
+  width: 1px;
+  transform: rotate(90deg);
+  left: 13.5px;
+}
+
+.hamburger4 .bar3 {
+  width: 1px;
+  left: 13.5px;
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar1 {
+  top: 13.5px;
+  background-color: transparent;
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar2 {
+  left: 0px;
+  width: 30px;
+  transform: rotate(45deg);
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar3 {
+  left: 0;
+  width: 30px;
+  transform: rotate(-45deg);
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar4 {
+  background-color: transparent;
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar5 {
+  bottom: 13.5px;
+  background-color: transparent;
+}
+
+.hamburger-menu span {
+  transition: background-color 0.3s ease;
+}
+
+.text-white {
+  transition: color 0.3s ease;
+}
+
+.text-black {
+  transition: color 0.3s ease;
 }
