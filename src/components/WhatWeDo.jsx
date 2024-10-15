@@ -36,7 +36,7 @@ const WhatWeDo = () => {
   }, [iconsRef]) // Ensure the effect runs when iconsRef is available
 
   return (
-    <section className="relative py-20 text-cyan-950 bg-slate-200">
+    <section className="relative text-cyan-950 bg-slate-200">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="p-8 mb-8 text-4xl font-extrabold md:text-5xl">
           Professional Websites, Affordable Prices
@@ -64,10 +64,7 @@ const WhatWeDo = () => {
       </div>
 
       {/* Static GSAP Scroll Bar */}
-      <div
-        className="relative mt-16 overflow-hidden"
-        style={{ height: "25em" }}
-      >
+      <div className="relative overflow-hidden" style={{ height: "25em" }}>
         <div
           className="absolute z-10 flex items-center w-full h-16"
           style={{
