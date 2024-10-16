@@ -8,7 +8,7 @@ import Footer from "./components/Footer"
 
 function App() {
   return (
-    <div className="min-h-screen overflow-hidden bg-cyan-950">
+    <div className="min-h-screen overflow-hidden bg-neutral-200">
       {/* <CustomCursor /> */}
       <Navbar />
       <Header />

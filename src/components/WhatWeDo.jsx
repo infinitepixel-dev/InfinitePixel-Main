@@ -62,61 +62,6 @@ const WhatWeDo = () => {
           </p>
         </div>
       </div>
-
-      {/* Static GSAP Scroll Bar */}
-      <div className="relative overflow-hidden" style={{ height: "25em" }}>
-        <div
-          className="absolute z-10 flex items-center w-full h-16"
-          style={{
-            backgroundColor: "#D2B48C", // Custom tan color
-            height: "10em", // Make the bar span the entire height
-            left: "0%", // Move the bar left so it spans the screen
-            top: "30%", // Vertically center the bar
-          }}
-        >
-          <div
-            className="flex items-center text-slate-200"
-            ref={iconsRef}
-            style={{
-              display: "flex",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {/* Combined array of React Icons */}
-            {[
-              FaHtml5,
-              FaCss3,
-              FaBootstrap,
-              FaJs,
-              FaReact,
-              FaNodeJs,
-              RiTailwindCssFill,
-              FaSass,
-            ].map((Icon, index) => (
-              <Icon
-                key={index}
-                className="z-50 text-5xl mx-28 text-white-400 opacity-90"
-              />
-            ))}
-            {/* Duplicate icons for infinite effect */}
-            {[
-              FaHtml5,
-              FaCss3,
-              FaBootstrap,
-              FaJs,
-              FaReact,
-              FaNodeJs,
-              RiTailwindCssFill,
-              FaSass,
-            ].map((Icon, index) => (
-              <Icon
-                key={index + 8} // Ensure unique keys for duplicated icons
-                className="text-5xl mx-28 text-white-400 opacity-90"
-              />
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   )
 }

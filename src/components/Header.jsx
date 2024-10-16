@@ -79,14 +79,15 @@ const Hero = () => {
   }
 
   return (
-    <section
-      className={`relative w-full h-[100vh] overflow-hidden ${
-        supportsAnimation ? "" : "bg-blue-500"
-      }`}
-    >
-      {supportsAnimation && createCircles(30)}
+    <section className="relative w-full h-[100vh] overflow-hidden bg-black clip-bottom">
+      {/* Northern Lights Background */}
+      <div className="absolute inset-0">
+        <div className="w-full h-full bg-gradient-to-b from-black to-gray-900">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#ededed] via-[#0874f0] to-[#f10ef1] opacity-50 filter blur-[100px] animate-northern-lights" />
+        </div>
+      </div>
 
-      <div className="flex flex-col items-center justify-center h-full">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full">
         <h1
           ref={h1Ref}
           className="text-white text-[6em] md:text-[12em] font-bold text-center relative z-10 text-shadow-sm"
@@ -100,6 +101,30 @@ const Hero = () => {
           Affordable custom web design for small businesses
         </h6>
       </div>
+
+      <style>{`
+        @keyframes northern-lights {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
+        .animate-northern-lights {
+          animation: northern-lights 10s ease-in-out infinite;
+          background-size: 200% 200%;
+        }
+
+        /* Adding the angled bottom */
+        .clip-bottom {
+          clip-path: polygon(0 0, 100% 0, 190% 85%, 0 100%);
+        }
+      `}</style>
     </section>
   )
 }
