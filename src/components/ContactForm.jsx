@@ -1,7 +1,6 @@
 import { useState } from "react"
 
 const ContactForm = () => {
-  // State to manage form data
   const [formData, setFormData] = useState({
     company: "",
     firstName: "",
@@ -9,10 +8,8 @@ const ContactForm = () => {
     message: "",
   })
 
-  // State to manage form errors
   const [errors, setErrors] = useState({})
 
-  // Handle input changes for form fields
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({
@@ -21,35 +18,25 @@ const ContactForm = () => {
     }))
   }
 
-  // Validate the form before submission
   const validateForm = () => {
     const newErrors = {}
-
-    // Validation rules for required fields
     if (!formData.firstName.trim()) {
       newErrors.firstName = "First name is required"
     }
-
     if (!formData.lastName.trim()) {
       newErrors.lastName = "Last name is required"
     }
-
     if (!formData.message.trim()) {
       newErrors.message = "Message is required"
     }
-
     setErrors(newErrors)
-    // Return true if there are no errors
     return Object.keys(newErrors).length === 0
   }
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Check if form is valid before proceeding
     if (validateForm()) {
       console.log("Form data submitted:", formData)
-      // Reset the form after successful submission
       setFormData({
         company: "",
         firstName: "",
@@ -61,12 +48,11 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="w-full p-20 bg-slate-100">
+    <div className="w-full p-20 bg-white bg-texture-pattern">
       <form
         onSubmit={handleSubmit}
         className="max-w-3xl p-6 mx-auto space-y-6 bg-white rounded-lg shadow-lg md:px-10"
       >
-        {/* Company Name (Optional) */}
         <div>
           <label
             htmlFor="company"
@@ -81,11 +67,10 @@ const ContactForm = () => {
             value={formData.company}
             onChange={handleChange}
             className="block w-full p-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Enter your company name"
+            placeholder="Business Name"
           />
         </div>
 
-        {/* First Name */}
         <div>
           <label
             htmlFor="firstName"
@@ -100,14 +85,13 @@ const ContactForm = () => {
             value={formData.firstName}
             onChange={handleChange}
             className="block w-full p-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Enter your first name"
+            placeholder="First Name"
           />
           {errors.firstName && (
             <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
           )}
         </div>
 
-        {/* Last Name */}
         <div>
           <label
             htmlFor="lastName"
@@ -122,14 +106,13 @@ const ContactForm = () => {
             value={formData.lastName}
             onChange={handleChange}
             className="block w-full p-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Enter your last name"
+            placeholder="Last Name"
           />
           {errors.lastName && (
             <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>
           )}
         </div>
 
-        {/* Message */}
         <div>
           <label
             htmlFor="message"
@@ -144,14 +127,13 @@ const ContactForm = () => {
             onChange={handleChange}
             className="block w-full p-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
             rows="4"
-            placeholder="Enter your message"
+            placeholder="Message"
           ></textarea>
           {errors.message && (
             <p className="mt-1 text-sm text-red-500">{errors.message}</p>
           )}
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="w-full py-3 text-white transition duration-200 ease-in-out rounded-md bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 focus:ring-4 focus:ring-indigo-300"
