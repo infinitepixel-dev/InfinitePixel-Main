@@ -45,41 +45,8 @@ const Hero = () => {
     }
   }, [supportsAnimation])
 
-  const createCircles = (count) => {
-    const colors = [
-      "#7bc950",
-      "#2d2b75",
-      "#e92f5e",
-      "#fca723",
-      "#87ceeb",
-      "#1E90FF",
-    ]
-
-    return Array.from({ length: count }).map((_, i) => {
-      const color = colors[Math.floor(Math.random() * colors.length)]
-
-      return (
-        <div
-          key={i}
-          ref={(e) => (circlesRef.current[i] = e)}
-          className="absolute rounded-full"
-          style={{
-            width: "10em",
-            height: "11em",
-            backgroundColor: color,
-            top: `${Math.random() * 100}vh`,
-            left: `${Math.random() * 100}vw`,
-            filter: "blur(10px)",
-            opacity: 0.7,
-            pointerEvents: "none",
-          }}
-        />
-      )
-    })
-  }
-
   return (
-    <section className="relative w-full h-[100vh] overflow-hidden bg-black clip-bottom">
+    <section className="relative w-full h-[100vh] overflow-hidden clip-bottom">
       {/* Northern Lights Background */}
       <div className="absolute inset-0">
         <div className="w-full h-full bg-gradient-to-b from-black to-gray-900">
