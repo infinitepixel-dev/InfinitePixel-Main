@@ -4,34 +4,45 @@ import gsap from "gsap"
 import ReactLogo from "../assets/logo.svg"
 
 const Navbar = () => {
-  // State to manage the open/close state of the mobile menu
   const [isOpen, setIsOpen] = useState(false)
-  // State to manage whether the navbar is over the specific background
   const [isOverBg, setIsOverBg] = useState(false)
 
-  // Ref for the text element
   const textRef = useRef(null)
+  const menuButtonRef = useRef(null)
+  const menuButtonBgRef = useRef(null) // Ref for the background animation element
 
-  // Toggle the mobile menu open/closed and manage scroll
   const toggleMenu = () => {
     setIsOpen(!isOpen)
 
     if (!isOpen) {
-      // Disable scrolling when menu is open
       document.body.classList.add("overflow-hidden")
+      animateButtonBackground()
     } else {
-      // Re-enable scrolling when menu is closed
       document.body.classList.remove("overflow-hidden")
+      gsap.killTweensOf(menuButtonBgRef.current)
+      gsap.to(menuButtonBgRef.current, { backgroundColor: "transparent" })
     }
   }
 
-  // Close the mobile menu and re-enable scrolling
   const closeMenu = () => {
     setIsOpen(false)
     document.body.classList.remove("overflow-hidden")
   }
 
-  // Detect scroll and check if the navbar is over the specific background
+  const animateButtonBackground = () => {
+    gsap.fromTo(
+      menuButtonBgRef.current,
+      { backgroundColor: "transparent" },
+      {
+        backgroundColor: "#1a202c",
+        duration: 1.5,
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+      }
+    )
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       const targetSection = document.querySelector(".bg-target")
@@ -39,7 +50,6 @@ const Navbar = () => {
       if (targetSection) {
         const rect = targetSection.getBoundingClientRect()
 
-        // If the navbar is over the section with the #E2E8F0 background
         if (rect.top <= 0 && rect.bottom >= 0) {
           setIsOverBg(true)
         } else {
@@ -55,22 +65,40 @@ const Navbar = () => {
     }
   }, [])
 
-  // GSAP animation for hover
   useEffect(() => {
     const textElement = textRef.current
+    const menuButton = menuButtonRef.current
 
-    if (textElement) {
+    if (textElement && menuButton) {
+      // Hover effect for the link text
       textElement.addEventListener("mouseenter", () => {
         gsap.to(textElement, {
-          color: "#ff6347", // Change to a different color (e.g., tomato)
-          duration: 0.1,
+          color: "#a216b5",
+          duration: 0.2,
           ease: "power1.inOut",
         })
       })
 
       textElement.addEventListener("mouseleave", () => {
         gsap.to(textElement, {
-          color: isOverBg ? "#000000" : "#F1F5F9", // Black or slate depending on background
+          color: isOverBg ? "#000000" : "#fefefe",
+          duration: 0.2,
+          ease: "power1.inOut",
+        })
+      })
+
+      // Hover effect for the menu button
+      menuButton.addEventListener("mouseenter", () => {
+        gsap.to(menuButton, {
+          color: "#fefefe",
+          duration: 0.1,
+          ease: "power1.inOut",
+        })
+      })
+
+      menuButton.addEventListener("mouseleave", () => {
+        gsap.to(menuButton, {
+          color: isOverBg ? "#000000" : "#F1F5F9",
           duration: 0.2,
           ease: "power1.inOut",
         })
@@ -82,38 +110,41 @@ const Navbar = () => {
         textElement.removeEventListener("mouseenter", null)
         textElement.removeEventListener("mouseleave", null)
       }
+      if (menuButton) {
+        menuButton.removeEventListener("mouseenter", null)
+        menuButton.removeEventListener("mouseleave", null)
+      }
     }
-  }, [isOverBg]) // Re-run effect when background color changes
+  }, [isOverBg])
 
   return (
     <nav className="fixed top-0 left-0 z-50 flex items-center justify-between w-full p-4 bg-transparent">
-      {/* Logo positioned on the far left */}
       <div className="flex items-center">
         <img src={ReactLogo} alt="React Logo" className="h-8 w-15" />
       </div>
 
-      {/* Flex container for the link and menu button on the far right */}
       <div className="flex items-center ml-auto">
         <a
           href="#"
           ref={textRef}
           className={`z-20 hidden mr-4 text-lg font-semibold transition duration-300 md:block ${
-            isOverBg ? "text-black" : "text-slate-100"
+            isOverBg ? "text-black" : "text-slate-400"
           }`}
         >
           Let&apos;s Create Something Together
         </a>
-        {/* Menu button for toggling mobile menu */}
+
         <button
           onClick={toggleMenu}
+          ref={menuButtonRef}
           className={`z-50 text-2xl transition-transform duration-300 transform focus:outline-none ${
-            isOverBg ? "text-black" : "text-white"
+            isOverBg ? "text-black" : "text-slate-400"
           }`}
           aria-label="Menu button"
         >
-          {/* Rotate the icon based on state */}
           <div
-            className={`transition-transform duration-300 ${
+            ref={menuButtonBgRef}
+            className={`transition-transform duration-300 p-2 rounded-full ${
               isOpen ? "rotate-90" : "rotate-0"
             }`}
           >
@@ -122,20 +153,16 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Fullscreen menu overlay for mobile view */}
       <div
         className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${
           isOpen ? "bg-black opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
         <ul
-          className="relative space-y-10 text-6xl text-white transition-transform duration-500 transform"
-          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the list
+          className="relative space-y-10 text-6xl transition-transform duration-500 transform text-slate-400"
+          onClick={(e) => e.stopPropagation()}
         >
           <li className="absolute left-0 text-2xl -top-10">Menu</li>
-          <li onClick={closeMenu} className="cursor-pointer hover:underline">
-            About
-          </li>
           <li onClick={closeMenu} className="cursor-pointer hover:underline">
             Our Projects
           </li>

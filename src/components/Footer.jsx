@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="flex flex-col items-center py-4 space-y-2 text-white bg-gray-800"
+      className="flex flex-col items-center py-4 space-y-2 text-white bg-blue-950"
     >
       <p className="text-sm text-center">
         &copy; {currentYear} Infinite Pixel LLC

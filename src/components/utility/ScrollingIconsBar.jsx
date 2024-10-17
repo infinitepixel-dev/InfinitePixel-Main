@@ -1,14 +1,9 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import {
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-  FaGithub,
-} from "react-icons/fa"
-
+import { FaReact, FaHtml5, FaCss3Alt, FaNode } from "react-icons/fa"
+import { IoLogoJavascript } from "react-icons/io"
+import { RiTailwindCssFill } from "react-icons/ri"
 // Register GSAP plugin for scroll-triggered animations
 gsap.registerPlugin(ScrollTrigger)
 
@@ -30,7 +25,7 @@ const ScrollingIconsBar = () => {
           {
             xPercent: -50,
             ease: "none",
-            duration: 25,
+            duration: 30,
             repeat: -1,
           }
         )
@@ -44,18 +39,20 @@ const ScrollingIconsBar = () => {
         ref={iconContainerRef}
         className="flex justify-between items-center w-[200%] text-6xl text-white space-x-16"
       >
-        {/* FontAwesome Icons */}
-        <FaFacebook />
-        <FaTwitter />
-        <FaInstagram />
-        <FaLinkedin />
-        <FaGithub />
+        <FaReact />
+        <FaHtml5 />
+        <FaCss3Alt />
+        <IoLogoJavascript />
+        <RiTailwindCssFill />
+        <FaNode />
+
         {/* Duplicate icons for the continuous scroll effect */}
-        <FaFacebook />
-        <FaTwitter />
-        <FaInstagram />
-        <FaLinkedin />
-        <FaGithub />
+        <FaReact />
+        <FaHtml5 />
+        <FaCss3Alt />
+        <IoLogoJavascript />
+        <RiTailwindCssFill />
+        <FaNode />
       </div>
     </div>
   )
