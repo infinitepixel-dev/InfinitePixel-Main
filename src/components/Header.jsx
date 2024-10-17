@@ -57,7 +57,7 @@ const Hero = () => {
       <div className="relative z-10 flex flex-col items-center justify-center h-full">
         <h1
           ref={h1Ref}
-          className="text-white text-[6em] md:text-[12em] font-bold text-center relative z-10 text-shadow-sm"
+          className="text-white text-[6em] md:text-[12em] font-bold text-center relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]"
         >
           Infinite Pixel
         </h1>

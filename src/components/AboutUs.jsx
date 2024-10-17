@@ -38,7 +38,7 @@ const AboutUs = () => {
     <section
       // Ref for tracking the entire section and triggering animation
       ref={sectionRef}
-      className="flex flex-col items-center justify-between p-8 pt-20 pb-20 bg-bg-slate-50 md:flex-row"
+      className="flex flex-col items-center justify-between p-8 bg-bg-slate-50 md:flex-row"
     >
       {/* Image section: Adjusts for responsive design, centered on small screens */}
       <div ref={imageRef} className="w-full mb-4 md:w-1/2 md:mb-0">
