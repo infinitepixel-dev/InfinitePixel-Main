@@ -18,12 +18,27 @@ const AboutUs = () => {
 
     // GSAP animation setup for fading in and sliding elements into view
     gsap.fromTo(
-      [imageEl, textEl],
+      [imageEl],
       { opacity: 0, x: -50 }, // Initial state: hidden and slightly off-screen
       {
         opacity: 1,
         x: 0, // Target state: visible and positioned
-        duration: 1,
+        duration: 2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%", // Trigger when section reaches 75% of viewport height
+          toggleActions: "play none none reverse", // Animation triggers on scroll in and reverses on scroll out
+        },
+      }
+    )
+    gsap.fromTo(
+      [textEl],
+      { opacity: 0, x: 100 }, // Initial state: hidden and slightly off-screen
+      {
+        opacity: 1,
+        x: 0, // Target state: visible and positioned
+        duration: 2,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
