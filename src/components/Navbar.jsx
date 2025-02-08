@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { FaBars, FaTimes } from "react-icons/fa"
+import { Link } from "react-router-dom"
 import gsap from "gsap"
 import ReactLogo from "../assets/logo.svg"
 
@@ -17,11 +18,9 @@ const Navbar = () => {
     setIsOpen(!isOpen)
 
     if (!isOpen) {
-      // Disable scrolling when menu is open
-      document.body.classList.add("overflow-hidden")
+      document.body.classList.add("overflow-hidden") // Disable scrolling when menu is open
     } else {
-      // Re-enable scrolling when menu is closed
-      document.body.classList.remove("overflow-hidden")
+      document.body.classList.remove("overflow-hidden") // Re-enable scrolling when menu is closed
     }
   }
 
@@ -55,32 +54,35 @@ const Navbar = () => {
     }
   }, [])
 
-  // GSAP animation for hover
+  // GSAP animation for hover effects
   useEffect(() => {
     const textElement = textRef.current
 
-    if (textElement) {
-      textElement.addEventListener("mouseenter", () => {
-        gsap.to(textElement, {
-          color: "#ff6347", // Change to a different color (e.g., tomato)
-          duration: 0.1,
-          ease: "power1.inOut",
-        })
+    const handleMouseEnter = () => {
+      gsap.to(textElement, {
+        color: "#ff6347", // Change to a different color (e.g., tomato)
+        duration: 0.1,
+        ease: "power1.inOut",
       })
+    }
 
-      textElement.addEventListener("mouseleave", () => {
-        gsap.to(textElement, {
-          color: isOverBg ? "#000000" : "#F1F5F9", // Black or slate depending on background
-          duration: 0.2,
-          ease: "power1.inOut",
-        })
+    const handleMouseLeave = () => {
+      gsap.to(textElement, {
+        color: isOverBg ? "#000000" : "#F1F5F9", // Black or slate depending on background
+        duration: 0.2,
+        ease: "power1.inOut",
       })
+    }
+
+    if (textElement) {
+      textElement.addEventListener("mouseenter", handleMouseEnter)
+      textElement.addEventListener("mouseleave", handleMouseLeave)
     }
 
     return () => {
       if (textElement) {
-        textElement.removeEventListener("mouseenter", null)
-        textElement.removeEventListener("mouseleave", null)
+        textElement.removeEventListener("mouseenter", handleMouseEnter)
+        textElement.removeEventListener("mouseleave", handleMouseLeave)
       }
     }
   }, [isOverBg]) // Re-run effect when background color changes
@@ -136,8 +138,10 @@ const Navbar = () => {
           <li onClick={closeMenu} className="cursor-pointer hover:underline">
             About
           </li>
-          <li onClick={closeMenu} className="cursor-pointer hover:underline">
-            Our Projects
+          <li className="cursor-pointer hover:underline">
+            <Link to="/portfolio" onClick={closeMenu}>
+              Our Projects
+            </Link>
           </li>
           <li onClick={closeMenu} className="cursor-pointer hover:underline">
             Contact Us
