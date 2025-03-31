@@ -107,14 +107,14 @@ const ContactForm = () => {
       <ScrollingIconsBar />
       <div
         id="contact-form"
-        className="bg-texture-pattern bg-white p-20 w-full"
+        className="bg-texture-pattern bg-white p-4 md:p-20 w-full"
       >
         <form
           ref={formRef}
           action="https://formsubmit.co/49b3ec7186e27ea9fd61c9e9f858330c"
           method="POST"
           onSubmit={handleSubmit}
-          className="space-y-6 bg-white shadow-lg mx-auto p-6 md:px-10 rounded-lg max-w-3xl"
+          className="space-y-6 bg-white shadow-lg mx-auto p-6 md:px-10 rounded-lg max-w-full"
         >
           {/* Hidden FormSubmit inputs */}
           <input type="hidden" name="_template" value="table" />
