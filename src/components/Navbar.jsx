@@ -113,7 +113,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="top-0 left-0 z-50 fixed w-full">
+    <nav className="top-0 left-0 z-50 fixed backdrop-blur-sm w-full">
       {/* Gradient Background Overlay */}
       <div className="z-0 absolute inset-0 bg-gradient-to-b from-slate-800 to-red-slate-800/0 h-26 pointer-events-none"></div>
 
