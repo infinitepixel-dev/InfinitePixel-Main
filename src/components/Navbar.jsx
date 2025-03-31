@@ -13,6 +13,11 @@ const Navbar = () => {
 
   const textRef = useRef(null);
 
+  const menuItems = [
+    { label: "Our Projects", action: "projects" },
+    { label: "Contact Us", action: "contact" },
+  ];
+
   const menuOverlayRef = useRef(null);
   const menuButtonRef = useRef(null);
   const menuButtonBgRef = useRef(null);
@@ -71,20 +76,25 @@ const Navbar = () => {
     setIsOpen(opening); // 🧠 Now update state
   };
 
-  //closes the navmenu
-  const closeMenu = () => {
+  const closeMenu = (action) => {
     setIsOpen(false);
     document.body.classList.remove("overflow-hidden");
+
     const container = document.getElementById("app-container");
     if (container) container.style.marginRight = "";
 
-    //if it's the contact us menu item that was clicked, we want to scroll to the contact form
+    //NOTE If contact us menu is clicked
+    if (action === "contact") {
+      const contactForm = document.getElementById("contact-form");
+      if (contactForm) {
+        contactForm.scrollIntoView({ behavior: "smooth" });
+      }
+      //REVIEW add other conditions here based on 'actions from the menuItems'
 
-    const contactForm = document.getElementById("contact-form");
-    if (contactForm) {
-      contactForm.scrollIntoView({ behavior: "smooth" });
-    } else {
-      console.error("Contact form not found!");
+      //Else the contact form cloese
+      else {
+        console.error("Contact form not found!");
+      }
     }
   };
 
@@ -185,17 +195,14 @@ const Navbar = () => {
           <div className="bg-transparent border-none text-white text-4xl">
             Menu
           </div>
-          {["Our Projects", "Contact Us"].map((item, index) => (
+          {menuItems.map((item, index) => (
             <button
-              key={item}
+              key={item.action}
               ref={(el) => (menuItemsRef.current[index] = el)}
-              onClick={closeMenu}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") closeMenu();
-              }}
+              onClick={() => closeMenu(item.action)}
               className="bg-transparent border-none text-white text-5xl hover:underline cursor-pointer"
             >
-              {item}
+              {item.label}
             </button>
           ))}
         </div>
