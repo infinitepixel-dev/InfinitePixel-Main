@@ -113,7 +113,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="top-0 left-0 z-50 fixed backdrop-blur-sm w-full">
+    // if isOpen is true, do not apply the backdrop-blur-sm
+    <nav
+      className={`top-0 left-0 z-50 fixed w-full ${
+        !isOpen ? "backdrop-blur-sm" : ""
+      }`}
+    >
       {/* Gradient Background Overlay */}
       <div className="z-0 absolute inset-0 bg-gradient-to-b from-slate-800 to-red-slate-800/0 h-26 pointer-events-none"></div>
 
