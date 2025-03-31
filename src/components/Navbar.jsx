@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
 import gsap from "gsap";
+
+//Icons
+import { FaBars, FaTimes } from "react-icons/fa";
+
+//Logos
 import ReactLogo from "../assets/logo.svg";
 
 const Navbar = () => {
@@ -67,11 +71,21 @@ const Navbar = () => {
     setIsOpen(opening); // 🧠 Now update state
   };
 
+  //closes the navmenu
   const closeMenu = () => {
     setIsOpen(false);
     document.body.classList.remove("overflow-hidden");
     const container = document.getElementById("app-container");
     if (container) container.style.marginRight = "";
+
+    //if it's the contact us menu item that was clicked, we want to scroll to the contact form
+
+    const contactForm = document.getElementById("contact-form");
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: "smooth" });
+    } else {
+      console.error("Contact form not found!");
+    }
   };
 
   const animateButtonBackground = () => {
@@ -88,43 +102,34 @@ const Navbar = () => {
     );
   };
 
-  // Optional styling transition for text on menu toggle
-  useEffect(() => {
-    const textElement = textRef.current;
-    const menuButton = menuButtonRef.current;
-
-    if (textElement) {
-      gsap.to(textElement, {
-        color: "#f1f5f9", // slate-100
-        duration: 0.3,
-        ease: "power1.inOut",
-      });
-    }
-
-    if (menuButton) {
-      gsap.to(menuButton, {
-        color: "#f1f5f9", // slate-100
-        duration: 0.3,
-        ease: "power1.inOut",
-      });
-    }
-  }, [isOpen]);
-
   return (
     <nav className="top-0 left-0 z-50 fixed w-full">
       {/* Gradient Background Overlay */}
-      <div className="z-0 absolute inset-0 bg-gradient-to-b from-slate-800 to-red-slate-800/0 h-full pointer-events-none"></div>
+      <div className="z-0 absolute inset-0 bg-gradient-to-b from-slate-800 to-red-slate-800/0 h-26 pointer-events-none"></div>
 
       {/* Navbar Content */}
       <div className="relative flex justify-between items-center bg-transparent p-4 w-full transition-colors duration-300">
         <div className="flex items-center">
-          <img src={ReactLogo} alt="React Logo" className="w-15 h-8" />
+          <button
+            onClick={() => {
+              const contactForm = document.getElementById("app-container");
+              if (contactForm) {
+                contactForm.scrollIntoView({ behavior: "smooth" });
+              } else {
+                console.error("Contact form not found!");
+              }
+            }}
+            className="bg-transparent m-0 p-0 border-none focus:outline-none"
+            aria-label="Scroll to app container"
+          >
+            <img src={ReactLogo} alt="React Logo" className="w-15 h-8" />
+          </button>
         </div>
 
         <div className="flex items-center ml-auto">
           <button
             ref={textRef}
-            className="hidden md:block z-20 mr-4 font-semibold text-slate-100 text-lg transition"
+            className="hidden md:block z-20 mr-4 font-semibold text-slate-100 hover:text-rose-500 text-lg transition-colors duration-100"
             onClick={() => {
               const contactForm = document.getElementById("contact-form");
               if (contactForm) {
@@ -146,14 +151,14 @@ const Navbar = () => {
           >
             <div
               ref={menuButtonBgRef}
-              className={`transition-transform duration-300 p-2 rounded-full ${
+              className={`transition-transform duration-100 hover:text-rose-500 p-2 rounded-full ${
                 isOpen ? "rotate-90" : "rotate-0"
               }`}
             >
               {isOpen ? (
-                <FaTimes className="text-slate-100" />
+                <FaTimes className="text-slate-100 hover:text-rose-500 duration-100" />
               ) : (
-                <FaBars className="text-slate-100" />
+                <FaBars className="text-slate-100 hover:text-rose-500 duration-100" />
               )}
             </div>
           </button>
@@ -169,22 +174,31 @@ const Navbar = () => {
             : "opacity-0 pointer-events-none"
         } bg-black`}
       >
-        <ul
-          className="relative space-y-10 text-white text-6xl transition-transform transform"
-          onClick={(e) => e.stopPropagation()}
+        <div
+          className="relative flex flex-col items-center space-y-10 text-slate-100 text-6xl transition-transform transform"
+          role="menu"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") closeMenu();
+          }}
         >
-          <li className="-top-10 left-0 absolute text-2xl">Menu</li>
+          <div className="bg-transparent border-none text-white text-4xl">
+            Menu
+          </div>
           {["Our Projects", "Contact Us"].map((item, index) => (
-            <li
+            <button
               key={item}
               ref={(el) => (menuItemsRef.current[index] = el)}
               onClick={closeMenu}
-              className="hover:underline cursor-pointer"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") closeMenu();
+              }}
+              className="bg-transparent border-none text-white text-5xl hover:underline cursor-pointer"
             >
               {item}
-            </li>
+            </button>
           ))}
-        </ul>
+        </div>
       </div>
     </nav>
   );

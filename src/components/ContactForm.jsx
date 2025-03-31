@@ -3,7 +3,6 @@ import ScrollingIconsBar from "./utility/ScrollingIconsBar";
 
 const ContactForm = () => {
   const formRef = useRef(null);
-
   const [formData, setFormData] = useState({
     company: "",
     firstName: "",
@@ -11,6 +10,9 @@ const ContactForm = () => {
     email: "",
     message: "",
   });
+  const maxMessageLength = 250; // Maximum character limit for the message
+
+  const email = import.meta.env.VITE_FORM_EMAIL; // Ensure you have this in your .env file
 
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -74,13 +76,11 @@ const ContactForm = () => {
     payload.append("_captcha", "false");
 
     try {
-      const response = await fetch(
-        "https://formsubmit.co/49b3ec7186e27ea9fd61c9e9f858330c",
-        {
-          method: "POST",
-          body: payload,
-        }
-      );
+      //import VIte Email from env
+      const response = await fetch(email, {
+        method: "POST",
+        body: payload,
+      });
 
       if (response.ok) {
         setShowThankYou(true);
@@ -228,7 +228,20 @@ const ContactForm = () => {
               className="block mt-1 p-3 border border-gray-300 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full transition duration-150 ease-in-out"
               rows="4"
               placeholder="Message"
+              maxLength={maxMessageLength} // <-- Character limit
             ></textarea>
+            <div
+              className={`text-sm text-right ${
+                formData.message.length >= maxMessageLength
+                  ? "text-red-800"
+                  : formData.message.length >= maxMessageLength - 20
+                  ? "text-orange-600"
+                  : "text-slate-400"
+              }`}
+            >
+              {formData.message.length}/{maxMessageLength} characters
+            </div>
+
             {errors.message && (
               <p className="mt-1 text-red-500 text-sm">{errors.message}</p>
             )}
