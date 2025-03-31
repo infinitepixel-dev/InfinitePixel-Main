@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<!-- Classes taken from http://html5boilerplate.com/ on 2013-10-25, with additonal classes added  -->
+<!--[if lt IE 7]>	  <html class="no-js ie lt-ie10 lt-ie9 lt-ie8 lt-ie7 lt_ie10 lt_ie9 lt_ie8 lt_ie7"> <![endif]-->
+<!--[if IE 7]>		 <html class="no-js ie ie-7 lt-ie10 lt-ie9 lt-ie8 ie_7 lt_ie10 lt_ie9 lt_ie8"> <![endif]-->
+<!--[if IE 8]>		 <html class="no-js ie ie-8 lt-ie10 lt-ie9 gt-ie7 ie_8 lt_ie10 lt_ie9 gt_ie7"> <![endif]-->
+<!--[if IE 9 ]>		<html class="no-js ie ie-9 lt-ie10 gt-ie7 gt-ie8 ie_9 lt_ie10 gt_ie7 gt_ie8"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js ie gt-ie7 gt-ie8 gt-ie9 gt_ie7 gt_ie8 gt_ie9 modern_browser"> <!--<![endif]-->
+	<head>
+		<!-- BEGIN Shared HEAD_V3 that's pulled in from the global header file and pulled into header.html -->
+		<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>U.S. Packaging &amp; Wrapping - Shrink &amp; Stretch Wrap Supplies</title>
+
+<meta id="extViewportMeta" name="viewport" content="width=device-width, initial-scale=1">
+
+<!--[if lt IE 9]>
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+    <meta name="description" content="Find the packaging supplies or machine you need with U.S. Packaging &amp; Wrapping's expert advice and support. Contact us by phone or online for more details!" />
+    <meta name="keywords" content="U.S. Packaging &amp; Wrapping - Shrink &amp; Stretch Wrap Supplies, U.S., Packaging, &amp;, Wrapping, -, Shrink, &amp;, Stretch, Wrap, Supplies" />
+        	    		<meta name="google-site-verification" content="2O8EsuiaTollzqW9zicmmMa6EWmhbvma4bitWGnm1sA" /><meta name="google-site-verification" content="2O8EsuiaTollzqW9zicmmMa6EWmhbvma4bitWGnm1sA" />
+<meta name="msvalidate.01" content="11364778A3BDF148662E17445698A3AC" />
+<meta name="google-site-verification" content="z4ZY5KG1GY5F32bd546KtEMxmlo5L3Lli1XUqY7qAxg" />
+    	    
+
+
+<!-- Use this file to include any extra files you may need in the header -->
+
+<!-- Begin Template Layout CSS -->
+
+<!-- End Template Layout CSS -->
+
+<!-- JQuery includes (core) -->
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+            <!-- AWS -->
+        
+    <script type="text/javascript">
+    <!--
+        var __getScript = function(url, success) {
+            success = success || function(){};
+            var script = document.createElement('script');
+            script.src = url;
+
+            var head = document.getElementsByTagName('head')[0],
+            done = false;
+
+            // Attach handlers for all browsers
+            script.onload = script.onreadystatechange = function() {
+
+                if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+
+                    done = true;
+
+                    // callback function provided as param
+                    success();
+
+                    script.onload = script.onreadystatechange = null;
+                    head.removeChild(script);
+
+                };
+            };
+
+            head.appendChild(script);
+
+        };
+
+        function getStoreUrl(){
+            return 'https://uspackingstaging.corecommerce.com/';
+        }
+    //-->
+    </script>
+
+        
+            
+    
+    
+    <script type="text/javascript">
+    <!--
+
+    function recalculatePageHeight(){
+            }
+
+    function recalculateRelatedProductsHeight(){
+            }
+
+    jQuery(document).ready(function(){
+
+        
+                if(jQuery.trim(jQuery('#content-left').html()) == ''){
+            jQuery('#content-left').css('display', 'none');
+        }
+        if(jQuery.trim(jQuery('#content-right').html()) == ''){
+            jQuery('#content-right').css('display', 'none');
+        }
+
+                if($('#top-menu .line-splitter').length > 0){
+                        $('#top-menu .line-splitter').each(function(){
+                $(this).attr('style', 'border-color: ' + $(this).attr('data-color') + '; border-style: ' + $(this).attr('data-style') + '; border-width: ' + $(this).attr('data-width') + ' 0 0 0;');
+            });
+        }
+
+        /* GROUP NAV
+        =================================================== */
+        /* =JFG. Add hook for styling sub-nav since it is not part of the CC markup for Drop Downs or Mega Menus. It's not possible to ascend selectors with just CSS - http://stackoverflow.com/questions/45004/complex-css-selector-for-parent-of-active-child */
+        $('.dd-submenu li, .mm-submenu li').parents('li').addClass('nav-with-sub-menu nav_with_sub_menu'); /* Underscores is old class pre INT-39 */
+
+        $('.element-title').parent().prev().addClass('js-req-last-element-link js_req_last_element_link'); /* Helper class for styling vertical space. Underscores is old class pre INT-39 */
+
+        $('.element-textstr').parent().addClass('js-req-element-textstr-container js_req_element_textstr_container'); /* Helper class for styling vertical space. Underscores is old class pre INT-39 */
+
+        /* =JFG. Temp helper class for detecting what type of menu this is. This is needed to apply  a z-index fix _only_ to the dropdown menu, since otherwise the positioning would affect the Mega Menu (CC-2933). Matt G will replace these in the actual nav later */
+        $("#top-menu").each(function(){
+            if($(this).has('.mm-submenu').length != 0) {
+                $(this).addClass("menu menu--top menu--mega");
+            }
+            if($(this).has('.dd-submenu').length != 0) {
+                $(this).addClass("menu menu--top menu--dropdown");
+            }
+        });
+
+        // CC-5584
+        $('.nav-with-sub-menu > a').click(function(e){
+            if ($(this).attr('href') === '' || $(this).attr('href') === '#') {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+
+        /* GROUP NAV / MEGA MENU
+        =================================================== */
+        /* New */
+        /* =JFG. Assistive classes for styling mega menu layouts based on their total columns */
+        $("#top-menu > li .mm-submenu").each(function(){
+            var columnClass = "l-cols-" + $(this).children().length();
+            $(this).addClass(columnClass);
+        });
+        /* Old */
+        $("#top-menu > li .mm-submenu").each(function(){
+            var columnClass = "l-cols-" + $(this).children().length();
+            $(this).addClass(columnClass);
+            var columnClassOld = "l_cols--" + $(this).children().length();
+            $(this).addClass(columnClassOld); /* =JFG. older class, pre INT-39 */
+        });
+
+        /* GROUP NAV / ANDROID - fix for navigation parents with link and children
+        =================================================== */
+        /* By Osvaldas Valutis, http://osvaldas.info/drop-down-navigation-responsive-and-touch-friendly
+        Available for use under the MIT License */
+
+        ;(function( $, window, document, undefined )
+        {
+            $.fn.doubleTapToGo = function( params )
+            {
+                if( !( 'ontouchstart' in window ) &&
+                    !navigator.msMaxTouchPoints &&
+                    !navigator.userAgent.toLowerCase().match( /windows phone os 7/i ) ) return false;
+
+                this.each( function()
+                {
+                    var curItem = false;
+
+                    $( this ).on( 'click', function( e )
+                    {
+                        var item = $( this );
+                        if( item[ 0 ] != curItem[ 0 ] )
+                        {
+                            e.preventDefault();
+                            curItem = item;
+                        }
+                    });
+
+                    $( document ).on( 'click touchstart MSPointerDown', function( e )
+                    {
+                        var resetItem = true,
+                            parents   = $( e.target ).parents();
+
+                        for( var i = 0; i < parents.length; i++ )
+                            if( parents[ i ] == curItem[ 0 ] )
+                                resetItem = false;
+
+                        if( resetItem )
+                            curItem = false;
+                    });
+                });
+                return this;
+            };
+        })( jQuery, window, document );
+
+        if(navigator.userAgent.match(/(Android)/i)) { /* =JFG. CC-2502 - Wrapped condition around this function to test for Android to prevent it from mis-firing on iOS */
+            $("#top-menu li:has(ul), #top-bar li:has(ul)").doubleTapToGo(); /* Apply to CoreCommerce navigation */
+        }
+
+        /* =JFG. GROUP MODERNIZR - Modernizr-like features that every theme should get by default
+        =================================================== */
+        $('html').removeClass("no-js"); /* Remove the class .no-js since we know the user definitely has JavaScript enabled if this jQuery is executed - related to CC-2934 */
+
+
+        /* =JFG. GROUP PRODUCT DETAIL
+        =================================================== */
+        /* CC-2934; review form should be hidden for every theme; not a theme-by-theme basis */
+        $("#productDetail .review--product-form").hide();
+
+        $('a').click(function(e){
+            url = $(this).attr('href');
+            var arr = url.split('=');
+            if(arr.length > 0 && arr[1] == 'logout') {
+                     var amazonCookie = getCookie('amazon_Login_accessToken');
+                     if(amazonCookie != "") {
+                        $.getScript('https://api-cdn.amazon.com/sdk/login1.js').done(function(){
+                                amazon.Login.logout();
+                        });
+                     }
+            }
+        });
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+        }
+    });
+
+    /**
+     * Anything that is put here will be run once the page is completely loaded.  Meaning all images have been completely loaded, etc.
+     */
+    jQuery(window).load(function(){
+        
+        recalculatePageHeight();
+    });
+
+    function getURLParameter(name, source) {
+       return decodeURIComponent((new RegExp('[?|&|#]' + name + '=' +
+         '([^&]+?)(&|#|;|$)').exec(source) || [,""])[1].replace(/\+/g,
+         '%20')) || null;
+     }
+
+     var accessToken = getURLParameter("access_token", location.hash);
+
+     if (typeof accessToken === 'string' && accessToken.match(/^Atza/)) {
+        document.cookie = "amazon_Login_accessToken=" + accessToken +
+      ";secure";
+      window.location.href = 'https://uspackingstaging.corecommerce.com/checkout.php';
+    }
+    //-->
+    </script>
+
+<meta property="og:site_name" content="uspackingstaging" />
+<meta property="twitter:card" content="summary_large_image" />
+                    <meta property="og:title" content="U.S. Packaging &amp; Wrapping - Shrink &amp; Stretch Wrap Supplies" />
+        <meta property="twitter:title" content="U.S. Packaging &amp; Wrapping - Shrink &amp; Stretch Wrap Supplies" />
+    
+                    <meta property="og:description" content="Find the packaging supplies or machine you need with U.S. Packaging &amp; Wrapping's expert advice and support. Contact us by phone or online for more details!" />
+        <meta property="twitter:description" content="Find the packaging supplies or machine you need with U.S. Packaging &amp; Wrapping's expert advice and support. Contact us by phone or online for more details!" />
+        
+    
+         
+    
+<div class="body helloheaderbar" style="line-height:30px;text-align:center;background-color: #000"><p><span style="color:#ffffff;">Test</span></p></div><style>.helloheaderbar p {margin:0 auto;}</style> <!-- This must be second -->
+<link rel="stylesheet" type="text/css" href="https://uspackingstaging.corecommerce.com/css/dynamic-css.php?currentlyActivePageId=1" />
+		<!-- END Shared HEAD_V3 that's pulled in from the global header file and pulled into header.html -->
+
+	<link rel="stylesheet" type="text/css" href="https://uspackingstaging.corecommerce.com/00315-1/design/css/main.css" media="all" />
+    <link rel="stylesheet" href="https://uspackingstaging.corecommerce.com/00315-1/design/css/font-awesome.min.css" media="all" />
+	
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="https://uspackingstaging.corecommerce.com/00315-1/design/css/slick-theme.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="https://kenwheeler.github.io/slick/slick/slick.js" media="all" />
+	    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    
+    
+        
+	    
+        
+    
+        
+        
+
+        
+
+    <style>
+    .film-usage-calc input[type="number"] {
+        width: 100px;
+        display: inline-block;
+    }
+
+    .film-usage-calc label {
+        width: 160px;
+        display: inline-block;
+        text-align: right;
+    }
+
+    .film-usage-calc-reset {
+        position: absolute;
+        right: 1rem;
+        bottom: 0.25rem;
+    }
+
+    .film-usage-calc-total {
+        color: red;
+
+    }
+
+    .film-usage-calc-total label {
+        width: initial;
+        font-size: 0.9em;
+        font-weight: bolder;
+    }
+
+    .film-usage-calc-total input {
+        border: none;
+        color: red;
+        font-weight: bolder;
+    }
+    
+    .film-usage-calc-short .box-on-pallet-img {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .film-usage-calc-short .instruct {
+        margin-top: -10px;
+    }
+</style>
+
+    
+     
+        
+        
+        
+        
+                    
+        
+            
+    
+    
+    <!-- Usage Calc Product Page -->
+        
+ 
+    
+        
+    
+
+	<!-- Product Template with no chart, calculator, nor feature image. Product page has video. -->
+		<!-- end -->
+
+	<!-- Product Template without a chart and calculator but has a feature image and video. This template also works without chart but with calculator and video - 5/20 removed 363 367 6/8 removed 365 383-->
+    	<!-- end -->
+
+	<!-- Product template with Chart and Calculator. No video -->
+	    <script type="text/javascript">
+		$(document).ready(function(){
+
+        $('div[itemprop="offers"]').addClass('offerSpecial');
+        	});
+		</script>
+ 	<!-- Product Template with chart, calculator, and video -->
+        <!-- end -->
+
+    <!-- Product Template with Charts and 'Add to Cart' buttons at the top and bottom -->
+        <!-- end -->
+    
+    
+
+    <!-- Product Template with Chart, Video and Text. No calculator -->
+        <!-- end -->
+
+     <!-- Product with Chart and Text only -->
+        <!-- end -->
+    
+    <!-- Product with Attachment and NO Chart -->
+        <!-- end -->
+    
+        
+    <!-- Product Template with Chart and Attachments -->
+        <script type="text/javascript">
+    $(document).ready(function(){
+        $('[itemprop="interactionCount"]').remove();
+    });
+    </script>
+
+     
+    
+    <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"223000930", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+</head>
+<body class="page-home slider-is-not-active has-widgets content-left-has-widgets has_widgets content_left_has_widgets">
+	<header class="header">
+		<div class="mob-menu"><span aria-hidden="true" class="icon icon--menu"></span><i class="fa fa-bars" aria-hidden="true"></i></div>
+		<nav>
+			<div class="clr wrap"><ul id="top-menu">
+  <li id="old-item-0" class="ui-sortable-handle">
+    <a href="https://uspackagingandwrapping.com/">Home</a>
+  </li>
+  <li id="old-item-1" class="ui-sortable-handle c1">
+    <a href="https://uspackagingandwrapping.com/cart.php?m=view_top_level_categories">Product Categories</a>
+    <div class="mm-submenu" id="item-1-submenu">
+      <ul class="columns-1" id="old-column-0">
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/heat-shrink-wrap/">Heat Shrink Wrap</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/shrink-wrap-machines/">Shrink Wrap Machines</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/shrink-film-specials/">Shrink Film Specials</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/stretch-film/">Stretch Film</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/stretch-film-dispensers/">Stretch Film Dispensers</a>
+        </li>
+      </ul>
+      <ul class="columns-1" id="old-column-1">
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/stretch-wrap-specials/">Stretch Wrap Specials</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/stretch-wrap-machines/">Stretch Wrap Machines</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/food-packaging/">Food Packaging</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/vacuum-packaging/">Vacuum Packaging</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/printers-film/">Printers Film</a>
+        </li>
+      </ul>
+      <ul class="columns-1" id="old-column-2">
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/packing-tape/">Packing Tape</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/laundry-film-garment-bags/">Laundry Film &amp; Garment Bags</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/anti-static-packaging/">Anti Static Packaging</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/poly-tubing-bags/">Poly Tubing &amp; Bags</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/poly-sheeting/">Poly Sheeting</a>
+        </li>
+      </ul>
+      <ul class="columns-1" id="old-column-3">
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/pallet-covers/">Pallet Covers</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/plastic-strapping/">Plastic Strapping</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/trash-bags/">Trash Bags</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/kraft-paper/">Kraft Paper</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/bag-sealers/">Bag Sealers</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li id="old-item-2" class="ui-sortable-handle">
+    <a href="https://uspackagingandwrapping.com/price-quote.html">Price Quote</a>
+  </li>
+  <li id="old-item-3" class="ui-sortable-handle c1">
+    <a href="https://uspackagingandwrapping.com/packaging-library.html">Packaging Library</a>
+    <div class="mm-submenu" id="item-3-submenu">
+      <ul class="columns-1" id="old-column-4">
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/aluminum-foil-101.html">Aluminum Foil 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/food-packaging-101.html">Food Packaging 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/packing-tape-101.html">Packing Tape 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/plastic-wrap-101.html">Plastic Wrap 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/shrink-film-101.html">Shrink Film 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/heat-sealer-101-basics-and-benefits.html">Heat Sealer 101</a>
+        </li>
+      </ul>
+      <ul class="columns-1" id="old-column-5">
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/stretch-wrap-101.html">Stretch Wrap 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/trash-bags-101.html">Trash Bags 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/vacuum-packing-101.html">Vacuum Packing 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/packaging-for-a-product.html">E Commerce Packaging 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/types-of-packaging-101.html">Types of Packaging 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/shrink-tunnel-101.html">Shrink Tunnel 101</a>
+        </li>
+      </ul>
+      <ul class="columns-1" id="old-column-6">
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/pallet-shipping-101-how-to-palletize-a-shipment.html">Pallet Shipping 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/shipping-solutions-for-small-business.html">Small Business Packaging 101</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/vacuum-sealed-foods-shelf-life.html">Vacuum Sealed Food Shelf Life Chart</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/shrink-wrap-vs-stretch-wrap.html">Shrink Wrap vs Stretch Wrap</a>
+        </li>
+        <li>
+          <a class="element-link" href="https://uspackagingandwrapping.com/packaging-video-library.html">Packaging Video Library</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li id="old-item-4" class="ui-sortable-handle c1">
+    <a href="https://uspackagingandwrapping.com/packaging-machine-demo-room.html">Interactive Demo Room</a>
+  </li>
+  <li id="old-item-5" class="ui-sortable-handle">
+    <a href="https://uspackagingandwrapping.com/specials.html">Deals</a>
+  </li>
+  <li id="old-item-6" class="ui-sortable-handle c1">
+    <a href="https://uspackagingandwrapping.com/contact-us.html">Contact</a>
+  </li>
+</ul></div>
+		</nav> 
+      <div class="top-header clr pos-r main-h">
+			<div class="wrap uspack_logo_search_WrapflexContainer" id="logo-container">   
+            <div class="uspack_logo_phone_Wrap">
+            <div class="imagelogo"><a href="https://uspackingstaging.corecommerce.com"><img src="https://uspackingstaging.corecommerce.com/images/00315-1-logoImage.jpg" alt="" title="" border="0" /></a></div>            </div>
+         </div>
+  			<div class="wrap uspack_logo_search_WrapflexContainer" id="search-container">   
+            <div class="header-links">
+				<h4 class="impact heading">Search by Product Name</h4> 
+            <!-- BEGIN >> cart.header.search.v2.tem.php  -->
+<script type="text/javascript">
+    <!--
+
+    var widgetHeaderSearchProcessing = false;
+    var headerSearchWidgetimeoutId = null;
+    var headerSearchHasBeenFocused = false;
+
+    jQuery(document).ready(function(){
+        $('#header-search .btn').click(function(e){
+            $(this).parents('form[name="ds_header_search"]').submit();//support multiple header search widgets
+            e.preventDefault();
+        });
+
+        //use JS to submit the form NM 26096
+        $('form[name="ds_header_search"]').submit(function(e){
+            e.preventDefault();
+            //CC-1697 - cx is added for fixing 'googlesearch'
+                        var params = {
+            m : 'search_results',
+                headerSearch : 'Y',
+                search : $(this).find('input[name="search"]').val()
+        }
+                            window.location.href = "https://uspackingstaging.corecommerce.com/cart.php?" + $.param(params);
+                return false;
+    });
+
+        $('#headerSearchField').attr("autocomplete","off");
+        });
+
+    function processInitialHeaderSearchFocus(ele){
+        if(!headerSearchHasBeenFocused){
+            headerSearchHasBeenFocused = true;
+            ele.value = '';
+        }
+    }
+
+    function undoHeaderSearchWidgetDynamicSearch(){
+        if(headerSearchWidgetimeoutId){
+            clearTimeout(headerSearchWidgetimeoutId);
+        }
+        $('#headerSearchWidgetDynamicResults').hide();
+    }
+
+    function initiateHeaderSearchWidgetDynamicSearch(){
+        
+        undoHeaderSearchWidgetDynamicSearch();
+        if(!$('#headerSearchField').val()){
+            return;
+        }
+        headerSearchWidgetimeoutId = setTimeout("doHeaderSearchWidgetDynamicSearch()", 1000);
+    }
+
+    function doHeaderSearchWidgetDynamicSearch(){
+        headerSearchWidgetimeoutId = null;
+        searchTerm = document.ds_header_search.search.value;
+
+        if(!widgetHeaderSearchProcessing){
+            widgetHeaderSearchProcessing = true;
+
+            jQuery.ajax({
+                type : 'GET',
+                cache : false,
+                url : getStoreUrl() + 'controllers/ajaxController.php',
+                data : {
+                    object : 'ProductAjax',
+                    'function' : 'getProductSearchResult',
+                    searchTerm : searchTerm,
+                    customProductLists : '',
+                    category : '',
+                    shopByPrice : '',
+                    vendor : ''
+                }
+            })
+
+                .done(function(response) {
+                    var responseArr = response.split('<_|_>');
+                    searchProcessing = false;
+
+                    if(responseArr[0] == 'success'){
+                        $('#headerSearchWidgetDynamicResults').show();
+                        responseArr.shift();
+                        $('#headerSearchWidgetDynamicResults').html(decodeURIComponent(responseArr.join('<br />')));
+
+                    }
+                })
+
+                .fail(function() {})
+                .always(function() {});
+        }
+    }
+
+
+    //-->
+</script>
+
+<div id="header-search" class="header-search-container">
+    <form name="ds_header_search" action="https://uspackingstaging.corecommerce.com/cart.php" method="get">
+        <input type="hidden" name="m" value="search_results" />
+                    <input type="hidden" name="headerSearch" value="Y" />
+            <input type="text" id="headerSearchField" class="header-search-field inline-input" name="search" size="15" value="Search..." onfocus="javascript:processInitialHeaderSearchFocus(this); javascript:initiateHeaderSearchWidgetDynamicSearch();" onkeyup="javascript:initiateHeaderSearchWidgetDynamicSearch();" />
+            <label   style="display:none" class="header-search-btn" for="headerSearchField">Go</label>
+                <a class="btn btn--1 btn--search btn--inline" href="javascript:">Go</a>
+        <div class="dynamic-results" id="headerSearchWidgetDynamicResults"></div>
+    </form>
+</div>
+<!-- END >> cart.header.search.v2.tem.php -->
+			   </div>
+	     </div>
+    </div>
+ </header>
+<div class="wrap" id="page-content">
+		<div class="clr">
+			<div class="content-main">
+				<div class="content content-middle pos-r" id="content-middle">
+                <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/4f7b1a4d7b183fbc4d19b3188/771cd5d37ad76fc615ec0b103.js");</script><!-- BEGIN >> cart.pos.v3.tem.php -->
+<!-- END >> cart.pos.v3.tem.php --><!-- BEGIN >> homepage.v3.tem.php  -->
+<link rel="stylesheet" href="https://uspackingstaging.corecommerce.com/css/product_boxy.css" type="text/css" media="all" />
+<script type="text/javascript" src="https://uspackingstaging.corecommerce.com/javascript/jquery.boxy.js"></script>
+<script type="text/javascript">
+	<!--
+	jQuery(window).load(function() {
+			});
+	-->
+</script>
+
+<div class="content-home">
+
+	<!-- ##BODY_AND_PHOTO_BEGIN## -->
+			<div class="home-content-top">
+			<div class="home-content-top">
+<section id="home-section-one">
+<div id="home-container">
+<div id="homepage-icons">
+<div class="row text-center" id="home-icon-row-1">
+<div class="col home-icon-image" id="home-icon-image1">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/packaging-materials-line.png" /></div>
+
+<div class="home-icon-caption">Packaging<br />
+Materials</div>
+</div>
+
+<div class="col home-icon-image" id="home-icon-image2">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/contract-packaging-line.png" /></div>
+
+<div class="home-icon-caption">Packaging<br />
+Machines</div>
+</div>
+
+<div class="col home-icon-image" id="home-icon-image3">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/food-packaging-line.png" /></div>
+
+<div class="home-icon-caption">Food<br />
+Packaging</div>
+</div>
+
+<div class="col home-icon-image" id="home-icon-image4">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/american-made-line.png" /></div>
+
+<div class="home-icon-caption">American Made<br />
+Products</div>
+</div>
+
+<div class="col home-icon-image" id="home-icon-image5">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/test-line.png" /></div>
+
+<div class="home-icon-caption">Test Your<br />
+Products</div>
+</div>
+</div>
+
+<div class="row text-center" id="home-icon-row-2">
+<div class="col home-icon-image" id="home-icon-image6">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/contract-line.png" /></div>
+
+<div class="home-icon-caption">Contract<br />
+Packaging</div>
+</div>
+
+<div class="col home-icon-image" id="home-icon-image7">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/deal-line.png" /></div>
+
+<div class="home-icon-caption">Deal</div>
+</div>
+
+<div class="col home-icon-image" id="home-icon-image8">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/demo-line.png" /></div>
+
+<div class="home-icon-caption">Interactive<br />
+Demo Room</div>
+</div>
+
+<div class="col home-icon-image" id="home-icon-image9">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/net-30-line.png" /></div>
+
+<div class="home-icon-caption">Net 30<br />
+Terms</div>
+</div>
+
+<div class="col home-icon-image" id="home-icon-image10">
+<div class="home-image"><img src="https://uspackingstaging.corecommerce.com/images/home/parts-services-line.png" /></div>
+
+<div class="home-icon-caption">Parts and<br />
+Service</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="home-section-two">
+<div id="homepage-sec-container">
+<div class="packaging" id="prod-categories">
+<div class="home-wrap">
+<h3>Packaging</h3>
+
+<h2>Product Categories</h2>
+</div>
+</div>
+</div>
+</section>
+
+<section id="home-section-three">
+<div class="package-blog-post" id="home-blog">
+<div class="home-wrap">
+<h2>Packaging Blog Posts and Videos</h2>
+
+<div class="home-blog-post"><!-- new post -->
+<div class="home-blog">
+<article>
+<header>
+<h3><a href="https://youtu.be/sqIV58wjFQs?si=ssLx9NbCnaMozW16" target="_blank">How to Palletize a Shipment</a></h3>
+<time>Friday, March 29, 2024 4:38 PM</time>
+
+<p>Palletize a shipment the correct way to avoid any damage during transportation. The shipment must be stable and capable of&nbsp;withstanding ..</p>
+</header>
+
+<figure><iframe allowfullscreen="" frameborder="0" height="315" scrolling="no" src="https://www.youtube.com/embed/sqIV58wjFQs?si=lZj6lUgm97SHZ3p2" width="560"></iframe></figure>
+</article>
+</div>
+<!-- end post --><!-- new post -->
+
+<div class="home-blog">
+<article>
+<header>
+<h3><a href="https://uspackagingandwrapping.com/blog/what-chat-gpt-predicts-will-be-the-biggest-packaging-trends-this-year-and-forward.html" target="_blank">What ChatGPT Predicts Will Be the Biggest Packaging Trends This Year and Forward</a></h3>
+<time>Wednesday, March 6, 2024, 4:44 PM</time>
+
+<p>With the rise of AI, everyone wants to know what the machines predict for the future. To stay with the trend, we have asked Chatgpt what the future will hold for the packaging&nbsp;..</p>
+</header>
+</article>
+</div>
+<!-- end post --><!-- new post -->
+
+<div class="home-blog">
+<article>
+<header>
+<h3><a href="https://uspackagingandwrapping.com/cheese-film-sheets.html" target="_blank">Cheese Film Sheets</a></h3>
+<time>Friday, February 16, 2024 4:09 PM</time>
+
+<p>Cheese film sheets are made to protect and enclose cheese items. With the use of a heating pad, open ends can ..</p>
+</header>
+
+<figure><iframe allowfullscreen="" frameborder="0" height="315" scrolling="no" src="https://www.youtube.com/embed/CD1W5didU1Q?si=-QSzu5iSCkcQqgcS" width="560"></iframe></figure>
+</article>
+</div>
+<!-- end post --><!-- new post -->
+
+<div class="home-blog">
+<article>
+<header>
+<h3><a href="https://youtu.be/6Ctd_0-F4no">Handheld Pallet Strapping Machine Demo</a></h3>
+<time>Friday, February 2, 2024 3:10 PM</time>
+
+<p>Handheld strapping machines can bundle multiple boxes and pallet loads. The machine will pull tension and weld strapping for securing&nbsp;..</p>
+</header>
+
+<figure><iframe allowfullscreen="" frameborder="0" height="315" scrolling="no" src="https://www.youtube.com/embed/6Ctd_0-F4no?si=UkiyFOmH--t6l8YK" width="560"></iframe></figure>
+</article>
+</div>
+<!-- end post --><!-- new post -->
+
+<div class="home-blog">
+<article>
+<header>
+<h3><a href="https://uspackagingandwrapping.com/blog/shrink-wrap-systems-options-to-consider.html" target="_blank">Shrink Wrap Systems - Options to Consider</a></h3>
+<time>Friday, January 26, 2023, 12:25 PM</time>
+
+<p>Shrink wrap systems allow users to enclose a product in shrink film, seal, and shrink the material. This post discusses some options when looking for a&nbsp;..</p>
+</header>
+</article>
+</div>
+<!-- end post --></div>
+
+<div class="more-info-button blog-info">View More Posts</div>
+</div>
+</div>
+</section>
+
+<section id="home-section-four">
+<div class="packaging" id="home-news">
+<div class="headline"><img alt="Packaging News Image" src="00315-1/design/img/pack-news-bg.png" /></div>
+
+<div class="home-wrap">
+<div class="home-news-info"><!-- new post -->
+<div class="home-news">
+<article>
+<header>
+<h3><a href="https://www.nbcwashington.com/investigations/who-is-really-delivering-your-packages-crashes-involving-amazon-deliveries-create-confusion/3559444/" target="_blank">Who is Really Delivering Your Packages? Crashes Involving Amazon Deliveries Create Confusion</a></h3>
+
+<p>When Henry Garland got into a car crash along Interstate 270 near Rockville, Maryland, he said there was no doubt in his mind who&nbsp;[&hellip;]</p>
+<a href="https://www.nbcwashington.com/investigations/who-is-really-delivering-your-packages-crashes-involving-amazon-deliveries-create-confusion/3559444/" target="_blank"><span class="btn btn--details">Read More</span></a></header>
+</article>
+</div>
+<!-- end post --><!-- new post -->
+
+<div class="home-news">
+<article>
+<header>
+<h3><a href="https://www.printing.org/content/2024/01/08/us-packaging-wrapping-joins-printing-united-alliance" target="_blank">U.S. Packaging &amp; Wrapping Joins Printing United Alliance</a></h3>
+
+<p>US Packaging &amp; Wrapping has announced it has joined PRINTING United Alliance, the most comprehensive member-based printing and&nbsp;[&hellip;]</p>
+<a href="https://www.printing.org/content/2024/01/08/us-packaging-wrapping-joins-printing-united-alliance" target="_blank"><span class="btn btn--details">Read More</span></a></header>
+</article>
+</div>
+<!-- end post --><!-- new post -->
+
+<div class="home-news">
+<article>
+<header>
+<h3><a href="https://www.theverge.com/2023/10/19/23923863/amazon-plastic-free-mail-packages-euclid-ohio-warehouse" target="_blank">Amazon Eliminated Plastic Packaging at One of Its Warehouses</a></h3>
+
+<p>Amazon is fulfilling a small part of its promise to switch from using plastic bubble mailers and air pillows to all recyclable paper packaging for its&nbsp;[&hellip;]</p>
+<a href="https://www.theverge.com/2023/10/19/23923863/amazon-plastic-free-mail-packages-euclid-ohio-warehouse" target="_blank"><span class="btn btn--details">Read More</span></a></header>
+</article>
+</div>
+<!-- end post --><!-- new post -->
+
+<div class="home-news">
+<article>
+<header>
+<h3><a href="https://www.fox35orlando.com/news/ups-package-delivery-scam-florida#lnnatmx71r2cf3p4xcx" target="_blank">Don&#39;t be fooled: UPS package delivery scam on the rise ahead of holiday season, Florida deputies warn</a></h3>
+
+<p>Tis (almost) the season for giving, but it&rsquo;s also the season for scams. Floridians are finding themselves in the crosshairs of a UPS package delivery scam just as&nbsp;[&hellip;]</p>
+<a href="https://www.fox35orlando.com/news/ups-package-delivery-scam-florida#lnnatmx71r2cf3p4xcx" target="_blank"><span class="btn btn--details">Read More</span></a></header>
+</article>
+</div>
+<!-- end post --></div>
+</div>
+</div>
+
+<div class="more-info-button news-info">Read More</div>
+</section>
+
+<section id="home-section-five">
+<div class="package-google-post" id="home-google">
+<div id="google-wrap">
+<h2><img src="https://uspackingstaging.corecommerce.com/images/home/google_reviews.png" /></h2>
+
+<div class="home-google-review"><!--GOOGLE REVIEW 1-->
+<div class="home-google-review-post">
+<p><img src="https://uspackingstaging.corecommerce.com/images/home/review_stars_5.png" /></p>
+
+<p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Facilisi nullam vehicula ipsum a arcu cursus. Id aliquet lectus proin nibh nisl condimentum id venenatis. Cum sociis natoque penatibus et magnis dis parturient montes nascetur.</p>
+
+<p class="review-who">-Mike Jones</p>
+</div>
+<!--GOOGLE REVIEW 2-->
+
+<div class="home-google-review-post">
+<p><img src="https://uspackingstaging.corecommerce.com/images/home/review_stars_5.png" /></p>
+
+<p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+<p class="review-who">-KG Industries</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="home-section-six"><!-- Begin Mailchimp Signup Form --></section>
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css" />
+<style type="text/css">#mc_embed_signup{background:#fff; clear:left; font:14px Verdana,Verdana,sans-serif; width:100%;}
+/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://shrinkwrapandstretchfilm.us2.list-manage.com/subscribe/post?u=4f7b1a4d7b183fbc4d19b3188&amp;id=b182810319" class="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" novalidate="" target="_blank">
+<div id="mc_embed_signup_scroll"><label for="mce-EMAIL">Sign Up for Discounts and Savings!</label> <input class="email" id="mce-EMAIL" name="EMAIL" placeholder="Email Address" required="" type="email" value="" /> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+<div aria-hidden="true" style="position: absolute; left: -5000px;"><input name="b_4f7b1a4d7b183fbc4d19b3188_b182810319" tabindex="-1" type="text" value="" /></div>
+
+<div class="clear"><input class="button" id="mc-embedded-subscribe" name="subscribe" type="submit" value="Subscribe" /></div>
+</div>
+</form>
+</div>		</div> <!-- .home-top-content -->
+		<!-- ##BODY_AND_PHOTO_END## -->
+
+	<!-- ##NIVO_SLIDER_BEGIN## -->
+		<!-- ##NIVO_SLIDER_END## -->
+	
+	<!-- ##BANNER_IMAGE_BEGIN## -->
+    	<!-- ##BANNER_IMAGE_END## -->
+	<!-- ##BODY_PAGE_CONTENT## -->
+			<!-- BEGIN >> category.grid.v3.tem.php -->
+<div class="page-content">
+	
+    
+    	<h1 class="page-title">Categories</h1>
+    
+	
+	
+	<div class="grid grid--category l-cols-4" id="category-list">
+	    <!-- BEGIN >> category.grid.item.v2.tem.php -->
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/heat-shrink-wrap/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/16.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/heat-shrink-wrap/">Heat Shrink Wrap</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""https://uspackagingandwrapping.com/shrink-wrap-bags/"">Shrink Bags</a><br />
+* <a href=""https://uspackagingandwrapping.com/pvc-shrink-tubing/"">Shrink Tubing</a><br />
+* Etc.<br />
+Shop shrink bags, centerfold rolls, tubing, polyethylene rolls, and more!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/mini-reclosable-bags/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/78.gif" width="125" height="89" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/mini-reclosable-bags/">Mini Reclosable Bags</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p><strong><span style=""font-family:verdana,geneva,sans-serif;""><span style=""font-size:10px;"">(1-2 Inches Wide)</span></span></strong></p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/shrink-wrap-machines/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/19.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/shrink-wrap-machines/">Shrink Wrap Machines</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/shrink-wrap-systems/"" tabindex=""0"">Shrink Wrap Systems</a><br />
+* <a href=""/i-bar-sealers/"" tabindex=""0"">I Bars Sealers</a><br />
+* Etc.<br />
+Shop shrink tunnels, sealers, and all-in-one combo units! For beginners or high output operations!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/small-reclosable-bags/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/79.gif" width="125" height="84" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/small-reclosable-bags/">Small Reclosable Bags</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p><strong><span style=""font-family:verdana,geneva,sans-serif;""><span style=""font-size:10px;"">(3-6 Inches Wide)</span></span></strong></p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/large-reclosable-bags/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/80.gif" width="91" height="125" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/large-reclosable-bags/">Large Reclosable Bags</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p><span style=""font-family:verdana,geneva,sans-serif;""><span style=""font-size:10px;""><strong>(7 Inches and Wider)</strong></span></span></p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/shrink-film-specials/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/76.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/shrink-film-specials/">Shrink Film Specials</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/shrink-film-specials/"" tabindex=""0"">PVC Shrink Specials</a><br />
+* <a href=""/shrink-film-specials/"" tabindex=""0"">Polyolefin Shrink Specials</a><br />
+* Etc.<br />
+Popular shrink wrap products on sale! Including shrink bags and centerfold shrink rolls!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/stretch-film/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/17.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/stretch-film/">Stretch Film</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/machine-stretch-film/"" tabindex=""0"">Machine Stretch Film</a><br />
+* <a href=""/hand-stretch-film/"">Hand&nbsp;Stretch Film</a><br />
+* Etc.<br />
+Hand and machine stretch film rolls! Shop clear, colored, and specialty stretch film products!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/stretch-film-dispensers/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/31.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/stretch-film-dispensers/">Stretch Film Dispensers</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/two-handed-manual-stretch-film-dispenser.html"" tabindex=""0"">Two Handed Dispensers</a><br />
+* <a href=""/plastic-handle-for-3-core-bundling-stretch-film.html"" tabindex=""0"">Bundling Film Dispensers</a><br />
+* Etc.<br />
+Specialty hand dispensers for hand stretch film, vented film, bundling film, and pre stretch film!</p>
+
+<div data-ae_invis=""true"" id=""level-access-access-assistant-highlight-container"">&nbsp;</div>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/stretch-wrap-specials/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/75.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/stretch-wrap-specials/">Stretch Wrap Specials</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/stretch-wrap-specials/"" tabindex=""0"">Hand Wrap Specials</a><br />
+* <a href=""/stretch-wrap-specials/"" tabindex=""0"">Machine Wrap Specials</a><br />
+* Etc.<br />
+Find stretch wrap specials on medium sized orders, up to full pallet orders for popular products!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/stretch-wrap-machines/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/18.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/stretch-wrap-machines/">Stretch Wrap Machines</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/eagle-2000b-stretch-wrap-machine.html"" tabindex=""0"">Stock Stretch Wrap Machines</a><br />
+* <a href=""/eagle-2000bws-stretch-wrap-machine.html"" tabindex=""0"">Stretch Machines with Scale</a><br />
+* Etc.<br />
+Durable machines built to work and backed by a three-year warranty on parts! Shop custom machines with a scale, extended base, or extended mast!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/food-packaging/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/21.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/food-packaging/">Food Packaging</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/aluminum-foil/"" tabindex=""0"">Aluminum Foil</a><br />
+* <a href=""/plastic-wrap/"" tabindex=""0"">Plastic Wrap</a><br />
+* Etc.<br />
+Purchase a variety of food packaging supplies for commercial kitchens! All products in stock and able to ship within 24 hours of a completed order!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/vacuum-packaging/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/91.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/vacuum-packaging/">Vacuum Packaging</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/vacuum-sealers/"" tabindex=""0"">Vacuum Sealers</a><br />
+* <a href=""/vacuum-bags/"" tabindex=""0"">Vacuum Bags</a><br />
+* Etc.<br />
+Commercial grade vacuum sealers with or without gas purge! Find vacuum bags and sealers in one place!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/printers-film/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/74.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/printers-film/">Printers Film</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/printers-shrink-film.html"" tabindex=""0"">Printers Shrink Film</a><br />
+* <a href=""/printers-cling-film.html"" tabindex=""0"">Printers Cling Film</a><br />
+* Etc.<br />
+Perforated cling or shrink sheets used by commercial printing companies! Cling sheets popularly used with Balayage hair technique!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/plastic-strapping/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/60.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/plastic-strapping/">Plastic Strapping</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/poly-strapping/"" tabindex=""0"">Polypropylene Strapping</a><br />
+* <a href=""/polyester-strapping/"">Polyester Strapping</a><br />
+* Etc.<br />
+Find strapping kits, machines, and materials for a variety of product sizes and shapes! Discounts are available on orders of 5 or more coils!</p>
+        </div>
+        
+            </div>
+</div>
+<div class="grid__item">
+    <div class="item-image item-image--category">
+        <a href="https://uspackingstaging.corecommerce.com/packing-tape/" class="thumb"><img   class="photoClass" src="https://uspackingstaging.corecommerce.com/images/categories/20.jpg" width="246" height="219" alt="" title="" /></a>
+            </div>
+
+    <div class="item-info item-info--product">
+        <h2 class="item-name item-name--category"><a href="https://uspackingstaging.corecommerce.com/packing-tape/">Packing Tape</a></h2>
+
+                <div class="item-teaser item-teaser--category">
+            <p>* <a href=""/packaging-tape/"" tabindex=""0"">Hand Packing Tape</a><br />
+* <a href=""/machine-packing-tape/"" tabindex=""0"">Machine Packing Tape</a><br />
+* Etc.<br />
+Hand and machine packing tape available in multiple widths and lengths! Find clear and tan tape by the case!</p>
+        </div>
+        
+            </div>
+</div>
+<!-- END >> category.grid.item.v2.tem.php -->	</div>
+
+		<div class="btn-group btn-group--pagination" id="categoryPagination">
+		<input type="button" onclick="javascript:getCategories();" value="Show More. 8 Left" class="btn btn--3 btn--more" id="show-more-categories" />
+		<input type="button" onclick="javascript:getCategories('1');" value="View All" class="btn btn--3 btn--view-all" />
+	</div>
+	
+		                		
+    <script type="text/javascript">
+    <!--
+        var catContainer = document.getElementById('category-list');
+        var categoryId = '';
+    var totalCats = '23';
+    var newHtml = '';
+    var categoryPageNumber = '2';     var remainingCats = 8;
+    var simpleTitle = encodeURIComponent("");     var moreCatsButton = document.getElementById('show-more-categories');
+    var moreCatsButtonValue = 'Show More. %s Left';
+    var str_loading = 'Loading';
+
+    function getCategories(viewAll){
+        moreCatsButton.disabled = true;
+        moreCatsButton.value = str_loading + '...';
+
+		jQuery.ajax({
+			type : 'GET',
+			url : getStoreUrl() + 'controllers/ajaxController.php',
+			data : {
+				'object'		: 'MobileAjax',
+				'function'		: 'getMobileCategories',
+				'categoryId'	: categoryId,
+				'pageNumber'	: categoryPageNumber,
+				'simpleTitle'	: simpleTitle,
+				'viewAll'		: viewAll
+			}
+		}).done(function(response) {
+			if(viewAll == 1) {
+				catContainer.innerHTML = response;
+			} else {
+				catContainer.innerHTML += response;
+			}
+			categoryPageNumber++;
+			remainingCats = 23 - $(".grid--category .grid__item").length;
+
+			if(remainingCats > 0) {
+				moreCatsButton.value = moreCatsButtonValue.replace('%s', remainingCats);
+
+				moreCatsButton.disabled = false;
+			} else {
+				document.getElementById('categoryPagination').style.display = 'none';
+			}
+		});
+	}
+	//-->
+	</script>
+</div>
+
+
+<!-- END >> category.grid.v3.tem.php -->
+		<!-- ##BODY_PAGE_CONTENT_END## -->
+
+	<!-- ##BOTTOM_BODY_BEGIN## -->
+			<div class="home-content-bottom">
+			<p>&nbsp;</p>
+		</div>
+		<!-- ##BOTTOM_BODY_END## -->
+	<!-- ##HOMEPAGE_MODAL_BEGIN## -->
+	<div id="viewCartShippingPopup" class="viewCartShippingPopupBoxy viewCartPopup" style="display: none;">
+			</div>
+
+	<!-- HOMEPAGE_SLIDERS_START -->
+<!-- HOMEPAGE_SLIDERS_END -->
+
+	
+	<script>
+		$('body').click(function(event) {
+			if (!$(event.target).closest('#openModal').length && !$(event.target).is('#openModal')) {
+				$(".boxy-wrapper ,.boxy-modal-blackout").hide();
+			}
+		});
+	</script>
+	<!-- ##HOMEPAGE_MODAL_END## -->
+	<!--<div class="panel__top">
+		<div class="panel__basic-actions"></div>
+		<div class="panel__devices"></div>
+		<div class="panel__switcher"></div>
+	</div> --><!-- new grape -->
+
+	
+</div>
+<!-- END >> homepage.v3.tem.php  --></div>
+
+            <div class="content-sidebar" id="content-left">
+                <div class="content"></div> <!-- #content-left -->
+            </div>
+        </div> <!-- .content-main -->
+
+        <div class="content-sidebar" id="content-right">
+            <div class="content"></div>
+        </div>
+    </div> <!-- .clr -->
+
+    <!-- pallet diagonal calculator content -->
+    <div id="pallet-diagonal-form" class="calc-hidden">
+        <div class="box zoom-anim-dialog">
+            <form id="PalletDiagonalCalc" action="" method="get">
+                <fieldset>
+                    <legend>Pallet Diagonal Calculator</legend>
+                    <p class="instruct">Enter the correct measurements per label. All fields are required.</p>
+                    <div class="section">
+                        <img src="https://uspackingstaging.corecommerce.com/00315-1/design/img/pallet-diagonal.jpg" alt="Pallet Diagonal" class="pallet-img" />
+                    </div>
+
+                    <div class="section">
+                        <p>
+                            <label for="length">Pallet Length (in)</label>
+                            <input id="length" name="length" type="number" />
+                        </p>
+
+                        <p>
+                            <label for="width">Pallet Width (in)</label>
+                            <input id="width" name="width" type="number" />
+                        </p>
+                    </div>
+
+                    <p>
+                        <input type="submit" value="Calculate" class="btn btn--1" /> or <input type="reset" value="Reset" class="btn btn--reset" />
+                    </p>
+
+                    <p>
+                        <label for="palletDiagonal">Pallet Diagonal Value (in)</label>
+                        <input id="palletDiagonal" name="palletDiagonal" type="number" />
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <!-- end pallet diagonal calc -->
+
+    <!-- shrink film width calculator -->
+    <div id="shrink-film-width-form" class="calc-hidden">
+        <div class="box zoom-anim-dialog">
+            <form id="ShrinkFilmWidth" action="" method="get">
+                <fieldset>
+                    <legend>Shrink Film Width Calculator</legend>
+                    <p class="instruct">Enter the correct measurements per label. All fields are required.</p>
+
+                    <div class="section">
+                        <img src="https://uspackagingandwrapping.com/00315-1/design/img/shrink-film-width-img.png" alt="Shrink Film Width" class="shrink-img" />
+                    </div>
+
+                    <div class="section">
+                        <p>
+                            <label for="height">Height (in)</label>
+                            <input id="height" name="height" type="number" step="any" min="0" />
+                        </p>
+
+                        <p>
+                            <label for="width">Width (in)</label>
+                            <input id="width" name="width" type="number" step="any" min="0" />
+                        </p>
+                    </div>
+
+                    <p>
+                        <input type="submit" value="Calculate Film Width needed" class="btn btn--1" /> or <input type="reset" value="Reset" class="btn btn--reset" />
+                    </p>
+
+                    <p>
+                        <label for="widthNeeded">Film width needed (in)</label>
+                        <input id="widthNeeded" name="widthNeeded" type="number" />
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <!-- end shrink film calc -->
+</div> <!-- #page-content -->
+
+<script>
+    //<![CDATA[ 
+    var spans = document.getElementsByTagName("span");
+    for (var i = spans.length - 1; i >= 0; i--) {
+        if (spans[i].style.color === "rgb(255, 0, 0)") {
+            var span = spans[i];
+            span.style.color = '#F79D01';
+        }
+    }
+
+    var spand = document.getElementsByTagName("span");
+    for (var i = spand.length - 1; i >= 0; i--) {
+        if (spand[i].style.color === "rgb(0, 0, 205)") {
+            var span = spand[i];
+            span.style.color = '#3A81B3';
+        }
+    }
+//]]> 
+
+//$('p').each(function() { 
+// var $this = $(this); 
+//if($this.html().replace(/\s|&nbsp;/g, '').length == 0) 
+// $this.remove(); 
+//}); 
+</script>
+
+<footer>
+    <div class="wrap">
+        <!-- BEGIN >> cart.footer.v3.tem.php -->
+        <div class="widget footer l-cols-4" id="widgetFooter">
+            <div class="footer__column footer__links">
+                <div class="title"><i class="fa fa-link" aria-hidden="true"></i>Links</div>
+                <ul>
+                    <li><a href="https://uspackagingandwrapping.com/plastic-wrap-products.html">Plastic Wrap Products</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/printed-shrink-wrap.html">Printed Shrink Wrap</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/shrink-wrap-supplies.html">Shrink Wrap Supplies</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/blog">Packaging Blog 1</a></li>
+                    <li><a href="https://packagingblog.org" target="_blank">Packaging Blog 2</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__column footer__online-store">
+                <div class="title"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Online Store</div>
+                <ul>
+                    <li><a href="https://uspackagingandwrapping.com/cart.php?m=view">View Cart</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/cart.php?m=checkout">Checkout</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/cart.php?m=search">Search</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/cart.php?m=account">My Account</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/cart.php?m=account">Login</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/cart.php?m=view_top_level_categories">View All Categories</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__column footer__detailed-packaging-info">
+                <div class="title"><i class="fa fa-clipboard" aria-hidden="true"></i>Detailed Packaging Info</div>
+                <ul>
+                    <li><a href="https://uspackagingandwrapping.com/about-us.html">About Us - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/contact-us.html">Contact</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/contract-packaging.html">Contract Packaging - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/corporate-discounts.html">Corporate Discounts - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/credit-application-from-u-s-packaging-and-wrapping.html">Credit Application - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/custom-packaging-options.html">Custom Orders - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/packaging-discounts.html">Discounts - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/frequently-asked-question.html">Frequently Asked Questions - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/how-to-shrink-wrap.html">How To Shrink Wrap</a></li>
+                   <!-- <li><a href="https://uspackagingandwrapping.com/made-in-america.html">Made In America</a></li> -->
+
+                    <li><a href="https://uspackagingandwrapping.com/international-shipping.html">International Shipping - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/parts-and-service.html">Parts &amp; Service</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/price-quote.html">Price Quote - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/printed-shrink-wrap.html">Printed Shrink Wrap</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/catalog-sign-up.html">Product Catalog Sign Up - U.S. Packaging &amp; Wrapping</a></li>
+                <li><a href="https://uspackagingandwrapping.com/packaging-testing.html">Packaging Testing - U.S. Packaging &amp; Wrapping</a></li>
+                    <li><a href="https://uspackagingandwrapping.com/shipping-and-returns.html">Shipping and Returns - U.S. Packaging &amp; Wrapping</a></li>
+                </ul>
+            </div>
+        
+             <div class="footer__column footer__icons">
+                 <h4>We accept these payment options:</h4>
+                 <img src="https://uspackingstaging.corecommerce.com/00315-1/design/img/cc-logos.png" alt="Payment Options" />
+            </div>
+
+        
+            <div class="footer__column copyright" id="footer-copyright">
+                <div class="copyright__store">Copyright U.S. Packaging &amp; Wrapping LLC. All Rights Reserved</div>
+            </div>
+        </div>
+
+        <!-- END >> cart.footer.v3.tem.php -->
+    </div>
+
+<div class="fBanner">
+<hr class="asseenon"/>
+<h2 class="bannerHeading"><img src="https://uspackingstaging.corecommerce.com/images/home/asseenon.png" /></h2>
+<a href="https://www.forbes.com/sites/joanverdon/2019/06/27/how-green-is-your-shipping-study-rates-the-big-3amazon-walmart-target/#6e8f1b836c87">
+  <img src="https://uspackagingandwrapping.com/images/banner/forbes.png" alt="Forbes Article" class="img1">
+</a>
+<a href="https://news.yahoo.com/online-retailer-takes-first-prize-181407303.html">
+  <img src="https://uspackagingandwrapping.com/images/banner/Yahoo2.png" alt="Yahoo Article" class="img2">
+</a>
+<a href="https://www.yahoo.com/lifestyle/online-retailer-takes-first-prize-193234703.html">
+  <img src="https://uspackagingandwrapping.com/images/banner/mStewart.png" alt="Martha Stewart Article" class="img3">
+</a>
+<a href="https://www.packagingdigest.com/packaging-design/5-packaging-trends-emerging-in-2019-2019-03-18">
+  <img src="https://uspackagingandwrapping.com/images/banner/packing.png" alt="Packaging Digest Article" class="img4">
+</a>
+<a href="https://www.traveldailynews.com/post/which-are-the-most-loved-and-hated-airlines">
+  <img src="https://uspackagingandwrapping.com/images/banner/travel.png" alt="Travel Daily News Article" class="img5">
+</a>
+</div>
+<div class="copyright"> 
+    <div class="copyright">
+        <p>Copyright U.S. Packaging &amp; Wrapping LLC. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    $('#calculateShippingLink').click(function () {
+        $('.header').css('z-index', '1');
+        $('.menu--mega').css('z-index', '0');
+    });
+
+    $(document).ready(function () {
+   
+   
+        if ($('#viewCartShippingPopup').is(":visible")) {
+            $('.header').css('z-index', '1');
+            $('.menu--mega').css('z-index', '0');
+        }
+    
+    if (Number($('.widget__cart-items--summary').text().trim().replace(' Items', '')) > 0) {
+    
+   $('.top-h .right').css('background', '#F79D01');
+}
+    });
+</script>
+
+<script type="text/javascript">
+  var cartItemCount = 0;
+
+  if (0 < cartItemCount) {
+    $('.widget--sidebar').addClass('has-items');
+  }
+
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-23090565-2', 'uspackagingandwrapping.com');
+    ga('send', 'pageview');
+</script>
+
+<script src="https://uspackingstaging.corecommerce.com/00315-1/design/js/script.min.js" async="async"></script>
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.slider-main').slick({
+            infinite: true,
+            speed: 400,
+            autoplay: true,
+            autoplaySpeed: 5000
+        });
+    
+        $('.home-google-review').slick({
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        });
+
+       $('.home-blog-post').slick({
+            infinite: true,
+            speed: 300,
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: true,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }]
+        });
+    
+    
+        $('.home-news-info').slick({
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        });
+
+        $('.page-home .grid--category').slick({
+            infinite: true,
+            speed: 300,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }]
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        var el = document.getElementById('film-usage-calc-wrapper');
+        if (typeof(el) != 'undefined' && el != null) {
+            createFilmUsageCalculator();
+        }
+    });
+
+    function createFilmUsageCalculator() {
+        let filmUsageCalcWrapper = document.getElementById('film-usage-calc-wrapper');
+        let wrapper = document.createElement('div');
+        let form = document.createElement('form');
+        let fieldset = document.createElement('fieldset');
+        let legend = document.createElement('legend');
+        let para = document.createElement('p');
+        let sectionWrapper = document.createElement('div');
+        let imageWrapper = sectionWrapper.cloneNode(true);
+        let image = document.createElement('img');
+        let inputWrapper = sectionWrapper.cloneNode(true);
+        let pWrapper = document.createElement('p');
+        let input = document.createElement('input');
+        let label = document.createElement('label');
+        let pWidthWrapper = pWrapper.cloneNode(true);
+        let pWidthLabel = label.cloneNode(true);
+        let pWidthInput = input.cloneNode(true);
+        let pLengthWrapper = pWrapper.cloneNode(true);
+        let pLengthLabel = label.cloneNode(true);
+        let pLengthInput = input.cloneNode(true);
+        let pHeightWrapper = pWrapper.cloneNode(true);
+        let pHeightLabel = label.cloneNode(true);
+        let pHeightInput = input.cloneNode(true);
+        let fWidthWrapper = pWrapper.cloneNode(true);
+        let fWidthLabel = label.cloneNode(true);
+        let fWidthInput = input.cloneNode(true);
+        let resetWrapper = pWrapper.cloneNode(true);
+        let resetInput = input.cloneNode(true);
+        let totalWrapper = pWrapper.cloneNode(true);
+        let totalLabel = label.cloneNode(true);
+        let totalInput = input.cloneNode(true);
+
+
+        wrapper.classList.add('box', 'zoom-anim-dialog');
+        para.classList.add('instruct');
+        sectionWrapper.classList.add('section');
+        image.classList.add('box-on-pallet-img');
+        resetWrapper.classList.add('film-usage-calc-reset');
+
+        legend.appendChild(document.createTextNode('Film Usage Calculator'));
+        para.appendChild(document.createTextNode('Enter the dimensions of the pallet and the width of the film to estimate required film needed. All fields are required.'));
+        image.src = '/images/boxes-on-pallet.jpg';
+        pWidthLabel.for = 'pWidth';
+        pWidthLabel.appendChild(document.createTextNode('Width of Pallet (in):'));
+        pWidthInput.type = 'number';
+        pWidthInput.name = 'pWidth';
+        pWidthInput.id = 'pWidth';
+        pWidthInput.addEventListener('change', function (e) {
+            fromValues();
+        });
+
+        pLengthLabel.for = 'pLength';
+        pLengthLabel.appendChild(document.createTextNode('Length of Pallet (in):'));
+        pLengthInput.type = 'number';
+        pLengthInput.name = 'pLength';
+        pLengthInput.id = 'pLength';
+        pLengthInput.addEventListener('change', function (e) {
+            fromValues();
+        });
+
+        pHeightLabel.for = 'pHeight';
+        pHeightLabel.appendChild(document.createTextNode('Height of Pallet (in):'));
+        pHeightInput.type = 'number';
+        pHeightInput.name = 'pHeight';
+        pHeightInput.id = 'pHeight';
+        pHeightInput.addEventListener('change', function (e) {
+            fromValues();
+        });
+
+        fWidthLabel.for = 'fWidth';
+        fWidthLabel.appendChild(document.createTextNode('Width of Film (in):'));
+        fWidthInput.type = 'number';
+        fWidthInput.name = 'fWidth';
+        fWidthInput.id = 'fWidth';
+        fWidthInput.addEventListener('change', function (e) {
+            fromValues();
+        });
+
+        resetInput.type = 'reset';
+        resetInput.value = 'Reset';
+        resetInput.classList.add('btn', 'btn--reset');
+
+        totalWrapper.classList.add('film-usage-calc-total');
+        totalLabel.for = 'filmUsageTotal';
+        totalLabel.appendChild(document.createTextNode('Feet of Film Needed:'));
+        totalInput.id = 'filmUsageTotal';
+        totalInput.name = 'filmUsageTotal';
+        totalInput.type = 'text';
+
+
+        wrapper.appendChild(form);
+        form.appendChild(fieldset);
+        fieldset.appendChild(legend);
+        fieldset.appendChild(para);
+        imageWrapper.appendChild(image);
+        fieldset.appendChild(imageWrapper);
+        pWidthWrapper.appendChild(pWidthLabel);
+        pWidthWrapper.appendChild(pWidthInput);
+        fieldset.appendChild(pWidthWrapper);
+
+        pLengthWrapper.appendChild(pLengthLabel);
+        pLengthWrapper.appendChild(pLengthInput);
+        fieldset.appendChild(pLengthWrapper);
+
+        pHeightWrapper.appendChild(pHeightLabel);
+        pHeightWrapper.appendChild(pHeightInput);
+        fieldset.appendChild(pHeightWrapper);
+
+        fWidthWrapper.appendChild(fWidthLabel);
+        fWidthWrapper.appendChild(fWidthInput);
+        fieldset.appendChild(fWidthWrapper);
+
+        resetWrapper.appendChild(resetInput);
+        fieldset.appendChild(resetWrapper);
+
+        totalWrapper.appendChild(totalLabel);
+        totalWrapper.appendChild(totalInput);
+        fieldset.appendChild(totalWrapper);
+
+        filmUsageCalcWrapper.appendChild(wrapper);
+
+    }
+
+    function ftToWrapPallet(pWidth, pLength, pHeight, fWidth) {
+        let filmUsagePerRev = (2 * pLength) + (2 * pWidth);
+        let amountOfRevs = 2 * (pHeight / fWidth);
+        let extraFilm = ((4 * filmUsagePerRev) + (2 * filmUsagePerRev));
+        let ftOfFilm = (filmUsagePerRev * amountOfRevs) + extraFilm;
+        let total = ftOfFilm / 12;
+        return total.toFixed(3);
+    }
+
+    function fromValues() {
+        let pWidth = document.getElementById('pWidth').value;
+        let pLength = document.getElementById('pLength').value;
+        let pHeight = document.getElementById('pHeight').value;
+        let fWidth = document.getElementById('fWidth').value;
+        if (pWidth && pLength && pHeight && fWidth) {
+            document.getElementById('filmUsageTotal').value = `` + ftToWrapPallet(pWidth, pLength, pHeight, fWidth) + `ft of film`;
+        } else {
+            document.getElementById('filmUsageTotal').value = 'Fill Out All Fields';
+        }
+    }
+</script>
+
+    <script src="https://uspackagingandwrapping.com/00315-1/design/js/custom.js" async="async"></script>
+    <!-- Google Code for Remarketing Tag -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 972419337;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+    <noscript>
+        <div style="display:inline;height:1px">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/972419337/?guid=ON&amp;script=0" />
+        </div>
+    </noscript>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23090565-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23090565-2');
+    </script>
+<!-- CC-10027 -->
+
+<!-- begin olark code --><script type="text/javascript" async> ;(function(o,l,a,r,k,y){if(o.olark)return; r="script";y=l.createElement(r);r=l.getElementsByTagName(r)[0]; y.async=1;y.src="//"+a;r.parentNode.insertBefore(y,r); y=o.olark=function(){k.s.push(arguments);k.t.push(+new Date)}; y.extend=function(i,j){y("extend",i,j)}; y.identify=function(i){y("identify",k.i=i)}; y.configure=function(i,j){y("configure",i,j);k.c[i]=j}; k=y._={s:[],t:[+new Date],c:{},l:a}; })(window,document,"static.olark.com/jsclient/loader.js");/* custom configuration goes here (
+www.olark.com/documentation)
+ */olark.identify('5052-219-10-9546');</script><!-- end olark code -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://uspackingstaging.corecommerce.com/00315-1/design/js/slick.min.js"></script>
+</body>
+</html>

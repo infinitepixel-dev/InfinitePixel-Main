@@ -1,0 +1,150 @@
+/*NOTE Removes page styling */
+
+/* default page colors using var */
+:root {
+  --primary-color: #6e1dc5; /* purple-700  */
+  --secondary-color: #c0c0c0; /* stone-300  */
+  --secondary-color-10: #c0c0c02c; /* stone-300 at 10% opacity */
+  --tertiary-color: #333333; /* zinc-800  */
+  --green: #7bc950; /* lime-400  */
+  --blue: #2d2b75; /* indigo-900  */
+  --red: #e92f5e; /* rose-500  */
+  --yellow: #fbcf7f; /* orange-300  */
+  --orange: #fca723; /* amber-400  */
+  --light-blue: #87ceeb; /* sky-300  */
+}
+
+/*SECTION Navigation Menu - BEGIN */
+
+/*SECTION Hamburger Style - BEGIN */
+
+/*NOTE arrow bar middle */
+.middle-bar {
+  /* height: 4px; */
+  /* background-color: var(--primary-color); */
+  /* width: 30px; */
+  position: relative;
+}
+
+/* .middle-bar.open {
+  background-color: var(--secondary-color);
+  transition: 0.4s;
+  width: 15px;
+} */
+
+/* middle bar when open gets remove */
+.middle-bar.open::before {
+  width: 30px;
+  transition: 0.4s;
+}
+
+/*NOTE arrow bar pseudo-element */
+/* Styles for the arrow appearance using a pseudo-element */
+.arrow-bar .bar::after {
+  content: ""; /* Required for the pseudo-element to display */
+  position: absolute; /* Positions the pseudo-element absolutely within its parent */
+  right: -3px; /* Positions the arrow to the right, slightly outside the bar */
+  top: -4px; /* Vertically aligns the arrow, adjust to center */
+  width: 0; /* Zero width, the arrow is formed by borders */
+  height: 0; /* Zero height, the arrow is formed by borders */
+  border-style: solid; /* Required to apply border-width and border-color */
+  border-width: 6px 0 6px 10px; /* Creates the shape of an arrow */
+  border-color: transparent transparent transparent var(--primary-color); /* Colors the left side of the arrow, making it visible */
+  transition: 0.5s; /* Smooth transition for the arrow rotation */
+}
+
+/*NOTE arrow bar open */
+/* Modifies the arrow position and rotation when the .open class is applied */
+.arrow-bar.open .bar::after {
+  position: absolute; /* Confirms the position is absolute for clarity */
+  right: 14px; /* Moves the arrow to the end of the bar */
+  top: -4px; /* Keeps the vertical position consistent */
+  transform: rotate(
+    180deg
+  ); /* Rotates the arrow to point in the opposite direction */
+  transition: 0.5s; /* Ensures the rotation has a smooth transition */
+  border-color: transparent transparent transparent var(--secondary-color);
+}
+
+/*!SECTION Hamburger Style - END */
+
+/*SECTION Side Menu Style - BEGIN */
+/*NOTE sidebar */
+.sidebar {
+  position: fixed; /* Fixed positioning to stay in place during scroll */
+  left: -250px; /* Initially hidden to the left of the viewport */
+  top: 0;
+  width: 175px; /* Sidebar width */
+  height: 100%; /* Full-height */
+  background-color: #031d376d; /* Change as needed */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  backdrop-filter: blur(10px); /* Apply blur effect to content behind sidebar */
+  transition: 0.5s, backdrop-filter; /* Smooth transition for showing/hiding */
+  /* padding-top: 60px; */
+  z-index: 1; /* Ensure it's above other content */
+  /* Apply a mask image that fades from left (opaque) to right (transparent) */
+  /* -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%); */
+  /* mask-image: linear-gradient(to right, black 99%, transparent 100%); */
+  /* box shadow */
+  box-shadow: -58px 0px 30px 50px #000000;
+}
+
+/*NOTE sidebar open */
+/* Class to toggle visibility */
+.sidebar.open {
+  left: 0;
+  /* z-index: 10; */
+  /* backdrop-filter: blur(8px); */
+}
+
+/*NOTE menu icon click */
+.menu-icon {
+  cursor: pointer; /* Indicate the icon is clickable */
+}
+
+/*NOTE sidebar content */
+/* Additional styling for links inside the sidebar */
+.sidebar a {
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--secondary-color);
+  display: block;
+  transition: 0.3s;
+}
+
+/*NOTE sidebar content hover */
+.sidebar a:hover {
+  color: var(--primary-color);
+  opacity: 1;
+}
+/*!SECTION Side Menu Style - END */
+
+/*!SECTION Navigation Menu - END */
+
+/*SECTION Main Content - BEGIN */
+/*NOTE Main content */
+main {
+  color: var(--secondary-color);
+  padding: 50px 20px 20px 70px; /* top right bottom left */
+  transition: 0.5s; /* Smooth transition for showing/hiding */
+}
+
+/*!SECTION Main Content - END */
+#customNav {
+  position: fixed;
+  z-index: 9999;
+}
+
+#logoColBlank {
+  width: 0%;
+}
+
+#logoCol {
+  width: 100%;
+}
+
+/* used to grab quick hex codes */
+.test {
+  color: #1b1e308a;
+}

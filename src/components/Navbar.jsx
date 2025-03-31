@@ -1,155 +1,207 @@
-import { useState, useEffect, useRef } from "react"
-import { FaBars, FaTimes } from "react-icons/fa"
-import { Link } from "react-router-dom"
-import gsap from "gsap"
-import ReactLogo from "../assets/logo.svg"
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+
+//Icons
+import { FaBars, FaTimes } from "react-icons/fa";
+
+//Logos
+import ReactLogo from "../assets/logo.svg";
 
 const Navbar = () => {
-  // State to manage the open/close state of the mobile menu
-  const [isOpen, setIsOpen] = useState(false)
-  // State to manage whether the navbar is over the specific background
-  const [isOverBg, setIsOverBg] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const scrollBarWidthRef = useRef(0);
 
-  // Ref for the text element
-  const textRef = useRef(null)
+  const textRef = useRef(null);
 
-  // Toggle the mobile menu open/closed and manage scroll
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
+  const menuOverlayRef = useRef(null);
+  const menuButtonRef = useRef(null);
+  const menuButtonBgRef = useRef(null);
+  const menuItemsRef = useRef([]);
 
-    if (!isOpen) {
-      document.body.classList.add("overflow-hidden") // Disable scrolling when menu is open
-    } else {
-      document.body.classList.remove("overflow-hidden") // Re-enable scrolling when menu is closed
-    }
-  }
-
-  // Close the mobile menu and re-enable scrolling
-  const closeMenu = () => {
-    setIsOpen(false)
-    document.body.classList.remove("overflow-hidden")
-  }
-
-  // Detect scroll and check if the navbar is over the specific background
+  // 💡 Cache scrollbar width once on mount
   useEffect(() => {
-    const handleScroll = () => {
-      const targetSection = document.querySelector(".bg-target")
+    scrollBarWidthRef.current =
+      window.innerWidth - document.documentElement.clientWidth;
+  }, []);
 
-      if (targetSection) {
-        const rect = targetSection.getBoundingClientRect()
-
-        // If the navbar is over the section with the #E2E8F0 background
-        if (rect.top <= 0 && rect.bottom >= 0) {
-          setIsOverBg(true)
-        } else {
-          setIsOverBg(false)
+  // ✨ Animate menu items in when menu opens
+  useEffect(() => {
+    if (isOpen) {
+      gsap.fromTo(
+        menuItemsRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power2.out",
         }
-      }
+      );
+    }
+  }, [isOpen]);
+
+  const toggleMenu = () => {
+    const opening = !isOpen;
+    const container = document.getElementById("app-container");
+
+    if (opening) {
+      const scrollBarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      scrollBarWidthRef.current = scrollBarWidth;
+
+      if (container) container.style.marginRight = `${scrollBarWidth}px`;
+      if (menuOverlayRef.current)
+        menuOverlayRef.current.style.paddingRight = `${scrollBarWidth}px`;
+
+      document.body.classList.add("overflow-hidden");
+      animateButtonBackground();
+    } else {
+      document.body.classList.remove("overflow-hidden");
+      if (container) container.style.marginRight = "";
+      if (menuOverlayRef.current)
+        menuOverlayRef.current.style.paddingRight = "";
+      gsap.killTweensOf(menuButtonBgRef.current);
+      gsap.to(menuButtonBgRef.current, { backgroundColor: "transparent" });
     }
 
-    window.addEventListener("scroll", handleScroll)
+    // console.log("Scrollbar width:", scrollBarWidthRef.current);
+    // console.log("Container marginRight:", container?.style.marginRight);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
+    setIsOpen(opening); // 🧠 Now update state
+  };
+
+  //closes the navmenu
+  const closeMenu = () => {
+    setIsOpen(false);
+    document.body.classList.remove("overflow-hidden");
+    const container = document.getElementById("app-container");
+    if (container) container.style.marginRight = "";
+
+    //if it's the contact us menu item that was clicked, we want to scroll to the contact form
+
+    const contactForm = document.getElementById("contact-form");
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: "smooth" });
+    } else {
+      console.error("Contact form not found!");
     }
-  }, [])
+  };
 
-  // GSAP animation for hover effects
-  useEffect(() => {
-    const textElement = textRef.current
-
-    const handleMouseEnter = () => {
-      gsap.to(textElement, {
-        color: "#ff6347", // Change to a different color (e.g., tomato)
-        duration: 0.1,
+  const animateButtonBackground = () => {
+    gsap.fromTo(
+      menuButtonBgRef.current,
+      { backgroundColor: "transparent" },
+      {
+        backgroundColor: "#1a202c",
+        duration: 1.5,
         ease: "power1.inOut",
-      })
-    }
-
-    const handleMouseLeave = () => {
-      gsap.to(textElement, {
-        color: isOverBg ? "#000000" : "#F1F5F9", // Black or slate depending on background
-        duration: 0.2,
-        ease: "power1.inOut",
-      })
-    }
-
-    if (textElement) {
-      textElement.addEventListener("mouseenter", handleMouseEnter)
-      textElement.addEventListener("mouseleave", handleMouseLeave)
-    }
-
-    return () => {
-      if (textElement) {
-        textElement.removeEventListener("mouseenter", handleMouseEnter)
-        textElement.removeEventListener("mouseleave", handleMouseLeave)
+        repeat: -1,
+        yoyo: true,
       }
-    }
-  }, [isOverBg]) // Re-run effect when background color changes
+    );
+  };
 
   return (
-    <nav className="fixed top-0 left-0 z-50 flex items-center justify-between w-full p-4 bg-transparent">
-      {/* Logo positioned on the far left */}
-      <div className="flex items-center">
-        <img src={ReactLogo} alt="React Logo" className="h-8 w-15" />
-      </div>
+    <nav className="top-0 left-0 z-50 fixed w-full">
+      {/* Gradient Background Overlay */}
+      <div className="z-0 absolute inset-0 bg-gradient-to-b from-slate-800 to-red-slate-800/0 h-26 pointer-events-none"></div>
 
-      {/* Flex container for the link and menu button on the far right */}
-      <div className="flex items-center ml-auto">
-        <a
-          href="#"
-          ref={textRef}
-          className={`z-20 hidden mr-4 text-lg font-semibold transition duration-300 md:block ${
-            isOverBg ? "text-black" : "text-slate-100"
-          }`}
-        >
-          Let&apos;s Create Something Together
-        </a>
-        {/* Menu button for toggling mobile menu */}
-        <button
-          onClick={toggleMenu}
-          className={`z-50 text-2xl transition-transform duration-300 transform focus:outline-none ${
-            isOverBg ? "text-black" : "text-white"
-          }`}
-          aria-label="Menu button"
-        >
-          {/* Rotate the icon based on state */}
-          <div
-            className={`transition-transform duration-300 ${
-              isOpen ? "rotate-90" : "rotate-0"
-            }`}
+      {/* Navbar Content */}
+      <div className="relative flex justify-between items-center bg-transparent p-4 w-full transition-colors duration-300">
+        <div className="flex items-center">
+          <button
+            onClick={() => {
+              const contactForm = document.getElementById("app-container");
+              if (contactForm) {
+                contactForm.scrollIntoView({ behavior: "smooth" });
+              } else {
+                console.error("Contact form not found!");
+              }
+            }}
+            className="bg-transparent m-0 p-0 border-none focus:outline-none"
+            aria-label="Scroll to app container"
           >
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </div>
-        </button>
+            <img src={ReactLogo} alt="React Logo" className="w-15 h-8" />
+          </button>
+        </div>
+
+        <div className="flex items-center ml-auto">
+          <button
+            ref={textRef}
+            className="hidden md:block z-20 mr-4 font-semibold text-slate-100 hover:text-rose-500 text-lg transition-colors duration-100"
+            onClick={() => {
+              const contactForm = document.getElementById("contact-form");
+              if (contactForm) {
+                contactForm.scrollIntoView({ behavior: "smooth" });
+              } else {
+                console.error("Contact form not found!");
+              }
+            }}
+          >
+            Let&apos;s Create Something Together
+          </button>
+
+          {/* Menu Toggle */}
+          <button
+            onClick={toggleMenu}
+            ref={menuButtonRef}
+            className="z-[999] focus:outline-none text-2xl transition-transform duration-300 transform"
+            aria-label="Menu button"
+          >
+            <div
+              ref={menuButtonBgRef}
+              className={`transition-transform duration-100 hover:text-rose-500 p-2 rounded-full ${
+                isOpen ? "rotate-90" : "rotate-0"
+              }`}
+            >
+              {isOpen ? (
+                <FaTimes className="text-slate-100 hover:text-rose-500 duration-100" />
+              ) : (
+                <FaBars className="text-slate-100 hover:text-rose-500 duration-100" />
+              )}
+            </div>
+          </button>
+        </div>
       </div>
 
-      {/* Fullscreen menu overlay for mobile view */}
+      {/* Fullscreen Overlay Menu */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${
-          isOpen ? "bg-black opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        ref={menuOverlayRef}
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-opacity duration-300 ease-in-out ${
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } bg-black`}
       >
-        <ul
-          className="relative space-y-10 text-6xl text-white transition-transform duration-500 transform"
-          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the list
+        <div
+          className="relative flex flex-col items-center space-y-10 text-slate-100 text-6xl transition-transform transform"
+          role="menu"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") closeMenu();
+          }}
         >
-          <li className="absolute left-0 text-2xl -top-10">Menu</li>
-          <li onClick={closeMenu} className="cursor-pointer hover:underline">
-            About
-          </li>
-          <li className="cursor-pointer hover:underline">
-            <Link to="/portfolio" onClick={closeMenu}>
-              Our Projects
-            </Link>
-          </li>
-          <li onClick={closeMenu} className="cursor-pointer hover:underline">
-            Contact Us
-          </li>
-        </ul>
+          <div className="bg-transparent border-none text-white text-4xl">
+            Menu
+          </div>
+          {["Our Projects", "Contact Us"].map((item, index) => (
+            <button
+              key={item}
+              ref={(el) => (menuItemsRef.current[index] = el)}
+              onClick={closeMenu}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") closeMenu();
+              }}
+              className="bg-transparent border-none text-white text-5xl hover:underline cursor-pointer"
+            >
+              {item}
+            </button>
+          ))}
+        </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

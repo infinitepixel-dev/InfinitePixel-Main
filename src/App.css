@@ -69,3 +69,9 @@ h6 {
 .text-black {
   transition: color 0.3s ease;
 }
+
+.bg-texture-pattern {
+  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  background-size: contain;
+  background-repeat: repeat;
+}

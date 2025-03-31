@@ -1,0 +1,29 @@
+#bg {
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* media query for mobile to rotate image 90 degress */
+@media only screen and (max-width: 600px) {
+  #bg {
+    transform: rotate(90deg);
+  }
+}
+
+h1 {
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 5em;
+  text-shadow: 1px 5px 10px #000;
+}
+
+.infinite-pixel-copyright {
+  top: 30em;
+  position: relative;
+  text-align: center;
+}
