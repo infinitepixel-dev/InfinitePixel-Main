@@ -4,20 +4,7 @@ import { gsap } from "gsap"
 const projects = [
   {
     title: "Jawfane",
-    description:
-      "Jawfane is a metal band based out of Nashville, TN. They are a 5-piece band with a heavy sound and a unique style.",
-    image: "https://placehold.co/300x300",
-    siteImage: "https://placehold.co/600x400",
-  },
-  {
-    title: "Project Two",
-    description: "A brief description of project two.",
-    image: "https://placehold.co/300x300",
-    siteImage: "https://placehold.co/600x400",
-  },
-  {
-    title: "Project Three",
-    description: "A brief description of project three.",
+    description: "Jawfane is a metal band based out of Nashville, TN.",
     image: "https://placehold.co/300x300",
     siteImage: "https://placehold.co/600x400",
   },
@@ -57,7 +44,7 @@ export default function Portfolio() {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-10 text-white bg-gray-900">
-      <h1 className="mb-10 text-4xl font-bold">Portfolio</h1>
+      <h1 className="mt-16 mb-10 text-4xl font-bold">Portfolio</h1>
       <div
         ref={containerRef}
         className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"

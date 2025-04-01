@@ -1,11 +1,13 @@
-import "./App.css";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import WhatWeDo from "./components/WhatWeDo";
-import AboutUs from "./components/AboutUs";
-import ContactForm from "./components/ContactForm";
-import Map from "./components/Map";
-import Footer from "./components/Footer";
+import { Route, Routes } from "react-router-dom"
+import "./App.css"
+import Header from "./components/Header"
+import Navbar from "./components/Navbar"
+import WhatWeDo from "./components/WhatWeDo"
+import AboutUs from "./components/AboutUs"
+import ContactForm from "./components/ContactForm"
+import Map from "./components/Map"
+import Footer from "./components/Footer"
+import Portfolio from "./components/pages/Portfolio"
 // import CustomCursor from "./components/CustomCursor"
 
 function App() {
@@ -16,14 +18,25 @@ function App() {
     >
       {/* <CustomCursor /> */}
       <Navbar />
-      <Header />
-      <WhatWeDo />
-      <AboutUs />
-      <ContactForm />
-      <Map />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              {" "}
+              <Header />
+              <AboutUs />
+              <ContactForm />
+              <WhatWeDo />
+              <Map />{" "}
+            </>
+          }
+        />
+        <Route path="/portfolio" element={<Portfolio />} />
+      </Routes>
       <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
