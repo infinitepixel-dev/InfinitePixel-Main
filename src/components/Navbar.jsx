@@ -108,6 +108,10 @@ const Navbar = () => {
     )
   }
 
+  const navigateHome = () => {
+    navigate("/")
+  }
+
   return (
     <nav
       className={`top-0 left-0 z-50 fixed w-full ${
@@ -132,7 +136,12 @@ const Navbar = () => {
             className="p-0 m-0 bg-transparent border-none focus:outline-none"
             aria-label="Scroll to app container"
           >
-            <img src={ReactLogo} alt="React Logo" className="h-8 w-15" />
+            <img
+              src={ReactLogo}
+              alt="React Logo"
+              onClick={navigateHome}
+              className="h-8 w-15"
+            />
           </button>
         </div>
 
