@@ -30,28 +30,12 @@ const Footer = () => {
       </p>
       <div className="flex space-x-4">
         <a
-          href="https://facebook.com"
+          href="https://www.facebook.com/profile.php?id=61574753346703"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-blue-500"
         >
           <FontAwesomeIcon icon={faFacebook} size="lg" />
-        </a>
-        <a
-          href="https://linkedin.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-blue-700"
-        >
-          <FontAwesomeIcon icon={faLinkedin} size="lg" />
-        </a>
-        <a
-          href="https://twitter.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-blue-400"
-        >
-          <FontAwesomeIcon icon={faTwitter} size="lg" />
         </a>
       </div>
     </footer>
