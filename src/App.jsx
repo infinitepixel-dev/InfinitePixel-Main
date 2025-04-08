@@ -26,8 +26,8 @@ function App() {
               {" "}
               <Header />
               <AboutUs />
-              <ContactForm />
               <WhatWeDo />
+              <ContactForm />
               <Map />{" "}
             </>
           }
