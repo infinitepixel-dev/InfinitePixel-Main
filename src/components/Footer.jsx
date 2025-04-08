@@ -1,10 +1,6 @@
 import { useEffect, useRef } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faFacebook,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons"
+import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import gsap from "gsap"
 
 const Footer = () => {
@@ -12,7 +8,6 @@ const Footer = () => {
   const footerRef = useRef(null)
 
   useEffect(() => {
-    // GSAP animation for the footer
     gsap.fromTo(
       footerRef.current,
       { opacity: 0, y: 50 },
@@ -21,22 +16,32 @@ const Footer = () => {
   }, [])
 
   return (
-    <footer
-      ref={footerRef}
-      className="flex flex-col items-center py-4 space-y-2 text-white bg-blue-950"
-    >
-      <p className="text-sm text-center">
-        &copy; {currentYear} Infinite Pixel LLC
-      </p>
-      <div className="flex space-x-4">
-        <a
-          href="https://www.facebook.com/profile.php?id=61574753346703"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-blue-500"
-        >
-          <FontAwesomeIcon icon={faFacebook} size="lg" />
-        </a>
+    <footer ref={footerRef} className="w-full px-4 py-8 text-white bg-blue-950">
+      <div className="flex flex-col items-center space-y-4">
+        <p className="text-sm font-semibold tracking-wide text-center">
+          &copy; {currentYear} Infinite Pixel Web Design
+        </p>
+
+        <p className="text-sm text-gray-200">Find us on socials</p>
+
+        <div className="flex items-center space-x-6">
+          <a
+            href="https://www.facebook.com/profile.php?id=61574753346703"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-200 hover:text-blue-400"
+          >
+            <FontAwesomeIcon icon={faFacebook} size="xl" />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/infinite-pixel-web-design"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-200 hover:text-blue-600"
+          >
+            <FontAwesomeIcon icon={faLinkedin} size="xl" />
+          </a>
+        </div>
       </div>
     </footer>
   )
