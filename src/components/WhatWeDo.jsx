@@ -99,17 +99,17 @@ const WhatWeDo = () => {
           Professional Websites, Affordable Prices
         </h2>
         <p className="p-8 mb-8 text-xl font-light md:text-2xl">
-          At Infinite Pixel, we specialize in creating custom websites tailored
-          to the unique needs of small businesses. Our experienced designers
-          offer professional services you can trust.
+          At <b>Infinite Pixel</b>, we specialize in creating custom websites
+          tailored to the unique needs of small businesses. Our experienced
+          designers offer professional services you can trust.
         </p>
         <div className="grid grid-cols-1 gap-8 p-8 leading-relaxed text-left md:grid-cols-2">
           <p ref={textRef1}>
             We know the challenges small businesses face, and we focus on
             delivering stunning, functional websites that are affordable without
             sacrificing quality. Whether you&apos;re looking for an online
-            presence or establishing a presence, Infinite Pixel has got you
-            covered.
+            presence or establishing a presence, <b>Infinite Pixel</b> has got
+            you covered.
           </p>
           <p ref={textRef2}>
             Our expert team builds sites optimized for performance, usability,
