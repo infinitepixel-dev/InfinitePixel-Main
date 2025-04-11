@@ -1,12 +1,16 @@
-import "./App.css";
-import Header from "./components/Header";
+//App.jsx
+
 import Navbar from "./components/Navbar";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+//Pages
 import WhatWeDo from "./components/WhatWeDo";
 import AboutUs from "./components/AboutUs";
 import ContactForm from "./components/ContactForm";
 import Map from "./components/Map";
-import Footer from "./components/Footer";
-// import CustomCursor from "./components/CustomCursor"
+
+import "./App.css";
 
 function App() {
   return (
