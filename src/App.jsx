@@ -20,11 +20,22 @@ function App() {
     >
       {/* <CustomCursor /> */}
       <Navbar />
-      <Header />
-      <WhatWeDo />
-      <AboutUs />
-      <ContactForm />
-      <Map />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              {" "}
+              <Header />
+              <AboutUs />
+              <WhatWeDo />
+              <ContactForm />
+              <Map />{" "}
+            </>
+          }
+        />
+        <Route path="/portfolio" element={<Portfolio />} />
+      </Routes>
       <Footer />
     </div>
   );

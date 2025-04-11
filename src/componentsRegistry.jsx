@@ -9,7 +9,7 @@ const componentsRegistry = {
   FadeIn: () => import("./components/effects/animations/fadeIn.jsx"),
   SiteRoutes: () => import("./components/corecomponents/siteRoutes.jsx"),
   Footer: () => import("./components/pages/Footer/footer.jsx"),
-  // Add more components here
-};
+  Portfolio: () => import("../components/pages/Portfolio"),
+}
 
-export default componentsRegistry;
+export default componentsRegistry
