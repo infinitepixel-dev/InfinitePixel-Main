@@ -7,6 +7,13 @@ export default function Portfolio() {
       image: "/images/portfolio-jawfane.png",
       link: "https://jawfane.com",
     },
+    {
+      title: "Fresh Cuts ",
+      description:
+        "A Locally owned barbershop providing top-tier grooming services",
+      image: "/images/barber.png",
+      link: "",
+    },
   ]
 
   return (
