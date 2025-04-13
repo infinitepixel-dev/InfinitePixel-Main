@@ -1,16 +1,14 @@
-//App.jsx
-
-import Navbar from "./components/Navbar";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-
-//Pages
-import WhatWeDo from "./components/WhatWeDo";
-import AboutUs from "./components/AboutUs";
-import ContactForm from "./components/ContactForm";
-import Map from "./components/Map";
-
-import "./App.css";
+import { Route, Routes } from "react-router-dom"
+import "./App.css"
+import Header from "./components/Header"
+import Navbar from "./components/Navbar"
+import WhatWeDo from "./components/WhatWeDo"
+import AboutUs from "./components/AboutUs"
+import ContactForm from "./components/ContactForm"
+import Map from "./components/Map"
+import Footer from "./components/Footer"
+import Portfolio from "./components/pages/Portfolio"
+// import CustomCursor from "./components/CustomCursor"
 
 function App() {
   return (
@@ -20,14 +18,25 @@ function App() {
     >
       {/* <CustomCursor /> */}
       <Navbar />
-      <Header />
-      <WhatWeDo />
-      <AboutUs />
-      <ContactForm />
-      <Map />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              {" "}
+              <Header />
+              <AboutUs />
+              <WhatWeDo />
+              <ContactForm />
+              <Map />{" "}
+            </>
+          }
+        />
+        <Route path="/portfolio" element={<Portfolio />} />
+      </Routes>
       <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
