@@ -87,7 +87,6 @@ const Navbar = () => {
         console.error("Contact form not found!")
       }
     } else if (action === "portfolio") {
-      // Ensure navigate is used correctly
       if (navigate) navigate("/portfolio")
     } else if (action === "home") {
       if (navigate) navigate("/")
