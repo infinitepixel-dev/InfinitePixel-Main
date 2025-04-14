@@ -31,13 +31,13 @@ export default function Portfolio() {
   ]
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-10 text-white bg-gray-900">
+    <div className="flex flex-col items-center min-h-screen p-10 text-white bg-gradient-to-b from-slate-800 to-slate-600">
       <h1 className="mt-16 mb-10 text-4xl font-bold">Portfolio</h1>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, idx) => (
           <div
             key={idx}
-            className="p-5 text-center bg-gray-800 rounded-lg shadow-lg"
+            className="p-5 text-center rounded-lg shadow-lg bg-gradient-to-bl from-sky-700 to-sky-900"
           >
             {project.link ? (
               <a href={project.link} target="_blank" rel="noopener noreferrer">
