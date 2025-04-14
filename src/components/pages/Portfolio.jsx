@@ -1,6 +1,8 @@
+import { useRef } from "react"
 import { FaReact } from "react-icons/fa"
 import { FaClover, FaBootstrap } from "react-icons/fa6"
 import { SiTailwindcss } from "react-icons/si"
+import { gsap } from "gsap"
 
 export default function Portfolio() {
   const projects = [
@@ -30,14 +32,60 @@ export default function Portfolio() {
     },
   ]
 
+  const cardRefs = useRef([])
+
+  const handleMouseEnter = (idx) => {
+    gsap.fromTo(
+      cardRefs.current[idx],
+      { scale: 1 },
+      {
+        scale: 1.05,
+        ease: "elastic.inOut(1, 0.5)",
+        duration: 1,
+      }
+    )
+  }
+  const handleMouseLeave = (idx) => {
+    gsap.fromTo(
+      cardRefs.current[idx],
+      { scale: 1.25 },
+      {
+        scale: 1,
+        ease: "elastic.out(1, 0.5)",
+        duration: 1,
+      }
+    )
+  }
+
   return (
-    <div className="flex flex-col items-center min-h-screen p-10 text-white bg-gray-900">
-      <h1 className="mt-16 mb-10 text-4xl font-bold">Portfolio</h1>
+    <div className="flex flex-col items-center min-h-screen p-10 text-white bg-gradient-to-b from-slate-800 to-slate-600">
+      {/* Intro / Hero Section */}
+      <h1 className="mt-16 mb-4 text-5xl font-bold text-center">
+        Beautiful, Functional Websites That Convert
+      </h1>
+      <p className="max-w-3xl mb-8 text-xl text-center">
+        We specialize in building modern, responsive websites that help your
+        business stand out and grow. Whether you&apos;re a local brand or a
+        growing online presence, we create tailored digital experiences that
+        work.
+      </p>
+
+      <a
+        href="/contact"
+        className="px-6 py-3 mb-12 text-lg font-semibold text-white transition duration-300 bg-yellow-500 rounded-full hover:bg-yellow-600"
+      >
+        Let&apos;s Build Something Together
+      </a>
+
+      {/* Projects Grid */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, idx) => (
           <div
             key={idx}
-            className="p-5 text-center bg-gray-800 rounded-lg shadow-lg"
+            ref={(el) => (cardRefs.current[idx] = el)}
+            className="p-5 text-center transform rounded-lg shadow-lg bg-gradient-to-bl from-sky-700 to-sky-900"
+            onMouseEnter={() => handleMouseEnter(idx)}
+            onMouseLeave={() => handleMouseLeave(idx)}
           >
             {project.link ? (
               <a href={project.link} target="_blank" rel="noopener noreferrer">
@@ -59,7 +107,7 @@ export default function Portfolio() {
             <p className="mt-2 mb-3">{project.description}</p>
 
             {project.techIcons && (
-              <div className="flex justify-center gap-4 mt-3 text-2xl text-cyan-300">
+              <div className="flex justify-center gap-4 mt-3 text-2xl text-yellow-500">
                 {project.techIcons.map((tech, i) => (
                   <span key={i} title={tech.name} className="cursor-help">
                     {tech.icon}
