@@ -105,6 +105,11 @@ const ContactForm = () => {
   return (
     <>
       <ScrollingIconsBar />
+      <img
+        src="images/wave-haikei.svg"
+        className="block w-full pt-10 -mb-1"
+        alt="Wave"
+      />
       <div
         id="contact-form"
         className="flex justify-center w-full p-4 bg-texture-pattern bg-zinc-800 md:p-20"
