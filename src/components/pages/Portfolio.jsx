@@ -35,26 +35,19 @@ export default function Portfolio() {
   const cardRefs = useRef([])
 
   const handleMouseEnter = (idx) => {
-    gsap.fromTo(
-      cardRefs.current[idx],
-      { scale: 1 },
-      {
-        scale: 1.05,
-        ease: "elastic.inOut(1, 0.5)",
-        duration: 1,
-      }
-    )
+    gsap.to(cardRefs.current[idx], {
+      scale: 1.015,
+      ease: "power1.out",
+      duration: 0.3,
+    })
   }
+
   const handleMouseLeave = (idx) => {
-    gsap.fromTo(
-      cardRefs.current[idx],
-      { scale: 1.25 },
-      {
-        scale: 1,
-        ease: "elastic.out(1, 0.5)",
-        duration: 1,
-      }
-    )
+    gsap.to(cardRefs.current[idx], {
+      scale: 1,
+      ease: "power1.inOut",
+      duration: 0.3,
+    })
   }
 
   return (
