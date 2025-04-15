@@ -1,18 +1,18 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FaReact, FaHtml5, FaCss3Alt, FaNode } from "react-icons/fa";
-import { IoLogoJavascript } from "react-icons/io";
-import { RiTailwindCssFill } from "react-icons/ri";
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { FaReact, FaHtml5, FaCss3Alt, FaNode } from "react-icons/fa"
+import { IoLogoJavascript } from "react-icons/io"
+import { RiTailwindCssFill } from "react-icons/ri"
 // Register GSAP plugin for scroll-triggered animations
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 // Define the ScrollingIconsBar component
 const ScrollingIconsBar = () => {
-  const iconContainerRef = useRef(null);
+  const iconContainerRef = useRef(null)
 
   useEffect(() => {
-    const iconContainer = iconContainerRef.current;
+    const iconContainer = iconContainerRef.current
 
     // Setup ScrollTrigger to start animation when the bar comes into view
     ScrollTrigger.create({
@@ -28,13 +28,13 @@ const ScrollingIconsBar = () => {
             duration: 30,
             repeat: -1,
           }
-        );
+        )
       },
-    });
-  }, []);
+    })
+  }, [])
 
   return (
-    <div className="relative bg-blue-950 mt-2 md:mt-8 py-4 w-full overflow-hidden">
+    <div className="relative w-full py-4 mt-2 overflow-hidden bg-gradient-to-tr from-violet-600 to-blue-500 md:mt-8">
       <div
         ref={iconContainerRef}
         className="flex justify-between items-center space-x-8 md:space-x-16 w-[200%] text-white text-6xl"
@@ -55,8 +55,8 @@ const ScrollingIconsBar = () => {
         <FaNode />
       </div>
     </div>
-  );
-};
+  )
+}
 
 // Correct export
-export { ScrollingIconsBar as default };
+export { ScrollingIconsBar as default }
