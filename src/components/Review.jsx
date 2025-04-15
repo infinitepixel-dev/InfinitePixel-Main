@@ -9,7 +9,6 @@ const reviewData = {
   They listen, they explain, they execute.
   Our band website turned out a tier above because we chose them.
   I cannot recommend them enough.`,
-  date: "April 14, 2025",
 }
 
 export default function Review() {
