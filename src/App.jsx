@@ -8,7 +8,8 @@ import ContactForm from "./components/ContactForm"
 import Map from "./components/Map"
 import Footer from "./components/Footer"
 import Portfolio from "./components/pages/Portfolio"
-// import CustomCursor from "./components/CustomCursor"
+import Review from "./components/Review"
+import ScrollingIconsBar from "./components/utility/ScrollingIconsBar"
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
               <Header />
               <AboutUs />
               <WhatWeDo />
+              <ScrollingIconsBar />
+              <Review />
               <ContactForm />
               <Map />{" "}
             </>
