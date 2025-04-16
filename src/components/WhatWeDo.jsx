@@ -105,17 +105,17 @@ const WhatWeDo = () => {
         </p>
         <div className="grid grid-cols-1 gap-8 p-8 leading-relaxed text-left md:grid-cols-2">
           <p ref={textRef1}>
-            We know the challenges small businesses face, and we focus on
-            delivering stunning, functional websites that are affordable without
-            sacrificing quality. Whether you&apos;re looking for an online
-            presence or establishing a presence, <b>Infinite Pixel</b> has got
-            you covered.
+            We understand the challenges small businesses face, which is why
+            we&apos;re committed to delivering clean, functional websites that
+            are affordable without compromising on quality. Whether you&apos;re
+            building your online presence for the first time or improving an
+            existing one, <b>Infinite Pixel</b> has you covered.
           </p>
           <p ref={textRef2}>
-            Our expert team builds sites optimized for performance, usability,
-            and modern design. We work closely with clients, ensuring that your
-            website is a true reflection of your brand and helps you achieve
-            your business goals.
+            Our experienced team crafts high-performance websites with a focus
+            on usability and modern design. We collaborate closely with you to
+            create a site that authentically represents your brand and drives
+            your business forward.
           </p>
         </div>
       </div>
