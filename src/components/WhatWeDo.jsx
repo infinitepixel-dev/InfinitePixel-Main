@@ -118,7 +118,6 @@ const WhatWeDo = () => {
             your business goals.
           </p>
         </div>
-        <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-300" />
       </div>
     </section>
   )
