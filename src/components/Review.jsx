@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
-import { FaStar } from "react-icons/fa";
-import { gsap } from "gsap";
+import { useEffect, useRef } from "react"
+import { FaStar } from "react-icons/fa"
+import { gsap } from "gsap"
 
 const reviewData = {
   name: "Corey P 'Guitarist of Jawfane'",
@@ -9,29 +9,29 @@ const reviewData = {
   They listen, they explain, they execute.
   Our band website turned out a tier above because we chose them.
   I cannot recommend them enough.`,
-};
+}
 
 export default function Review() {
-  const cardRef = useRef(null);
+  const cardRef = useRef(null)
 
   useEffect(() => {
     gsap.fromTo(
       cardRef.current,
       { opacity: 0, y: 40 },
       { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
-    );
-  }, []);
+    )
+  }, [])
 
   return (
     <div
       ref={cardRef}
-      className="bg-white shadow-xl mx-auto mt-18 md:mt-24 p-6 rounded-2xl max-w-md"
+      className="max-w-md p-6 m-2 shadow-xl m- md:mx-auto bg-slate-50 md:p-6 md:mt-24 rounded-2xl"
     >
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="font-semibold text-gray-800 text-xl">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-xl font-semibold text-gray-800">
           {reviewData.title}
         </h3>
-        <span className="text-gray-500 text-sm">{reviewData.date}</span>
+        <span className="text-sm text-gray-500">{reviewData.date}</span>
       </div>
 
       <div className="flex items-center mb-4">
@@ -47,9 +47,9 @@ export default function Review() {
 
       <p className="mb-4 text-blue-950">{reviewData.review}</p>
 
-      <div className="text-gray-500 text-sm text-right italic">
+      <div className="text-sm italic text-right text-gray-500">
         — {reviewData.name}
       </div>
     </div>
-  );
+  )
 }

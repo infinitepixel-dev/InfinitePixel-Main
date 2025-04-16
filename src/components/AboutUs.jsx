@@ -81,43 +81,43 @@ const AboutUs = () => {
         {/* List of benefits with green checkboxes */}
         <ul className="space-y-2">
           <li className="flex items-start">
-            <FaCheckCircle className="mt-1 mr-2 text-green-500" />
+            <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
             <span className="text-lg text-gray-700">
               Responsive and modern designs
             </span>
           </li>
           <li className="flex items-start">
-            <FaCheckCircle className="mt-1 mr-2 text-green-500" />
+            <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
             <span className="text-lg text-gray-700">
               Our team is based in the US
             </span>
           </li>
           <li className="flex items-start">
-            <FaCheckCircle className="mt-1 mr-2 text-green-500" />
+            <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
             <span className="text-lg text-gray-700">
               User-focused development approach
             </span>
           </li>
           <li className="flex items-start">
-            <FaCheckCircle className="mt-1 mr-2 text-green-500" />
+            <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
             <span className="text-lg text-gray-700">
               Secure and reliable technologies
             </span>
           </li>
           <li className="flex items-start">
-            <FaCheckCircle className="mt-1 mr-2 text-green-500" />
+            <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
             <span className="text-lg text-gray-700">
               Transparent communication and collaboration
             </span>
           </li>
           <li className="flex items-start">
-            <FaCheckCircle className="mt-1 mr-2 text-green-500" />
+            <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
             <span className="text-lg text-gray-700">
               In-house website hosting and maintenance
             </span>
           </li>
           <li className="flex items-start">
-            <FaCheckCircle className="mt-1 mr-2 text-green-500" />
+            <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
             <span className="text-lg text-gray-700">
               Experienced team delivering high-quality solutions
             </span>
