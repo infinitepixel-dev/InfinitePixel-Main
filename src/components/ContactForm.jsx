@@ -1,4 +1,6 @@
-import { useState, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 const ContactForm = () => {
   const formRef = useRef(null)
@@ -9,6 +11,7 @@ const ContactForm = () => {
     email: "",
     message: "",
   })
+
   const maxMessageLength = 250 // Maximum character limit for the message
 
   const email = import.meta.env.VITE_FORM_EMAIL // Ensure you have this in your .env file
@@ -101,6 +104,50 @@ const ContactForm = () => {
     }
   }
 
+  gsap.registerPlugin(ScrollTrigger)
+
+  useEffect(() => {
+    const heading = document.querySelector(".heading")
+    const subheading = document.querySelector(".subheading")
+
+    if (heading) {
+      gsap.fromTo(
+        heading,
+        { opacity: 0, y: -150 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power1.in",
+          scrollTrigger: {
+            trigger: heading,
+            start: "top 80%",
+            toggleActions: "play none none none", // Only plays once
+          },
+        }
+      )
+    }
+
+    if (subheading) {
+      gsap.fromTo(
+        subheading,
+        { opacity: 0, x: -150 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power2.in",
+          delay: 0.5,
+          scrollTrigger: {
+            trigger: subheading,
+            start: "top 80%",
+            toggleActions: "play none none none", // Only plays once
+          },
+        }
+      )
+    }
+  }, [])
+
   return (
     <>
       <svg
@@ -162,10 +209,10 @@ const ContactForm = () => {
         </path>
       </svg>
       <div className="flex flex-col items-center justify-center gap-4 bg-blue-600">
-        <h1 className="flex p-6 text-4xl font-bold text-center md:text-6xl text-shadow-md text-slate-50">
+        <h1 className="flex p-6 text-4xl font-bold text-center heading md:text-6xl text-shadow-md text-slate-50">
           Have a Question or a Project in Mind?
         </h1>
-        <p className="flex justify-center max-w-sm p-5 text-xl text-center md:max-w-screen-lg w-fit text-slate-100">
+        <p className="flex justify-center max-w-sm p-5 text-xl text-center subheading md:max-w-screen-lg w-fit text-slate-100">
           We&apos;d love to hear from you! Whether you&apos;Are ready to kick
           off a new project, need support, or just want to say hi—drop us a
           message and we&apos;ll get back to you soon.
