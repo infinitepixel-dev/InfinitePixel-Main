@@ -220,7 +220,7 @@ const ContactForm = () => {
       </div>
       <div
         id="contact-form"
-        className="flex justify-center w-full p-4 bg-texture-pattern bg-gradient-to-b from-blue-600 to-blue-500 md:p-20 to"
+        className="flex justify-center w-full p-4 bg-texture-pattern bg-gradient-to-b from-blue-600 to-blue-950"
       >
         <form
           ref={formRef}
