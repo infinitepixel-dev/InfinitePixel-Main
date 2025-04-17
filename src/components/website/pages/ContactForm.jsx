@@ -12,7 +12,7 @@ const ContactForm = () => {
     message: "",
   })
 
-  const maxMessageLength = 250 // Maximum character limit for the message
+  const maxMessageLength = 800 // Maximum character limit for the message
 
   const email = import.meta.env.VITE_FORM_EMAIL // Ensure you have this in your .env file
 
