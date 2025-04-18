@@ -151,7 +151,7 @@ const ContactForm = () => {
   return (
     <>
       <svg
-        className="block w-full h-auto -mt-1"
+        className="block w-full h-auto -mt-2"
         viewBox="0 280 900 300"
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +209,7 @@ const ContactForm = () => {
         </path>
       </svg>
       <div className="flex flex-col items-center justify-center gap-4 bg-blue-600">
-        <h1 className="flex p-6 text-4xl font-bold text-center heading md:text-6xl text-shadow-md text-slate-50">
+        <h1 className="flex p-4 text-4xl font-bold text-center heading md:text-6xl text-shadow-md text-slate-50">
           Have a Question or a Project in Mind?
         </h1>
         <p className="flex justify-center max-w-sm p-5 text-xl text-center subheading md:max-w-screen-lg w-fit text-slate-100">
@@ -220,14 +220,14 @@ const ContactForm = () => {
       </div>
       <div
         id="contact-form"
-        className="flex justify-center w-full p-20 bg-texture-pattern bg-gradient-to-b from-blue-600 to-blue-950"
+        className="flex justify-center w-full p-4 md:p-20 bg-gradient-to-b from-blue-600 to-blue-950"
       >
         <form
           ref={formRef}
           action="https://formsubmit.co/49b3ec7186e27ea9fd61c9e9f858330c"
           method="POST"
           onSubmit={handleSubmit}
-          className="w-full max-w-screen-md p-6 space-y-6 rounded-lg shadow-lg bg-slate-50 md:px-10"
+          className="w-full p-6 mb-6 space-y-6 rounded-lg shadow-lg md:p-6 md:max-w-screen-md bg-slate-50 md:px-10"
         >
           {/* Hidden FormSubmit inputs */}
           <input type="hidden" name="_template" value="table" />
