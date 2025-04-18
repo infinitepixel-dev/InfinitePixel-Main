@@ -1,18 +1,13 @@
 // src/components/layouts/PublicLayout.jsx
-import Navbar from "../Navbar"
-import Footer from "../Footer"
-import { Outlet } from "react-router-dom"
+
+import { Outlet } from "react-router-dom";
 
 const PublicLayout = () => {
   return (
-    <>
-      <Navbar />
-      <div className="min-h-screen bg-neutral-2">
-        <Outlet />
-      </div>
-      <Footer />
-    </>
-  )
-}
+    <div className="bg-neutral-2 min-h-screen">
+      <Outlet />
+    </div>
+  );
+};
 
-export default PublicLayout
+export default PublicLayout;
