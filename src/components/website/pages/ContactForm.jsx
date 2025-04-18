@@ -213,9 +213,9 @@ const ContactForm = () => {
           Have a Question or a Project in Mind?
         </h1>
         <p className="flex justify-center max-w-sm p-5 text-xl text-center subheading md:max-w-screen-lg w-fit text-slate-100">
-          We&apos;d love to hear from you! Whether you&apos;Are ready to kick
-          off a new project, need support, or just want to say hi—drop us a
-          message and we&apos;ll get back to you soon.
+          We&apos;d love to hear from you! Whether you&apos;re ready to kick off
+          a new project, need support, or just want to say hi—drop us a message
+          and we&apos;ll get back to you soon.
         </p>
       </div>
       <div
