@@ -1,44 +1,46 @@
-import { Route, Routes } from "react-router-dom"
-import "./App.css"
+import { Routes, Route } from "react-router-dom"
+import PublicLayout from "./components/layouts/PublicLayout"
+import DashboardLayout from "./components/layouts/DashboardLayout"
+
 import Header from "./components/Header"
-import Navbar from "./components/Navbar"
 import WhatWeDo from "./components/WhatWeDo"
 import AboutUs from "./components/AboutUs"
 import ContactForm from "./components/ContactForm"
 import Map from "./components/Map"
-import Footer from "./components/Footer"
 import Portfolio from "./components/pages/Portfolio"
 import Review from "./components/Review"
 import ScrollingIconsBar from "./components/utility/ScrollingIconsBar"
 
+// Dashboard
+import DashboardMain from "./components/dashboard/ui/DashboardMain"
+
 function App() {
   return (
-    <div
-      id="app-container"
-      className="relative bg-neutral-2 min-h-screen overflow-hidden transition-[margin-right] duration-300 ease-in-out"
-    >
-      {/* <CustomCursor /> */}
-      <Navbar />
-      <Routes>
+    <Routes>
+      {/* Public Site Routes */}
+      <Route element={<PublicLayout />}>
         <Route
           path="/"
           element={
             <>
-              {" "}
               <Header />
               <AboutUs />
               <WhatWeDo />
               <ScrollingIconsBar />
               <Review />
               <ContactForm />
-              <Map />{" "}
+              <Map />
             </>
           }
         />
         <Route path="/portfolio" element={<Portfolio />} />
-      </Routes>
-      <Footer />
-    </div>
+      </Route>
+
+      {/* Dashboard Routes */}
+      <Route element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<DashboardMain />} />
+      </Route>
+    </Routes>
   )
 }
 
