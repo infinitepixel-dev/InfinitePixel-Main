@@ -94,11 +94,11 @@ const WhatWeDo = () => {
       <div className="max-w-6xl mx-auto text-center">
         <h2
           ref={headingRef}
-          className="p-8 mb-8 text-4xl font-extrabold md:text-5xl"
+          className="p-8 text-4xl font-extrabold sm:mb-2 md:mb-8 md:text-5xl"
         >
           Professional Websites, Affordable Prices
         </h2>
-        <p className="p-8 mb-8 text-xl font-light md:text-2xl">
+        <p className="px-8 text-xl font-light sm:mb-2 md:mb-8 md:text-2xl">
           At <b>Infinite Pixel</b>, we specialize in creating custom websites
           tailored to the unique needs of small businesses. Our experienced
           designers offer professional services you can trust.
