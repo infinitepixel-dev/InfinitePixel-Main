@@ -109,6 +109,7 @@ const ContactForm = () => {
   useEffect(() => {
     const heading = document.querySelector(".heading")
     const subheading = document.querySelector(".subheading")
+    const button = document.querySelector(".btn-animate")
 
     if (heading) {
       gsap.fromTo(
@@ -145,8 +146,44 @@ const ContactForm = () => {
           },
         }
       )
+      if (button) {
+        button.addEventListener("mouseenter", () => {
+          gsap.fromTo(
+            button,
+            { scale: 1 },
+            {
+              scale: 1.08,
+              duration: 0.2,
+              ease: "power1.out",
+              yoyo: true,
+              repeat: 1,
+            }
+          )
+        })
+      }
     }
   }, [])
+
+  if (document.querySelector(".btn-animate")) {
+    gsap.fromTo(
+      ".btn-animate",
+      {
+        opacity: 0,
+        y: 50,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.in",
+        scrollTrigger: {
+          trigger: ".btn-animate",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      }
+    )
+  }
 
   return (
     <>
@@ -363,7 +400,7 @@ const ContactForm = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full px-6 py-3 text-lg font-semibold text-white transition-all duration-300 ease-in-out rounded-full bg-zinc-950 hover:bg-zinc-950/85"
+            className="w-full px-6 py-3 text-lg font-semibold text-white transition-all duration-300 ease-in-out rounded-full btn-animate bg-gradient-to-br from-zinc-800 to-zinc-900 "
           >
             {submitting ? "Submitting..." : "Submit"}
           </button>
