@@ -23,6 +23,7 @@ const reasons = [
   {
     title: "Better Security",
     fact: "In 2023, over 30,000 websites were hacked daily — many due to insecure CMS templates.",
+    desc: "Custom stacks reduce third-party exposure, using updated libraries and clean code you control.",
   },
   {
     title: "Custom UX & Animations",
