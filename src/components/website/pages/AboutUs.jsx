@@ -53,10 +53,10 @@ const AboutUs = () => {
     <section
       // Ref for tracking the entire section and triggering animation
       ref={sectionRef}
-      className="flex flex-col items-center justify-between p-8 md:flex-row bg-bg-slate-50"
+      className="flex flex-col items-center justify-between p-2 mt-12 md:flex-row bg-bg-slate-50"
     >
       {/* Image section: Adjusts for responsive design, centered on small screens */}
-      <div ref={imageRef} className="w-full mb-4 md:mb-0 md:w-1/2">
+      <div ref={imageRef} className="w-full mb-10 md:w-1/2">
         <img
           src="/images/section3.jpg" // Placeholder image path
           alt="About Us Image"
@@ -79,7 +79,7 @@ const AboutUs = () => {
           beautiful but also functional and secure.
         </p>
         {/* List of benefits with green checkboxes */}
-        <ul className="space-y-2">
+        <ul className="mb-10 space-y-2 md:mb-0">
           <li className="flex items-start">
             <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
             <span className="text-lg text-gray-700">
