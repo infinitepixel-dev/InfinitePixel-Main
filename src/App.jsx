@@ -10,6 +10,7 @@ import Footer from "@web/Footer"
 import Portfolio from "@web/pages/Portfolio"
 import Review from "@web/cards/Review"
 import ScrollingIconsBar from "@web/utilities/ScrollingIconsBar"
+import WhyCustomWebsite from "@web/pages/WhyCustomWebsite"
 
 function App() {
   return (
@@ -24,14 +25,14 @@ function App() {
           path="/"
           element={
             <>
-              {" "}
               <Header />
-              <AboutUs />
               <WhatWeDo />
-              <ScrollingIconsBar />
               <Review />
+              <WhyCustomWebsite />
+              <ScrollingIconsBar />
+              <AboutUs />
               <ContactForm />
-              <Map />{" "}
+              <Map />
             </>
           }
         />
