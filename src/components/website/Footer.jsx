@@ -16,7 +16,10 @@ const Footer = () => {
   }, [])
 
   return (
-    <footer ref={footerRef} className="w-full px-4 py-8 text-white bg-black">
+    <footer
+      ref={footerRef}
+      className="w-full px-4 py-8 text-white bg-gradient-to-t from-zinc-900 to-zinc-950"
+    >
       <div className="flex flex-col items-center space-y-4">
         <p className="text-sm font-semibold tracking-wide text-center">
           &copy; {currentYear} Infinite Pixel Web Design
