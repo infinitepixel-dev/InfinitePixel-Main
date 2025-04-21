@@ -188,6 +188,7 @@ const ContactForm = () => {
   return (
     <>
       <svg
+        role="presentation"
         className="block w-full h-auto -mt-2"
         viewBox="0 280 900 300"
         preserveAspectRatio="none"
@@ -312,6 +313,7 @@ const ContactForm = () => {
               onChange={handleChange}
               className="block w-full p-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               placeholder="First Name"
+              aria-required="true"
             />
             {errors.firstName && (
               <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
@@ -334,6 +336,7 @@ const ContactForm = () => {
               onChange={handleChange}
               className="block w-full p-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               placeholder="Last Name"
+              aria-required="true"
             />
             {errors.lastName && (
               <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>
@@ -357,7 +360,8 @@ const ContactForm = () => {
               onChange={handleChange}
               className="block w-full p-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               placeholder="Email"
-              aria-label="Email Address" // Added aria-label for screen readers
+              aria-label="Email Address"
+              aria-required="true"
             />
             {errors.email && (
               <p className="mt-1 text-sm text-red-500">{errors.email}</p>
@@ -380,6 +384,7 @@ const ContactForm = () => {
               className="block w-full p-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               rows="4"
               placeholder="Message"
+              aria-required="true"
               maxLength={maxMessageLength} // <-- Character limit
             ></textarea>
             <div
