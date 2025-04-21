@@ -30,6 +30,7 @@ const MapEmbed = () => {
         allowFullScreen=""
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
+        title="Google Map of Nashville, TN" // Added title for accessibility
       />
     </div>
   )
