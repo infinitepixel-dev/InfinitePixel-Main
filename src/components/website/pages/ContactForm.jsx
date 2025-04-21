@@ -341,21 +341,23 @@ const ContactForm = () => {
           </div>
 
           {/* Email */}
+          {/* Email */}
           <div>
             <label
-              htmlFor="lastName"
+              htmlFor="email"
               className="block text-sm font-medium select-none text-sky-950"
             >
               Email <span className="text-red-500">*</span>
             </label>
             <input
-              type="text"
+              type="email" // Changed type to 'email' for better form validation
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               className="block w-full p-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               placeholder="Email"
+              aria-label="Email Address" // Added aria-label for screen readers
             />
             {errors.email && (
               <p className="mt-1 text-sm text-red-500">{errors.email}</p>
