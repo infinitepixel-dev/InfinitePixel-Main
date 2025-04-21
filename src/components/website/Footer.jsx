@@ -32,17 +32,25 @@ const Footer = () => {
             href="https://www.facebook.com/profile.php?id=61574753346703"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit our Facebook page (opens in a new tab)"
             className="transition-colors duration-200 hover:text-blue-400"
           >
             <FontAwesomeIcon icon={faFacebook} size="xl" />
+            <span className="sr-only">
+              Visit our Facebook page (opens in a new tab)
+            </span>
           </a>
           <a
             href="https://www.linkedin.com/company/infinite-pixel-web-design"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit our LinkedIn page (opens in a new tab)"
             className="transition-colors duration-200 hover:text-blue-600"
           >
             <FontAwesomeIcon icon={faLinkedin} size="xl" />
+            <span className="sr-only">
+              Visit our LinkedIn page (opens in a new tab)
+            </span>
           </a>
         </div>
       </div>
