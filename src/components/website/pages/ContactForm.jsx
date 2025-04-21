@@ -246,9 +246,9 @@ const ContactForm = () => {
         </path>
       </svg>
       <div className="flex flex-col items-center justify-center gap-4 bg-blue-600">
-        <h1 className="flex p-4 text-4xl font-bold text-center heading md:text-6xl text-shadow-md text-slate-50">
+        <h2 className="flex p-4 text-4xl font-bold text-center heading md:text-6xl text-shadow-md text-slate-50">
           Have a Question or a Project in Mind?
-        </h1>
+        </h2>
         <p className="flex justify-center max-w-sm p-5 text-xl text-center subheading md:max-w-screen-lg w-fit text-slate-100">
           We&apos;d love to hear from you! Whether you&apos;re ready to kick off
           a new project, need support, or just want to say hi—drop us a message
