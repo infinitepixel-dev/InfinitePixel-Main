@@ -80,9 +80,13 @@ export default function WhyCustomWebsite() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xl text-slate-900 md:text-2xl">
+          <p
+            role="paragraph"
+            aria-level="2"
+            className="text-xl text-slate-900 md:text-2xl"
+          >
             Templates are fine for placeholders. But if you want to{" "}
-            <span className="font-bold text-blue-500">
+            <span role="section" className="font-bold text-blue-500">
               stand out, scale up,
             </span>{" "}
             and{" "}

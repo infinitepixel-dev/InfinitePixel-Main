@@ -50,7 +50,10 @@ const Hero = () => {
       {/* Northern Lights Background */}
       <div className="absolute inset-0">
         <div className="w-full h-full bg-gradient-to-b from-black to-gray-900">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#ededed] via-[#0874f0] to-[#f10ef1] opacity-50 filter blur-[100px] animate-northern-lights" />
+          <div
+            role="presentation"
+            className="absolute inset-0 bg-gradient-to-r from-[#ededed] via-[#0874f0] to-[#f10ef1] opacity-50 filter blur-[100px] animate-northern-lights"
+          />
         </div>
       </div>
 
