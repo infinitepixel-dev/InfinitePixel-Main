@@ -107,6 +107,8 @@ const ContactForm = () => {
   gsap.registerPlugin(ScrollTrigger)
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
     const heading = document.querySelector(".heading")
     const subheading = document.querySelector(".subheading")
     const button = document.querySelector(".btn-animate")
@@ -123,7 +125,7 @@ const ContactForm = () => {
           scrollTrigger: {
             trigger: heading,
             start: "top 80%",
-            toggleActions: "play none none none", // Only plays once
+            toggleActions: "play none none none",
           },
         }
       )
@@ -142,49 +144,56 @@ const ContactForm = () => {
           scrollTrigger: {
             trigger: subheading,
             start: "top 80%",
-            toggleActions: "play none none none", // Only plays once
+            toggleActions: "play none none none",
           },
         }
       )
-      if (button) {
-        button.addEventListener("mouseenter", () => {
-          gsap.fromTo(
-            button,
-            { scale: 1 },
-            {
-              scale: 1.08,
-              duration: 0.2,
-              ease: "power1.out",
-              yoyo: true,
-              repeat: 1,
-            }
-          )
-        })
+    }
+
+    if (button) {
+      // Entrance animation only once on scroll
+      gsap.fromTo(
+        button,
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.in",
+          scrollTrigger: {
+            trigger: button,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      )
+
+      // Hover animation only on mouse enter
+      const handleHover = () => {
+        gsap.fromTo(
+          button,
+          { scale: 1 },
+          {
+            scale: 1.08,
+            duration: 0.2,
+            ease: "power1.out",
+            yoyo: true,
+            repeat: 1,
+          }
+        )
+      }
+
+      button.addEventListener("mouseenter", handleHover)
+
+      // Clean up
+      return () => {
+        button.removeEventListener("mouseenter", handleHover)
       }
     }
   }, [])
-
-  if (document.querySelector(".btn-animate")) {
-    gsap.fromTo(
-      ".btn-animate",
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.in",
-        scrollTrigger: {
-          trigger: ".btn-animate",
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      }
-    )
-  }
-
   return (
     <>
       <svg
