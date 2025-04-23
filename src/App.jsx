@@ -11,6 +11,7 @@ import Portfolio from "@web/pages/Portfolio"
 import Review from "@web/cards/Review"
 import ScrollingIconsBar from "@web/utilities/ScrollingIconsBar"
 import WhyCustomWebsite from "@web/pages/WhyCustomWebsite"
+import ProjectStats from "@web/pages/ProjectStats"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Header />
               <WhatWeDo />
               <Review />
+              <ProjectStats />
               <WhyCustomWebsite />
               <ScrollingIconsBar />
               <AboutUs />
