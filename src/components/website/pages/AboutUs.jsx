@@ -113,12 +113,6 @@ const AboutUs = () => {
           <li className="flex items-start">
             <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
             <span className="text-lg text-gray-700">
-              In-house website hosting and maintenance
-            </span>
-          </li>
-          <li className="flex items-start">
-            <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
-            <span className="text-lg text-gray-700">
               Experienced team delivering high-quality solutions
             </span>
           </li>
