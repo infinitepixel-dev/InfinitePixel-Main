@@ -1,3 +1,5 @@
+//Portfolio.jsx
+
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -5,6 +7,8 @@ import { FaReact } from "react-icons/fa";
 import { FaClover, FaBootstrap } from "react-icons/fa6";
 import { SiTailwindcss } from "react-icons/si";
 import { gsap } from "gsap";
+
+import AccessibleIcon from "../utilities/AccessibleIcon";
 
 export default function Portfolio() {
   const navigate = useNavigate();
@@ -80,18 +84,18 @@ export default function Portfolio() {
         work.
       </p>
 
-      <a
+      <button
         onClick={handleClick}
-        className="bg-yellow-500 hover:bg-yellow-600 mb-12 px-6 py-3 rounded-full font-semibold text-white text-lg transition duration-300"
+        className="bg-yellow-500 hover:bg-yellow-600 mb-12 px-6 py-3 rounded-full font-semibold text-gray-900 text-lg transition duration-300"
       >
         Let&apos;s Build Something Together
-      </a>
+      </button>
 
       {/* Projects Grid */}
       <div className="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, idx) => (
           <div
-            key={idx}
+            key={project.title}
             ref={(el) => (cardRefs.current[idx] = el)}
             className="bg-gradient-to-bl from-sky-700 to-sky-900 shadow-lg p-5 rounded-lg text-center transform"
             onMouseEnter={() => handleMouseEnter(idx)}
@@ -118,10 +122,12 @@ export default function Portfolio() {
 
             {project.techIcons && (
               <div className="flex justify-center gap-4 mt-3 text-yellow-500 text-2xl">
-                {project.techIcons.map((tech, i) => (
-                  <span key={i} title={tech.name} className="cursor-help">
-                    {tech.icon}
-                  </span>
+                {project.techIcons.map((tech) => (
+                  <AccessibleIcon
+                    key={tech.name}
+                    icon={tech.icon}
+                    label={tech.name}
+                  />
                 ))}
               </div>
             )}
