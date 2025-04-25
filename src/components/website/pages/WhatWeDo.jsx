@@ -118,7 +118,7 @@ const WhatWeDo = () => {
               <strong className="text-blue-900">Infinite Pixel</strong> has you
               covered.
             </p>
-            <span className="border-blue-800/50 bt-line"></span>
+            <span className="border-blue-900/50 bt-line"></span>
             <p ref={textRef2}>
               Our experienced team crafts high-performance websites with a focus
               on usability and modern design. We collaborate closely with you to
