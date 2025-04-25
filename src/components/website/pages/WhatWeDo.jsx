@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Review from "../cards/Review"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -103,23 +104,28 @@ const WhatWeDo = () => {
           small businesses. Our experienced designers offer professional
           services you can trust.
         </h3>
-
-        <div className="grid grid-cols-1 gap-8 p-8 font-normal leading-relaxed text-left text-blue-950 md:grid-cols-2">
-          <p ref={textRef1}>
-            We understand the challenges small businesses face, which is why
-            we&apos;re committed to delivering clean, functional websites that
-            are affordable without compromising on quality. Whether you&apos;re
-            building your online presence for the first time or improving an
-            existing one,{" "}
-            <strong className="text-blue-900">Infinite Pixel</strong> has you
-            covered.
-          </p>
-          <p ref={textRef2}>
-            Our experienced team crafts high-performance websites with a focus
-            on usability and modern design. We collaborate closely with you to
-            create a site that authentically represents your brand and drives
-            your business forward.
-          </p>
+        <div className="grid grid-cols-1 gap-8 p-4 font-normal leading-relaxed text-left md:p-8 md:grid-cols-6 text-blue-950">
+          <div className="items-start col-start-1 mt-8 md:col-span-3">
+            <Review />
+          </div>
+          <div className="grid items-center justify-center grid-rows-2 pb-5 md:col-span-3">
+            <p ref={textRef1}>
+              We understand the challenges small businesses face, which is why
+              we&apos;re committed to delivering clean, functional websites that
+              are affordable without compromising on quality. Whether
+              you&apos;re building your online presence for the first time or
+              improving an existing one,
+              <strong className="text-blue-900">Infinite Pixel</strong> has you
+              covered.
+            </p>
+            <span className="border-blue-800/50 bt-line"></span>
+            <p ref={textRef2}>
+              Our experienced team crafts high-performance websites with a focus
+              on usability and modern design. We collaborate closely with you to
+              create a site that authentically represents your brand and drives
+              your business forward.
+            </p>
+          </div>
         </div>
       </div>
     </section>
