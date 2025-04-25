@@ -56,7 +56,7 @@ export default function WhyCustomWebsite() {
   return (
     <section
       ref={containerRef}
-      className="px-6 py-20 text-white bg-gradient-to-b from-slate-800 to-neutral-50 md:px-12 lg:px-20"
+      className="px-6 py-20 text-white bg-gradient-to-b from-gray-950 via-gray-800 to-neutral-50 md:px-12 lg:px-20"
     >
       <div className="max-w-5xl mx-auto">
         <h2 className="mb-12 text-4xl font-bold text-center md:text-5xl">
@@ -66,13 +66,13 @@ export default function WhyCustomWebsite() {
           {reasons.map((reason, index) => (
             <div
               key={index}
-              className="p-6 border shadow-lg reason-card bg-slate-900 rounded-2xl md:p-8 border-neutral-800"
+              className="p-6 border border-blue-800 shadow-lg reason-card bg-gradient-to-tl from-slate-200 to-slate-100 rounded-2xl md:p-8"
             >
-              <h3 className="text-2xl font-semibold text-blue-500">
+              <h3 className="text-2xl font-semibold text-blue-900">
                 {reason.title}
               </h3>
-              <p className="mt-2 text-gray-300">{reason.desc}</p>
-              <p className="mt-4 text-sm italic text-slate-50">
+              <p className="mt-2 text-slate-900">{reason.desc}</p>
+              <p className="mt-4 text-sm italic font-medium text-blue-900">
                 Fact: {reason.fact}
               </p>
             </div>

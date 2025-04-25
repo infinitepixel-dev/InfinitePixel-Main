@@ -1,12 +1,30 @@
-.special-gothic-expanded-one-regular {
-  font-family: "Special Gothic Expanded One", sans-serif;
+p {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.title-heading {
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-style: normal;
 }
 
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 h6 {
-  font-family: Fustat, sans-serif;
-  font-weight: 200;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .hamburger2 .bar2,

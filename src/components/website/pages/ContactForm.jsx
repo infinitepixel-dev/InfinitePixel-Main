@@ -274,7 +274,7 @@ const ContactForm = () => {
           action="https://formsubmit.co/49b3ec7186e27ea9fd61c9e9f858330c"
           method="POST"
           onSubmit={handleSubmit}
-          className="w-full p-6 mb-6 space-y-6 rounded-lg shadow-lg md:p-6 md:max-w-screen-md bg-slate-50 md:px-10"
+          className="w-full p-6 mb-6 space-y-6 rounded-lg shadow-lg md:p-6 md:max-w-screen-md bg-slate-100 md:px-10"
         >
           {/* Hidden FormSubmit inputs */}
           <input type="hidden" name="_template" value="table" />
@@ -291,7 +291,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="company"
-              className="block text-sm font-medium select-none text-sky-950"
+              className="block font-medium select-none text-md text-sky-950"
             >
               Company (Optional)
             </label>
@@ -310,9 +310,13 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="firstName"
-              className="block text-sm font-medium select-none text-sky-950"
+              className="block font-medium select-none text-md text-sky-950"
             >
-              First Name <span className="text-red-500">*</span>
+              First Name{" "}
+              <span className="text-red-700" aria-hidden="true">
+                *
+              </span>
+              <span className="sr-only">required</span>
             </label>
             <input
               type="text"
@@ -325,7 +329,7 @@ const ContactForm = () => {
               aria-required="true"
             />
             {errors.firstName && (
-              <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.firstName}</p>
             )}
           </div>
 
@@ -333,9 +337,13 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="lastName"
-              className="block text-sm font-medium select-none text-sky-950"
+              className="block font-medium select-none text-md text-sky-950"
             >
-              Last Name <span className="text-red-500">*</span>
+              Last Name{" "}
+              <span className="text-red-700 " aria-hidden="true">
+                *
+              </span>
+              <span className="sr-only">required</span>
             </label>
             <input
               type="text"
@@ -348,7 +356,7 @@ const ContactForm = () => {
               aria-required="true"
             />
             {errors.lastName && (
-              <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.lastName}</p>
             )}
           </div>
 
@@ -357,9 +365,13 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium select-none text-sky-950"
+              className="block font-medium select-none text-md text-sky-950"
             >
-              Email <span className="text-red-500">*</span>
+              Email{" "}
+              <span className="text-red-700" aria-hidden="true">
+                *
+              </span>
+              <span className="sr-only">required</span>
             </label>
             <input
               type="email" // Changed type to 'email' for better form validation
@@ -373,7 +385,7 @@ const ContactForm = () => {
               aria-required="true"
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.email}</p>
             )}
           </div>
 
@@ -381,9 +393,13 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="message"
-              className="block text-sm font-medium select-none text-sky-950"
+              className="block font-medium select-none text-md text-sky-950"
             >
-              Message <span className="text-red-500">*</span>
+              Message{" "}
+              <span className="text-red-700 " aria-hidden="true">
+                *
+              </span>
+              <span className="sr-only">required</span>
             </label>
             <textarea
               id="message"
@@ -402,14 +418,14 @@ const ContactForm = () => {
                   ? "text-red-800"
                   : formData.message.length >= maxMessageLength - 20
                   ? "text-orange-600"
-                  : "text-slate-400"
+                  : "text-slate-600 font-semibold"
               }`}
             >
               {formData.message.length}/{maxMessageLength} characters
             </div>
 
             {errors.message && (
-              <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.message}</p>
             )}
           </div>
 
