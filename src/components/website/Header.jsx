@@ -60,13 +60,13 @@ const Hero = () => {
       <div className="relative z-10 flex flex-col items-center justify-center h-full">
         <h1
           ref={h1Ref}
-          className="text-white text-[6em] md:text-[12em] font-bold text-center relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]"
+          className="text-white text-[6em] md:text-[14em] title-heading text-center relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]"
         >
           Infinite Pixel
         </h1>
         <h6
           ref={h6Ref}
-          className="text-white text-[1.5em] md:text-[2em] text-center relative z-10 capitalize"
+          className="text-white text-[1.5em] md:text-[2em] px-5 text-center relative z-10 capitalize"
         >
           Affordable custom web design for small businesses
         </h6>

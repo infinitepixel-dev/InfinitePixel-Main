@@ -72,7 +72,7 @@ export default function WhyCustomWebsite() {
                 {reason.title}
               </h3>
               <p className="mt-2 text-slate-900">{reason.desc}</p>
-              <p className="mt-4 text-sm italic text-blue-900">
+              <p className="mt-4 text-sm italic font-medium text-blue-900">
                 Fact: {reason.fact}
               </p>
             </div>

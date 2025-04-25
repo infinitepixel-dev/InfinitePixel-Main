@@ -84,7 +84,10 @@ const WhatWeDo = () => {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative bg-white text-sky-950">
+    <section
+      ref={sectionRef}
+      className="relative bg-white text-sky-950 inter-para-regular"
+    >
       <div className="max-w-6xl mx-auto text-center">
         <h2
           ref={headingRef}
@@ -94,21 +97,21 @@ const WhatWeDo = () => {
         </h2>
 
         {/* Upgraded to h3 instead of <p> since it functions like a heading */}
-        <h3 className="px-8 text-xl font-light sm:mb-2 md:mb-8 md:text-2xl">
-          At <span className="font-semibold">Infinite Pixel</span>, we
+        <h3 className="px-8 text-xl font-medium sm:mb-2 md:mb-8 md:text-2xl">
+          At <span className="text-blue-900">Infinite Pixel</span>, we
           specialize in creating custom websites tailored to the unique needs of
           small businesses. Our experienced designers offer professional
           services you can trust.
         </h3>
 
-        <div className="grid grid-cols-1 gap-8 p-8 leading-relaxed text-left md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 p-8 font-normal leading-relaxed text-left text-blue-950 md:grid-cols-2">
           <p ref={textRef1}>
             We understand the challenges small businesses face, which is why
             we&apos;re committed to delivering clean, functional websites that
             are affordable without compromising on quality. Whether you&apos;re
             building your online presence for the first time or improving an
             existing one,{" "}
-            <strong className="text-red-600">Infinite Pixel</strong> has you
+            <strong className="text-blue-900">Infinite Pixel</strong> has you
             covered.
           </p>
           <p ref={textRef2}>
