@@ -25,7 +25,7 @@ export default function Review() {
   return (
     <div
       ref={cardRef}
-      className="w-full p-6 mb-10 shadow-xl md:mb-20 md:w-3/4 md:p-6 md:max-w-md md:mx-auto bg-slate-300 md:mt-14 rounded-2xl"
+      className="w-full p-6 mb-10 shadow-xl shadow-yellow-600/40 md:mb-20 md:w-3/4 md:p-6 md:max-w-md md:mx-auto bg-slate-300 md:mt-14 rounded-2xl"
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-semibold text-gray-800">
