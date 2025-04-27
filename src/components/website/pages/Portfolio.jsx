@@ -37,7 +37,7 @@ export default function Portfolio() {
         { icon: <SiTailwindcss />, name: "Tailwind CSS" },
         { icon: <FaClover />, name: "GSAP" },
       ],
-      link: "#", //TODO - Add URL Once bugfixes on bookease are resolved https://infinitepixel-dev.github.io/BookEasly/
+      link: "", //TODO - Add URL Once bugfixes on bookease are resolved https://infinitepixel-dev.github.io/BookEasly/
     },
     {
       title: "Fresh Cuts",
