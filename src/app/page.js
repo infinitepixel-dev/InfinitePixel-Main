@@ -1,103 +1,119 @@
-import Image from "next/image";
+"use client"; // IMPORTANT for Next.js App Router if using /app folder
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FaCheckCircle } from "react-icons/fa";
+import Image from "next/image"; // ✅ Use next/image instead of regular img for optimization
+
+// Register GSAP plugin
+gsap.registerPlugin(ScrollTrigger);
+
+// Configure ScrollTrigger (MUST be after registering)
+ScrollTrigger.config({
+  autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+});
 
 export default function Home() {
+  console.log("Hello there!!");
+
+  const sectionRef = useRef(null);
+  const imageRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const imageEl = imageRef.current;
+    const textEl = textRef.current;
+
+    if (!imageEl || !textEl) return; // Safeguard against missing refs
+
+    const ctx = gsap.context(() => {
+      const mm = ScrollTrigger.matchMedia();
+      mm.add("(min-width: 0px)", () => {
+        gsap.fromTo(
+          imageEl,
+          { opacity: 0, x: -50 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
+        gsap.fromTo(
+          textEl,
+          { opacity: 0, x: 100 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert(); // Clean GSAP context on unmount
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <section
+      ref={sectionRef}
+      className="flex flex-col items-center justify-between p-2 mt-12 md:flex-row bg-slate-50"
+    >
+      <div ref={imageRef} className="w-full mb-10 md:w-1/2">
+        {/* ✅ Next.js Image optimization */}
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="/images/section3.jpg"
+          alt="About Us Image"
+          width={600}
+          height={400}
+          className="rounded-lg shadow-lg"
           priority
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <div ref={textRef} className="w-full text-left md:pl-8 md:w-1/2">
+        <h2 className="mb-4 text-3xl font-semibold text-cyan-950">
+          Why Use Infinite Pixel?
+        </h2>
+        <p className="mb-4 text-lg text-gray-700">
+          We specialize in creating custom websites tailored to your business
+          needs. With a focus on responsive design, user experience, and modern
+          technologies, our team ensures that every project meets the highest
+          standards...
+        </p>
+        <ul className="mb-10 space-y-2 md:mb-0">
+          {[
+            "Responsive and modern designs",
+            "Our team is based in the US",
+            "User-focused development approach",
+            "Secure and reliable technologies",
+            "Transparent communication and collaboration",
+            "Experienced team delivering high-quality solutions",
+          ].map((item, index) => (
+            <li
+              key={item}
+              className="flex items-start motion-preset-blur-down"
+              style={{ animationDelay: `${index * 120}ms` }}
+            >
+              <FaCheckCircle className="flex-shrink-0 w-4 h-4 mt-1 mr-2 text-green-500" />
+              <span className="text-lg text-gray-700">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
