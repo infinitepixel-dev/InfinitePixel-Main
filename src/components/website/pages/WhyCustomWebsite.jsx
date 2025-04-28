@@ -17,8 +17,9 @@ const reasons = [
   },
   {
     title: "Built for Growth",
-    fact: "Over 40% of WordPress plugin vulnerabilities are due to outdated or third-party code conflicts.",
-    desc: "Custom sites are modular and scalable. Add features without relying on plugin duct-tape or breaking stuff.",
+    fact: `According to Patchstack's "State of WordPress Security in 2024" report, plugins were responsible for 97% of all new security vulnerabilities in 2023, with themes accounting for 3% and only 0.2% found in WordPress core itself.",
+    desc: "Custom sites are modular and scalable. Add features without relying on plugin duct-tape or breaking stuff.`,
+    link: "https://patchstack.com/whitepaper/state-of-wordpress-security-in-2024/#headline-481-12562",
   },
   {
     title: "Better Security",
@@ -66,15 +67,24 @@ export default function WhyCustomWebsite() {
           {reasons.map((reason, index) => (
             <div
               key={index}
-              className="p-6 border border-blue-800 shadow-lg reason-card bg-gradient-to-tl from-slate-200 to-slate-100 rounded-2xl md:p-8"
+              className="p-4 border border-blue-800 shadow-lg reason-card bg-gradient-to-tl from-slate-200 to-slate-100 rounded-2xl md:p-8"
             >
               <h3 className="text-2xl font-semibold text-blue-900">
                 {reason.title}
               </h3>
               <p className="mt-2 text-slate-900">{reason.desc}</p>
-              <p className="mt-4 text-sm italic font-medium text-blue-900">
+              <p className="mt-4 mb-4 text-sm italic font-medium text-blue-900">
                 Fact: {reason.fact}
               </p>
+              {reason.link && (
+                <a
+                  href={reason.link}
+                  target="blank"
+                  className="font-semibold text-blue-900 hover:text-blue-600"
+                >
+                  View Source
+                </a>
+              )}
             </div>
           ))}
         </div>
