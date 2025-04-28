@@ -8,11 +8,13 @@ const reasons = [
   {
     title: "Performance That Scales",
     fact: "Google research shows that bounce rate increases by 32% as page load time goes from 1s to 3s.",
+    link: "https://huckabuy.com/20-important-page-speed-bounce-rate-and-conversion-rate-statistics/",
     desc: "Premade templates are bloated by design. Custom-built sites are lean, loading 30–50% faster. That means better Core Web Vitals and stronger SEO.",
   },
   {
     title: "Brand-First Design",
     fact: "Consistent brand presentation across platforms can increase revenue by up to 23%.",
+    link: "https://www.marq.com/blog/brand-consistency",
     desc: "Templates follow trends. Custom sites set them. A bespoke build reflects your brand — not a layout used by 1,000 other businesses.",
   },
   {
@@ -24,11 +26,13 @@ const reasons = [
   {
     title: "Better Security",
     fact: "In 2023, over 30,000 websites were hacked daily — many due to insecure CMS templates.",
+    link: "https://www.forbes.com/sites/forbestechcouncil/2021/12/09/30-thousand-websites-hacked-a-day-how-to-protect-yours/",
     desc: "Custom stacks reduce third-party exposure, using updated libraries and clean code you control.",
   },
   {
     title: "Custom UX & Animations",
     fact: "A well-designed UX can boost conversion rates by up to 400%.",
+    link: "https://www.toptal.com/designers/ux/roi-user-experience",
     desc: "Templates are rigid. Custom websites allow for smooth animations, dynamic interactions, and thoughtful user journeys that feel modern and intuitive — not cookie-cutter.",
   },
 ]
