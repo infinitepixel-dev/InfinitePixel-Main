@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import { useEffect, useRef, useState } from "react"
+import { gsap } from "gsap"
 
 const Header = () => {
-  const circlesRef = useRef([]);
-  const h1Ref = useRef(null);
-  const h6Ref = useRef(null);
-  const [supportsAnimation, setSupportsAnimation] = useState(true);
+  const circlesRef = useRef([])
+  const h1Ref = useRef(null)
+  const h6Ref = useRef(null)
+  const [supportsAnimation, setSupportsAnimation] = useState(true)
 
   useEffect(() => {
     const supportsAnimations = () => {
-      return window.CSS && CSS.supports("animation", "name");
-    };
+      return window.CSS && CSS.supports("animation", "name")
+    }
 
-    setSupportsAnimation(supportsAnimations());
+    setSupportsAnimation(supportsAnimations())
 
     if (supportsAnimation) {
       // Animate the background circles
@@ -25,8 +25,8 @@ const Header = () => {
           repeat: -1,
           yoyo: true,
           ease: "sine.inOut",
-        });
-      });
+        })
+      })
 
       // Animate the h1 and h6 elements
       if (h1Ref.current && h6Ref.current) {
@@ -34,22 +34,22 @@ const Header = () => {
           h1Ref.current,
           { opacity: 0 },
           { opacity: 1, duration: 1, delay: 0.7, ease: "power2.in" }
-        );
+        )
 
         gsap.fromTo(
           h6Ref.current,
           { opacity: 0 },
           { opacity: 1, duration: 1, delay: 1, ease: "power2.out" }
-        );
+        )
       }
     }
-  }, [supportsAnimation]);
+  }, [supportsAnimation])
 
   return (
     <section className="clip-bottom relative w-full h-[100vh] overflow-hidden">
       {/* Northern Lights Background */}
       <div className="absolute inset-0">
-        <div className="bg-gradient-to-b from-black to-gray-900 w-full h-full">
+        <div className="w-full h-full bg-gradient-to-b from-black to-gray-900">
           <div
             role="presentation"
             className="absolute inset-0 bg-gradient-to-r from-[#ededed] via-[#0874f0] to-[#f10ef1] opacity-50 blur-[100px] animate-northern-lights filter"
@@ -57,10 +57,10 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="z-10 relative flex flex-col justify-center items-center h-full">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full">
         <h1
           ref={h1Ref}
-          className="z-10 relative drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] text-[6em] text-white md:text-[14em] text-center title-heading"
+          className="z-10 relative drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] text-[6em] text-white md:text-[12em] tracking-normal text-center title-heading"
         >
           Infinite Pixel
         </h1>
@@ -96,7 +96,7 @@ const Header = () => {
         }
       `}</style>
     </section>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

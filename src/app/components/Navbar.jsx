@@ -1,38 +1,38 @@
 //Navbar.jsx
-"use client";
+"use client"
 
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
-import gsap from "gsap";
+import { useState, useEffect, useRef } from "react"
+import { useRouter } from "next/navigation"
+import gsap from "gsap"
 
 // Icons
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa"
 
 // Logos
 // import ReactLogo from "images/logo.svg";
 
 const Navbar = () => {
-  const router = useRouter();
+  const router = useRouter()
 
-  const [isOpen, setIsOpen] = useState(false);
-  const scrollBarWidthRef = useRef(0);
-  const textRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false)
+  const scrollBarWidthRef = useRef(0)
+  const textRef = useRef(null)
 
   const menuItems = [
     { label: "Home", action: "home" },
     { label: "Portfolio", action: "portfolio" },
     { label: "Contact Us", action: "contact" },
-  ];
+  ]
 
-  const menuOverlayRef = useRef(null);
-  const menuButtonRef = useRef(null);
-  const menuButtonBgRef = useRef(null);
-  const menuItemsRef = useRef([]);
+  const menuOverlayRef = useRef(null)
+  const menuButtonRef = useRef(null)
+  const menuButtonBgRef = useRef(null)
+  const menuItemsRef = useRef([])
 
   useEffect(() => {
     scrollBarWidthRef.current =
-      window.innerWidth - document.documentElement.clientWidth;
-  }, []);
+      window.innerWidth - document.documentElement.clientWidth
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
@@ -46,58 +46,57 @@ const Navbar = () => {
           stagger: 0.1,
           ease: "power2.out",
         }
-      );
+      )
     }
-  }, [isOpen]);
+  }, [isOpen])
 
   const toggleMenu = () => {
-    const opening = !isOpen;
-    const container = document.getElementById("app-container");
+    const opening = !isOpen
+    const container = document.getElementById("app-container")
 
     if (opening) {
       const scrollBarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-      scrollBarWidthRef.current = scrollBarWidth;
+        window.innerWidth - document.documentElement.clientWidth
+      scrollBarWidthRef.current = scrollBarWidth
 
-      if (container) container.style.marginRight = `${scrollBarWidth}px`;
+      if (container) container.style.marginRight = `${scrollBarWidth}px`
       if (menuOverlayRef.current)
-        menuOverlayRef.current.style.paddingRight = `${scrollBarWidth}px`;
+        menuOverlayRef.current.style.paddingRight = `${scrollBarWidth}px`
 
-      document.body.classList.add("overflow-hidden");
-      animateButtonBackground();
+      document.body.classList.add("overflow-hidden")
+      animateButtonBackground()
     } else {
-      document.body.classList.remove("overflow-hidden");
-      if (container) container.style.marginRight = "";
-      if (menuOverlayRef.current)
-        menuOverlayRef.current.style.paddingRight = "";
-      gsap.killTweensOf(menuButtonBgRef.current);
-      gsap.to(menuButtonBgRef.current, { backgroundColor: "transparent" });
+      document.body.classList.remove("overflow-hidden")
+      if (container) container.style.marginRight = ""
+      if (menuOverlayRef.current) menuOverlayRef.current.style.paddingRight = ""
+      gsap.killTweensOf(menuButtonBgRef.current)
+      gsap.to(menuButtonBgRef.current, { backgroundColor: "transparent" })
     }
 
-    setIsOpen(opening);
-  };
+    setIsOpen(opening)
+  }
 
   const closeMenu = (action) => {
-    setIsOpen(false);
-    document.body.classList.remove("overflow-hidden");
+    setIsOpen(false)
+    document.body.classList.remove("overflow-hidden")
 
-    const container = document.getElementById("app-container");
-    if (container) container.style.marginRight = "";
+    const container = document.getElementById("app-container")
+    if (container) container.style.marginRight = ""
 
     if (action === "contact") {
-      const contactForm = document.getElementById("contact-form");
+      const contactForm = document.getElementById("contact-form")
       if (contactForm) {
-        contactForm.scrollIntoView({ behavior: "smooth" });
+        contactForm.scrollIntoView({ behavior: "smooth" })
       } else {
-        console.error("Contact form not found!");
+        console.error("Contact form not found!")
       }
     } else if (action === "portfolio") {
       // Ensure navigate is used correctly
-      router.push("/portfolio");
+      router.push("/portfolio")
     } else if (action === "home") {
-      router.push("/");
+      router.push("/")
     }
-  };
+  }
 
   const animateButtonBackground = () => {
     gsap.fromTo(
@@ -110,67 +109,50 @@ const Navbar = () => {
         repeat: -1,
         yoyo: true,
       }
-    );
-  };
+    )
+  }
 
   const routeHome = () => {
-    router.push("/");
-  };
+    router.push("/")
+  }
 
   return (
     <nav
-      className={`top-0 left-0 z-50 fixed w-full ${
+      className={`top-0 left-0 z-50 w-full fixed ${
         !isOpen ? "backdrop-blur-sm" : ""
       }`}
     >
       {/* Gradient Background Overlay */}
-      <div className="z-0 absolute inset-0 bg-gradient-to-b from-slate-800 to-red-slate-800/0 h-26 pointer-events-none"></div>
+      <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-slate-800 to-red-slate-800/0 h-26"></div>
 
       {/* Navbar Content */}
-      <div className="relative flex justify-between items-center bg-transparent p-4 w-full transition-colors duration-300">
+      <div className="relative flex items-center justify-between w-full p-4 transition-colors duration-300 bg-transparent">
         <div className="flex items-center">
           <button
-            onClick={() => {
-              const contactForm = document.getElementById("app-container");
-              if (contactForm) {
-                contactForm.scrollIntoView({ behavior: "smooth" });
-              } else {
-                console.error("Contact form not found!");
-              }
-            }}
-            className="bg-transparent m-0 p-0 border-none focus:outline-none"
-            aria-label="Scroll to app container"
+            onClick={routeHome}
+            className="p-0 m-0 bg-transparent border-none focus:outline-none"
+            aria-label="Navigate to home"
           >
-            <button
-              onClick={routeHome}
-              className="bg-transparent m-0 p-0 border-none focus:outline-none"
-              aria-label="Navigate to home"
-            >
-              <img
-                src="images/logo.svg"
-                alt="React Logo"
-                className="w-15 h-8"
-              />
-            </button>
+            <img src="images/logo.svg" alt="React Logo" className="h-8 w-15" />
           </button>
         </div>
 
         <div className="flex items-center ml-auto">
           <button
             ref={textRef}
-            className="hidden md:block z-20 mr-4 font-semibold text-slate-100 hover:text-rose-500 text-lg transition-colors duration-100"
+            className="z-20 hidden mr-4 text-lg font-semibold transition-colors duration-100 md:block text-slate-100 hover:text-rose-500"
             onClick={() => {
               //On Click, route to home and then output #contact-form to scroll to the bottom on the homepage.
 
-              router.push("/", { replace: false });
+              router.push("/", { replace: false })
 
               // Delay to wait for DOM to mount, then scroll
               setTimeout(() => {
-                const target = document.getElementById("contact-form");
+                const target = document.getElementById("contact-form")
                 if (target) {
-                  target.scrollIntoView({ behavior: "smooth" });
+                  target.scrollIntoView({ behavior: "smooth" })
                 }
-              }, 500); // Adjust delay if needed based on your render speed
+              }, 500) // Adjust delay if needed based on your render speed
             }}
           >
             Let&apos;s Create Something Together
@@ -190,9 +172,9 @@ const Navbar = () => {
               }`}
             >
               {isOpen ? (
-                <FaTimes className="text-slate-100 hover:text-rose-500 duration-100" />
+                <FaTimes className="duration-100 text-slate-100 hover:text-rose-500" />
               ) : (
-                <FaBars className="text-slate-100 hover:text-rose-500 duration-100" />
+                <FaBars className="duration-100 text-slate-100 hover:text-rose-500" />
               )}
             </div>
           </button>
@@ -211,11 +193,11 @@ const Navbar = () => {
         aria-label="Main navigation menu"
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === "Escape") closeMenu();
+          if (e.key === "Escape") closeMenu()
         }}
       >
-        <div className="relative flex flex-col items-center space-y-10 text-slate-100 text-6xl transition-transform transform">
-          <div className="bg-transparent border-none text-white text-4xl">
+        <div className="relative flex flex-col items-center space-y-10 text-6xl transition-transform transform text-slate-100">
+          <div className="text-4xl text-white bg-transparent border-none">
             Menu
           </div>
 
@@ -227,19 +209,19 @@ const Navbar = () => {
               tabIndex={-1} // Ensures arrow-key navigation within menu works properly if added
               onClick={() => {
                 if (item.action === "contact") {
-                  router.push("/", { replace: false });
+                  router.push("/", { replace: false })
 
                   setTimeout(() => {
-                    const target = document.getElementById("contact-form");
+                    const target = document.getElementById("contact-form")
                     if (target) {
-                      target.scrollIntoView({ behavior: "smooth" });
+                      target.scrollIntoView({ behavior: "smooth" })
                     }
-                  }, 500);
+                  }, 500)
                 }
 
-                closeMenu(item.action);
+                closeMenu(item.action)
               }}
-              className="bg-transparent border-none text-white text-5xl hover:underline cursor-pointer"
+              className="text-5xl text-white bg-transparent border-none cursor-pointer hover:underline"
             >
               {item.label}
             </button>
@@ -247,7 +229,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
