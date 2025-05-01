@@ -76,9 +76,9 @@ export default function AboutUs() {
         <Image
           src="/images/section3.jpg"
           alt="About Us Image"
-          width={600}
+          width={900}
           height={400}
-          className="shadow-lg rounded-lg"
+          className="shadow-lg rounded-md"
           priority
         />
       </div>
