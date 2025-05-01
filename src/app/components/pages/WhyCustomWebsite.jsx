@@ -19,8 +19,8 @@ const reasons = [
   },
   {
     title: "Built for Growth",
-    fact: `According to Patchstack's "State of WordPress Security in 2024" report, plugins were responsible for 97% of all new security vulnerabilities in 2023, with themes accounting for 3% and only 0.2% found in WordPress core itself.",
-    desc: "Custom sites are modular and scalable. Add features without relying on plugin duct-tape or breaking stuff.`,
+    fact: `According to Patchstack's "State of WordPress Security in 2024" report, plugins were responsible for 97% of all new security vulnerabilities in 2023, with themes accounting for 3% and only 0.2% found in WordPress core itself.`,
+    desc: "Custom sites are modular and scalable. Add features without relying on plugin duct-tape or breaking stuff.",
     link: "https://patchstack.com/whitepaper/state-of-wordpress-security-in-2024/#headline-481-12562",
   },
   {
