@@ -1,34 +1,33 @@
-"use client"; // IMPORTANT for Next.js App Router if using /app folder
+"use client" // IMPORTANT for Next.js App Router if using /app folder
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FaCheckCircle } from "react-icons/fa";
-import Image from "next/image"; // ✅ Use next/image instead of regular img for optimization
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { FaCheckCircle } from "react-icons/fa"
+import Image from "next/image" // ✅ Use next/image instead of regular img for optimization
 
 // Register GSAP plugin
-gsap.registerPlugin(ScrollTrigger);
-
-// Configure ScrollTrigger (MUST be after registering)
-ScrollTrigger.config({
-  autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
-});
+gsap.registerPlugin(ScrollTrigger)
 
 export default function AboutUs() {
-  console.log("Hello there!!");
+  console.log("Hello there!!")
 
-  const sectionRef = useRef(null);
-  const imageRef = useRef(null);
-  const textRef = useRef(null);
+  const sectionRef = useRef(null)
+  const imageRef = useRef(null)
+  const textRef = useRef(null)
 
   useEffect(() => {
-    const imageEl = imageRef.current;
-    const textEl = textRef.current;
+    ScrollTrigger.config({
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+    })
 
-    if (!imageEl || !textEl) return; // Safeguard against missing refs
+    const imageEl = imageRef.current
+    const textEl = textRef.current
+
+    if (!imageEl || !textEl) return
 
     const ctx = gsap.context(() => {
-      const mm = ScrollTrigger.matchMedia();
+      const mm = ScrollTrigger.matchMedia()
       mm.add("(min-width: 0px)", () => {
         gsap.fromTo(
           imageEl,
@@ -44,7 +43,7 @@ export default function AboutUs() {
               toggleActions: "play none none reverse",
             },
           }
-        );
+        )
 
         gsap.fromTo(
           textEl,
@@ -60,12 +59,12 @@ export default function AboutUs() {
               toggleActions: "play none none reverse",
             },
           }
-        );
-      });
-    }, sectionRef);
+        )
+      })
+    }, sectionRef)
 
-    return () => ctx.revert(); // Clean GSAP context on unmount
-  }, []);
+    return () => ctx.revert()
+  }, [])
 
   return (
     <section
@@ -77,9 +76,9 @@ export default function AboutUs() {
         <Image
           src="/images/section3.jpg"
           alt="About Us Image"
-          width={600}
+          width={900}
           height={400}
-          className="shadow-lg rounded-lg"
+          className="shadow-lg rounded-md"
           priority
         />
       </div>
@@ -115,5 +114,5 @@ export default function AboutUs() {
         </ul>
       </div>
     </section>
-  );
+  )
 }
