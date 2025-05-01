@@ -8,9 +8,6 @@ import gsap from "gsap"
 // Icons
 import { FaBars, FaTimes } from "react-icons/fa"
 
-// Logos
-// import ReactLogo from "images/logo.svg";
-
 const Navbar = () => {
   const router = useRouter()
 
@@ -133,7 +130,7 @@ const Navbar = () => {
             className="p-0 m-0 bg-transparent border-none focus:outline-none"
             aria-label="Navigate to home"
           >
-            <img src="images/logo.svg" alt="React Logo" className="h-8 w-15" />
+            <img src="/images/logo.svg" alt="React Logo" className="h-8 w-15" />
           </button>
         </div>
 

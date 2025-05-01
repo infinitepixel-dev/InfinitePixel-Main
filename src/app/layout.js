@@ -1,9 +1,7 @@
+// app/layout.js (server component)
 import { Geist, Geist_Mono } from "next/font/google"
-import "./globals.css" // Your global Tailwind CSS or custom styles
-
-import PropTypes from "prop-types"
-import Navbar from "@components/Navbar" // Assuming you move Navbar to /src/app/components/Nav.jsx
-import Footer from "@components/Footer" // Same for Footer
+import "./globals.css"
+import RootClientLayout from "@components/RootClientLayout" // client wrapper component
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,14 +67,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <RootClientLayout>{children}</RootClientLayout>
       </body>
     </html>
   )
-}
-
-RootLayout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
