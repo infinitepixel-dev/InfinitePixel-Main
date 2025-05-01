@@ -1,21 +1,21 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Review from "@cards/ReviewCard";
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Review from "@cards/ReviewCard"
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const WhatWeDo = () => {
-  const sectionRef = useRef(null);
-  const headingRef = useRef(null);
-  const textRef1 = useRef(null);
-  const textRef2 = useRef(null);
+  const sectionRef = useRef(null)
+  const headingRef = useRef(null)
+  const textRef1 = useRef(null)
+  const textRef2 = useRef(null)
 
   useEffect(() => {
-    const sectionEl = sectionRef.current;
-    const headingEl = headingRef.current;
-    const textEl1 = textRef1.current;
-    const textEl2 = textRef2.current;
+    const sectionEl = sectionRef.current
+    const headingEl = headingRef.current
+    const textEl1 = textRef1.current
+    const textEl2 = textRef2.current
 
     if (sectionEl && headingEl && textEl1 && textEl2) {
       gsap.fromTo(
@@ -32,7 +32,7 @@ const WhatWeDo = () => {
             toggleActions: "play none none reverse",
           },
         }
-      );
+      )
 
       gsap.fromTo(
         headingEl,
@@ -48,7 +48,7 @@ const WhatWeDo = () => {
             toggleActions: "play none none reverse",
           },
         }
-      );
+      )
 
       gsap.fromTo(
         textEl1,
@@ -64,7 +64,7 @@ const WhatWeDo = () => {
             toggleActions: "play none none reverse",
           },
         }
-      );
+      )
 
       gsap.fromTo(
         textEl2,
@@ -80,9 +80,9 @@ const WhatWeDo = () => {
             toggleActions: "play none none reverse",
           },
         }
-      );
+      )
     }
-  }, []);
+  }, [])
 
   return (
     <section
@@ -99,10 +99,9 @@ const WhatWeDo = () => {
 
         {/* Upgraded to h3 instead of <p> since it functions like a heading */}
         <h3 className="sm:mb-2 md:mb-8 px-8 font-medium text-xl md:text-2xl">
-          At <span className="text-blue-900">Infinite Pixel</span>, we
-          specialize in creating custom websites tailored to the unique needs of
-          small businesses. Our experienced designers offer professional
-          services you can trust.
+          At <span>Infinite Pixel</span>, we specialize in creating custom
+          websites tailored to the unique needs of small businesses. Our
+          experienced designers offer professional services you can trust.
         </h3>
         <div className="gap-8 grid grid-cols-1 md:grid-cols-6 p-4 md:p-8 font-normal text-blue-950 text-left leading-relaxed">
           <div className="items-start md:col-span-3 col-start-1 mt-8">
@@ -115,10 +114,9 @@ const WhatWeDo = () => {
               are affordable without compromising on quality. Whether
               you&apos;re building your online presence for the first time or
               improving an existing one,
-              <strong className="text-blue-900">Infinite Pixel</strong> has you
-              covered.
+              <strong> Infinite Pixel</strong> has you covered.
             </p>
-            <span className="border-blue-900/50 bt-line"></span>
+            <span className="border-yellow-600 border-t-2"></span>
             <p ref={textRef2}>
               Our experienced team crafts high-performance websites with a focus
               on usability and modern design. We collaborate closely with you to
@@ -129,7 +127,7 @@ const WhatWeDo = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WhatWeDo;
+export default WhatWeDo

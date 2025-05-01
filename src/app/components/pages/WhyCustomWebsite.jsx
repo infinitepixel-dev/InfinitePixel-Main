@@ -26,13 +26,13 @@ const reasons = [
   {
     title: "Better Security",
     fact: "In 2023, over 30,000 websites were hacked daily — many due to insecure CMS templates.",
-    link: "https://www.forbes.com/sites/forbestechcouncil/2021/12/09/30-thousand-websites-hacked-a-day-how-to-protect-yours/",
+    link: "https://colorlib.com/wp/wordpress-hacking-statistics/",
     desc: "Custom stacks reduce third-party exposure, using updated libraries and clean code you control.",
   },
   {
     title: "Custom UX & Animations",
     fact: "A well-designed UX can boost conversion rates by up to 400%.",
-    link: "https://www.toptal.com/designers/ux/roi-user-experience",
+    link: "https://www.forrester.com/blogs/09-10-15-leaving_user_experience_to_chance_hurts_companies",
     desc: "Templates are rigid. Custom websites allow for smooth animations, dynamic interactions, and thoughtful user journeys that feel modern and intuitive — not cookie-cutter.",
   },
 ]
