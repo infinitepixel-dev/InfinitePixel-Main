@@ -60,13 +60,13 @@ const Header = () => {
       <div className="relative z-10 flex flex-col items-center justify-center h-full">
         <h1
           ref={h1Ref}
-          className="z-10 relative drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] text-[6em] text-white md:text-[12em] tracking-normal text-center title-heading"
+          className="z-10 relative drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] text-[6em] text-white md:text-8xl lg:text-9xl tracking-normal text-center siteTitle"
         >
           Infinite Pixel
         </h1>
         <h6
           ref={h6Ref}
-          className="z-10 relative px-5 text-[1.5em] text-white md:text-[2em] text-center capitalize"
+          className="z-10 relative px-5 text-2xl text-white md:text-3xl text-center capitalize"
         >
           Affordable custom web design for small businesses
         </h6>
