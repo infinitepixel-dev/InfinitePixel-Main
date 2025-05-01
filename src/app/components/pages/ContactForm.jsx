@@ -218,7 +218,7 @@ const ContactForm = () => {
           </path>
 
           {/* Layer 2 */}
-          <path fill="#225ad3" opacity="0.6">
+          <path fill="#154abf" opacity="0.6">
             <animate
               attributeName="d"
               dur="12s"
@@ -231,7 +231,7 @@ const ContactForm = () => {
           </path>
 
           {/* Layer 3 */}
-          <path fill="#2664eb" opacity="0.4">
+          <path fill="#1d5ae0" opacity="0.7">
             <animate
               attributeName="d"
               dur="14s"
@@ -244,7 +244,7 @@ const ContactForm = () => {
           </path>
 
           {/* Layer 4 */}
-          <path fill="#2664eb" opacity="1">
+          <path fill="#155dfc" opacity="1">
             <animate
               attributeName="d"
               dur="16s"
