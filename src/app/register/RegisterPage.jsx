@@ -1,10 +1,12 @@
+//RegisterPage.jsx
 "use client"
+
 import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "@/lib/firebaseClient"
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc, serverTimestamp } from "firebase/firestore"
 import {
   FaEnvelope,
   FaLock,
@@ -27,6 +29,34 @@ export default function RegisterPage() {
     businessType: "",
     website: "",
   })
+
+  const businessTypes = [
+    "Accounting",
+    "Advertising & Marketing",
+    "Agriculture",
+    "Architecture & Design",
+    "Automotive",
+    "Construction",
+    "Consulting",
+    "Education & Training",
+    "Entertainment",
+    "Financial Services",
+    "Food & Beverage",
+    "Healthcare",
+    "Hospitality",
+    "IT & Software",
+    "Legal Services",
+    "Logistics & Transportation",
+    "Manufacturing",
+    "Media & Publishing",
+    "Non-Profit",
+    "Real Estate",
+    "Retail",
+    "Telecommunications",
+    "Travel & Tourism",
+    "Wholesale & Distribution",
+    "Other",
+  ]
 
   const [errorMessage, setErrorMessage] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
@@ -57,6 +87,7 @@ export default function RegisterPage() {
       )
 
       const user = userCredential?.user
+      console.log("is user being passed?", user)
 
       if (!user || !user.uid) {
         console.error("Firebase Auth returned an invalid user object:", user)
@@ -72,7 +103,10 @@ export default function RegisterPage() {
         company: form.company,
         businessType: form.businessType,
         website: form.website || "",
-        createdAt: new Date(),
+        createdAt: serverTimestamp(),
+      }).catch((firestoreErr) => {
+        console.error("Firestore write failed:", firestoreErr)
+        throw firestoreErr
       })
 
       setSuccessMessage("Registration successful! Redirecting...")
@@ -135,14 +169,11 @@ export default function RegisterPage() {
                 className="w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
               >
                 <option value="">Select Business Type</option>
-                <option value="Restaurant">Restaurant</option>
-                <option value="Salon">Salon</option>
-                <option value="Retail">Retail</option>
-                <option value="E-Commerce">E-Commerce</option>
-                <option value="Professional Services">
-                  Professional Services
-                </option>
-                <option value="Other">Other</option>
+                {businessTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
               </select>
             </div>
             <Input
