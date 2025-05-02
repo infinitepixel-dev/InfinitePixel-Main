@@ -1,4 +1,3 @@
-//LoginPage.jsx
 "use client"
 
 import React, { useState } from "react"
@@ -7,8 +6,6 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { getFirebaseInstance } from "@/lib/firebaseClient"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-
-const { auth } = await getFirebaseInstance()
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -21,11 +18,14 @@ export default function LoginPage() {
     setErrorMessage("")
 
     try {
+      const { auth } = await getFirebaseInstance()
+
       await signInWithEmailAndPassword(auth, email, password)
       console.log("User logged in successfully")
-      router.push("/dashboard") // ✅ redirect after login
+      router.push("/dashboard")
     } catch (error) {
-      setErrorMessage(error.message)
+      console.error("Login error:", error)
+      setErrorMessage("Invalid email or password.")
     }
   }
 
