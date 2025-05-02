@@ -13,6 +13,8 @@ import {
   FaPhone,
   FaBuilding,
   FaGlobe,
+  FaEye,
+  FaEyeSlash,
 } from "react-icons/fa"
 
 export default function RegisterPage() {
@@ -256,20 +258,34 @@ function Input({
   required = false,
   full = false,
 }) {
+  const [showPassword, setShowPassword] = useState(false)
+  const isPassword = type === "password"
+  const inputType = isPassword ? (showPassword ? "text" : "password") : type
+
   return (
     <div className={`relative ${full ? "col-span-1 md:col-span-2" : ""}`}>
       <div className="absolute text-gray-400 -translate-y-1/2 pointer-events-none left-3 top-1/2">
         {icon}
       </div>
       <input
-        type={type}
+        type={inputType}
         name={name}
         value={value}
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+        className="w-full py-2 pl-10 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
       />
+      {isPassword && (
+        <button
+          type="button"
+          onClick={() => setShowPassword((prev) => !prev)}
+          className="absolute inset-y-0 right-3 flex items-center text-gray-500 focus:outline-none"
+          tabIndex={-1}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      )}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { FaEnvelope, FaLock } from "react-icons/fa"
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { getFirebaseInstance } from "@/lib/firebaseClient"
 import Link from "next/link"
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation"
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
   const router = useRouter()
 
@@ -19,7 +20,6 @@ export default function LoginPage() {
 
     try {
       const { auth } = await getFirebaseInstance()
-
       await signInWithEmailAndPassword(auth, email, password)
       console.log("User logged in successfully")
       router.push("/dashboard")
@@ -57,13 +57,21 @@ export default function LoginPage() {
           <div className="relative">
             <FaLock className="absolute text-gray-400 transform -translate-y-1/2 top-1/2 left-3" />
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="w-full py-2 pl-10 pr-4 transition-colors border-0 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
+              className="w-full py-2 pl-10 pr-10 transition-colors border-0 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
               required
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute inset-y-0 right-3 flex items-center text-gray-500 focus:outline-none"
+              tabIndex={-1}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
 
           {errorMessage && (
