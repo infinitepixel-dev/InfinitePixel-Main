@@ -27,7 +27,7 @@ const auth = initializeAuth(firebaseApp, {
   persistence: browserSessionPersistence,
 })
 
-const db = getFirestore(firebaseApp)
+const db = getFirestore(firebaseApp, "infinitepixel-dashboard")
 
 // Wait for Auth initialization
 const waitForAuth = async () => {
