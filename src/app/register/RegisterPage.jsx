@@ -1,10 +1,9 @@
-//RegisterPage.jsx
 "use client"
 
 import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth"
 import { doc, setDoc, serverTimestamp } from "firebase/firestore"
 import { getFirebaseInstance } from "@/lib/firebaseClient"
 import {
@@ -15,8 +14,6 @@ import {
   FaBuilding,
   FaGlobe,
 } from "react-icons/fa"
-
-const { db, auth } = await getFirebaseInstance()
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -82,6 +79,8 @@ export default function RegisterPage() {
     }
 
     try {
+      const { auth, db } = await getFirebaseInstance()
+
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         form.email,
@@ -89,8 +88,6 @@ export default function RegisterPage() {
       )
 
       const user = userCredential?.user
-      console.log("is user being passed?", user)
-
       if (!user || !user.uid) {
         console.error("Firebase Auth returned an invalid user object:", user)
         setErrorMessage("Registration failed. Please try again.")
@@ -98,7 +95,6 @@ export default function RegisterPage() {
         return
       }
 
-      // Optional: Test Firestore write before saving user info
       await setDoc(doc(db, "debug", "testWrite"), {
         status: "ok",
         time: new Date().toISOString(),
@@ -112,13 +108,12 @@ export default function RegisterPage() {
         businessType: form.businessType || null,
         website: form.website || null,
         createdAt: serverTimestamp(),
-      }).catch((firestoreErr) => {
-        console.error("Firestore write failed:", firestoreErr)
-        throw firestoreErr
       })
 
-      setSuccessMessage("Registration successful! Redirecting...")
-      setTimeout(() => router.push("/dashboard"), 2000)
+      await signOut(auth)
+
+      setSuccessMessage("Registration successful! Redirecting to login...")
+      setTimeout(() => router.push("/dashboard/login"), 2000)
     } catch (error) {
       console.error("Registration error:", error)
       setErrorMessage(error.message || "Something went wrong.")
@@ -245,7 +240,6 @@ export default function RegisterPage() {
   )
 }
 
-// ✅ Reusable Input component
 function Input({
   icon,
   name,
