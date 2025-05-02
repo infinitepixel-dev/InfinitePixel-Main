@@ -29,30 +29,42 @@ export default function RegisterPage() {
   })
 
   const [errorMessage, setErrorMessage] = useState("")
+  const [successMessage, setSuccessMessage] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value })
+    const { name, value } = event.target
+    setForm((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleRegisterSubmit = async (event) => {
     event.preventDefault()
     setErrorMessage("")
+    setSuccessMessage("")
+    setIsSubmitting(true)
 
     if (form.password !== form.confirmPassword) {
       setErrorMessage("Passwords do not match")
+      setIsSubmitting(false)
       return
     }
-    console.log("Firestore write success")
+
     try {
-      // 1. Register the user in Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         form.email,
         form.password
       )
-      const user = userCredential.user
 
-      // 2. Store additional user info in Firestore
+      const user = userCredential?.user
+
+      if (!user || !user.uid) {
+        console.error("Firebase Auth returned an invalid user object:", user)
+        setErrorMessage("Registration failed. Please try again.")
+        setIsSubmitting(false)
+        return
+      }
+
       await setDoc(doc(db, "users", user.uid), {
         fullName: form.fullName,
         email: form.email,
@@ -63,10 +75,13 @@ export default function RegisterPage() {
         createdAt: new Date(),
       })
 
-      // 3. Redirect to dashboard
-      router.push("/dashboard")
+      setSuccessMessage("Registration successful! Redirecting...")
+      setTimeout(() => router.push("/dashboard"), 2000)
     } catch (error) {
-      setErrorMessage(error.message)
+      console.error("Registration error:", error)
+      setErrorMessage(error.message || "Something went wrong.")
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -79,56 +94,38 @@ export default function RegisterPage() {
 
         <form onSubmit={handleRegisterSubmit} className="space-y-6">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="relative">
-              <FaUser className="absolute text-gray-400 -translate-y-1/2 left-3 top-1/2" />
-              <input
-                type="text"
-                name="fullName"
-                placeholder="Full Name"
-                value={form.fullName}
-                onChange={handleChange}
-                required
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              />
-            </div>
-
-            <div className="relative">
-              <FaEnvelope className="absolute text-gray-400 -translate-y-1/2 left-3 top-1/2" />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={form.email}
-                onChange={handleChange}
-                required
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              />
-            </div>
-
-            <div className="relative">
-              <FaPhone className="absolute text-gray-400 -translate-y-1/2 left-3 top-1/2" />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                value={form.phone}
-                onChange={handleChange}
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              />
-            </div>
-
-            <div className="relative">
-              <FaBuilding className="absolute text-gray-400 -translate-y-1/2 left-3 top-1/2" />
-              <input
-                type="text"
-                name="company"
-                placeholder="Company Name"
-                value={form.company}
-                onChange={handleChange}
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              />
-            </div>
-
+            <Input
+              icon={<FaUser />}
+              name="fullName"
+              value={form.fullName}
+              onChange={handleChange}
+              placeholder="Full Name"
+              required
+            />
+            <Input
+              icon={<FaEnvelope />}
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="Email"
+              type="email"
+              required
+            />
+            <Input
+              icon={<FaPhone />}
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              placeholder="Phone Number"
+              type="tel"
+            />
+            <Input
+              icon={<FaBuilding />}
+              name="company"
+              value={form.company}
+              onChange={handleChange}
+              placeholder="Company Name"
+            />
             <div className="col-span-1 md:col-span-2">
               <select
                 name="businessType"
@@ -148,53 +145,50 @@ export default function RegisterPage() {
                 <option value="Other">Other</option>
               </select>
             </div>
-
-            <div className="relative col-span-1 md:col-span-2">
-              <FaGlobe className="absolute text-gray-400 -translate-y-1/2 left-3 top-1/2" />
-              <input
-                type="url"
-                name="website"
-                placeholder="Website URL (optional)"
-                value={form.website}
-                onChange={handleChange}
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              />
-            </div>
-
-            <div className="relative">
-              <FaLock className="absolute text-gray-400 -translate-y-1/2 left-3 top-1/2" />
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={form.password}
-                onChange={handleChange}
-                required
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              />
-            </div>
-
-            <div className="relative">
-              <FaLock className="absolute text-gray-400 -translate-y-1/2 left-3 top-1/2" />
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                value={form.confirmPassword}
-                onChange={handleChange}
-                required
-                className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              />
-            </div>
+            <Input
+              icon={<FaGlobe />}
+              name="website"
+              value={form.website}
+              onChange={handleChange}
+              placeholder="Website URL (optional)"
+              type="url"
+              full
+            />
+            <Input
+              icon={<FaLock />}
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="Password"
+              type="password"
+              required
+            />
+            <Input
+              icon={<FaLock />}
+              name="confirmPassword"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirm Password"
+              type="password"
+              required
+            />
           </div>
+
           {errorMessage && (
             <p className="text-sm text-center text-red-500">{errorMessage}</p>
           )}
+          {successMessage && (
+            <p className="text-sm text-center text-green-600">
+              {successMessage}
+            </p>
+          )}
+
           <button
             type="submit"
-            className="w-full py-3 font-semibold text-white transition bg-blue-600 rounded-lg hover:bg-blue-700"
+            disabled={isSubmitting}
+            className="w-full py-3 font-semibold text-white transition bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
           >
-            Register
+            {isSubmitting ? "Submitting..." : "Register"}
           </button>
         </form>
 
@@ -208,6 +202,35 @@ export default function RegisterPage() {
           </Link>
         </p>
       </div>
+    </div>
+  )
+}
+
+// ✅ Reusable Input component
+function Input({
+  icon,
+  name,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+  required = false,
+  full = false,
+}) {
+  return (
+    <div className={`relative ${full ? "col-span-1 md:col-span-2" : ""}`}>
+      <div className="absolute text-gray-400 -translate-y-1/2 pointer-events-none left-3 top-1/2">
+        {icon}
+      </div>
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        placeholder={placeholder}
+        className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      />
     </div>
   )
 }
