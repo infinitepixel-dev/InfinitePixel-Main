@@ -36,7 +36,7 @@ export default function LoginPage() {
         alt="Background pattern"
         className="absolute inset-0 w-full h-full opacity-50 md:opacity-5 object-cover opacity-60 z-0 pointer-events-none"
       />
-      <div className="w-full max-w-md col-span-4 p-8 bg-white shadow-lg rounded-2xl">
+      <div className="relative z-10 w-full max-w-md col-span-4 p-8 bg-white shadow-lg rounded-2xl">
         <h1 className="mb-6 text-3xl font-bold text-center text-blue-950">
           Login
         </h1>
