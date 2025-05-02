@@ -125,6 +125,11 @@ export default function RegisterPage() {
 
   return (
     <div className="grid w-full min-h-screen px-4 bg-gradient-to-br from-cyan-400 via-blue-500 to-pink-500 place-items-center">
+      <img
+        src="/circle-scatter-haikei.svg"
+        alt="Background pattern"
+        className="absolute inset-0 w-full h-full opacity-50 md:opacity-5 object-cover opacity-60 z-0 pointer-events-none"
+      />
       <div className="w-full max-w-3xl p-8 bg-white shadow-xl rounded-2xl">
         <h1 className="mb-6 text-4xl font-bold text-center text-blue-900">
           Create Your Account
