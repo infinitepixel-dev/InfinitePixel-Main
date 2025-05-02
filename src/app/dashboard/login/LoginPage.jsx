@@ -2,12 +2,15 @@
 import React, { useState } from "react"
 import { FaEnvelope, FaLock } from "react-icons/fa"
 import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "@/lib/firebaseClient" // Adjust if needed
+import { auth } from "@/lib/firebaseClient"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
+  const router = useRouter()
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault()
@@ -16,7 +19,7 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password)
       console.log("User logged in successfully")
-      // Optionally redirect the user here
+      router.push("/dashboard") // ✅ redirect after login
     } catch (error) {
       setErrorMessage(error.message)
     }
@@ -30,7 +33,6 @@ export default function LoginPage() {
         </h1>
 
         <form onSubmit={handleLoginSubmit} className="space-y-6">
-          {/* Email Field */}
           <div className="relative">
             <FaEnvelope className="absolute text-gray-400 transform -translate-y-1/2 top-1/2 left-3" />
             <input
@@ -43,7 +45,6 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Password Field */}
           <div className="relative">
             <FaLock className="absolute text-gray-400 transform -translate-y-1/2 top-1/2 left-3" />
             <input
@@ -56,22 +57,19 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Error Message */}
           {errorMessage && (
             <p className="text-sm text-red-500">{errorMessage}</p>
           )}
 
-          {/* Forgot Password */}
           <p className="pr-2 mt-1 text-sm text-right text-gray-500">
-            <a
+            <Link
               href="/forgot-password"
               className="text-blue-500 hover:underline"
             >
               Forgot Password?
-            </a>
+            </Link>
           </p>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full py-2 text-white transition bg-blue-600 rounded-lg hover:bg-blue-700"
@@ -80,13 +78,12 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* Register Prompt */}
         <div className="flex items-center justify-center mt-4">
           <p className="text-sm text-gray-500">
             Don&apos;t have an account?{" "}
-            <a href="/register" className="text-blue-500 hover:underline">
+            <Link href="/register" className="text-blue-500 hover:underline">
               Register
-            </a>
+            </Link>
           </p>
         </div>
       </div>
