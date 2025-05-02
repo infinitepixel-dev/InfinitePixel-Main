@@ -4,9 +4,11 @@
 import React, { useState } from "react"
 import { FaEnvelope, FaLock } from "react-icons/fa"
 import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "@/lib/firebaseClient"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+
+const { auth } = await getFirebaseInstance()
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")

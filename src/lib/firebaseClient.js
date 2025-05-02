@@ -1,12 +1,16 @@
-import { initializeApp, getApps } from "firebase/app"
-import { getAuth } from "firebase/auth"
-import {
-  initializeFirestore,
-  persistentLocalCache,
-  persistentMultipleTabManager,
-} from "firebase/firestore"
+import { initializeApp, getApps, getApp } from "firebase/app"
 
-const firebaseConfig = {
+// Firestore DB
+import { getFirestore } from "firebase/firestore"
+
+import {
+  initializeAuth,
+  browserSessionPersistence,
+  onAuthStateChanged,
+} from "firebase/auth"
+
+// ✅ Firebase config from env variables
+export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -15,16 +19,25 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 }
 
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0]
+// ✅ Initialize Firebase app only once
+const firebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig)
 
-// 🚨 THIS IS THE IMPORTANT PART
-const db = initializeFirestore(app, {
-  experimentalForceLongPolling: true,
-  localCache: persistentLocalCache({
-    tabManager: persistentMultipleTabManager(),
-  }),
+// ✅ Initialize Auth WITH sessionStorage persistence (avoid IndexedDB)
+const auth = initializeAuth(firebaseApp, {
+  persistence: browserSessionPersistence,
 })
 
-const auth = getAuth(app)
+const db = getFirestore(firebaseApp)
 
-export { auth, db }
+// Wait for Auth initialization
+const waitForAuth = async () => {
+  return new Promise((resolve) => {
+    onAuthStateChanged(auth, () => {
+      resolve({ firebaseApp, auth, db })
+    })
+  })
+}
+
+export const getFirebaseInstance = async () => {
+  return await waitForAuth()
+}

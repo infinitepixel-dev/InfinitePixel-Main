@@ -5,8 +5,8 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth, db } from "@/lib/firebaseClient"
 import { doc, setDoc, serverTimestamp } from "firebase/firestore"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
 import {
   FaEnvelope,
   FaLock,
@@ -15,6 +15,8 @@ import {
   FaBuilding,
   FaGlobe,
 } from "react-icons/fa"
+
+const { db, auth } = await getFirebaseInstance()
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -96,13 +98,19 @@ export default function RegisterPage() {
         return
       }
 
+      // Optional: Test Firestore write before saving user info
+      await setDoc(doc(db, "debug", "testWrite"), {
+        status: "ok",
+        time: new Date().toISOString(),
+      })
+
       await setDoc(doc(db, "users", user.uid), {
-        fullName: form.fullName,
-        email: form.email,
-        phone: form.phone,
-        company: form.company,
-        businessType: form.businessType,
-        website: form.website || "",
+        fullName: form.fullName || null,
+        email: form.email || null,
+        phone: form.phone || null,
+        company: form.company || null,
+        businessType: form.businessType || null,
+        website: form.website || null,
         createdAt: serverTimestamp(),
       }).catch((firestoreErr) => {
         console.error("Firestore write failed:", firestoreErr)
