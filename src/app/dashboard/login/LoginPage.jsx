@@ -98,7 +98,10 @@ export default function LoginPage() {
         <div className="flex items-center justify-center mt-4">
           <p className="text-sm text-gray-500">
             Don&apos;t have an account?{" "}
-            <Link href="/register" className="text-blue-500 hover:underline">
+            <Link
+              href="/dashboard/register"
+              className="text-blue-500 hover:underline"
+            >
               Register
             </Link>
           </p>
