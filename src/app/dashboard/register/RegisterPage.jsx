@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth"
 import { doc, setDoc, serverTimestamp } from "firebase/firestore"
 import { getFirebaseInstance } from "@/lib/firebaseClient"
+import InfinitePixelSpinner from "@/app/components/utils/InfinitePixelSpinner"
 import {
   FaEnvelope,
   FaLock,
@@ -62,6 +63,7 @@ export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false) // Dev toggle
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -126,125 +128,128 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="grid w-full min-h-screen px-4 bg-gradient-to-br from-cyan-400 z-10 via-blue-500 to-pink-500 place-items-center">
-      <img
-        src="/circle-scatter-haikei.svg"
-        alt="Background pattern"
-        className="absolute inset-0 w-full h-full opacity-50 md:opacity-5 object-cover z-0 pointer-events-none"
-      />
-      <div className="relative z-10 w-full max-w-3xl p-8 bg-white shadow-xl rounded-2xl">
-        <h1 className="mb-6 text-4xl font-bold text-center text-blue-900">
-          Create Your Account
-        </h1>
+    <>
+      {(showSpinner || isSubmitting) && <InfinitePixelSpinner />}
+      <div className="grid w-full min-h-screen px-4 bg-gradient-to-br from-cyan-400 z-10 via-blue-500 to-pink-500 place-items-center">
+        <img
+          src="/circle-scatter-haikei.svg"
+          alt="Background pattern"
+          className="absolute inset-0 w-full h-full opacity-50 md:opacity-5 object-cover z-0 pointer-events-none"
+        />
+        <div className="relative z-10 w-full max-w-3xl p-8 bg-white shadow-xl rounded-2xl">
+          <h1 className="mb-6 text-4xl font-bold text-center text-blue-900">
+            Create Your Account
+          </h1>
 
-        <form onSubmit={handleRegisterSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <Input
-              icon={<FaUser />}
-              name="fullName"
-              value={form.fullName}
-              onChange={handleChange}
-              placeholder="Full Name"
-              required
-            />
-            <Input
-              icon={<FaEnvelope />}
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Email"
-              type="email"
-              required
-            />
-            <Input
-              icon={<FaPhone />}
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Phone Number"
-              type="tel"
-            />
-            <Input
-              icon={<FaBuilding />}
-              name="company"
-              value={form.company}
-              onChange={handleChange}
-              placeholder="Company Name"
-            />
-            <div className="col-span-1 md:col-span-2">
-              <select
-                name="businessType"
-                value={form.businessType}
+          <form onSubmit={handleRegisterSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <Input
+                icon={<FaUser />}
+                name="fullName"
+                value={form.fullName}
                 onChange={handleChange}
+                placeholder="Full Name"
                 required
-                className="w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              >
-                <option value="">Select Business Type</option>
-                {businessTypes.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
+              />
+              <Input
+                icon={<FaEnvelope />}
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Email"
+                type="email"
+                required
+              />
+              <Input
+                icon={<FaPhone />}
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="Phone Number"
+                type="tel"
+              />
+              <Input
+                icon={<FaBuilding />}
+                name="company"
+                value={form.company}
+                onChange={handleChange}
+                placeholder="Company Name"
+              />
+              <div className="col-span-1 md:col-span-2">
+                <select
+                  name="businessType"
+                  value={form.businessType}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                >
+                  <option value="">Select Business Type</option>
+                  {businessTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <Input
+                icon={<FaGlobe />}
+                name="website"
+                value={form.website}
+                onChange={handleChange}
+                placeholder="Website URL (optional)"
+                type="url"
+                full
+              />
+              <Input
+                icon={<FaLock />}
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="Password"
+                type="password"
+                required
+              />
+              <Input
+                icon={<FaLock />}
+                name="confirmPassword"
+                value={form.confirmPassword}
+                onChange={handleChange}
+                placeholder="Confirm Password"
+                type="password"
+                required
+              />
             </div>
-            <Input
-              icon={<FaGlobe />}
-              name="website"
-              value={form.website}
-              onChange={handleChange}
-              placeholder="Website URL (optional)"
-              type="url"
-              full
-            />
-            <Input
-              icon={<FaLock />}
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              placeholder="Password"
-              type="password"
-              required
-            />
-            <Input
-              icon={<FaLock />}
-              name="confirmPassword"
-              value={form.confirmPassword}
-              onChange={handleChange}
-              placeholder="Confirm Password"
-              type="password"
-              required
-            />
-          </div>
 
-          {errorMessage && (
-            <p className="text-sm text-center text-red-500">{errorMessage}</p>
-          )}
-          {successMessage && (
-            <p className="text-sm text-center text-green-600">
-              {successMessage}
-            </p>
-          )}
+            {errorMessage && (
+              <p className="text-sm text-center text-red-500">{errorMessage}</p>
+            )}
+            {successMessage && (
+              <p className="text-sm text-center text-green-600">
+                {successMessage}
+              </p>
+            )}
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full py-3 font-semibold text-white transition bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
-          >
-            {isSubmitting ? "Submitting..." : "Register"}
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-3 font-semibold text-white transition bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            >
+              {isSubmitting ? "Submitting..." : "Register"}
+            </button>
+          </form>
 
-        <p className="mt-6 text-sm text-center text-gray-600">
-          Already have an account?{" "}
-          <Link
-            href="/dashboard/login"
-            className="text-blue-500 hover:underline"
-          >
-            Log In
-          </Link>
-        </p>
+          <p className="mt-6 text-sm text-center text-gray-600">
+            Already have an account?{" "}
+            <Link
+              href="/dashboard/login"
+              className="text-blue-500 hover:underline"
+            >
+              Log In
+            </Link>
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
