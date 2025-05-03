@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 
 export default function InfinitePixelSpinner() {
-  const [showSpinner, setShowSpinner] = useState(true)
+  const [showSpinner, setShowSpinner] = useState(false)
   const dotsRef = useRef([])
 
   useEffect(() => {
@@ -51,7 +51,9 @@ export default function InfinitePixelSpinner() {
           />
         ))}
       </div>
-      <p className="mt-4 text-sm text-white font-mono tracking-wider text-center"></p>
+      <p className="mt-4 text-sm text-white font-mono tracking-wider text-center">
+        Loading Dashboard...
+      </p>
     </div>
   )
 }

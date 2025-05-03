@@ -95,7 +95,7 @@ export default function RegisterPage() {
       if (!user || !user.uid) {
         console.error("Firebase Auth returned an invalid user object:", user)
         setErrorMessage("Registration failed. Please try again.")
-        setIsSubmitting(false)
+        setIsSubmitting(true)
         return
       }
 
@@ -118,7 +118,7 @@ export default function RegisterPage() {
       const DASHBOARD_URL =
         process.env.NEXT_PUBLIC_DASHBOARD_URL || "/dashboard"
       setSuccessMessage("Registration successful! Redirecting to login...")
-      setTimeout(() => router.push("DASHBOARD_URL"), 2000)
+      setTimeout(() => router.push(DASHBOARD_URL), 2000)
     } catch (error) {
       console.error("Registration error:", error)
       setErrorMessage(error.message || "Something went wrong.")
