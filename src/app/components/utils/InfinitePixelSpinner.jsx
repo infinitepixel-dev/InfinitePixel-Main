@@ -1,9 +1,10 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 
 export default function InfinitePixelSpinner() {
+  const [showSpinner, setShowSpinner] = useState(true)
   const dotsRef = useRef([])
 
   useEffect(() => {
@@ -28,31 +29,29 @@ export default function InfinitePixelSpinner() {
   }, [])
 
   const rainbowColors = [
-    "bg-red-500",
-    "bg-orange-500",
-    "bg-yellow-400",
-    "bg-green-500",
-    "bg-blue-500",
-    "bg-indigo-500",
-    "bg-purple-500",
-    "bg-pink-500",
-    "bg-rose-500",
+    "bg-red-600",
+    "bg-orange-600",
+    "bg-yellow-600",
+    "bg-green-600",
+    "bg-blue-600",
+    "bg-indigo-600",
+    "bg-purple-600",
+    "bg-pink-600",
+    "bg-rose-600",
   ]
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-80">
+    <div className="fixed inset-0 z-50 flex flex-col items-center bg-black/95 justify-center">
       <div className="grid grid-cols-3 gap-2">
         {rainbowColors.map((color, i) => (
           <div
             key={i}
             ref={(el) => (dotsRef.current[i] = el)}
-            className={`w-4 h-4 rounded-sm ${color}`}
+            className={`w-4 h-4 rounded-lg ${color}`}
           />
         ))}
       </div>
-      <p className="mt-4 text-sm text-white font-mono tracking-wider text-center">
-        Loading Infinite Pixel...
-      </p>
+      <p className="mt-4 text-sm text-white font-mono tracking-wider text-center"></p>
     </div>
   )
 }

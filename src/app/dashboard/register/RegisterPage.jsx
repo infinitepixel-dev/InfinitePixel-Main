@@ -63,6 +63,7 @@ export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false) // Dev toggle
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -128,7 +129,7 @@ export default function RegisterPage() {
 
   return (
     <>
-      {isSubmitting && <InfinitePixelSpinner />}
+      {(showSpinner || isSubmitting) && <InfinitePixelSpinner />}
       <div className="grid w-full min-h-screen px-4 bg-gradient-to-br from-cyan-400 z-10 via-blue-500 to-pink-500 place-items-center">
         <img
           src="/circle-scatter-haikei.svg"
