@@ -115,10 +115,9 @@ export default function RegisterPage() {
       })
 
       await signOut(auth)
-      const DASHBOARD_URL =
-        process.env.NEXT_PUBLIC_DASHBOARD_URL || "/dashboard"
+      const LOGIN_URL = "/dashboard/login"
       setSuccessMessage("Registration successful! Redirecting to login...")
-      setTimeout(() => router.push(DASHBOARD_URL), 2000)
+      setTimeout(() => router.push(LOGIN_URL), 2000)
     } catch (error) {
       console.error("Registration error:", error)
       setErrorMessage(error.message || "Something went wrong.")
