@@ -89,7 +89,7 @@ export default function LoginPage() {
 
             <p className="pr-2 mt-1 text-sm text-right text-gray-500">
               <Link
-                href="/forgot-password"
+                href="/dashboard/forgot-password"
                 className="text-blue-500 hover:underline"
               >
                 Forgot Password?
