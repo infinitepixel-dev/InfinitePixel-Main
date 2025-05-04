@@ -3,9 +3,8 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { doc, getDoc } from "firebase/firestore"
-import { signOut } from "firebase/auth"
+import { signOut, onAuthStateChanged } from "firebase/auth"
 import { useRouter } from "next/navigation"
-import { onAuthStateChanged } from "firebase/auth"
 import { getFirebaseInstance } from "@/lib/firebaseClient"
 import gsap from "gsap"
 import {
@@ -27,7 +26,9 @@ export default function AdminDashboard() {
   const [collapsed, setCollapsed] = useState(false)
   const [activeTab, setActiveTab] = useState("Dashboard")
   const [darkMode, setDarkMode] = useState(false)
+  const [checkingAuth, setCheckingAuth] = useState(true)
   const sidebarRef = useRef(null)
+  const router = useRouter()
 
   // Animate sidebar collapse/expand
   useEffect(() => {
@@ -48,24 +49,27 @@ export default function AdminDashboard() {
     document.documentElement.classList.toggle("dark", isDark)
   }, [])
 
-  // Fetch user info from Firebase
+  // Auth check and user info
   useEffect(() => {
-    const fetchUser = async () => {
+    const checkAuth = async () => {
       const { auth, db } = await getFirebaseInstance()
 
       onAuthStateChanged(auth, async (user) => {
-        if (user) {
+        if (!user) {
+          router.push("/dashboard/login")
+        } else {
           const docRef = doc(db, "users", user.uid)
           const docSnap = await getDoc(docRef)
           if (docSnap.exists()) {
             setUserFirstName(docSnap.data().fullName?.split(" ")[0] || "User")
           }
+          setCheckingAuth(false)
         }
       })
     }
 
-    fetchUser()
-  }, [])
+    checkAuth()
+  }, [router])
 
   const toggleDarkMode = () => {
     setDarkMode((prev) => {
@@ -74,6 +78,12 @@ export default function AdminDashboard() {
       document.documentElement.classList.toggle("dark", next)
       return next
     })
+  }
+
+  const handleLogout = async () => {
+    const { auth } = await getFirebaseInstance()
+    await signOut(auth)
+    router.push("/dashboard/login")
   }
 
   const navItems = [
@@ -99,12 +109,8 @@ export default function AdminDashboard() {
     }
   }
 
-  const router = useRouter()
-
-  const handleLogout = async () => {
-    const { auth } = await getFirebaseInstance()
-    await signOut(auth)
-    router.push("/dashboard/login") // change path if needed
+  if (checkingAuth) {
+    return <div className="p-6 text-center">Checking authentication...</div>
   }
 
   return (
