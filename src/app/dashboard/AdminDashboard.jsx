@@ -1,3 +1,5 @@
+// AdminDashboard.jsx
+
 "use client"
 
 import { useState, useRef, useEffect } from "react"
@@ -10,10 +12,11 @@ import {
   FaAngleDoubleLeft,
   FaAngleDoubleRight,
 } from "react-icons/fa"
+import BillingPage from "@/app/components/pages/BillingPage"
 
 export default function AdminDashboard() {
   const [collapsed, setCollapsed] = useState(false)
-  const [userFirstName, setUserFirstName] = useState("")
+  const [activeTab, setActiveTab] = useState("Dashboard")
   const sidebarRef = useRef(null)
 
   useEffect(() => {
@@ -26,34 +29,50 @@ export default function AdminDashboard() {
     }
   }, [collapsed])
 
-  useEffect(() => {
-    const storedName = localStorage.getItem("userFirstName")
-    if (storedName) setUserFirstName(storedName)
-  }, [])
-
   const navItems = [
-    { name: "Dashboard", icon: <FaTachometerAlt />, href: "/admin" },
-    { name: "Billing", icon: <FaCreditCard />, href: "/admin/billing" },
-    { name: "Settings", icon: <FaCog />, href: "/admin/settings" },
+    { name: "Dashboard", icon: <FaTachometerAlt /> },
+    { name: "Billing", icon: <FaCreditCard /> },
+    { name: "Settings", icon: <FaCog /> },
   ]
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "Billing":
+        return <BillingPage />
+      case "Dashboard":
+        return (
+          <h1 className="text-2xl font-bold mb-4">
+            Welcome to the Admin Dashboard
+          </h1>
+        )
+      case "Settings":
+        return (
+          <p className="text-lg text-gray-600">Settings content goes here.</p>
+        )
+      default:
+        return null
+    }
+  }
 
   return (
     <div className="flex min-h-screen">
       <aside
         ref={sidebarRef}
-        className="bg-gradient-to-br from-blue-600 to-blue-800 text-white flex flex-col transition-all duration-300 relative"
+        className="bg-blue-800 text-white flex flex-col transition-all duration-300 relative"
         style={{ width: "16rem" }}
       >
         <div className="flex-1 mt-4">
           {navItems.map((item) => (
-            <Link
+            <button
               key={item.name}
-              href={item.href}
-              className="flex items-center px-4 py-3 hover:bg-blue-700 transition-colors"
+              onClick={() => setActiveTab(item.name)}
+              className={`w-full text-left flex items-center px-4 py-3 hover:bg-blue-700 transition-colors ${
+                activeTab === item.name ? "bg-blue-700" : ""
+              }`}
             >
               <span className="text-lg mr-3">{item.icon}</span>
               {!collapsed && <span>{item.name}</span>}
-            </Link>
+            </button>
           ))}
         </div>
         <button
@@ -63,12 +82,7 @@ export default function AdminDashboard() {
           {collapsed ? <FaAngleDoubleRight /> : <FaAngleDoubleLeft />}
         </button>
       </aside>
-      <main className="flex-1 bg-gray-50 p-6">
-        <h1 className="text-2xl font-bold mb-4 text-center">
-          Welcome back, {userFirstName ? ` ${userFirstName}` : ""}
-        </h1>
-        {/* Your dashboard content will go here */}
-      </main>
+      <main className="flex-1 bg-gray-50 p-6">{renderContent()}</main>
     </div>
   )
 }
