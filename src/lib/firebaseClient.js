@@ -7,6 +7,7 @@ import {
   initializeAuth,
   browserSessionPersistence,
   onAuthStateChanged,
+  getAuth,
 } from "firebase/auth"
 
 // ✅ Firebase config from env variables
@@ -19,10 +20,10 @@ export const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 }
 
-// ✅ Initialize Firebase app only once
+//  Initialize Firebase app only once
 const firebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig)
 
-// ✅ Initialize Auth WITH sessionStorage persistence (avoid IndexedDB)
+//  Initialize Auth WITH sessionStorage persistence (avoid IndexedDB)
 const auth = initializeAuth(firebaseApp, {
   persistence: browserSessionPersistence,
 })
