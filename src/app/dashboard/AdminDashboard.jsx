@@ -2,6 +2,11 @@
 
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
+import { doc, getDoc } from "firebase/firestore"
+import { signOut } from "firebase/auth"
+import { useRouter } from "next/navigation"
+import { onAuthStateChanged } from "firebase/auth"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
 import gsap from "gsap"
 import {
   FaTachometerAlt,
@@ -11,18 +16,20 @@ import {
   FaAngleDoubleRight,
   FaMoon,
   FaSun,
+  FaSignOutAlt,
 } from "react-icons/fa"
 
 import BillingPage from "./billing/page"
 import SettingsPage from "./settings/page"
 
 export default function AdminDashboard() {
+  const [userFirstName, setUserFirstName] = useState("")
   const [collapsed, setCollapsed] = useState(false)
   const [activeTab, setActiveTab] = useState("Dashboard")
   const [darkMode, setDarkMode] = useState(false)
   const sidebarRef = useRef(null)
 
-  // Collapse sidebar animation
+  // Animate sidebar collapse/expand
   useEffect(() => {
     if (sidebarRef.current) {
       gsap.to(sidebarRef.current, {
@@ -33,29 +40,39 @@ export default function AdminDashboard() {
     }
   }, [collapsed])
 
-  // Set dark mode class on html element + load persisted theme
+  // Set theme from localStorage on load
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme")
-    if (storedTheme === "dark") {
-      setDarkMode(true)
-      document.documentElement.classList.add("dark")
-    } else {
-      setDarkMode(false)
-      document.documentElement.classList.remove("dark")
-    }
+    const isDark = storedTheme === "dark"
+    setDarkMode(isDark)
+    document.documentElement.classList.toggle("dark", isDark)
   }, [])
 
-  // Toggle dark mode and persist to localStorage
+  // Fetch user info from Firebase
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { auth, db } = await getFirebaseInstance()
+
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const docRef = doc(db, "users", user.uid)
+          const docSnap = await getDoc(docRef)
+          if (docSnap.exists()) {
+            setUserFirstName(docSnap.data().fullName?.split(" ")[0] || "User")
+          }
+        }
+      })
+    }
+
+    fetchUser()
+  }, [])
+
   const toggleDarkMode = () => {
     setDarkMode((prev) => {
-      const nextMode = !prev
-      localStorage.setItem("theme", nextMode ? "dark" : "light")
-      if (nextMode) {
-        document.documentElement.classList.add("dark")
-      } else {
-        document.documentElement.classList.remove("dark")
-      }
-      return nextMode
+      const next = !prev
+      localStorage.setItem("theme", next ? "dark" : "light")
+      document.documentElement.classList.toggle("dark", next)
+      return next
     })
   }
 
@@ -71,8 +88,8 @@ export default function AdminDashboard() {
         return <BillingPage />
       case "Dashboard":
         return (
-          <h1 className="text-2xl font-bold mb-4">
-            Welcome to the Admin Dashboard
+          <h1 className="text-3xl font-bold mb-4 text-center">
+            Welcome back, {userFirstName}
           </h1>
         )
       case "Settings":
@@ -80,6 +97,14 @@ export default function AdminDashboard() {
       default:
         return null
     }
+  }
+
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    const { auth } = await getFirebaseInstance()
+    await signOut(auth)
+    router.push("/dashboard/login") // change path if needed
   }
 
   return (
@@ -104,7 +129,17 @@ export default function AdminDashboard() {
           ))}
         </div>
 
-        {/* Dark Mode Toggle */}
+        <div className="px-4 py-3 border-t border-blue-700 flex items-center justify-between">
+          {!collapsed && <span className="text-sm">Logout</span>}
+          <button
+            onClick={handleLogout}
+            className="text-white hover:text-red-500 focus:outline-none"
+            aria-label="Logout"
+          >
+            <FaSignOutAlt className="text-lg" />
+          </button>
+        </div>
+
         <div className="px-4 py-3 border-t border-blue-700 flex items-center justify-between">
           {!collapsed && <span className="text-sm">Dark Mode</span>}
           <button
