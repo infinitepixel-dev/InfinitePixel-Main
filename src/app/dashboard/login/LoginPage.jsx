@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { getFirebaseInstance } from "@/lib/firebaseClient"
+import { getDoc, doc } from "firebase/firestore"
 import Link from "next/link"
 import InfinitePixelSpinner from "@/app/components/utils/InfinitePixelSpinner"
 import { useRouter } from "next/navigation"
@@ -23,9 +24,24 @@ export default function LoginPage() {
     setIsSubmitting(true)
 
     try {
-      const { auth } = await getFirebaseInstance()
-      await signInWithEmailAndPassword(auth, email, password)
-      console.log("User logged in successfully")
+      const { auth, db } = await getFirebaseInstance()
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
+
+      const uid = userCredential.user.uid
+      const docRef = doc(db, "users", uid)
+      const userSnap = await getDoc(docRef)
+
+      if (userSnap.exists()) {
+        const userData = userSnap.data()
+        const firstName = userData.fullName?.split(" ")[0] || "User"
+        localStorage.setItem("userFirstName", firstName)
+        console.log(`Welcome back, ${firstName}`)
+      }
+
       router.push("/dashboard")
     } catch (error) {
       console.error("Login error:", error)
