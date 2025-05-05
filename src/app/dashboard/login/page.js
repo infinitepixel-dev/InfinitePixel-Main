@@ -1,6 +1,6 @@
-"use client"
-import LoginPage from "./LoginPage"
+"use client";
+import LoginPage from "./LoginPage.jsx";
 
 export default function Login() {
-  return <LoginPage />
+  return <LoginPage />;
 }

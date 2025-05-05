@@ -1,139 +1,175 @@
-"use client"
+//LoginPage.jsx
+"use client";
 
-import React, { useState } from "react"
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { getFirebaseInstance } from "@/lib/firebaseClient"
-import { getDoc, doc } from "firebase/firestore"
-import Link from "next/link"
-import InfinitePixelSpinner from "@/app/components/utils/InfinitePixelSpinner"
-import { useRouter } from "next/navigation"
+import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import gsap from "gsap";
+import "./LoginPage.css";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { getFirebaseInstance } from "@/lib/firebaseClient";
+import { getDoc, doc } from "firebase/firestore";
+
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import RegisterPage from "@modals/RegisterPage";
+import InfinitePixelSpinner from "@utils/InfinitePixelSpinner";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
-  const router = useRouter()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showSpinner, setShowSpinner] = useState(false)
+  const [activePanel, setActivePanel] = useState("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
+
+  const router = useRouter();
+  const containerRef = useRef(null);
+
+  const toggleRegister = () => {
+    const isRegistering = activePanel === "login";
+    setActivePanel(isRegistering ? "register" : "login");
+
+    gsap.to(containerRef.current, {
+      rotateY: isRegistering ? 180 : 0,
+      duration: 0.25,
+      ease: "power3.inOut",
+    });
+  };
 
   const handleLoginSubmit = async (event) => {
-    event.preventDefault()
-    setErrorMessage("")
-    setIsSubmitting(true)
+    event.preventDefault();
+    setErrorMessage("");
+    setIsSubmitting(true);
 
     try {
-      const { auth, db } = await getFirebaseInstance()
+      const { auth, db } = await getFirebaseInstance();
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
-      )
-
-      const uid = userCredential.user.uid
-      const docRef = doc(db, "users", uid)
-      const userSnap = await getDoc(docRef)
+      );
+      const uid = userCredential.user.uid;
+      const docRef = doc(db, "users", uid);
+      const userSnap = await getDoc(docRef);
 
       if (userSnap.exists()) {
-        const userData = userSnap.data()
-        const firstName = userData.fullName?.split(" ")[0] || "User"
-        localStorage.setItem("userFirstName", firstName)
-        console.log(`Welcome back, ${firstName}`)
+        const userData = userSnap.data();
+        const firstName = userData.fullName?.split(" ")[0] || "User";
+        localStorage.setItem("userFirstName", firstName);
+        router.push("/dashboard");
       }
-
-      router.push("/dashboard")
     } catch (error) {
-      console.error("Login error:", error)
-      setErrorMessage("Invalid email or password.")
+      setErrorMessage("Invalid email or password.");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <>
       {(showSpinner || isSubmitting) && <InfinitePixelSpinner />}
-
-      <div className="relative grid w-full h-screen place-items-center px-2 bg-gradient-to-br from-cyan-400 via-blue-500 to-pink-500 overflow-hidden">
+      <div className="relative flex justify-center items-start md:items-center bg-gradient-to-br from-cyan-400 via-blue-500 to-pink-500 px-4 pt-24 w-full min-h-screen">
         <img
           src="/circle-scatter-haikei.svg"
           alt="Background pattern"
-          className="absolute inset-0 w-full h-full opacity-50 md:opacity-5 object-cover z-0 pointer-events-none"
+          className="absolute inset-0 opacity-5 w-full h-full object-cover"
         />
-        <div className="relative z-10 w-full max-w-md col-span-4 p-8 bg-white shadow-lg rounded-2xl">
-          <h1 className="mb-6 text-3xl font-bold text-center text-blue-950">
-            Login
-          </h1>
 
-          <form onSubmit={handleLoginSubmit} className="space-y-6">
-            <div className="relative">
-              <FaEnvelope className="absolute text-gray-400 transform -translate-y-1/2 top-1/2 left-3" />
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                className="w-full py-2 pl-10 pr-4 transition-colors border-0 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
-                required
-              />
-            </div>
-
-            <div className="relative">
-              <FaLock className="absolute text-gray-400 transform -translate-y-1/2 top-1/2 left-3" />
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                className="w-full py-2 pl-10 pr-10 transition-colors border-0 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute inset-y-0 right-3 flex items-center text-gray-500 focus:outline-none"
-                tabIndex={-1}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
-            </div>
-
-            {errorMessage && (
-              <p className="text-sm text-red-500">{errorMessage}</p>
-            )}
-
-            <p className="pr-2 mt-1 text-sm text-right text-gray-500">
-              <Link
-                href="/dashboard/forgot-password"
-                className="text-blue-500 hover:underline"
-              >
-                Forgot Password?
-              </Link>
-            </p>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full py-2 text-white transition bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+        <div className="z-10 w-full max-w-2xl perspective-1000">
+          <div ref={containerRef} className="ring-cylinder-container">
+            {/* Login Panel */}
+            <div
+              className={`auth-card-ring login-panel ${
+                activePanel === "login" ? "active" : "inactive"
+              }`}
             >
-              {isSubmitting ? "Signing In..." : "Sign In"}
-            </button>
-          </form>
+              <div className="bg-white shadow-xl p-8 rounded-2xl">
+                <h1 className="mb-6 font-bold text-blue-950 text-3xl text-center">
+                  Login
+                </h1>
 
-          <div className="flex items-center justify-center mt-4">
-            <p className="text-sm text-gray-500">
-              Don&apos;t have an account?{" "}
-              <Link
-                href="/dashboard/register"
-                className="text-blue-500 hover:underline"
-              >
-                Register
-              </Link>
-            </p>
+                <form onSubmit={handleLoginSubmit} className="space-y-6">
+                  <div className="relative">
+                    <FaEnvelope className="top-1/2 left-3 absolute text-gray-400 -translate-y-1/2" />
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="py-2 pr-4 pl-10 border-0 border-gray-300 border-b-2 focus:border-blue-500 focus:outline-none w-full"
+                      required
+                    />
+                  </div>
+
+                  <div className="relative">
+                    <FaLock className="top-1/2 left-3 absolute text-gray-400 -translate-y-1/2" />
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="py-2 pr-10 pl-10 border-0 border-gray-300 border-b-2 focus:border-blue-500 focus:outline-none w-full"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      className="right-3 absolute inset-y-0 flex items-center focus:outline-none text-gray-500"
+                      tabIndex={-1}
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
+
+                  {errorMessage && (
+                    <p className="text-red-500 text-sm">{errorMessage}</p>
+                  )}
+
+                  <p className="text-gray-500 text-sm text-right">
+                    <Link
+                      href="/dashboard/forgot-password"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </p>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 py-2 rounded-lg w-full text-white transition"
+                  >
+                    {isSubmitting ? "Signing In..." : "Sign In"}
+                  </button>
+                </form>
+
+                <div className="mt-4 text-gray-500 text-sm text-center">
+                  Don&apos;t have an account?{" "}
+                  <button
+                    onClick={toggleRegister}
+                    className="text-blue-500 hover:underline"
+                  >
+                    Register
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Register Panel */}
+            <div
+              className={`auth-card-ring register-panel ${
+                activePanel === "register" ? "active" : "inactive"
+              }`}
+            >
+              <div>
+                <RegisterPage embedded={true} toggleRegister={toggleRegister} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
