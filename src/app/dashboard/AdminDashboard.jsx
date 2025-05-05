@@ -24,6 +24,8 @@ import SettingsPage from "./settings/page";
 export default function AdminDashboard() {
   const [userFirstName, setUserFirstName] = useState("");
   const [collapsed, setCollapsed] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+
   const [activeTab, setActiveTab] = useState("Dashboard");
   const [checkingAuth, setCheckingAuth] = useState(true);
   const sidebarRef = useRef(null);
@@ -32,11 +34,32 @@ export default function AdminDashboard() {
   // Animate sidebar collapse/expand
   useEffect(() => {
     if (sidebarRef.current) {
-      gsap.to(sidebarRef.current, {
-        width: collapsed ? "4rem" : "16rem",
-        duration: 0.3,
-        ease: "power2.inOut",
+      const sidebar = sidebarRef.current;
+      const labels = sidebar.querySelectorAll(".menu-label");
+
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.inOut", duration: 0.3 },
+        onStart: () => setIsAnimating(true),
+        onComplete: () => setIsAnimating(false),
       });
+
+      if (collapsed) {
+        tl.to(labels, {
+          opacity: 0,
+          x: -10,
+          stagger: 0.05,
+        }).to(sidebar, { width: "4rem" }, "<");
+      } else {
+        tl.to(sidebar, { width: "16rem" }).to(
+          labels,
+          {
+            opacity: 1,
+            x: 0,
+            stagger: 0.05,
+          },
+          "<0.1"
+        );
+      }
     }
   }, [collapsed]);
 
@@ -99,32 +122,57 @@ export default function AdminDashboard() {
     <div className="flex bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
       <aside
         ref={sidebarRef}
-        className="relative flex flex-col bg-slate-900 dark:bg-gray-800 text-white transition-all duration-300"
-        style={{ width: "16rem" }}
+        className={`relative flex flex-col bg-slate-900 dark:bg-gray-800 text-white transition-[width] duration-300 ease-in-out ${
+          collapsed ? "w-16" : "w-64"
+        }`}
       >
         <div className="flex-1 mt-4">
           {navItems.map((item) => (
             <button
               key={item.name}
               onClick={() => setActiveTab(item.name)}
-              className={`w-full text-left flex items-center px-4 py-3 hover:bg-blue-700 transition-colors ${
+              className={`w-full text-left flex items-center px-4 py-3 transition-colors duration-200 ease-in-out rounded-md hover:bg-blue-700 ${
                 activeTab === item.name ? "bg-blue-800" : ""
               }`}
             >
               <span className="mr-3 text-lg">{item.icon}</span>
-              {!collapsed && <span>{item.name}</span>}
+              <span
+                className={`menu-label origin-left transition-all duration-300 ${
+                  collapsed
+                    ? "opacity-0 -translate-x-2 pointer-events-none"
+                    : "opacity-100 translate-x-0"
+                }`}
+              >
+                {item.name}
+              </span>
             </button>
           ))}
         </div>
 
         <div className="flex justify-between items-center px-4 py-3 border-t border-blue-700">
-          {!collapsed && <span className="text-sm">Logout</span>}
+          {/* Logout Icon Button */}
           <button
             onClick={handleLogout}
             className="focus:outline-none text-white hover:text-red-500"
             aria-label="Logout"
           >
             <FaSignOutAlt className="text-lg" />
+          </button>
+          <span
+            className={`menu-label text-sm transition-opacity duration-300 ${
+              collapsed ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
+          ></span>
+
+          {/* Lgotout Text Button */}
+          <button
+            onClick={handleLogout}
+            className={`text-sm transition-opacity duration-300 ${
+              collapsed ? "opacity-0 pointer-events-none" : "opacity-100"
+            } hover:text-red-500`}
+            aria-label="Logout"
+          >
+            Logout
           </button>
         </div>
 
