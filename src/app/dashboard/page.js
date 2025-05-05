@@ -1,4 +1,3 @@
-// src/app/dashboard/page.jsx
 "use client"
 
 import AdminDashboard from "./AdminDashboard"
