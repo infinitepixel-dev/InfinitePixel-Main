@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin 'tailwindcss-motion';
 
+/*CSS Enables / Disables dark/light modes */
+@custom-variant dark (&:where(.dark, .dark *));
+
 html,
 body {
   overflow-x: hidden;

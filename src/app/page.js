@@ -48,6 +48,10 @@ export default function Home() {
             }),
           }}
         />
+        <meta
+          name="impact-site-verification"
+          value="0b1c9781-9e69-4636-b7e0-f2d1295d4034"
+        ></meta>
       </Head>
       <Script
         id="Cookiebot"
