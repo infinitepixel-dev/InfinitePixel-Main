@@ -1,71 +1,83 @@
 //LoginPage.jsx
-"use client";
+"use client"
 
-import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import gsap from "gsap";
-import "./LoginPage.css";
+import React, { useState, useRef, useEffect } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import gsap from "gsap"
+import "./LoginPage.css"
+import { useReCaptcha } from "next-recaptcha-v3"
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { getFirebaseInstance } from "@/lib/firebaseClient";
-import { getDoc, doc } from "firebase/firestore";
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
+import { getDoc, doc } from "firebase/firestore"
 
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import RegisterPage from "@modals/RegisterPage";
-import InfinitePixelSpinner from "@utils/InfinitePixelSpinner";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
+import RegisterPage from "@modals/RegisterPage"
+import InfinitePixelSpinner from "@utils/InfinitePixelSpinner"
 
 export default function LoginPage() {
-  const [activePanel, setActivePanel] = useState("login");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false);
+  const { executeRecaptcha } = useReCaptcha()
 
-  const router = useRouter();
-  const containerRef = useRef(null);
+  const [activePanel, setActivePanel] = useState("login")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false)
+
+  const router = useRouter()
+  const containerRef = useRef(null)
 
   const toggleRegister = () => {
-    const isRegistering = activePanel === "login";
-    setActivePanel(isRegistering ? "register" : "login");
+    const isRegistering = activePanel === "login"
+    setActivePanel(isRegistering ? "register" : "login")
 
     gsap.to(containerRef.current, {
       rotateY: isRegistering ? 180 : 0,
       duration: 0.25,
       ease: "power3.inOut",
-    });
-  };
+    })
+  }
 
   const handleLoginSubmit = async (event) => {
-    event.preventDefault();
-    setErrorMessage("");
-    setIsSubmitting(true);
+    event.preventDefault()
+    setErrorMessage("")
+    setIsSubmitting(true)
 
     try {
-      const { auth, db } = await getFirebaseInstance();
+      const token = await executeRecaptcha("login")
+
+      if (!token) {
+        throw new Error("ReCAPTCHA verification failed. Please try again.")
+      }
+
+      const { auth, db } = await getFirebaseInstance()
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
-      );
-      const uid = userCredential.user.uid;
-      const docRef = doc(db, "users", uid);
-      const userSnap = await getDoc(docRef);
+      )
+      const uid = userCredential.user.uid
+      const docRef = doc(db, "users", uid)
+      const userSnap = await getDoc(docRef)
 
       if (userSnap.exists()) {
-        const userData = userSnap.data();
-        const firstName = userData.fullName?.split(" ")[0] || "User";
-        localStorage.setItem("userFirstName", firstName);
-        router.push("/dashboard");
+        const userData = userSnap.data()
+        const firstName = userData.fullName?.split(" ")[0] || "User"
+        localStorage.setItem("userFirstName", firstName)
+        router.push("/dashboard")
+      } else {
+        setErrorMessage("User profile not found. Please contact support.")
       }
     } catch (error) {
-      setErrorMessage("Invalid email or password.");
+      console.error("Login error:", error)
+      setErrorMessage(error.message || "Invalid email or password.")
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   return (
     <>
@@ -171,5 +183,5 @@ export default function LoginPage() {
         </div>
       </div>
     </>
-  );
+  )
 }
