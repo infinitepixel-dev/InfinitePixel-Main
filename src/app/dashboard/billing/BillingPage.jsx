@@ -85,16 +85,17 @@ export default function BillingPage() {
         </button>
       </section>
 
-      {/* 5. Cancel Subscription */}
+      {/* 5. Cancel Account */}
       <section className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
         <h2 className="text-xl font-semibold text-red-600 mb-4">
-          Cancel Subscription
+          Cancel Account
         </h2>
         <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
-          You’ll retain access until the end of your billing period.
+          You’re account will remain accessible until the end of your billing
+          period.
         </p>
         <button className="px-4 py-2 text-red-600 border border-red-600 rounded hover:bg-red-50">
-          Cancel Plan
+          Cancel Account
         </button>
       </section>
 
