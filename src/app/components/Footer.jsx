@@ -1,22 +1,24 @@
 //Footer.jsx
-"use client";
+"use client"
 
-import { useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import gsap from "gsap";
+import { useEffect, useState, useRef } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import gsap from "gsap"
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  const footerRef = useRef(null);
+  const [currentYear, setCurrentYear] = useState("")
+  const footerRef = useRef(null)
 
   useEffect(() => {
+    setCurrentYear(new Date().getFullYear().toString())
+
     gsap.fromTo(
       footerRef.current,
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
-    );
-  }, []);
+    )
+  }, [])
 
   return (
     <footer
@@ -58,7 +60,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

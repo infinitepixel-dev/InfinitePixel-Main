@@ -1,4 +1,4 @@
-// app/RootClientLayout.jsx
+//RootClientLayout.jsx
 "use client"
 
 import PropTypes from "prop-types"

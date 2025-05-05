@@ -1,18 +1,18 @@
 //Portfolio.jsx
-"use client";
+"use client"
 
-import { useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useRef } from "react"
+import { useRouter } from "next/navigation"
 
-import { FaReact } from "react-icons/fa";
-import { FaClover, FaBootstrap } from "react-icons/fa6";
-import { SiTailwindcss, SiTypescript } from "react-icons/si";
-import { gsap } from "gsap";
+import { FaReact } from "react-icons/fa"
+import { FaClover, FaBootstrap } from "react-icons/fa6"
+import { SiTailwindcss, SiTypescript } from "react-icons/si"
+import { gsap } from "gsap"
 
-import AccessibleIcon from "@utils/AccessibleIcon";
+import AccessibleIcon from "@utils/AccessibleIcon"
 
 export default function Portfolio() {
-  const router = useRouter();
+  const router = useRouter()
 
   const projects = [
     {
@@ -52,38 +52,38 @@ export default function Portfolio() {
       ],
       link: "", //TODO - Add URL Once bugfixes on barbshop are resolved https://infinitepixel-dev.github.io/BarberShop/
     },
-  ];
+  ]
 
-  const cardRefs = useRef([]);
+  const cardRefs = useRef([])
 
   const handleMouseEnter = (idx) => {
     gsap.to(cardRefs.current[idx], {
       scale: 1.015,
       ease: "power1.out",
       duration: 0.3,
-    });
-  };
+    })
+  }
 
   const handleMouseLeave = (idx) => {
     gsap.to(cardRefs.current[idx], {
       scale: 1,
       ease: "power1.inOut",
       duration: 0.3,
-    });
-  };
+    })
+  }
 
   //On Click, navigate to home and then output #contact-form to scroll to the bottom on the homepage.
   const handleClick = () => {
-    router.push("/", { replace: false });
+    router.push("/", { replace: false })
 
     // Delay to wait for DOM to mount, then scroll
     setTimeout(() => {
-      const target = document.getElementById("contact-form");
+      const target = document.getElementById("contact-form")
       if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+        target.scrollIntoView({ behavior: "smooth" })
       }
-    }, 500); // Adjust delay if needed based on your render speed
-  };
+    }, 500) // Adjust delay if needed based on your render speed
+  }
 
   return (
     <div className="flex flex-col items-center bg-gradient-to-b from-slate-800 to-slate-600 p-10 min-h-screen text-white">
@@ -149,5 +149,5 @@ export default function Portfolio() {
         ))}
       </div>
     </div>
-  );
+  )
 }
