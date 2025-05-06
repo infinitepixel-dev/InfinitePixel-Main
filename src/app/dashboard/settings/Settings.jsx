@@ -6,6 +6,7 @@ import { getFirebaseInstance } from "@/lib/firebaseClient"
 import ThemeSwitch from "@ui/ThemeSwitch"
 
 const timeoutOptions = [
+  { label: "seconds", value: 0.17 },
   { label: "1 hour", value: 60 },
   { label: "2 hours", value: 120 },
   { label: "4 hours", value: 240 },
@@ -24,13 +25,14 @@ export default function SettingsPage() {
   const logoutUser = async () => {
     const { auth } = await getFirebaseInstance()
     await signOut(auth)
-    window.location.href = "/login" // Optional redirect
+    window.location.href = "/dashboard/login" // redirect to dashboard login page
   }
 
   const resetInactivityTimer = () => {
-    clearTimeout(activityTimer.current)
+    if (showModal) return
+
+    clearTimeout(activityTi.current)
     clearInterval(countdownTimer.current)
-    setShowModal(false)
     setCountdown(60)
 
     activityTimer.current = setTimeout(() => {
@@ -44,29 +46,38 @@ export default function SettingsPage() {
           logoutUser()
         }
       }, 1000)
-    }, timeoutDuration * 60 * 1000 - 60000) // trigger 1 minute before logout
+    }, timeoutDuration * 60 * 1000 - 60000)
   }
 
   useEffect(() => {
-    resetInactivityTimer()
-
-    const events = ["mousemove", "keydown", "click", "scroll"]
-    const handleActivity = () => resetInactivityTimer()
-
-    events.forEach((event) => window.addEventListener(event, handleActivity))
-
-    return () => {
-      events.forEach((event) =>
-        window.removeEventListener(event, handleActivity)
-      )
-      clearTimeout(activityTimer.current)
-      clearInterval(countdownTimer.current)
+    const refreshToken = async () => {
+      const { auth } = await getFirebaseInstance()
+      const user = auth.currentUser
+      if (user) {
+        try {
+          await user.getIdToken(true)
+        } catch (err) {
+          console.error("Token refresh failed:", err)
+        }
+      }
     }
-  }, [timeoutDuration])
+    refreshToken()
+  }, [])
+
+  let activityTimeout
+
+  const handleActivity = () => {
+    if (!showModal) {
+      clearTimeout(activityTimeout)
+      activityTimeout = setTimeout(() => {
+        resetInactivityTimer()
+      }, 500) // delay actual reset to prevent rapid repeat
+    }
+  }
 
   return (
     <div className="space-y-6">
-      <section className="bg-slate-50 dark:bg-gray-800 shadow p-6 rounded-lg">
+      <section className="bg-slate-50  dark:bg-gray-800 shadow p-6 rounded-lg">
         <h2 className="mb-4 font-semibold text-gray-900 dark:text-gray-100 text-xl">
           Appearance
         </h2>
@@ -75,7 +86,7 @@ export default function SettingsPage() {
         </div>
       </section>
 
-      <section className="bg-white dark:bg-gray-800 shadow p-6 rounded-lg">
+      <section className="bg-white backdrop-opacity-50 dark:bg-gray-800 shadow p-6 rounded-lg">
         <h2 className="mb-4 font-semibold text-gray-900 dark:text-gray-100 text-xl">
           Inactivity Timeout
         </h2>
@@ -109,7 +120,10 @@ export default function SettingsPage() {
               <span className="font-bold">{countdown}</span> seconds.
             </p>
             <button
-              onClick={resetInactivityTimer}
+              onClick={() => {
+                setShowModal(false)
+                setTimeout(() => resetInactivityTimer(), 100) // Give DOM time to fully unmount
+              }}
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
             >
               Stay Logged In
