@@ -1,32 +1,35 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { signOut } from "firebase/auth"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
 import ThemeSwitch from "@ui/ThemeSwitch"
 
 const timeoutOptions = [
-  { label: "15 minutes", value: 15 },
-  { label: "30 minutes", value: 30 },
-  { label: "45 minutes", value: 45 },
-  { label: "60 minutes", value: 60 },
+  { label: "1 hour", value: 60 },
+  { label: "2 hours", value: 120 },
+  { label: "4 hours", value: 240 },
+  { label: "8 hours", value: 480 },
+  { label: "12 hours", value: 720 },
 ]
 
 export default function SettingsPage() {
   const [timeoutDuration, setTimeoutDuration] = useState(10) // in minutes
-  const [countdown, setCountdown] = useState(60) // 60s warning
+  const [countdown, setCountdown] = useState(60)
   const [showModal, setShowModal] = useState(false)
 
   const activityTimer = useRef(null)
   const countdownTimer = useRef(null)
 
-  const logoutUser = () => {
-    // Placeholder logout logic
-    alert("You have been logged out due to inactivity.")
-    // Add real logout logic here: signOut(auth), clear tokens, etc.
+  const logoutUser = async () => {
+    const { auth } = await getFirebaseInstance()
+    await signOut(auth)
+    window.location.href = "/login" // Optional redirect
   }
 
   const resetInactivityTimer = () => {
-    if (activityTimer.current) clearTimeout(activityTimer.current)
-    if (countdownTimer.current) clearInterval(countdownTimer.current)
+    clearTimeout(activityTimer.current)
+    clearInterval(countdownTimer.current)
     setShowModal(false)
     setCountdown(60)
 
@@ -34,14 +37,14 @@ export default function SettingsPage() {
       setShowModal(true)
       let counter = 60
       countdownTimer.current = setInterval(() => {
-        counter--
+        counter -= 1
         setCountdown(counter)
         if (counter <= 0) {
           clearInterval(countdownTimer.current)
           logoutUser()
         }
       }, 1000)
-    }, timeoutDuration * 60 * 1000 - 60000) // trigger warning 1 min before logout
+    }, timeoutDuration * 60 * 1000 - 60000) // trigger 1 minute before logout
   }
 
   useEffect(() => {
@@ -49,6 +52,7 @@ export default function SettingsPage() {
 
     const events = ["mousemove", "keydown", "click", "scroll"]
     const handleActivity = () => resetInactivityTimer()
+
     events.forEach((event) => window.addEventListener(event, handleActivity))
 
     return () => {
@@ -102,8 +106,7 @@ export default function SettingsPage() {
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
               You will be logged out in{" "}
-              <span className="font-bold">{countdown}</span> seconds due to
-              inactivity.
+              <span className="font-bold">{countdown}</span> seconds.
             </p>
             <button
               onClick={resetInactivityTimer}
