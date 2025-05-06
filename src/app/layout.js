@@ -1,17 +1,18 @@
 // app/layout.js (server component)
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import RootClientLayout from "@components/RootClientLayout"; // client wrapper component
+import { Geist, Geist_Mono } from "next/font/google"
+import "./globals.css"
+import RootClientLayout from "@components/RootClientLayout" // client wrapper component
+import { ReCaptchaProvider } from "next-recaptcha-v3"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
+})
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
+})
 
 export const metadata = {
   title: "Infinite Pixel | Affordable Custom Web Design for Small Businesses",
@@ -59,9 +60,12 @@ export const metadata = {
   icons: {
     icon: "/images/favicon.ico",
   },
-};
+}
 
 export default function RootLayout({ children }) {
+  const reCaptchaKey = process.env.RECAPTCHA_v3_SITE_KEY
+  console.log("Recaptcha Site Key:", reCaptchaKey)
+
   return (
     <html lang="en">
       <head>
@@ -80,8 +84,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <RootClientLayout>{children}</RootClientLayout>
+        <ReCaptchaProvider reCaptchaKey={reCaptchaKey}>
+          <RootClientLayout>{children}</RootClientLayout>
+        </ReCaptchaProvider>
       </body>
     </html>
-  );
+  )
 }
