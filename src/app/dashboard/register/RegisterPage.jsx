@@ -1,15 +1,14 @@
-//RegisterPage.jsx
-"use client";
+// RegisterPage.jsx
+"use client"
 
-import PropTypes from "prop-types";
-
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { getFirebaseInstance } from "@/lib/firebaseClient";
-import InfinitePixelSpinner from "@/app/components/utils/InfinitePixelSpinner";
+import PropTypes from "prop-types"
+import React, { useState, useEffect } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth"
+import { doc, setDoc, serverTimestamp } from "firebase/firestore"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
+import InfinitePixelSpinner from "@/app/components/utils/InfinitePixelSpinner"
 import {
   FaEnvelope,
   FaLock,
@@ -19,13 +18,13 @@ import {
   FaGlobe,
   FaEye,
   FaEyeSlash,
-} from "react-icons/fa";
+} from "react-icons/fa"
 
 export default function RegisterPage({
   embedded = false,
   toggleRegister = () => {},
 }) {
-  const router = useRouter();
+  const router = useRouter()
 
   const [form, setForm] = useState({
     fullName: "",
@@ -36,7 +35,7 @@ export default function RegisterPage({
     company: "",
     businessType: "",
     website: "",
-  });
+  })
 
   const businessTypes = [
     "Accounting",
@@ -64,62 +63,71 @@ export default function RegisterPage({
     "Travel & Tourism",
     "Wholesale & Distribution",
     "Other",
-  ];
+  ]
 
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false); // Dev toggle
+  const [errorMessage, setErrorMessage] = useState("")
+  const [successMessage, setSuccessMessage] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false) // Dev toggle
 
   const handleBackToLogin = () => {
-    console.log("embedded", embedded);
-
-    console.log("Back to login clicked", toggleRegister);
+    console.log("Back to login clicked", toggleRegister)
     if (typeof toggleRegister === "function") {
-      toggleRegister();
+      toggleRegister()
     } else {
-      console.warn("toggleRegister is not a function", toggleRegister);
+      console.warn("toggleRegister is not a function", toggleRegister)
     }
-  };
+  }
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = event.target
+    if (name === "phone") {
+      const digitsOnly = value.replace(/\D/g, "");
+    
+      let formattedPhone = digitsOnly;
+    
+      if (digitsOnly.length >= 4 && digitsOnly.length <= 6) {
+        formattedPhone = `${digitsOnly.slice(0, 3)}-${digitsOnly.slice(3)}`;
+      } else if (digitsOnly.length > 6) {
+        formattedPhone = `${digitsOnly.slice(0, 3)}-${digitsOnly.slice(3, 6)}-${digitsOnly.slice(6, 10)}`;
+      }
+    
+      setForm((prev) => ({ ...prev, phone: formattedPhone }));
+    }
 
   const handleRegisterSubmit = async (event) => {
-    event.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
-    setIsSubmitting(true);
+    event.preventDefault()
+    setErrorMessage("")
+    setSuccessMessage("")
+    setIsSubmitting(true)
 
     if (form.password !== form.confirmPassword) {
-      setErrorMessage("Passwords do not match");
-      setIsSubmitting(false);
-      return;
+      setErrorMessage("Passwords do not match")
+      setIsSubmitting(false)
+      return
     }
 
     try {
-      const { auth, db } = await getFirebaseInstance();
+      const { auth, db } = await getFirebaseInstance()
 
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         form.email,
         form.password
-      );
+      )
 
-      const user = userCredential?.user;
+      const user = userCredential?.user
       if (!user || !user.uid) {
-        console.error("Firebase Auth returned an invalid user object:", user);
-        setErrorMessage("Registration failed. Please try again.");
-        setIsSubmitting(true);
-        return;
+        console.error("Firebase Auth returned an invalid user object:", user)
+        setErrorMessage("Registration failed. Please try again.")
+        setIsSubmitting(false)
+        return
       }
 
       await setDoc(doc(db, "debug", "testWrite"), {
         status: "ok",
         time: new Date().toISOString(),
-      });
+      })
 
       await setDoc(doc(db, "users", user.uid), {
         fullName: form.fullName || null,
@@ -129,23 +137,23 @@ export default function RegisterPage({
         businessType: form.businessType || null,
         website: form.website || null,
         createdAt: serverTimestamp(),
-      });
+      })
 
-      await signOut(auth);
-      const LOGIN_URL = "/dashboard/login";
-      setSuccessMessage("Registration successful! Redirecting to login...");
-      setTimeout(() => router.push(LOGIN_URL), 2000);
+      await signOut(auth)
+      const LOGIN_URL = "/dashboard/login"
+      setSuccessMessage("Registration successful! Redirecting to login...")
+      setTimeout(() => router.push(LOGIN_URL), 2000)
     } catch (error) {
-      console.error("Registration error:", error);
-      setErrorMessage(error.message || "Something went wrong.");
+      console.error("Registration error:", error)
+      setErrorMessage(error.message || "Something went wrong.")
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   useEffect(() => {
-    console.log("🔍 RegisterPage props", { embedded, toggleRegister });
-  }, [embedded, toggleRegister]);
+    console.log("🔍 RegisterPage props", { embedded, toggleRegister })
+  }, [embedded, toggleRegister])
 
   return (
     <>
@@ -156,17 +164,17 @@ export default function RegisterPage({
           <img
             alt="Background pattern"
             src="/circle-scatter-haikei.svg"
-            className="z-0 absolute inset-0 opacity-30 w-full h-full object-cover pointer-events-none"
+            className="absolute inset-0 z-0 object-cover w-full h-full pointer-events-none opacity-30"
           />
         )}
 
-        <div className="z-10 relative bg-white shadow-xl mx-auto p-8 rounded-2xl max-w-3xl">
-          <h1 className="mb-6 font-bold text-blue-900 text-3xl text-center">
+        <div className="relative z-10 max-w-3xl p-8 mx-auto bg-white shadow-xl rounded-2xl">
+          <h1 className="mb-6 text-3xl font-bold text-center text-blue-900">
             {embedded ? "Register Below" : "Create Your Account"}
           </h1>
 
           <form onSubmit={handleRegisterSubmit} className="space-y-6">
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <Input
                 icon={<FaUser />}
                 name="fullName"
@@ -191,6 +199,10 @@ export default function RegisterPage({
                 onChange={handleChange}
                 placeholder="Phone Number"
                 type="tel"
+                required
+                pattern="\d{3}-\d{3}-\d{4}"
+                inputMode="numeric"
+                maxLength={12}
               />
               <Input
                 icon={<FaBuilding />}
@@ -205,7 +217,7 @@ export default function RegisterPage({
                   value={form.businessType}
                   onChange={handleChange}
                   required
-                  className="bg-white px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full text-gray-700"
+                  className="w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 >
                   <option value="">Select Business Type</option>
                   {businessTypes.map((type) => (
@@ -245,10 +257,10 @@ export default function RegisterPage({
             </div>
 
             {errorMessage && (
-              <p className="text-red-500 text-sm text-center">{errorMessage}</p>
+              <p className="text-sm text-center text-red-500">{errorMessage}</p>
             )}
             {successMessage && (
-              <p className="text-green-600 text-sm text-center">
+              <p className="text-sm text-center text-green-600">
                 {successMessage}
               </p>
             )}
@@ -256,20 +268,14 @@ export default function RegisterPage({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 py-3 rounded-lg w-full font-semibold text-white transition"
+              className="w-full py-3 font-semibold text-white transition bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
             >
               {isSubmitting ? "Submitting..." : "Register"}
             </button>
           </form>
 
-          <p className="mt-6 text-gray-600 text-sm text-center">
+          <p className="mt-6 text-sm text-center text-gray-600">
             Already have an account?{" "}
-            {/* <Link
-              href="/dashboard/login"
-              className="text-blue-500 hover:underline"
-            >
-              Log In
-            </Link> */}
             <button
               type="button"
               onClick={handleBackToLogin}
@@ -281,7 +287,7 @@ export default function RegisterPage({
         </div>
       </div>
     </>
-  );
+  )
 }
 
 function Input({
@@ -294,13 +300,13 @@ function Input({
   required = false,
   full = false,
 }) {
-  const [showPassword, setShowPassword] = useState(false);
-  const isPassword = type === "password";
-  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
+  const [showPassword, setShowPassword] = useState(false)
+  const isPassword = type === "password"
+  const inputType = isPassword ? (showPassword ? "text" : "password") : type
 
   return (
     <div className={`relative ${full ? "col-span-1 md:col-span-2" : ""}`}>
-      <div className="top-1/2 left-3 absolute text-gray-400 -translate-y-1/2 pointer-events-none">
+      <div className="absolute text-gray-400 -translate-y-1/2 pointer-events-none top-1/2 left-3">
         {icon}
       </div>
       <input
@@ -310,26 +316,26 @@ function Input({
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className="py-2 pr-10 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full"
+        className="w-full py-2 pl-10 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
       {isPassword && (
         <button
           type="button"
           onClick={() => setShowPassword((prev) => !prev)}
-          className="right-3 absolute inset-y-0 flex items-center focus:outline-none text-gray-500"
+          className="absolute inset-y-0 flex items-center text-gray-500 right-3 focus:outline-none"
           tabIndex={-1}
         >
           {showPassword ? <FaEyeSlash /> : <FaEye />}
         </button>
       )}
     </div>
-  );
+  )
 }
 
 RegisterPage.propTypes = {
   embedded: PropTypes.bool,
   toggleRegister: PropTypes.func,
-};
+}
 
 Input.propTypes = {
   icon: PropTypes.node.isRequired,
@@ -340,4 +346,4 @@ Input.propTypes = {
   type: PropTypes.string,
   required: PropTypes.bool,
   full: PropTypes.bool,
-};
+}
