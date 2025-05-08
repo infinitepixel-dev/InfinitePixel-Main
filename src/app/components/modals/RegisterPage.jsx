@@ -1,15 +1,15 @@
 //RegisterPage.jsx
-"use client";
+"use client"
 
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { getFirebaseInstance } from "@/lib/firebaseClient";
-import InfinitePixelSpinner from "@/app/components/utils/InfinitePixelSpinner";
+import React, { useState, useEffect } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth"
+import { doc, setDoc, serverTimestamp } from "firebase/firestore"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
+import InfinitePixelSpinner from "@/app/components/utils/InfinitePixelSpinner"
 import {
   FaEnvelope,
   FaLock,
@@ -19,13 +19,13 @@ import {
   FaGlobe,
   FaEye,
   FaEyeSlash,
-} from "react-icons/fa";
+} from "react-icons/fa"
 
 export default function RegisterPage({
   embedded = false,
   toggleRegister = () => {},
 }) {
-  const router = useRouter();
+  const router = useRouter()
 
   const [form, setForm] = useState({
     fullName: "",
@@ -36,8 +36,32 @@ export default function RegisterPage({
     company: "",
     businessType: "",
     website: "",
-  });
+  })
 
+  const [disableInput, setDisableInput] = useState(false) // Dev toggle
+
+  const countryCodes = [
+    { code: "+1", label: "US/CA" },
+    { code: "+44", label: "UK" },
+    { code: "+61", label: "AU" },
+    { code: "+64", label: "NZ" },
+    { code: "+49", label: "DE" },
+    { code: "+33", label: "FR" },
+    { code: "+81", label: "JP" },
+    { code: "+82", label: "KR" },
+    { code: "+31", label: "NL" },
+    { code: "+41", label: "CH" },
+    { code: "+358", label: "FI" },
+    { code: "+47", label: "NO" },
+    { code: "+46", label: "SE" },
+    { code: "+48", label: "PL" },
+    { code: "+420", label: "CZ" },
+    { code: "+43", label: "AT" },
+    { code: "+34", label: "ES" },
+    { code: "+39", label: "IT" },
+    { code: "+52", label: "MX" },
+    { code: "+91", label: "IN" },
+  ]
   const businessTypes = [
     "Accounting",
     "Advertising & Marketing",
@@ -64,88 +88,119 @@ export default function RegisterPage({
     "Travel & Tourism",
     "Wholesale & Distribution",
     "Other",
-  ];
+  ]
 
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false); // Dev toggle
+  const [errorMessage, setErrorMessage] = useState("")
+  const [successMessage, setSuccessMessage] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false)
 
   const handleBackToLogin = () => {
-    console.log("embedded", embedded);
+    console.log("embedded", embedded)
 
-    console.log("Back to login clicked", toggleRegister);
+    console.log("Back to login clicked", toggleRegister)
     if (typeof toggleRegister === "function") {
-      toggleRegister();
+      toggleRegister()
     } else {
-      console.warn("toggleRegister is not a function", toggleRegister);
+      console.warn("toggleRegister is not a function", toggleRegister)
     }
-  };
+  }
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = event.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
+
+  // Format phone number as (XXX) XXX-XXXX
+  const handlePhoneChange = (event) => {
+    let numericValue = event.target.value.replace(/\D/g, "")
+    if (numericValue.length <= 10) {
+      const formatted = numericValue.replace(
+        /^(\d{0,3})(\d{0,3})(\d{0,4})$/,
+        (match, p1, p2, p3) => {
+          let result = ""
+          if (p1) result += `(${p1}`
+          if (p2) result += `)-${p2}`
+          if (p3) result += `-${p3}`
+          return result
+        }
+      )
+      setForm((prev) => ({ ...prev, phone: formatted }))
+    }
+  }
 
   const handleRegisterSubmit = async (event) => {
-    event.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
-    setIsSubmitting(true);
+    event.preventDefault()
+    setErrorMessage("")
+    setSuccessMessage("")
+    setIsSubmitting(true)
+
+    const phoneNumber = form.phone.replace(/[^0-9]/g, "")
+    const formattedPhone = `${form.countryCode}-${phoneNumber.slice(
+      0,
+      3
+    )}-${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6)}`
 
     if (form.password !== form.confirmPassword) {
-      setErrorMessage("Passwords do not match");
-      setIsSubmitting(false);
-      return;
+      setErrorMessage("Passwords do not match")
+      setIsSubmitting(false)
+      return
     }
 
     try {
-      const { auth, db } = await getFirebaseInstance();
+      const { auth, db } = await getFirebaseInstance()
 
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         form.email,
         form.password
-      );
+      )
 
-      const user = userCredential?.user;
+      const user = userCredential?.user
       if (!user || !user.uid) {
-        console.error("Firebase Auth returned an invalid user object:", user);
-        setErrorMessage("Registration failed. Please try again.");
-        setIsSubmitting(true);
-        return;
+        console.error("Firebase Auth returned an invalid user object:", user)
+        setErrorMessage("Registration failed. Please try again.")
+        setIsSubmitting(true)
+        return
       }
 
       await setDoc(doc(db, "debug", "testWrite"), {
         status: "ok",
         time: new Date().toISOString(),
-      });
+      })
 
       await setDoc(doc(db, "users", user.uid), {
         fullName: form.fullName || null,
         email: form.email || null,
-        phone: form.phone || null,
+        phone: formattedPhone || null,
         company: form.company || null,
         businessType: form.businessType || null,
         website: form.website || null,
         createdAt: serverTimestamp(),
-      });
+      })
 
-      await signOut(auth);
-      const LOGIN_URL = "/dashboard/login";
-      setSuccessMessage("Registration successful! Redirecting to login...");
-      setTimeout(() => router.push(LOGIN_URL), 2000);
+      const DASHBOARD_URL = "/dashboard"
+      setSuccessMessage("Registration successful! Redirecting to dashboard...")
+      setTimeout(() => router.push(DASHBOARD_URL), 2000)
     } catch (error) {
-      console.error("Registration error:", error);
-      setErrorMessage(error.message || "Something went wrong.");
+      console.error("Registration error:", error)
+      setErrorMessage(error.message || "Something went wrong.")
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   useEffect(() => {
-    console.log("🔍 RegisterPage props", { embedded, toggleRegister });
-  }, [embedded, toggleRegister]);
+    if (form.password !== form.confirmPassword) {
+      setDisableInput(true)
+    } else {
+      setDisableInput(false)
+    }
+  }, [form.password, form.confirmPassword])
+
+  useEffect(() => {
+    console.log("🔍 RegisterPage props", { embedded, toggleRegister })
+  }, [embedded, toggleRegister])
 
   return (
     <>
@@ -184,21 +239,40 @@ export default function RegisterPage({
                 type="email"
                 required
               />
-              <Input
-                icon={<FaPhone />}
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                placeholder="Phone Number"
-                type="tel"
-              />
+
+              <div className="flex gap-1">
+                <select
+                  name="countryCode"
+                  value={form.countryCode}
+                  onChange={handleChange}
+                  className="border border-gray-300 rounded-lg"
+                >
+                  {countryCodes.map(({ code, label }) => (
+                    <option key={code} value={code}>
+                      {`${label} (${code})`}
+                    </option>
+                  ))}
+                </select>
+                <Input
+                  icon={<FaPhone />}
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handlePhoneChange}
+                  placeholder="(XXX)-XXX-XXXX"
+                  className="flex-1 p-2 border border-gray-300 rounded-lg"
+                />
+              </div>
+
               <Input
                 icon={<FaBuilding />}
                 name="company"
                 value={form.company}
                 onChange={handleChange}
                 placeholder="Company Name"
+                className="col-span-1 md:col-span-2"
               />
+
               <div className="col-span-1 md:col-span-2">
                 <select
                   name="businessType"
@@ -215,6 +289,7 @@ export default function RegisterPage({
                   ))}
                 </select>
               </div>
+
               <Input
                 icon={<FaGlobe />}
                 name="website"
@@ -244,32 +319,17 @@ export default function RegisterPage({
               />
             </div>
 
-            {errorMessage && (
-              <p className="text-red-500 text-sm text-center">{errorMessage}</p>
-            )}
-            {successMessage && (
-              <p className="text-green-600 text-sm text-center">
-                {successMessage}
-              </p>
-            )}
-
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || disableInput}
               className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 py-3 rounded-lg w-full font-semibold text-white transition"
             >
-              {isSubmitting ? "Submitting..." : "Register"}
+              Register
             </button>
           </form>
 
           <p className="mt-6 text-gray-600 text-sm text-center">
             Already have an account?{" "}
-            {/* <Link
-              href="/dashboard/login"
-              className="text-blue-500 hover:underline"
-            >
-              Log In
-            </Link> */}
             <button
               type="button"
               onClick={handleBackToLogin}
@@ -281,7 +341,7 @@ export default function RegisterPage({
         </div>
       </div>
     </>
-  );
+  )
 }
 
 function Input({
@@ -294,9 +354,9 @@ function Input({
   required = false,
   full = false,
 }) {
-  const [showPassword, setShowPassword] = useState(false);
-  const isPassword = type === "password";
-  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
+  const [showPassword, setShowPassword] = useState(false)
+  const isPassword = type === "password"
+  const inputType = isPassword ? (showPassword ? "text" : "password") : type
 
   return (
     <div className={`relative ${full ? "col-span-1 md:col-span-2" : ""}`}>
@@ -323,13 +383,13 @@ function Input({
         </button>
       )}
     </div>
-  );
+  )
 }
 
 RegisterPage.propTypes = {
   embedded: PropTypes.bool,
   toggleRegister: PropTypes.func,
-};
+}
 
 Input.propTypes = {
   icon: PropTypes.node.isRequired,
@@ -340,4 +400,4 @@ Input.propTypes = {
   type: PropTypes.string,
   required: PropTypes.bool,
   full: PropTypes.bool,
-};
+}

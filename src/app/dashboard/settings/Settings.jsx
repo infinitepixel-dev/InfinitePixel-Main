@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { signOut } from "firebase/auth"
-import { getFirebaseInstance } from "@/lib/firebaseClient"
-import ThemeSwitch from "@ui/ThemeSwitch"
+import { useEffect, useRef, useState } from "react";
+import { signOut } from "firebase/auth";
+import { getFirebaseInstance } from "@/lib/firebaseClient";
+import ThemeSwitch from "@ui/ThemeSwitch";
 
 const timeoutOptions = [
   { label: "seconds", value: 0.17 },
@@ -12,72 +12,72 @@ const timeoutOptions = [
   { label: "4 hours", value: 240 },
   { label: "8 hours", value: 480 },
   { label: "12 hours", value: 720 },
-]
+];
 
 export default function SettingsPage() {
-  const [timeoutDuration, setTimeoutDuration] = useState(10) // in minutes
-  const [countdown, setCountdown] = useState(60)
-  const [showModal, setShowModal] = useState(false)
+  const [timeoutDuration, setTimeoutDuration] = useState(10); // in minutes
+  const [countdown, setCountdown] = useState(60);
+  const [showModal, setShowModal] = useState(false);
 
-  const activityTimer = useRef(null)
-  const countdownTimer = useRef(null)
+  const activityTimer = useRef(null);
+  const countdownTimer = useRef(null);
 
   const logoutUser = async () => {
-    const { auth } = await getFirebaseInstance()
-    await signOut(auth)
-    window.location.href = "/dashboard/login" // redirect to dashboard login page
-  }
+    const { auth } = await getFirebaseInstance();
+    await signOut(auth);
+    window.location.href = "/dashboard/login"; // redirect to dashboard login page
+  };
 
   const resetInactivityTimer = () => {
-    if (showModal) return
+    if (showModal) return;
 
-    clearTimeout(activityTi.current)
-    clearInterval(countdownTimer.current)
-    setCountdown(60)
+    clearTimeout(activityTi.current);
+    clearInterval(countdownTimer.current);
+    setCountdown(60);
 
     activityTimer.current = setTimeout(() => {
-      setShowModal(true)
-      let counter = 60
+      setShowModal(true);
+      let counter = 60;
       countdownTimer.current = setInterval(() => {
-        counter -= 1
-        setCountdown(counter)
+        counter -= 1;
+        setCountdown(counter);
         if (counter <= 0) {
-          clearInterval(countdownTimer.current)
-          logoutUser()
+          clearInterval(countdownTimer.current);
+          logoutUser();
         }
-      }, 1000)
-    }, timeoutDuration * 60 * 1000 - 60000)
-  }
+      }, 1000);
+    }, timeoutDuration * 60 * 1000 - 60000);
+  };
 
   useEffect(() => {
     const refreshToken = async () => {
-      const { auth } = await getFirebaseInstance()
-      const user = auth.currentUser
+      const { auth } = await getFirebaseInstance();
+      const user = auth.currentUser;
       if (user) {
         try {
-          await user.getIdToken(true)
+          await user.getIdToken(true);
         } catch (err) {
-          console.error("Token refresh failed:", err)
+          console.error("Token refresh failed:", err);
         }
       }
-    }
-    refreshToken()
-  }, [])
+    };
+    refreshToken();
+  }, []);
 
-  let activityTimeout
+  let activityTimeout;
 
   const handleActivity = () => {
     if (!showModal) {
-      clearTimeout(activityTimeout)
+      clearTimeout(activityTimeout);
       activityTimeout = setTimeout(() => {
-        resetInactivityTimer()
-      }, 500) // delay actual reset to prevent rapid repeat
+        resetInactivityTimer();
+      }, 500); // delay actual reset to prevent rapid repeat
     }
-  }
+  };
 
   return (
     <div className="space-y-6">
-      <section className="bg-slate-50  dark:bg-gray-800 shadow p-6 rounded-lg">
+      <section className="bg-slate-50 dark:bg-gray-800 shadow p-6 rounded-lg">
         <h2 className="mb-4 font-semibold text-gray-900 dark:text-gray-100 text-xl">
           Appearance
         </h2>
@@ -86,11 +86,11 @@ export default function SettingsPage() {
         </div>
       </section>
 
-      <section className="bg-white backdrop-opacity-50 dark:bg-gray-800 shadow p-6 rounded-lg">
+      <section className="bg-white dark:bg-gray-800 shadow backdrop-opacity-50 p-6 rounded-lg">
         <h2 className="mb-4 font-semibold text-gray-900 dark:text-gray-100 text-xl">
           Inactivity Timeout
         </h2>
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div className="flex sm:flex-row flex-col items-start sm:items-center gap-4">
           <label htmlFor="timeout" className="text-gray-700 dark:text-gray-300">
             Automatically log me out after:
           </label>
@@ -98,7 +98,7 @@ export default function SettingsPage() {
             id="timeout"
             value={timeoutDuration}
             onChange={(e) => setTimeoutDuration(Number(e.target.value))}
-            className="mt-1 block w-full sm:w-auto bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 rounded-md p-2"
+            className="block bg-white dark:bg-gray-700 mt-1 p-2 border border-gray-300 dark:border-gray-600 rounded-md w-full sm:w-auto text-gray-900 dark:text-gray-100"
           >
             {timeoutOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -110,9 +110,9 @@ export default function SettingsPage() {
       </section>
 
       {showModal && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6 w-11/12 max-w-md text-center">
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
+        <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-white dark:bg-gray-900 shadow-xl p-6 rounded-lg w-11/12 max-w-md text-center">
+            <h3 className="mb-2 font-semibold text-gray-800 dark:text-gray-100 text-lg">
               Inactivity Detected
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -121,10 +121,10 @@ export default function SettingsPage() {
             </p>
             <button
               onClick={() => {
-                setShowModal(false)
-                setTimeout(() => resetInactivityTimer(), 100) // Give DOM time to fully unmount
+                setShowModal(false);
+                setTimeout(() => resetInactivityTimer(), 100); // Give DOM time to fully unmount
               }}
-              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+              className="bg-blue-600 hover:bg-blue-700 mt-4 px-4 py-2 rounded text-white transition"
             >
               Stay Logged In
             </button>
@@ -132,5 +132,5 @@ export default function SettingsPage() {
         </div>
       )}
     </div>
-  )
+  );
 }
