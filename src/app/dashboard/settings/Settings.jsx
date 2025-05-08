@@ -17,7 +17,7 @@ const timeoutOptions = [
 export default function SettingsPage() {
   const [timeoutDuration, setTimeoutDuration] = useState(10); // in minutes
   const [countdown, setCountdown] = useState(60);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const activityTimer = useRef(null);
   const countdownTimer = useRef(null);
