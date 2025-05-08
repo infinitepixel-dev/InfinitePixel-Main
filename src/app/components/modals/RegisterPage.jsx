@@ -38,6 +38,17 @@ export default function RegisterPage({
     website: "",
   });
 
+  const [disableInput, setDisableInput] = useState(false); // Dev toggle
+
+  const countryCodes = [
+    { code: "+1", label: "US" },
+    { code: "+44", label: "UK" },
+    { code: "+61", label: "AU" },
+    { code: "+91", label: "IN" },
+    { code: "+81", label: "JP" },
+    { code: "+49", label: "GE" },
+  ];
+
   const businessTypes = [
     "Accounting",
     "Advertising & Marketing",
@@ -69,7 +80,7 @@ export default function RegisterPage({
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false); // Dev toggle
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const handleBackToLogin = () => {
     console.log("embedded", embedded);
@@ -87,11 +98,35 @@ export default function RegisterPage({
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Format phone number as (XXX) XXX-XXXX
+  const handlePhoneChange = (event) => {
+    let numericValue = event.target.value.replace(/\D/g, "");
+    if (numericValue.length <= 10) {
+      const formatted = numericValue.replace(
+        /^(\d{0,3})(\d{0,3})(\d{0,4})$/,
+        (match, p1, p2, p3) => {
+          let result = "";
+          if (p1) result += `(${p1}`;
+          if (p2) result += `)-${p2}`;
+          if (p3) result += `-${p3}`;
+          return result;
+        }
+      );
+      setForm((prev) => ({ ...prev, phone: formatted }));
+    }
+  };
+
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
     setErrorMessage("");
     setSuccessMessage("");
     setIsSubmitting(true);
+
+    const phoneNumber = form.phone.replace(/[^0-9]/g, "");
+    const formattedPhone = `${form.countryCode}-${phoneNumber.slice(
+      0,
+      3
+    )}-${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6)}`;
 
     if (form.password !== form.confirmPassword) {
       setErrorMessage("Passwords do not match");
@@ -124,7 +159,7 @@ export default function RegisterPage({
       await setDoc(doc(db, "users", user.uid), {
         fullName: form.fullName || null,
         email: form.email || null,
-        phone: form.phone || null,
+        phone: formattedPhone || null,
         company: form.company || null,
         businessType: form.businessType || null,
         website: form.website || null,
@@ -142,6 +177,14 @@ export default function RegisterPage({
       setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    if (form.password !== form.confirmPassword) {
+      setDisableInput(true);
+    } else {
+      setDisableInput(false);
+    }
+  }, [form.password, form.confirmPassword]);
 
   useEffect(() => {
     console.log("🔍 RegisterPage props", { embedded, toggleRegister });
@@ -184,21 +227,40 @@ export default function RegisterPage({
                 type="email"
                 required
               />
-              <Input
-                icon={<FaPhone />}
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                placeholder="Phone Number"
-                type="tel"
-              />
+
+              <div className="flex gap-1">
+                <select
+                  name="countryCode"
+                  value={form.countryCode}
+                  onChange={handleChange}
+                  className="border border-gray-300 rounded-lg"
+                >
+                  {countryCodes.map(({ code, label }) => (
+                    <option key={code} value={code}>
+                      {`${label} (${code})`}
+                    </option>
+                  ))}
+                </select>
+                <Input
+                  icon={<FaPhone />}
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handlePhoneChange}
+                  placeholder="(XXX)-XXX-XXXX"
+                  className="flex-1 p-2 border border-gray-300 rounded-lg"
+                />
+              </div>
+
               <Input
                 icon={<FaBuilding />}
                 name="company"
                 value={form.company}
                 onChange={handleChange}
                 placeholder="Company Name"
+                className="col-span-1 md:col-span-2"
               />
+
               <div className="col-span-1 md:col-span-2">
                 <select
                   name="businessType"
@@ -215,6 +277,7 @@ export default function RegisterPage({
                   ))}
                 </select>
               </div>
+
               <Input
                 icon={<FaGlobe />}
                 name="website"
@@ -244,32 +307,17 @@ export default function RegisterPage({
               />
             </div>
 
-            {errorMessage && (
-              <p className="text-red-500 text-sm text-center">{errorMessage}</p>
-            )}
-            {successMessage && (
-              <p className="text-green-600 text-sm text-center">
-                {successMessage}
-              </p>
-            )}
-
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || disableInput}
               className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 py-3 rounded-lg w-full font-semibold text-white transition"
             >
-              {isSubmitting ? "Submitting..." : "Register"}
+              Register
             </button>
           </form>
 
           <p className="mt-6 text-gray-600 text-sm text-center">
             Already have an account?{" "}
-            {/* <Link
-              href="/dashboard/login"
-              className="text-blue-500 hover:underline"
-            >
-              Log In
-            </Link> */}
             <button
               type="button"
               onClick={handleBackToLogin}
