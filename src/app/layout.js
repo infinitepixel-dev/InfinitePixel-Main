@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   const { theme } = useTheme();
 
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_v3_SITE_KEY;
-  console.log("siteKey", siteKey);
+  // console.log("siteKey", siteKey);
 
   useEffect(() => {
     if (theme) {
