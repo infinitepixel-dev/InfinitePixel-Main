@@ -1,30 +1,32 @@
 // layout.js
-"use client";
+"use client"
 
-import { useEffect } from "react";
+import { useEffect } from "react"
 
-import "./globals.css";
-import RootClientLayout from "@components/RootClientLayout";
-import { ReCaptchaProvider } from "next-recaptcha-v3";
-import { useTheme } from "@hooks/useTheme";
-import { metadata } from "./layout-metadata";
+import "./globals.css"
+import RootClientLayout from "@components/RootClientLayout"
+import { ReCaptchaProvider } from "next-recaptcha-v3"
+import { useTheme } from "@hooks/useTheme"
+import { metadata } from "./layout-metadata"
 
 export default function RootLayout({ children }) {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   useEffect(() => {
     if (theme) {
-      document.documentElement.className = theme;
+      document.documentElement.className = theme
     }
-  }, [theme]);
+  }, [theme])
 
   return (
     <html lang="en">
       <body>
-        <ReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_v3_SITE_KEY}>
+        <ReCaptchaProvider
+          reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_V3_SITE_KEY}
+        >
           <RootClientLayout>{children}</RootClientLayout>
         </ReCaptchaProvider>
       </body>
     </html>
-  );
+  )
 }

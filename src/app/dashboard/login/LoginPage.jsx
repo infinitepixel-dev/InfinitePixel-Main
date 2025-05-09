@@ -1,101 +1,165 @@
-//LoginPage.jsx
-"use client";
+// LoginPage.jsx
+"use client"
 
-import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import gsap from "gsap";
-import "./LoginPage.css";
-import { useReCaptcha } from "next-recaptcha-v3";
+import React, { useState, useRef, useEffect } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import gsap from "gsap"
+import "./LoginPage.css"
+import { useReCaptcha } from "next-recaptcha-v3"
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { getFirebaseInstance } from "@/lib/firebaseClient";
-import { getDoc, doc } from "firebase/firestore";
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
+import { getDoc, doc, setDoc } from "firebase/firestore"
 
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
 
-import InfinitePixelSpinner from "@utils/InfinitePixelSpinner";
+import InfinitePixelSpinner from "@utils/InfinitePixelSpinner"
 
 //INFO Modals
-import RegisterPage from "@modals/RegisterPage";
-import ForgotPasswordPage from "@modals/ForgotPasswordPage";
+import RegisterPage from "@modals/RegisterPage"
+import ForgotPasswordPage from "@modals/ForgotPasswordPage"
 
 export default function LoginPage() {
-  const { executeRecaptcha } = useReCaptcha();
+  const { executeRecaptcha } = useReCaptcha()
 
-  const [activePanel, setActivePanel] = useState("login");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false);
+  const [activePanel, setActivePanel] = useState("login")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false)
+  const [lockoutRemaining, setLockoutRemaining] = useState(0)
 
-  const router = useRouter();
-  const containerRef = useRef(null);
+  const router = useRouter()
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let interval
+    if (lockoutRemaining > 0) {
+      interval = setInterval(() => {
+        setLockoutRemaining((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval)
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+    }
+    return () => clearInterval(interval)
+  }, [lockoutRemaining])
 
   const toggleRegister = () => {
-    const isRegistering = activePanel === "login";
-    setActivePanel(isRegistering ? "register" : "login");
-
+    const isRegistering = activePanel === "login"
+    setActivePanel(isRegistering ? "register" : "login")
     gsap.to(containerRef.current, {
       rotateY: isRegistering ? 180 : 0,
       duration: 0.25,
       ease: "power3.inOut",
-    });
-  };
+    })
+  }
 
   const toggleForgotPassword = () => {
-    const isForgotPassword = activePanel === "login";
-    setActivePanel(isForgotPassword ? "forgot-password" : "login");
+    const isForgotPassword = activePanel === "login"
+    setActivePanel(isForgotPassword ? "forgot-password" : "login")
     gsap.to(containerRef.current, {
       rotateY: isForgotPassword ? 180 : 0,
       duration: 0.25,
       ease: "power3.inOut",
-    });
-  };
+    })
+  }
 
   const handleLoginSubmit = async (event) => {
-    event.preventDefault();
-    setErrorMessage("");
-    setIsSubmitting(true);
+    event.preventDefault()
+    setErrorMessage("")
+    setIsSubmitting(true)
 
     try {
-      const token = await executeRecaptcha("login");
+      const { auth, db } = await getFirebaseInstance()
+      const emailKey = email.replace(/\./g, "_")
+      const attemptRef = doc(db, "login_attempts", emailKey)
+      const attemptSnap = await getDoc(attemptRef)
+      const now = new Date()
 
-      if (!token) {
-        throw new Error("ReCAPTCHA verification failed. Please try again.");
+      if (attemptSnap.exists()) {
+        const data = attemptSnap.data()
+        if (data.timeoutUntil && data.timeoutUntil.toDate() > now) {
+          const waitTime = Math.ceil((data.timeoutUntil.toDate() - now) / 1000)
+          setLockoutRemaining(waitTime)
+          setErrorMessage(
+            `Too many failed attempts. Please wait ${waitTime} seconds.`
+          )
+          setIsSubmitting(false)
+          return
+        }
       }
 
-      const { auth, db } = await getFirebaseInstance();
+      const token = await executeRecaptcha("login")
+      if (!token) {
+        throw new Error("ReCAPTCHA verification failed. Please try again.")
+      }
+
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
-      );
-      const uid = userCredential.user.uid;
-      const docRef = doc(db, "users", uid);
-      const userSnap = await getDoc(docRef);
+      )
+      const uid = userCredential.user.uid
+      const docRef = doc(db, "users", uid)
+      const userSnap = await getDoc(docRef)
 
       if (userSnap.exists()) {
-        const userData = userSnap.data();
-        const firstName = userData.fullName?.split(" ")[0] || "User";
-        localStorage.setItem("userFirstName", firstName);
-        router.push("/dashboard");
+        await setDoc(attemptRef, {
+          attempts: 0,
+          lastAttempt: null,
+          timeoutUntil: null,
+        })
+
+        const userData = userSnap.data()
+        const firstName = userData.fullName?.split(" ")[0] || "User"
+        localStorage.setItem("userFirstName", firstName)
+        router.push("/dashboard")
       } else {
-        setErrorMessage("User profile not found. Please contact support.");
+        setErrorMessage("User profile not found. Please contact support.")
       }
     } catch (error) {
-      console.error("Login error:", error);
-      setErrorMessage(error.message || "Invalid email or password.");
+      const { db } = await getFirebaseInstance()
+      const emailKey = email.replace(/\./g, "_")
+      const attemptRef = doc(db, "login_attempts", emailKey)
+      const attemptSnap = await getDoc(attemptRef)
+      const now = new Date()
+      let attempts = 1
+      if (attemptSnap.exists()) {
+        const data = attemptSnap.data()
+        attempts = (data.attempts || 0) + 1
+      }
+      const delay = Math.min(Math.pow(2, attempts - 3) * 60, 86400)
+      const timeoutUntil = new Date(now.getTime() + delay * 1000)
+
+      await setDoc(attemptRef, {
+        attempts,
+        lastAttempt: now,
+        timeoutUntil,
+      })
+
+      setLockoutRemaining(delay)
+      console.error("Login error:", error)
+      setErrorMessage(error.message || "Invalid email or password.")
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   return (
     <>
       {(showSpinner || isSubmitting) && <InfinitePixelSpinner />}
+      {lockoutRemaining > 0 && (
+        <div className="text-center text-red-600 font-semibold">
+          Please wait {lockoutRemaining} seconds before trying again.
+        </div>
+      )}
       <div className="relative flex justify-center items-start md:items-center bg-gradient-to-br from-cyan-400 via-blue-500 to-pink-500 px-4 pt-24 w-full min-h-screen">
         <img
           src="/circle-scatter-haikei.svg"
@@ -155,7 +219,7 @@ export default function LoginPage() {
 
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || lockoutRemaining > 0}
                     className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 py-2 rounded-lg w-full text-white transition"
                   >
                     {isSubmitting ? "Signing In..." : "Sign In"}
@@ -216,5 +280,5 @@ export default function LoginPage() {
         </div>
       </div>
     </>
-  );
+  )
 }
