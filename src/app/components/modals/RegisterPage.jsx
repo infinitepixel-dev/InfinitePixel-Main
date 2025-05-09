@@ -41,27 +41,28 @@ export default function RegisterPage({
   const [disableInput, setDisableInput] = useState(false) // Dev toggle
 
   const countryCodes = [
-    { code: "+1", label: "US/CA" },
-    { code: "+44", label: "UK" },
-    { code: "+61", label: "AU" },
-    { code: "+64", label: "NZ" },
-    { code: "+49", label: "DE" },
-    { code: "+33", label: "FR" },
-    { code: "+81", label: "JP" },
-    { code: "+82", label: "KR" },
-    { code: "+31", label: "NL" },
-    { code: "+41", label: "CH" },
-    { code: "+358", label: "FI" },
-    { code: "+47", label: "NO" },
-    { code: "+46", label: "SE" },
-    { code: "+48", label: "PL" },
-    { code: "+420", label: "CZ" },
-    { code: "+43", label: "AT" },
-    { code: "+34", label: "ES" },
-    { code: "+39", label: "IT" },
-    { code: "+52", label: "MX" },
-    { code: "+91", label: "IN" },
+    { code: "+1", label: "US/CA" }, // English
+    { code: "+43", label: "Österreich" }, // Austria (German)
+    { code: "+61", label: "Australia" }, // Australia (English)
+    { code: "+420", label: "Česko" }, // Czech Republic (Czech)
+    { code: "+49", label: "Deutschland" }, // Germany (German)
+    { code: "+358", label: "Suomi" }, // Finland (Finnish)
+    { code: "+33", label: "France" }, // France (French)
+    { code: "+81", label: "日本" }, // Japan (Japanese)
+    { code: "+82", label: "대한민국" }, // South Korea (Korean)
+    { code: "+52", label: "México" }, // Mexico (Spanish)
+    { code: "+31", label: "Nederland" }, // Netherlands (Dutch)
+    { code: "+47", label: "Norge" }, // Norway (Norwegian)
+    { code: "+91", label: "भारत" }, // India (Hindi)
+    { code: "+39", label: "Italia" }, // Italy (Italian)
+    { code: "+64", label: "Aotearoa" }, // New Zealand (Māori name)
+    { code: "+48", label: "Polska" }, // Poland (Polish)
+    { code: "+46", label: "Sverige" }, // Sweden (Swedish)
+    { code: "+34", label: "España" }, // Spain (Spanish)
+    { code: "+41", label: "Schweiz" }, // Switzerland (German; could also use "Suisse", "Svizzera", or "Svizra")
+    { code: "+44", label: "United Kingdom" }, // UK (English)
   ]
+
   const businessTypes = [
     "Accounting",
     "Advertising & Marketing",
@@ -221,6 +222,16 @@ export default function RegisterPage({
           </h1>
 
           <form onSubmit={handleRegisterSubmit} className="space-y-6">
+            <div className="gap-2 grid grid-cols-1 md:grid-cols-1">
+              <Input
+                icon={<FaBuilding />}
+                name="company"
+                value={form.company}
+                onChange={handleChange}
+                placeholder="Company Name"
+                className="col-span-1 md:col-span-"
+              />
+            </div>
             <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
               <Input
                 icon={<FaUser />}
@@ -240,12 +251,12 @@ export default function RegisterPage({
                 required
               />
 
-              <div className="flex gap-1">
+              <div className="flex items-center gap-2">
                 <select
                   name="countryCode"
                   value={form.countryCode}
                   onChange={handleChange}
-                  className="border border-gray-300 rounded-lg"
+                  className="border border-gray-300 rounded-lg w-6/12 px-1 py-2"
                 >
                   {countryCodes.map(({ code, label }) => (
                     <option key={code} value={code}>
@@ -253,6 +264,7 @@ export default function RegisterPage({
                     </option>
                   ))}
                 </select>
+
                 <Input
                   icon={<FaPhone />}
                   type="tel"
@@ -260,20 +272,10 @@ export default function RegisterPage({
                   value={form.phone}
                   onChange={handlePhoneChange}
                   placeholder="(XXX)-XXX-XXXX"
-                  className="flex-1 p-2 border border-gray-300 rounded-lg"
                 />
               </div>
 
-              <Input
-                icon={<FaBuilding />}
-                name="company"
-                value={form.company}
-                onChange={handleChange}
-                placeholder="Company Name"
-                className="col-span-1 md:col-span-2"
-              />
-
-              <div className="col-span-1 md:col-span-2">
+              <div>
                 <select
                   name="businessType"
                   value={form.businessType}
@@ -290,15 +292,6 @@ export default function RegisterPage({
                 </select>
               </div>
 
-              <Input
-                icon={<FaGlobe />}
-                name="website"
-                value={form.website}
-                onChange={handleChange}
-                placeholder="Website URL (optional)"
-                type="url"
-                full
-              />
               <Input
                 icon={<FaLock />}
                 name="password"
@@ -360,7 +353,7 @@ function Input({
 
   return (
     <div className={`relative ${full ? "col-span-1 md:col-span-2" : ""}`}>
-      <div className="top-1/2 left-3 absolute text-gray-400 -translate-y-1/2 pointer-events-none">
+      <div className="top-1/2 left-2 absolute text-gray-400 -translate-y-1/2 pointer-events-none">
         {icon}
       </div>
       <input
@@ -370,7 +363,7 @@ function Input({
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className="py-2 pr-10 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full"
+        className="py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full"
       />
       {isPassword && (
         <button
