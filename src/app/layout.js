@@ -1,10 +1,10 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect } from "react";
 import "./globals.css";
 import RootClientLayout from "@components/RootClientLayout";
 
-//INFO Global Providers
+// INFO Global Providers
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { UserProvider } from "@context/UserContext";
 
@@ -13,45 +13,43 @@ import { metadata } from "./layout-metadata";
 
 export default function RootLayout({ children }) {
   const { theme } = useTheme();
-  const initialized = useRef(false);
-
   const attributesToRemove = ["nighteye", "cz-shortcut-listen"];
 
   /**
-   * Function to remove specified attributes and apply theme class
+   * Apply theme class to HTML element
    */
-  const removeAttributesAndApplyTheme = () => {
+  const applyTheme = () => {
     const htmlElement = document.documentElement;
-
-    // Remove attributes
-    attributesToRemove.forEach((attr) => {
-      if (htmlElement.hasAttribute(attr)) {
-        htmlElement.removeAttribute(attr);
-      }
-    });
-
-    // Apply theme class
     if (theme) {
       htmlElement.className = theme;
     }
   };
 
   /**
-   * Combined Pre and Post Hydration Logic
+   * Remove specified attributes to prevent conflicts
+   */
+  const removeAttributes = () => {
+    const htmlElement = document.documentElement;
+    attributesToRemove.forEach((attr) => {
+      if (htmlElement.hasAttribute(attr)) {
+        htmlElement.removeAttribute(attr);
+      }
+    });
+  };
+
+  /**
+   * Effect to handle theme changes
    */
   useLayoutEffect(() => {
-    if (!initialized.current) {
-      removeAttributesAndApplyTheme();
-      initialized.current = true;
-    }
-
-    // Re-run periodically to handle any reinjection of attributes
-    const interval = setInterval(() => {
-      removeAttributesAndApplyTheme();
-    }, 500);
-
-    return () => clearInterval(interval);
+    applyTheme();
   }, [theme]);
+
+  /**
+   * Effect to remove unwanted attributes on mount
+   */
+  useLayoutEffect(() => {
+    removeAttributes();
+  }, []);
 
   return (
     <html lang="en">
@@ -60,8 +58,7 @@ export default function RootLayout({ children }) {
           reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_v3_SITE_KEY}
         >
           <RootClientLayout>
-            {" "}
-            <UserProvider>{children} </UserProvider>
+            <UserProvider>{children}</UserProvider>
           </RootClientLayout>
         </ReCaptchaProvider>
       </body>

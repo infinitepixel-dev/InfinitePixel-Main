@@ -1,10 +1,10 @@
 //Settings.jsx
-"use client";
+"use client"
 
-import { useEffect, useRef, useState } from "react";
-import { signOut } from "firebase/auth";
-import { getFirebaseInstance } from "@/lib/firebaseClient";
-import ThemeSwitch from "@ui/ThemeSwitch";
+import { useEffect, useRef, useState } from "react"
+import { signOut } from "firebase/auth"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
+import ThemeSwitch from "@ui/ThemeSwitch"
 
 const timeoutOptions = [
   { label: "seconds", value: 0.17 },
@@ -13,68 +13,74 @@ const timeoutOptions = [
   { label: "4 hours", value: 240 },
   { label: "8 hours", value: 480 },
   { label: "12 hours", value: 720 },
-];
+]
 
 export default function SettingsPage() {
-  const [timeoutDuration, setTimeoutDuration] = useState(10); // in minutes
-  const [countdown, setCountdown] = useState(60);
-  const [showModal, setShowModal] = useState(false);
+  const [timeoutDuration, setTimeoutDuration] = useState(10) // in minutes
+  const [countdown, setCountdown] = useState(60)
+  const [showModal, setShowModal] = useState(false)
 
-  const activityTimer = useRef(null);
-  const countdownTimer = useRef(null);
+  const activityTimer = useRef(null)
+  const countdownTimer = useRef(null)
 
   const logoutUser = async () => {
-    const { auth } = await getFirebaseInstance();
-    await signOut(auth);
-    window.location.href = "/dashboard/login"; // redirect to dashboard login page
-  };
+    const { auth } = await getFirebaseInstance()
+    await signOut(auth)
+    window.location.href = "/dashboard/login" // redirect to dashboard login page
+  }
 
   const resetInactivityTimer = () => {
-    if (showModal) return;
+    if (showModal) return
 
-    clearTimeout(activityTi.current);
-    clearInterval(countdownTimer.current);
-    setCountdown(60);
+    clearTimeout(activityTi.current)
+    clearInterval(countdownTimer.current)
+    setCountdown(60)
 
     activityTimer.current = setTimeout(() => {
-      setShowModal(true);
-      let counter = 60;
+      setShowModal(true)
+      let counter = 60
       countdownTimer.current = setInterval(() => {
-        counter -= 1;
-        setCountdown(counter);
+        counter -= 1
+        setCountdown(counter)
         if (counter <= 0) {
-          clearInterval(countdownTimer.current);
-          logoutUser();
+          clearInterval(countdownTimer.current)
+          logoutUser()
         }
-      }, 1000);
-    }, timeoutDuration * 60 * 1000 - 60000);
-  };
+      }, 1000)
+    }, timeoutDuration * 60 * 1000 - 60000)
+  }
 
   useEffect(() => {
     const refreshToken = async () => {
-      const { auth } = await getFirebaseInstance();
-      const user = auth.currentUser;
+      const { auth } = await getFirebaseInstance()
+      const user = auth.currentUser
       if (user) {
         try {
-          await user.getIdToken(true);
+          await user.getIdToken(true)
         } catch (err) {
-          console.error("Token refresh failed:", err);
+          console.error("Token refresh failed:", err)
         }
       }
-    };
-    refreshToken();
-  }, []);
+    }
+    refreshToken()
+  }, [])
 
-  let activityTimeout;
+  let activityTimeout
 
   const handleActivity = () => {
     if (!showModal) {
-      clearTimeout(activityTimeout);
+      clearTimeout(activityTimeout)
       activityTimeout = setTimeout(() => {
-        resetInactivityTimer();
-      }, 500); // delay actual reset to prevent rapid repeat
+        resetInactivityTimer()
+      }, 500) // delay actual reset to prevent rapid repeat
     }
-  };
+  }
+
+  const [gaId, setGaId] = useState("")
+  useEffect(() => {
+    const storedGaId = localStorage.getItem("gaId") || ""
+    setGaId(storedGaId)
+  }, [])
 
   return (
     <div className="space-y-6">
@@ -86,7 +92,6 @@ export default function SettingsPage() {
           <ThemeSwitch />
         </div>
       </section>
-
       <section className="bg-white dark:bg-gray-800 shadow backdrop-opacity-50 p-6 rounded-lg">
         <h2 className="mb-4 font-semibold text-gray-900 dark:text-gray-100 text-xl">
           Inactivity Timeout
@@ -109,7 +114,34 @@ export default function SettingsPage() {
           </select>
         </div>
       </section>
+      {/* Google Analytics logic */}
+      <section className="bg-white dark:bg-gray-800 shadow p-6 rounded-lg">
+        <h2 className="mb-4 font-semibold text-gray-900 dark:text-gray-100 text-xl">
+          Google Analytics
+        </h2>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="gaId" className="text-gray-700 dark:text-gray-300">
+            Enter your GA4 Measurement ID:
+          </label>
+          <input
+            id="gaId"
+            type="text"
+            placeholder="G-XXXXXXXXXX"
+            className="p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+            value={gaId}
+            onChange={(e) => {
+              const value = e.target.value.trim()
+              setGaId(value)
+              localStorage.setItem("gaId", value)
+              window.dispatchEvent(new Event("gaIdChanged"))
+            }}
+          />
 
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            This ID is used to fetch analytics from your connected GA4 account.
+          </p>
+        </div>
+      </section>
       {showModal && (
         <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white dark:bg-gray-900 shadow-xl p-6 rounded-lg w-11/12 max-w-md text-center">
@@ -122,8 +154,8 @@ export default function SettingsPage() {
             </p>
             <button
               onClick={() => {
-                setShowModal(false);
-                setTimeout(() => resetInactivityTimer(), 100); // Give DOM time to fully unmount
+                setShowModal(false)
+                setTimeout(() => resetInactivityTimer(), 100) // Give DOM time to fully unmount
               }}
               className="bg-blue-600 hover:bg-blue-700 mt-4 px-4 py-2 rounded text-white transition"
             >
@@ -133,5 +165,5 @@ export default function SettingsPage() {
         </div>
       )}
     </div>
-  );
+  )
 }
