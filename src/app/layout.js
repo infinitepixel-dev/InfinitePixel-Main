@@ -12,6 +12,9 @@ import { metadata } from "./layout-metadata";
 export default function RootLayout({ children }) {
   const { theme } = useTheme();
 
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_v3_SITE_KEY;
+  console.log("siteKey", siteKey);
+
   useEffect(() => {
     if (theme) {
       document.documentElement.className = theme;
@@ -21,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <ReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_v3_SITE_KEY}>
+        <ReCaptchaProvider reCaptchaKey={siteKey}>
           <RootClientLayout>{children}</RootClientLayout>
         </ReCaptchaProvider>
       </body>
