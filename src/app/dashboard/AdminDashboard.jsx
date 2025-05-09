@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
-import { doc, getDoc } from "firebase/firestore";
-import { signOut, onAuthStateChanged } from "firebase/auth";
-import { useRouter } from "next/navigation";
-import { getFirebaseInstance } from "@/lib/firebaseClient";
-import gsap from "gsap";
+import { useState, useRef, useEffect } from "react"
+import Link from "next/link"
+import { doc, getDoc } from "firebase/firestore"
+import { signOut, onAuthStateChanged } from "firebase/auth"
+import { useRouter } from "next/navigation"
+import { getFirebaseInstance } from "@/lib/firebaseClient"
+import gsap from "gsap"
 import {
   FaTachometerAlt,
   FaCreditCard,
@@ -16,80 +16,82 @@ import {
   FaMoon,
   FaSun,
   FaSignOutAlt,
-} from "react-icons/fa";
+} from "react-icons/fa"
+import { SiGoogleanalytics } from "react-icons/si"
 
-import BillingPage from "./billing/page";
-import SettingsPage from "./settings/page";
+import BillingPage from "./billing/page"
+import SettingsPage from "./settings/page"
+import AnalyticsPage from "./analytics/page"
 
 export default function AdminDashboard() {
-  const [userFirstName, setUserFirstName] = useState("");
-  const [collapsed, setCollapsed] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [userFirstName, setUserFirstName] = useState("")
+  const [collapsed, setCollapsed] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
 
-  const [activeTab, setActiveTab] = useState("Dashboard");
-  const [checkingAuth, setCheckingAuth] = useState(true);
-  const sidebarRef = useRef(null);
-  const router = useRouter();
+  const [activeTab, setActiveTab] = useState("Dashboard")
+  const [checkingAuth, setCheckingAuth] = useState(true)
+  const sidebarRef = useRef(null)
+  const router = useRouter()
 
   // Cleanup ReCAPTCHA widget
   const removeRecaptchaBadge = () => {
-    const recaptchaElements = document.querySelectorAll(".grecaptcha-badge");
-    recaptchaElements.forEach((el) => el.remove());
-  };
+    const recaptchaElements = document.querySelectorAll(".grecaptcha-badge")
+    recaptchaElements.forEach((el) => el.remove())
+  }
 
   useEffect(() => {
-    const captchaDisabled = localStorage.getItem("captchaDisabled");
+    const captchaDisabled = localStorage.getItem("captchaDisabled")
     if (captchaDisabled === "true") {
-      removeRecaptchaBadge();
+      removeRecaptchaBadge()
     }
-  }, []);
+  }, [])
 
   // Auth check and user info
   useEffect(() => {
     const checkAuth = async () => {
-      const { auth, db } = await getFirebaseInstance();
+      const { auth, db } = await getFirebaseInstance()
 
       onAuthStateChanged(auth, async (user) => {
         if (!user) {
-          router.push("/dashboard/login");
+          router.push("/dashboard/login")
         } else {
-          const docRef = doc(db, "users", user.uid);
-          const docSnap = await getDoc(docRef);
+          const docRef = doc(db, "users", user.uid)
+          const docSnap = await getDoc(docRef)
           if (docSnap.exists()) {
-            setUserFirstName(docSnap.data().fullName?.split(" ")[0] || "User");
+            setUserFirstName(docSnap.data().fullName?.split(" ")[0] || "User")
 
             // Re-run ReCAPTCHA cleanup to handle page refresh
-            const captchaDisabled = localStorage.getItem("captchaDisabled");
+            const captchaDisabled = localStorage.getItem("captchaDisabled")
             if (captchaDisabled === "true") {
-              removeRecaptchaBadge();
+              removeRecaptchaBadge()
             }
           }
-          setCheckingAuth(false);
+          setCheckingAuth(false)
         }
-      });
-    };
+      })
+    }
 
-    checkAuth();
-  }, [router]);
+    checkAuth()
+  }, [router])
 
   // Animate sidebar collapse/expand
   useEffect(() => {
     if (sidebarRef.current) {
-      const sidebar = sidebarRef.current;
-      const labels = sidebar.querySelectorAll(".menu-label");
+      const sidebar = sidebarRef.current
+      const labels = sidebar.querySelectorAll(".menu-label")
 
       const tl = gsap.timeline({
         defaults: { ease: "power2.inOut", duration: 0.3 },
         onStart: () => setIsAnimating(true),
         onComplete: () => setIsAnimating(false),
-      });
+      })
 
       if (collapsed) {
         tl.to(labels, {
           opacity: 0,
           x: -10,
           stagger: 0.05,
-        }).to(sidebar, { width: "4rem" }, "<");
+        }).to(sidebar, { width: "4rem" }, "<")
       } else {
         tl.to(sidebar, { width: "16rem" }).to(
           labels,
@@ -99,43 +101,46 @@ export default function AdminDashboard() {
             stagger: 0.05,
           },
           "<0.1"
-        );
+        )
       }
     }
-  }, [collapsed]);
+  }, [collapsed])
 
   const handleLogout = async () => {
-    const { auth } = await getFirebaseInstance();
-    await signOut(auth);
-    localStorage.removeItem("captchaDisabled");
-    router.push("/dashboard/login");
-  };
+    const { auth } = await getFirebaseInstance()
+    await signOut(auth)
+    localStorage.removeItem("captchaDisabled")
+    router.push("/dashboard/login")
+  }
 
   const navItems = [
     { name: "Dashboard", icon: <FaTachometerAlt /> },
     { name: "Billing", icon: <FaCreditCard /> },
+    { name: "Analytics", icon: <SiGoogleanalytics /> },
     { name: "Settings", icon: <FaCog /> },
-  ];
+  ]
 
   const renderContent = () => {
     switch (activeTab) {
       case "Billing":
-        return <BillingPage />;
+        return <BillingPage />
       case "Dashboard":
         return (
           <h1 className="mb-4 font-bold text-3xl text-center">
             Welcome back, {userFirstName}
           </h1>
-        );
+        )
+      case "Analytics":
+        return <AnalyticsPage />
       case "Settings":
-        return <SettingsPage />;
+        return <SettingsPage />
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   if (checkingAuth) {
-    return <div className="p-6 text-center">Checking authentication...</div>;
+    return <div className="p-6 text-center">Checking authentication...</div>
   }
 
   return (
@@ -208,5 +213,5 @@ export default function AdminDashboard() {
         {renderContent()}
       </main>
     </div>
-  );
+  )
 }
