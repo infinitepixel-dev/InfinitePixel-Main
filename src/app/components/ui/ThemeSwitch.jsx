@@ -1,58 +1,11 @@
+// ThemeSwitch.js
 "use client";
 
-import { useEffect, useState } from "react";
+import { useTheme } from "@hooks/useTheme";
 
 export default function ThemeSwitch() {
-  const [theme, setTheme] = useState(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    if (stored === "dark") {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    } else if (stored === "light") {
-      setTheme("light");
-      document.documentElement.classList.remove("dark");
-    } else {
-      setTheme("system");
-      applySystemTheme();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else if (theme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else if (theme === "system") {
-      applySystemTheme();
-    }
-  }, [theme]);
-
-  function applySystemTheme() {
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.classList.toggle("dark", isDark);
-  }
-
-  function toggleTheme() {
-    setTheme((prev) => {
-      if (prev === "system") {
-        localStorage.setItem("theme", "dark");
-        return "dark";
-      } else if (prev === "dark") {
-        localStorage.setItem("theme", "light");
-        return "light";
-      } else {
-        localStorage.removeItem("theme");
-        return "system";
-      }
-    });
-  }
-
-  const isDark =
-    theme === "dark" ||
-    (theme === "system" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
   return (
     <label className="inline-flex relative items-center cursor-pointer">
