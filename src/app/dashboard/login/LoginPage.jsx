@@ -13,12 +13,29 @@ import { getFirebaseInstance } from "@/lib/firebaseClient"
 import { getDoc, doc, setDoc } from "firebase/firestore"
 
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
-
 import InfinitePixelSpinner from "@utils/InfinitePixelSpinner"
 
 //INFO Modals
 import RegisterPage from "@modals/RegisterPage"
 import ForgotPasswordPage from "@modals/ForgotPasswordPage"
+
+// 🔐 Friendly error message handler
+const getFriendlyAuthError = (code) => {
+  switch (code) {
+    case "auth/invalid-credential":
+    case "auth/wrong-password":
+    case "auth/user-not-found":
+      return "Invalid email or password."
+    case "auth/too-many-requests":
+      return "Too many attempts. Please try again later."
+    case "auth/network-request-failed":
+      return "Network error. Please check your connection."
+    case "auth/user-disabled":
+      return "This account has been disabled. Please contact support."
+    default:
+      return "Login failed. Please try again."
+  }
+}
 
 export default function LoginPage() {
   const { executeRecaptcha } = useReCaptcha()
@@ -131,10 +148,12 @@ export default function LoginPage() {
       const attemptSnap = await getDoc(attemptRef)
       const now = new Date()
       let attempts = 1
+
       if (attemptSnap.exists()) {
         const data = attemptSnap.data()
         attempts = (data.attempts || 0) + 1
       }
+
       const delay = Math.min(Math.pow(2, attempts - 3) * 60, 86400)
       const timeoutUntil = new Date(now.getTime() + delay * 1000)
 
@@ -146,7 +165,7 @@ export default function LoginPage() {
 
       setLockoutRemaining(delay)
       console.error("Login error:", error)
-      setErrorMessage(error.message || "Invalid email or password.")
+      setErrorMessage(getFriendlyAuthError(error.code))
     } finally {
       setIsSubmitting(false)
     }
@@ -166,7 +185,6 @@ export default function LoginPage() {
           alt="Background pattern"
           className="absolute inset-0 opacity-5 w-full h-full object-cover"
         />
-
         <div className="z-10 w-full max-w-2xl perspective-1000">
           <div ref={containerRef} className="ring-cylinder-container">
             {/* Login Panel */}
@@ -179,7 +197,6 @@ export default function LoginPage() {
                 <h1 className="mb-6 font-bold text-blue-950 text-3xl text-center">
                   Login
                 </h1>
-
                 <form onSubmit={handleLoginSubmit} className="space-y-6">
                   <div className="relative">
                     <FaEnvelope className="top-1/2 left-3 absolute text-gray-400 -translate-y-1/2" />
@@ -192,7 +209,6 @@ export default function LoginPage() {
                       required
                     />
                   </div>
-
                   <div className="relative">
                     <FaLock className="top-1/2 left-3 absolute text-gray-400 -translate-y-1/2" />
                     <input
@@ -212,11 +228,9 @@ export default function LoginPage() {
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
                   </div>
-
                   {errorMessage && (
                     <p className="text-red-500 text-sm">{errorMessage}</p>
                   )}
-
                   <button
                     type="submit"
                     disabled={isSubmitting || lockoutRemaining > 0}
@@ -225,7 +239,6 @@ export default function LoginPage() {
                     {isSubmitting ? "Signing In..." : "Sign In"}
                   </button>
                 </form>
-
                 <p className="mt-4 text-gray-500 text-sm text-center">
                   <button
                     onClick={toggleForgotPassword}
@@ -234,7 +247,6 @@ export default function LoginPage() {
                     Forgot Password?
                   </button>
                 </p>
-
                 <div className="mt-6 text-gray-500 text-sm text-center">
                   Don&apos;t have an account?{" "}
                   <button
