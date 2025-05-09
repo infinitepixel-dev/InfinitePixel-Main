@@ -19,7 +19,6 @@ import InfinitePixelSpinner from "@utils/InfinitePixelSpinner"
 import RegisterPage from "@modals/RegisterPage"
 import ForgotPasswordPage from "@modals/ForgotPasswordPage"
 
-// 🔐 Friendly error message handler
 const getFriendlyAuthError = (code) => {
   switch (code) {
     case "auth/invalid-credential":
@@ -31,7 +30,7 @@ const getFriendlyAuthError = (code) => {
     case "auth/network-request-failed":
       return "Network error. Please check your connection."
     case "auth/user-disabled":
-      return "This account has been disabled. Please contact support."
+      return "This account has been disabled. Please contact info@InfinitePixel.com for assistance."
     default:
       return "Login failed. Please try again."
   }
@@ -154,8 +153,14 @@ export default function LoginPage() {
         attempts = (data.attempts || 0) + 1
       }
 
-      const delay = Math.min(Math.pow(2, attempts - 3) * 60, 86400)
-      const timeoutUntil = new Date(now.getTime() + delay * 1000)
+      let delay = 0
+      if (attempts > 3) {
+        // Start exponential backoff at attempt 4
+        delay = Math.min(Math.pow(2, attempts - 4) * 60, 86400) // 1 min at 4, 2 at 5, 4 at 6...
+      }
+
+      const timeoutUntil =
+        delay > 0 ? new Date(now.getTime() + delay * 1000) : null
 
       await setDoc(attemptRef, {
         attempts,
@@ -163,7 +168,10 @@ export default function LoginPage() {
         timeoutUntil,
       })
 
-      setLockoutRemaining(delay)
+      if (delay > 0) {
+        setLockoutRemaining(delay)
+      }
+
       console.error("Login error:", error)
       setErrorMessage(getFriendlyAuthError(error.code))
     } finally {
@@ -174,11 +182,7 @@ export default function LoginPage() {
   return (
     <>
       {(showSpinner || isSubmitting) && <InfinitePixelSpinner />}
-      {lockoutRemaining > 0 && (
-        <div className="text-center text-red-600 font-semibold">
-          Please wait {lockoutRemaining} seconds before trying again.
-        </div>
-      )}
+
       <div className="relative flex justify-center items-start md:items-center bg-gradient-to-br from-cyan-400 via-blue-500 to-pink-500 px-4 pt-24 w-full min-h-screen">
         <img
           src="/circle-scatter-haikei.svg"
@@ -209,6 +213,7 @@ export default function LoginPage() {
                       required
                     />
                   </div>
+
                   <div className="relative">
                     <FaLock className="top-1/2 left-3 absolute text-gray-400 -translate-y-1/2" />
                     <input
@@ -228,9 +233,18 @@ export default function LoginPage() {
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
                   </div>
+
                   {errorMessage && (
                     <p className="text-red-500 text-sm">{errorMessage}</p>
                   )}
+
+                  {lockoutRemaining > 0 && (
+                    <div className="bg-amber-100 border-l-4 border-amber-500 text-amber-800 text-center p-3 text-sm rounded-md">
+                      Too many failed attempts. Please wait {lockoutRemaining}{" "}
+                      seconds before trying again.
+                    </div>
+                  )}
+
                   <button
                     type="submit"
                     disabled={isSubmitting || lockoutRemaining > 0}
