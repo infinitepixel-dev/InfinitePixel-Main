@@ -21,7 +21,7 @@ import { SiGoogleanalytics } from "react-icons/si"
 
 import BillingPage from "./billing/page"
 import SettingsPage from "./settings/page"
-
+import AnalyticsPage from "./analytics/AnalyticsPage"
 import { useUser } from "@context/UserContext"
 
 export default function AdminDashboard() {
