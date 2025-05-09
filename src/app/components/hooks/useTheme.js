@@ -6,23 +6,25 @@ import { useEffect, useState } from "react";
 export const useTheme = () => {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
-      const storedTheme = localStorage.getItem("theme");
-      if (storedTheme) return storedTheme;
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      return isDark ? "dark" : "light";
+      return localStorage.getItem("theme") || "light";
     }
-    return null;
+    return "light";
   });
 
   useEffect(() => {
-    if (theme !== null) {
-      document.documentElement.className = theme;
+    if (typeof window !== "undefined") {
+      const htmlElement = document.documentElement;
+
+      // Apply the theme class
+      htmlElement.className = theme;
+
+      // Save to localStorage
       localStorage.setItem("theme", theme);
     }
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
   return { theme, toggleTheme };

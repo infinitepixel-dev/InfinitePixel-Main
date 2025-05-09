@@ -1,4 +1,3 @@
-// ThemeSwitch.js
 "use client";
 
 import { useTheme } from "@hooks/useTheme";
