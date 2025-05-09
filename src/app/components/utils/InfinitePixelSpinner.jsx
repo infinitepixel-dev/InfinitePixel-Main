@@ -1,11 +1,10 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import gsap from "gsap"
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 export default function InfinitePixelSpinner() {
-  const [showSpinner, setShowSpinner] = useState(false)
-  const dotsRef = useRef([])
+  const dotsRef = useRef([]);
 
   useEffect(() => {
     if (dotsRef.current.length) {
@@ -24,9 +23,9 @@ export default function InfinitePixelSpinner() {
           duration: 0.6,
           ease: "power1.inOut",
         }
-      )
+      );
     }
-  }, [])
+  }, []);
 
   const rainbowColors = [
     "bg-red-600",
@@ -38,11 +37,11 @@ export default function InfinitePixelSpinner() {
     "bg-purple-600",
     "bg-pink-600",
     "bg-rose-600",
-  ]
+  ];
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center bg-black/95 justify-center">
-      <div className="grid grid-cols-3 gap-2">
+    <div className="z-50 fixed inset-0 flex flex-col justify-center items-center bg-black/95">
+      <div className="gap-2 grid grid-cols-3">
         {rainbowColors.map((color, i) => (
           <div
             key={i}
@@ -51,9 +50,9 @@ export default function InfinitePixelSpinner() {
           />
         ))}
       </div>
-      <p className="mt-4 text-sm text-white font-mono tracking-wider text-center">
+      <p className="mt-4 font-mono text-white text-sm text-center tracking-wider">
         Loading Dashboard...
       </p>
     </div>
-  )
+  );
 }

@@ -4,12 +4,12 @@
 import PropTypes from "prop-types";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { getFirebaseInstance } from "@/lib/firebaseClient";
-import InfinitePixelSpinner from "@/app/components/utils/InfinitePixelSpinner";
+
+//INFO Icons
 import {
   FaEnvelope,
   FaLock,
@@ -24,6 +24,7 @@ import {
 export default function RegisterPage({
   embedded = false,
   toggleRegister = () => {},
+  setShowSpinner,
 }) {
   const router = useRouter();
 
@@ -94,13 +95,26 @@ export default function RegisterPage({
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false);
 
   const handleBackToLogin = () => {
     console.log("embedded", embedded);
 
     console.log("Back to login clicked", toggleRegister);
     if (typeof toggleRegister === "function") {
+      //clear the form data
+      setForm({
+        fullName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        phone: "",
+        company: "",
+        businessType: "",
+        website: "",
+      });
+
+      //set country code to US/CA
+      setForm((prev) => ({ ...prev, countryCode: "+1" }));
       toggleRegister();
     } else {
       console.warn("toggleRegister is not a function", toggleRegister);
@@ -132,9 +146,12 @@ export default function RegisterPage({
 
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
+    setDisableInput(true);
     setErrorMessage("");
     setSuccessMessage("");
     setIsSubmitting(true);
+
+    setShowSpinner(true);
 
     const phoneNumber = form.phone.replace(/[^0-9]/g, "");
     const formattedPhone = `${form.countryCode}-${phoneNumber.slice(
@@ -182,12 +199,18 @@ export default function RegisterPage({
 
       const DASHBOARD_URL = "/dashboard";
       setSuccessMessage("Registration successful! Redirecting to dashboard...");
-      setTimeout(() => router.push(DASHBOARD_URL), 2000);
+      setTimeout(() => {
+        router.push(DASHBOARD_URL);
+        setShowSpinner(false);
+        setDisableInput(false);
+      }, 250);
     } catch (error) {
       console.error("Registration error:", error);
       setErrorMessage(error.message || "Something went wrong.");
+      setDisableInput(false);
     } finally {
       setIsSubmitting(false);
+      setShowSpinner(false);
     }
   };
 
@@ -204,136 +227,133 @@ export default function RegisterPage({
   }, [embedded, toggleRegister]);
 
   return (
-    <>
-      {(showSpinner || isSubmitting) && <InfinitePixelSpinner />}
+    <div className={`${embedded ? "" : "min-[svh]"} relative z-10 w-full`}>
+      {!embedded && (
+        <img
+          alt="Background pattern"
+          src="/circle-scatter-haikei.svg"
+          className="z-0 absolute inset-0 opacity-30 w-full h-full object-cover pointer-events-none"
+        />
+      )}
 
-      <div className={`${embedded ? "" : "min-[svh]"} relative z-10 w-full`}>
-        {!embedded && (
-          <img
-            alt="Background pattern"
-            src="/circle-scatter-haikei.svg"
-            className="z-0 absolute inset-0 opacity-30 w-full h-full object-cover pointer-events-none"
-          />
-        )}
+      <div className="z-10 relative bg-white shadow-xl mx-auto p-8 rounded-2xl max-w-3xl">
+        <h1 className="mb-6 font-bold text-blue-900 text-3xl text-center">
+          {embedded ? "Register Below" : "Create Your Account"}
+        </h1>
 
-        <div className="z-10 relative bg-white shadow-xl mx-auto p-8 rounded-2xl max-w-3xl">
-          <h1 className="mb-6 font-bold text-blue-900 text-3xl text-center">
-            {embedded ? "Register Below" : "Create Your Account"}
-          </h1>
+        <form onSubmit={handleRegisterSubmit} className="space-y-6">
+          <div className="gap-2 grid grid-cols-1 md:grid-cols-1">
+            <Input
+              icon={<FaBuilding />}
+              name="company"
+              value={form.company}
+              onChange={handleChange}
+              placeholder="Company Name"
+              className="col-span-1 md:col-span-"
+            />
+          </div>
+          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+            <Input
+              icon={<FaUser />}
+              name="fullName"
+              value={form.fullName}
+              onChange={handleChange}
+              placeholder="Full Name"
+              required
+            />
+            <Input
+              icon={<FaEnvelope />}
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="Email"
+              type="email"
+              required
+              errorMessage={errorMessage}
+            />
 
-          <form onSubmit={handleRegisterSubmit} className="space-y-6">
-            <div className="gap-2 grid grid-cols-1 md:grid-cols-1">
-              <Input
-                icon={<FaBuilding />}
-                name="company"
-                value={form.company}
+            <div className="flex items-center gap-2">
+              <select
+                name="countryCode"
+                value={form.countryCode}
                 onChange={handleChange}
-                placeholder="Company Name"
-                className="col-span-1 md:col-span-"
-              />
-            </div>
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-              <Input
-                icon={<FaUser />}
-                name="fullName"
-                value={form.fullName}
-                onChange={handleChange}
-                placeholder="Full Name"
-                required
-              />
-              <Input
-                icon={<FaEnvelope />}
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="Email"
-                type="email"
-                required
-              />
-
-              <div className="flex items-center gap-2">
-                <select
-                  name="countryCode"
-                  value={form.countryCode}
-                  onChange={handleChange}
-                  className="px-1 py-2 border border-gray-300 rounded-lg w-6/12"
-                >
-                  {countryCodes.map(({ code, label }) => (
-                    <option key={code} value={code}>
-                      {`${label} (${code})`}
-                    </option>
-                  ))}
-                </select>
-
-                <Input
-                  icon={<FaPhone />}
-                  type="tel"
-                  name="phone"
-                  value={form.phone}
-                  onChange={handlePhoneChange}
-                  placeholder="(XXX)-XXX-XXXX"
-                />
-              </div>
-
-              <div>
-                <select
-                  name="businessType"
-                  value={form.businessType}
-                  onChange={handleChange}
-                  required
-                  className="bg-white px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full text-gray-700"
-                >
-                  <option value="">Select Business Type</option>
-                  {businessTypes.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                className="px-1 py-2 border border-gray-300 rounded-lg w-6/12"
+              >
+                {countryCodes.map(({ code, label }) => (
+                  <option key={code} value={code}>
+                    {`${label} (${code})`}
+                  </option>
+                ))}
+              </select>
 
               <Input
-                icon={<FaLock />}
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                placeholder="Password"
-                type="password"
-                required
-              />
-              <Input
-                icon={<FaLock />}
-                name="confirmPassword"
-                value={form.confirmPassword}
-                onChange={handleChange}
-                placeholder="Confirm Password"
-                type="password"
-                required
+                icon={<FaPhone />}
+                type="tel"
+                name="phone"
+                value={form.phone}
+                onChange={handlePhoneChange}
+                placeholder="(XXX)-XXX-XXXX"
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting || disableInput}
-              className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 py-3 rounded-lg w-full font-semibold text-white transition"
-            >
-              Register
-            </button>
-          </form>
+            <div>
+              <select
+                name="businessType"
+                value={form.businessType}
+                onChange={handleChange}
+                required
+                className="bg-white px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full text-gray-700"
+              >
+                <option value="">Select Business Type</option>
+                {businessTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          <p className="mt-6 text-gray-600 text-sm text-center">
-            Already have an account?{" "}
-            <button
-              type="button"
-              onClick={handleBackToLogin}
-              className="text-blue-500 hover:underline"
-            >
-              Login
-            </button>
-          </p>
-        </div>
+            <Input
+              icon={<FaLock />}
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="Password"
+              type="password"
+              required
+            />
+            <Input
+              icon={<FaLock />}
+              name="confirmPassword"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirm Password"
+              type="password"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={disableInput}
+            className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 py-3 rounded-lg w-full font-semibold text-white transition"
+          >
+            Register
+          </button>
+        </form>
+
+        <p className="mt-6 text-gray-600 text-sm text-center">
+          Already have an account?{" "}
+          <button
+            type="button"
+            onClick={handleBackToLogin}
+            className="text-blue-500 hover:underline"
+          >
+            Login
+          </button>
+        </p>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -345,6 +365,7 @@ function Input({
   placeholder,
   type = "text",
   required = false,
+  errorMessage = "",
   full = false,
 }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -375,6 +396,12 @@ function Input({
           {showPassword ? <FaEyeSlash /> : <FaEye />}
         </button>
       )}
+
+      {errorMessage && name === "email" && (
+        <p className="mt-1 text-red-500 text-sm">
+          This email is invalid or already in use!
+        </p>
+      )}
     </div>
   );
 }
@@ -382,6 +409,7 @@ function Input({
 RegisterPage.propTypes = {
   embedded: PropTypes.bool,
   toggleRegister: PropTypes.func,
+  setShowSpinner: PropTypes.func,
 };
 
 Input.propTypes = {
