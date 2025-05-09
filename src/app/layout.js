@@ -12,8 +12,6 @@ export default function RootLayout({ children }) {
   const initialized = useRef(false);
 
   const attributesToRemove = ["nighteye", "cz-shortcut-listen"];
-  const maxAttempts = 5;
-  const attemptCount = useRef(0);
 
   /**
    * Function to remove specified attributes and apply theme class
@@ -32,8 +30,6 @@ export default function RootLayout({ children }) {
     if (theme) {
       htmlElement.className = theme;
     }
-
-    attemptCount.current += 1;
   };
 
   /**
@@ -47,11 +43,7 @@ export default function RootLayout({ children }) {
 
     // Re-run periodically to handle any reinjection of attributes
     const interval = setInterval(() => {
-      if (attemptCount.current < maxAttempts) {
-        removeAttributesAndApplyTheme();
-      } else {
-        clearInterval(interval);
-      }
+      removeAttributesAndApplyTheme();
     }, 500);
 
     return () => clearInterval(interval);

@@ -31,6 +31,47 @@ export default function AdminDashboard() {
   const sidebarRef = useRef(null);
   const router = useRouter();
 
+  // Cleanup ReCAPTCHA widget
+  const removeRecaptchaBadge = () => {
+    const recaptchaElements = document.querySelectorAll(".grecaptcha-badge");
+    recaptchaElements.forEach((el) => el.remove());
+  };
+
+  useEffect(() => {
+    const captchaDisabled = localStorage.getItem("captchaDisabled");
+    if (captchaDisabled === "true") {
+      removeRecaptchaBadge();
+    }
+  }, []);
+
+  // Auth check and user info
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { auth, db } = await getFirebaseInstance();
+
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+          router.push("/dashboard/login");
+        } else {
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            setUserFirstName(docSnap.data().fullName?.split(" ")[0] || "User");
+
+            // Re-run ReCAPTCHA cleanup to handle page refresh
+            const captchaDisabled = localStorage.getItem("captchaDisabled");
+            if (captchaDisabled === "true") {
+              removeRecaptchaBadge();
+            }
+          }
+          setCheckingAuth(false);
+        }
+      });
+    };
+
+    checkAuth();
+  }, [router]);
+
   // Animate sidebar collapse/expand
   useEffect(() => {
     if (sidebarRef.current) {
@@ -63,31 +104,10 @@ export default function AdminDashboard() {
     }
   }, [collapsed]);
 
-  // Auth check and user info
-  useEffect(() => {
-    const checkAuth = async () => {
-      const { auth, db } = await getFirebaseInstance();
-
-      onAuthStateChanged(auth, async (user) => {
-        if (!user) {
-          router.push("/dashboard/login");
-        } else {
-          const docRef = doc(db, "users", user.uid);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            setUserFirstName(docSnap.data().fullName?.split(" ")[0] || "User");
-          }
-          setCheckingAuth(false);
-        }
-      });
-    };
-
-    checkAuth();
-  }, [router]);
-
   const handleLogout = async () => {
     const { auth } = await getFirebaseInstance();
     await signOut(auth);
+    localStorage.removeItem("captchaDisabled");
     router.push("/dashboard/login");
   };
 

@@ -88,6 +88,109 @@ export default function LoginPage() {
     });
   };
 
+  // const handleLoginSubmit = async (event) => {
+  //   event.preventDefault();
+  //   setErrorMessage("");
+  //   setShowSpinner(true);
+  //   setDisabledInput(true);
+  //   setIsSubmitting(true);
+
+  //   try {
+  //     const { auth, db } = await getFirebaseInstance();
+  //     const emailKey = email.replace(/\./g, "_");
+  //     const attemptRef = doc(db, "login_attempts", emailKey);
+  //     const attemptSnap = await getDoc(attemptRef);
+  //     const now = new Date();
+
+  //     if (attemptSnap.exists()) {
+  //       const data = attemptSnap.data();
+  //       if (data.timeoutUntil && data.timeoutUntil.toDate() > now) {
+  //         const waitTime = Math.ceil((data.timeoutUntil.toDate() - now) / 1000);
+  //         setLockoutRemaining(waitTime);
+  //         setErrorMessage(
+  //           `Too many failed attempts. Please wait ${waitTime} seconds.`
+  //         );
+  //         setIsSubmitting(false);
+  //         return;
+  //       }
+  //     }
+
+  //     const token = await executeRecaptcha("login");
+  //     if (!token) {
+  //       throw new Error("ReCAPTCHA verification failed. Please try again.");
+  //     }
+
+  //     const userCredential = await signInWithEmailAndPassword(
+  //       auth,
+  //       email,
+  //       password
+  //     );
+  //     const uid = userCredential.user.uid;
+  //     const docRef = doc(db, "users", uid);
+  //     const userSnap = await getDoc(docRef);
+
+  //     if (userSnap.exists()) {
+  //       await setDoc(attemptRef, {
+  //         attempts: 0,
+  //         lastAttempt: null,
+  //         timeoutUntil: null,
+  //       });
+
+  //       const userData = userSnap.data();
+  //       const firstName = userData.fullName?.split(" ")[0] || "User";
+  //       localStorage.setItem("userFirstName", firstName);
+
+  //       setTimeout(() => {
+  //         router.push("/dashboard");
+  //         setShowSpinner(false);
+  //         setDisabledInput(false);
+  //         //turn off captcha
+  //       }, 2500);
+  //     } else {
+  //       setErrorMessage("User profile not found. Please contact support.");
+  //     }
+  //   } catch (error) {
+  //     const { db } = await getFirebaseInstance();
+  //     const emailKey = email.replace(/\./g, "_");
+  //     const attemptRef = doc(db, "login_attempts", emailKey);
+  //     const attemptSnap = await getDoc(attemptRef);
+  //     const now = new Date();
+  //     let attempts = 1;
+
+  //     if (attemptSnap.exists()) {
+  //       const data = attemptSnap.data();
+  //       attempts = (data.attempts || 0) + 1;
+  //     }
+
+  //     let delay = 0;
+  //     if (attempts > 3) {
+  //       // Start exponential backoff at attempt 4
+  //       delay = Math.min(Math.pow(2, attempts - 4) * 60, 86400); // 1 min at 4, 2 at 5, 4 at 6...
+  //     }
+
+  //     const timeoutUntil =
+  //       delay > 0 ? new Date(now.getTime() + delay * 1000) : null;
+
+  //     await setDoc(attemptRef, {
+  //       attempts,
+  //       lastAttempt: now,
+  //       timeoutUntil,
+  //     });
+
+  //     if (delay > 0) {
+  //       setLockoutRemaining(delay);
+  //     }
+
+  //     console.error("Login error:", error);
+  //     setErrorMessage(getFriendlyAuthError(error.code));
+  //     setShowSpinner(false);
+  //     setDisabledInput(false);
+  //   } finally {
+  //     setShowSpinner(false);
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     setErrorMessage("");
@@ -144,6 +247,9 @@ export default function LoginPage() {
           router.push("/dashboard");
           setShowSpinner(false);
           setDisabledInput(false);
+
+          // Disable ReCAPTCHA after successful login
+          localStorage.setItem("captchaDisabled", "true");
         }, 2500);
       } else {
         setErrorMessage("User profile not found. Please contact support.");
@@ -163,8 +269,7 @@ export default function LoginPage() {
 
       let delay = 0;
       if (attempts > 3) {
-        // Start exponential backoff at attempt 4
-        delay = Math.min(Math.pow(2, attempts - 4) * 60, 86400); // 1 min at 4, 2 at 5, 4 at 6...
+        delay = Math.min(Math.pow(2, attempts - 4) * 60, 86400);
       }
 
       const timeoutUntil =
@@ -194,11 +299,11 @@ export default function LoginPage() {
     <>
       {(showSpinner || isSubmitting) && <InfinitePixelSpinner />}
 
-      <div className="relative flex justify-center items-start md:items-center bg-gradient-to-br from-cyan-400 via-blue-500 to-pink-500 px-4 pt-24 w-full min-h-screen">
+      <div className="relative flex justify-center items-start md:items-center bg-gradient-to-br from-cyan-400 via-blue-500 to-pink-500 px-4 pt-24 w-full min-h-screen select-none">
         <img
           src="/circle-scatter-haikei.svg"
           alt="Background pattern"
-          className="absolute inset-0 opacity-5 w-full h-full object-cover"
+          className="absolute inset-0 opacity-5 w-full h-full object-cover pointer-events-none select-none"
         />
         <div className="z-10 w-full max-w-2xl perspective-1000">
           <div ref={containerRef} className="ring-cylinder-container">
