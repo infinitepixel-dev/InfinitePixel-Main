@@ -13,8 +13,12 @@ import { getFirebaseInstance } from "@/lib/firebaseClient";
 import { getDoc, doc } from "firebase/firestore";
 
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import RegisterPage from "@modals/RegisterPage";
+
 import InfinitePixelSpinner from "@utils/InfinitePixelSpinner";
+
+//INFO Modals
+import RegisterPage from "@modals/RegisterPage";
+import ForgotPasswordPage from "@modals/ForgotPasswordPage";
 
 export default function LoginPage() {
   const { executeRecaptcha } = useReCaptcha();
@@ -36,6 +40,16 @@ export default function LoginPage() {
 
     gsap.to(containerRef.current, {
       rotateY: isRegistering ? 180 : 0,
+      duration: 0.25,
+      ease: "power3.inOut",
+    });
+  };
+
+  const toggleForgotPassword = () => {
+    const isForgotPassword = activePanel === "login";
+    setActivePanel(isForgotPassword ? "forgot-password" : "login");
+    gsap.to(containerRef.current, {
+      rotateY: isForgotPassword ? 180 : 0,
       duration: 0.25,
       ease: "power3.inOut",
     });
@@ -97,7 +111,7 @@ export default function LoginPage() {
                 activePanel === "login" ? "active" : "inactive"
               }`}
             >
-              <div className="bg-white shadow-xl p-8 rounded-2xl">
+              <div className="bg-white shadow-xl p-6 rounded-2xl">
                 <h1 className="mb-6 font-bold text-blue-950 text-3xl text-center">
                   Login
                 </h1>
@@ -139,15 +153,6 @@ export default function LoginPage() {
                     <p className="text-red-500 text-sm">{errorMessage}</p>
                   )}
 
-                  <p className="text-gray-500 text-sm text-right">
-                    <Link
-                      href="/dashboard/forgot-password"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Forgot Password?
-                    </Link>
-                  </p>
-
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -157,7 +162,16 @@ export default function LoginPage() {
                   </button>
                 </form>
 
-                <div className="mt-4 text-gray-500 text-sm text-center">
+                <p className="mt-4 text-gray-500 text-sm text-center">
+                  <button
+                    onClick={toggleForgotPassword}
+                    className="text-blue-500 hover:underline"
+                  >
+                    Forgot Password?
+                  </button>
+                </p>
+
+                <div className="mt-6 text-gray-500 text-sm text-center">
                   Don&apos;t have an account?{" "}
                   <button
                     onClick={toggleRegister}
@@ -180,6 +194,21 @@ export default function LoginPage() {
                   embedded={true}
                   setShowSpinner={setShowSpinner}
                   toggleRegister={toggleRegister}
+                />
+              </div>
+            </div>
+
+            {/* Forgot Password Panel */}
+            <div
+              className={`auth-card-ring forgot-password-panel ${
+                activePanel === "forgot-password" ? "active" : "inactive"
+              }`}
+            >
+              <div>
+                <ForgotPasswordPage
+                  embedded={true}
+                  setShowSpinner={setShowSpinner}
+                  toggleForgotPassword={toggleForgotPassword}
                 />
               </div>
             </div>

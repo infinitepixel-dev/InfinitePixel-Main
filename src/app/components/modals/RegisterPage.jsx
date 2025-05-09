@@ -236,7 +236,7 @@ export default function RegisterPage({
         />
       )}
 
-      <div className="z-10 relative bg-white shadow-xl mx-auto p-8 rounded-2xl max-w-3xl">
+      <div className="z-10 relative bg-white shadow-xl mx-auto p-6 rounded-2xl max-w-3xl">
         <h1 className="mb-6 font-bold text-blue-900 text-3xl text-center">
           {embedded ? "Register Below" : "Create Your Account"}
         </h1>

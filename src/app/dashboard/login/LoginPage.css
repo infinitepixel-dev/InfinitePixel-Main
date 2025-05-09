@@ -38,3 +38,7 @@
 .auth-card-ring.register-panel {
   transform: rotateY(180deg);
 }
+
+.auth-card-ring.forgot-password-panel {
+  transform: rotateY(180deg);
+}
