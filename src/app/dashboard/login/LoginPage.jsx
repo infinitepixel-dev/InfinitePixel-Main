@@ -182,8 +182,10 @@ export default function LoginPage() {
 
       console.error("Login error:", error);
       setErrorMessage(getFriendlyAuthError(error.code));
+      setShowSpinner(false);
       setDisabledInput(false);
     } finally {
+      setShowSpinner(false);
       setIsSubmitting(false);
     }
   };
