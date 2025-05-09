@@ -3,7 +3,11 @@
 import { useLayoutEffect, useRef } from "react";
 import "./globals.css";
 import RootClientLayout from "@components/RootClientLayout";
+
+//INFO Global Providers
 import { ReCaptchaProvider } from "next-recaptcha-v3";
+import { UserProvider } from "@context/UserContext";
+
 import { useTheme } from "@hooks/useTheme";
 import { metadata } from "./layout-metadata";
 
@@ -55,7 +59,10 @@ export default function RootLayout({ children }) {
         <ReCaptchaProvider
           reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_v3_SITE_KEY}
         >
-          <RootClientLayout>{children}</RootClientLayout>
+          <RootClientLayout>
+            {" "}
+            <UserProvider>{children} </UserProvider>
+          </RootClientLayout>
         </ReCaptchaProvider>
       </body>
     </html>

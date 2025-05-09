@@ -21,15 +21,23 @@ import { SiGoogleanalytics } from "react-icons/si"
 
 import BillingPage from "./billing/page"
 import SettingsPage from "./settings/page"
-import AnalyticsPage from "./analytics/page"
+
+import { useUser } from "@context/UserContext"
 
 export default function AdminDashboard() {
-  const [userFirstName, setUserFirstName] = useState("")
+  //INFO User Details States
+  const {
+    // userEmail,
+    userFirstName,
+    checkingAuth,
+  } = useUser()
+
+  //INFO UI States
   const [collapsed, setCollapsed] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
 
   const [activeTab, setActiveTab] = useState("Dashboard")
-  const [checkingAuth, setCheckingAuth] = useState(true)
+
   const sidebarRef = useRef(null)
   const router = useRouter()
 
@@ -45,34 +53,6 @@ export default function AdminDashboard() {
       removeRecaptchaBadge()
     }
   }, [])
-
-  // Auth check and user info
-  useEffect(() => {
-    const checkAuth = async () => {
-      const { auth, db } = await getFirebaseInstance()
-
-      onAuthStateChanged(auth, async (user) => {
-        if (!user) {
-          router.push("/dashboard/login")
-        } else {
-          const docRef = doc(db, "users", user.uid)
-          const docSnap = await getDoc(docRef)
-          if (docSnap.exists()) {
-            setUserFirstName(docSnap.data().fullName?.split(" ")[0] || "User")
-
-            // Re-run ReCAPTCHA cleanup to handle page refresh
-            const captchaDisabled = localStorage.getItem("captchaDisabled")
-            if (captchaDisabled === "true") {
-              removeRecaptchaBadge()
-            }
-          }
-          setCheckingAuth(false)
-        }
-      })
-    }
-
-    checkAuth()
-  }, [router])
 
   // Animate sidebar collapse/expand
   useEffect(() => {
