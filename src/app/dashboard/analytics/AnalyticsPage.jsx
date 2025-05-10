@@ -2,7 +2,21 @@
 
 import React, { useEffect, useState } from "react"
 import gsap from "gsap"
-import { FaEye, FaUsers, FaRegChartBar } from "react-icons/fa"
+import {
+  FaEye,
+  FaUsers,
+  FaRegChartBar,
+  FaClock,
+  FaChartLine,
+} from "react-icons/fa"
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts"
 
 export default function AnalyticsPage() {
   const [data, setData] = useState(null)
@@ -51,7 +65,6 @@ export default function AnalyticsPage() {
   useEffect(() => {
     if (data) {
       gsap.from(".analytics-card", {
-        opacity: 0,
         y: 40,
         duration: 0.8,
         ease: "power2.out",
@@ -65,16 +78,32 @@ export default function AnalyticsPage() {
       title: "Page Views",
       icon: <FaEye className="text-3xl text-indigo-500" />,
       value: data?.pageViews || 0,
+      description: "Total number of page views over the past 30 days.",
     },
     {
       title: "Users",
       icon: <FaUsers className="text-3xl text-green-500" />,
       value: data?.users || 0,
+      description: "Unique visitors who accessed your site this month.",
     },
     {
       title: "Bounce Rate",
       icon: <FaRegChartBar className="text-3xl text-pink-500" />,
       value: `${data?.bounceRate || 0}%`,
+      description:
+        "Percentage of users who left without interacting. Lower is better.",
+    },
+    {
+      title: "Sessions",
+      icon: <FaChartLine className="text-3xl text-blue-500" />,
+      value: data?.sessions || 0,
+      description: "Total number of visits including returning users.",
+    },
+    {
+      title: "Avg. Session Duration",
+      icon: <FaClock className="text-3xl text-yellow-500" />,
+      value: data?.avgSessionDuration || "0:00",
+      description: "Average time users spend per visit.",
     },
   ]
 
@@ -91,24 +120,45 @@ export default function AnalyticsPage() {
       ) : error ? (
         <p className="text-center text-red-600">{error}</p>
       ) : data ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cards.map((card, index) => (
-            <div
-              key={index}
-              className="analytics-card bg-gradient-to-tr from-slate-100 to-slate-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-lg p-6 flex flex-col items-start space-y-4 hover:scale-[1.02] transition-transform"
-            >
-              <div className="flex items-center space-x-4">
-                {card.icon}
-                <h3 className="text-lg font-medium text-gray-700 dark:text-gray-300">
-                  {card.title}
-                </h3>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                className="analytics-card bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-2xl shadow-xl p-6 flex flex-col items-start space-y-4 hover:scale-[1.02] transition-transform"
+              >
+                <div className="flex items-center space-x-4">
+                  {card.icon}
+                  <h3 className="text-lg font-medium text-gray-700 dark:text-gray-300">
+                    {card.title}
+                  </h3>
+                </div>
+                <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                  {card.value}
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {card.description}
+                </p>
               </div>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">
-                {card.value}
-              </p>
+            ))}
+          </div>
+
+          {data.pageViewsByDay && data.pageViewsByDay.length > 0 && (
+            <div className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-2xl shadow-xl p-6">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Page Views Over the Past Week
+              </h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={data.pageViewsByDay}>
+                  <XAxis dataKey="date" stroke="#8884d8" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="views" fill="#6366f1" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
             </div>
-          ))}
-        </div>
+          )}
+        </>
       ) : (
         <p className="text-center text-gray-600 dark:text-gray-300">
           No data available. Connect your GA account.
