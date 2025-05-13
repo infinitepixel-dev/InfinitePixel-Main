@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import Link from "next/link"
-import { doc, getDoc } from "firebase/firestore"
-import { signOut, onAuthStateChanged } from "firebase/auth"
-import { useRouter } from "next/navigation"
-import { getFirebaseInstance } from "@/lib/firebaseClient"
-import gsap from "gsap"
+import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+import { doc, getDoc } from "firebase/firestore";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import { getFirebaseInstance } from "@/lib/firebaseClient";
+import gsap from "gsap";
 import {
   FaTachometerAlt,
   FaCreditCard,
@@ -16,13 +16,16 @@ import {
   FaMoon,
   FaSun,
   FaSignOutAlt,
-} from "react-icons/fa"
-import { SiGoogleanalytics } from "react-icons/si"
+} from "react-icons/fa";
+import { BsWrenchAdjustableCircle } from "react-icons/bs";
 
-import BillingPage from "./billing/page"
-import SettingsPage from "./settings/page"
-import AnalyticsPage from "./analytics/AnalyticsPage"
-import { useUser } from "@context/UserContext"
+import { SiGoogleanalytics } from "react-icons/si";
+
+import BillingPage from "./billing/page";
+import SettingsPage from "./settings/page";
+import AnalyticsPage from "./analytics/AnalyticsPage";
+import ServicesPage from "./services/ServicesPage";
+import { useUser } from "@context/UserContext";
 
 export default function AdminDashboard() {
   //INFO User Details States
@@ -30,48 +33,48 @@ export default function AdminDashboard() {
     // userEmail,
     userFirstName,
     checkingAuth,
-  } = useUser()
+  } = useUser();
 
   //INFO UI States
-  const [collapsed, setCollapsed] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(false)
+  const [collapsed, setCollapsed] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const [activeTab, setActiveTab] = useState("Dashboard")
+  const [activeTab, setActiveTab] = useState("Dashboard");
 
-  const sidebarRef = useRef(null)
-  const router = useRouter()
+  const sidebarRef = useRef(null);
+  const router = useRouter();
 
   // Cleanup ReCAPTCHA widget
   const removeRecaptchaBadge = () => {
-    const recaptchaElements = document.querySelectorAll(".grecaptcha-badge")
-    recaptchaElements.forEach((el) => el.remove())
-  }
+    const recaptchaElements = document.querySelectorAll(".grecaptcha-badge");
+    recaptchaElements.forEach((el) => el.remove());
+  };
 
   useEffect(() => {
-    const captchaDisabled = localStorage.getItem("captchaDisabled")
+    const captchaDisabled = localStorage.getItem("captchaDisabled");
     if (captchaDisabled === "true") {
-      removeRecaptchaBadge()
+      removeRecaptchaBadge();
     }
-  }, [])
+  }, []);
 
   // Animate sidebar collapse/expand
   useEffect(() => {
     if (sidebarRef.current) {
-      const sidebar = sidebarRef.current
-      const labels = sidebar.querySelectorAll(".menu-label")
+      const sidebar = sidebarRef.current;
+      const labels = sidebar.querySelectorAll(".menu-label");
 
       const tl = gsap.timeline({
         defaults: { ease: "power2.inOut", duration: 0.3 },
         onStart: () => setIsAnimating(true),
         onComplete: () => setIsAnimating(false),
-      })
+      });
 
       if (collapsed) {
         tl.to(labels, {
           opacity: 0,
           x: -10,
           stagger: 0.05,
-        }).to(sidebar, { width: "4rem" }, "<")
+        }).to(sidebar, { width: "4rem" }, "<");
       } else {
         tl.to(sidebar, { width: "16rem" }).to(
           labels,
@@ -81,46 +84,44 @@ export default function AdminDashboard() {
             stagger: 0.05,
           },
           "<0.1"
-        )
+        );
       }
     }
-  }, [collapsed])
+  }, [collapsed]);
 
   const handleLogout = async () => {
-    const { auth } = await getFirebaseInstance()
-    await signOut(auth)
-    localStorage.removeItem("captchaDisabled")
-    router.push("/dashboard/login")
-  }
+    const { auth } = await getFirebaseInstance();
+    await signOut(auth);
+    localStorage.removeItem("captchaDisabled");
+    router.push("/dashboard/login");
+  };
 
   const navItems = [
     { name: "Dashboard", icon: <FaTachometerAlt /> },
-    { name: "Billing", icon: <FaCreditCard /> },
+    { name: "Services", icon: <BsWrenchAdjustableCircle /> },
     { name: "Analytics", icon: <SiGoogleanalytics /> },
+    { name: "Billing", icon: <FaCreditCard /> },
     { name: "Settings", icon: <FaCog /> },
-  ]
+  ];
 
   const renderContent = () => {
-    switch (activeTab) {
-      case "Billing":
-        return <BillingPage />
-      case "Dashboard":
-        return (
-          <h1 className="mb-4 font-bold text-3xl text-center">
-            Welcome back, {userFirstName}
-          </h1>
-        )
-      case "Analytics":
-        return <AnalyticsPage />
-      case "Settings":
-        return <SettingsPage />
-      default:
-        return null
-    }
-  }
+    const pages = {
+      Billing: <BillingPage />,
+      Dashboard: (
+        <h1 className="mb-4 font-bold text-3xl text-center">
+          Welcome back, {userFirstName}
+        </h1>
+      ),
+      Analytics: <AnalyticsPage />,
+      Settings: <SettingsPage />,
+      Services: <ServicesPage />,
+    };
+
+    return pages[activeTab] || null;
+  };
 
   if (checkingAuth) {
-    return <div className="p-6 text-center">Checking authentication...</div>
+    return <div className="p-6 text-center">Checking authentication...</div>;
   }
 
   return (
@@ -189,9 +190,9 @@ export default function AdminDashboard() {
         </button>
       </aside>
 
-      <main className="flex-1 p-6 text-gray-900 dark:text-gray-100">
+      <main className="flex-1 p-2 text-gray-900 dark:text-gray-100">
         {renderContent()}
       </main>
     </div>
-  )
+  );
 }

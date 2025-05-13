@@ -2,22 +2,29 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
+
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
-import "./LoginPage.css";
+
 import { useReCaptcha } from "next-recaptcha-v3";
 
+//INFO Firebase
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { getFirebaseInstance } from "@/lib/firebaseClient";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 
+//INFO Icons
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+
+//INFO Utils
 import InfinitePixelSpinner from "@utils/InfinitePixelSpinner";
 
 //INFO Modals
 import RegisterPage from "@modals/RegisterPage";
 import ForgotPasswordPage from "@modals/ForgotPasswordPage";
+
+//INFO Custom CSS
+import "./LoginPage.css";
 
 const getFriendlyAuthError = (code) => {
   switch (code) {
@@ -87,109 +94,6 @@ export default function LoginPage() {
       ease: "power3.inOut",
     });
   };
-
-  // const handleLoginSubmit = async (event) => {
-  //   event.preventDefault();
-  //   setErrorMessage("");
-  //   setShowSpinner(true);
-  //   setDisabledInput(true);
-  //   setIsSubmitting(true);
-
-  //   try {
-  //     const { auth, db } = await getFirebaseInstance();
-  //     const emailKey = email.replace(/\./g, "_");
-  //     const attemptRef = doc(db, "login_attempts", emailKey);
-  //     const attemptSnap = await getDoc(attemptRef);
-  //     const now = new Date();
-
-  //     if (attemptSnap.exists()) {
-  //       const data = attemptSnap.data();
-  //       if (data.timeoutUntil && data.timeoutUntil.toDate() > now) {
-  //         const waitTime = Math.ceil((data.timeoutUntil.toDate() - now) / 1000);
-  //         setLockoutRemaining(waitTime);
-  //         setErrorMessage(
-  //           `Too many failed attempts. Please wait ${waitTime} seconds.`
-  //         );
-  //         setIsSubmitting(false);
-  //         return;
-  //       }
-  //     }
-
-  //     const token = await executeRecaptcha("login");
-  //     if (!token) {
-  //       throw new Error("ReCAPTCHA verification failed. Please try again.");
-  //     }
-
-  //     const userCredential = await signInWithEmailAndPassword(
-  //       auth,
-  //       email,
-  //       password
-  //     );
-  //     const uid = userCredential.user.uid;
-  //     const docRef = doc(db, "users", uid);
-  //     const userSnap = await getDoc(docRef);
-
-  //     if (userSnap.exists()) {
-  //       await setDoc(attemptRef, {
-  //         attempts: 0,
-  //         lastAttempt: null,
-  //         timeoutUntil: null,
-  //       });
-
-  //       const userData = userSnap.data();
-  //       const firstName = userData.fullName?.split(" ")[0] || "User";
-  //       localStorage.setItem("userFirstName", firstName);
-
-  //       setTimeout(() => {
-  //         router.push("/dashboard");
-  //         setShowSpinner(false);
-  //         setDisabledInput(false);
-  //         //turn off captcha
-  //       }, 2500);
-  //     } else {
-  //       setErrorMessage("User profile not found. Please contact support.");
-  //     }
-  //   } catch (error) {
-  //     const { db } = await getFirebaseInstance();
-  //     const emailKey = email.replace(/\./g, "_");
-  //     const attemptRef = doc(db, "login_attempts", emailKey);
-  //     const attemptSnap = await getDoc(attemptRef);
-  //     const now = new Date();
-  //     let attempts = 1;
-
-  //     if (attemptSnap.exists()) {
-  //       const data = attemptSnap.data();
-  //       attempts = (data.attempts || 0) + 1;
-  //     }
-
-  //     let delay = 0;
-  //     if (attempts > 3) {
-  //       // Start exponential backoff at attempt 4
-  //       delay = Math.min(Math.pow(2, attempts - 4) * 60, 86400); // 1 min at 4, 2 at 5, 4 at 6...
-  //     }
-
-  //     const timeoutUntil =
-  //       delay > 0 ? new Date(now.getTime() + delay * 1000) : null;
-
-  //     await setDoc(attemptRef, {
-  //       attempts,
-  //       lastAttempt: now,
-  //       timeoutUntil,
-  //     });
-
-  //     if (delay > 0) {
-  //       setLockoutRemaining(delay);
-  //     }
-
-  //     console.error("Login error:", error);
-  //     setErrorMessage(getFriendlyAuthError(error.code));
-  //     setShowSpinner(false);
-  //     setDisabledInput(false);
-  //   } finally {
-  //     setShowSpinner(false);
-  //     setIsSubmitting(false);
-  //   }
-  // };
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
