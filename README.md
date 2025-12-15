@@ -1,6 +1,6 @@
 # PowerShell Commands for Node.js Process Management and Build
 
-> This document provides a markdown format for running the following PowerShell commands: `Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force; Remove-Item .next -Recurse -Force -ErrorAction SilentlyContinue; pnpm run build`.
+> This document provides a markdown format for running the following PowerShell commands: `Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force; Remove-Item .next -Recurse -Force -ErrorAction SilentlyContinue; pnpm run build`
 
 ## Commands
 
