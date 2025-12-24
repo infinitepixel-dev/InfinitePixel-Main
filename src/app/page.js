@@ -8,7 +8,7 @@ import WhyCustomWebsite from "@components/pages/WhyCustomWebsite"
 import ScrollingIconsBar from "@components/utils/ScrollingIconsBar"
 import AboutUs from "@components/pages/AboutUs"
 import ContactForm from "@components/pages/ContactForm"
-import Map from "@components/cards/Map"
+import Map from "../../old-react/components/cards/Map"
 import Script from "next/script"
 // Any animation hooks or side effects go here
 export default function Home() {

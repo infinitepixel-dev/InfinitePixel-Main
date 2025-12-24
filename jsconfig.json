@@ -2,7 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "@cards/*": ["./src/app/components/cards/*"],
+      "@cards/*": ["old-react/components/cards/*"],
       "@components/*": ["./src/app/components/*"],
       "@context/*": ["./src/app/context/*"],
       "@hooks/*": ["./src/app/components/hooks/*"],

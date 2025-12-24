@@ -4,7 +4,7 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import Review from "@cards/ReviewCard"
+import Review from "../../../../old-react/components/cards/ReviewCard"
 
 gsap.registerPlugin(ScrollTrigger)
 
