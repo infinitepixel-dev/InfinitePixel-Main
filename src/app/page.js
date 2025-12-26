@@ -2,7 +2,7 @@
 
 import Head from "next/head"
 import Header from "@components/pages/Header"
-import WhatWeDo from "@components/pages/WhatWeDo"
+import WhatWeDo from "../../old-react/components/pages/WhatWeDo"
 import ProjectStats from "../../old-react/components/pages/ProjectStats"
 import WhyCustomWebsite from "@components/pages/WhyCustomWebsite"
 import ScrollingIconsBar from "@components/utils/ScrollingIconsBar"
