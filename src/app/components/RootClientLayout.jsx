@@ -4,7 +4,7 @@
 import PropTypes from "prop-types"
 import { usePathname } from "next/navigation"
 import Navbar from "@components/Navbar"
-import Footer from "@components/Footer"
+import Footer from "../../../old-react/components/Footer"
 
 export default function RootClientLayout({ children }) {
   const pathname = usePathname()
