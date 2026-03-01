@@ -1,10 +1,10 @@
 <script setup>
-import { ref, onMounted } from "vue"
-import { gsap } from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
+import { ref, onMounted } from 'vue'
+import { gsap } from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
 // Update path to your Vue Review card
-import Review from "@/components/cards/Review.vue"
+// import Review from "@/components/cards/Review.vue"
 
 const sectionRef = ref(null)
 const headingRef = ref(null)
@@ -29,13 +29,13 @@ onMounted(() => {
       opacity: 1,
       y: 0,
       duration: 1.5,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: sectionEl,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
       },
-    }
+    },
   )
 
   gsap.fromTo(
@@ -45,13 +45,13 @@ onMounted(() => {
       opacity: 1,
       y: 0,
       duration: 1.2,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: headingEl,
-        start: "top 85%",
-        toggleActions: "play none none reverse",
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
       },
-    }
+    },
   )
 
   gsap.fromTo(
@@ -61,13 +61,13 @@ onMounted(() => {
       opacity: 1,
       x: 0,
       duration: 1.5,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: textEl1,
-        start: "top 90%",
-        toggleActions: "play none none reverse",
+        start: 'top 90%',
+        toggleActions: 'play none none reverse',
       },
-    }
+    },
   )
 
   gsap.fromTo(
@@ -77,34 +77,28 @@ onMounted(() => {
       opacity: 1,
       x: 0,
       duration: 1.5,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: textEl2,
-        start: "top 90%",
-        toggleActions: "play none none reverse",
+        start: 'top 90%',
+        toggleActions: 'play none none reverse',
       },
-    }
+    },
   )
 })
 </script>
 
 <template>
-  <section
-    ref="sectionRef"
-    class="relative bg-white text-sky-950 inter-para-regular"
-  >
+  <section ref="sectionRef" class="relative bg-white text-sky-950 inter-para-regular">
     <div class="mx-auto max-w-6xl text-center">
-      <h2
-        ref="headingRef"
-        class="sm:mb-2 md:mb-8 p-8 font-extrabold text-4xl md:text-5xl"
-      >
+      <h2 ref="headingRef" class="sm:mb-2 md:mb-8 p-8 font-extrabold text-4xl md:text-5xl">
         Professional Websites, Affordable Prices
       </h2>
 
       <h3 class="sm:mb-2 md:mb-8 px-8 font-medium text-xl md:text-2xl">
-        At <span>Infinite Pixel</span>, we specialize in creating custom
-        websites tailored to the unique needs of small businesses. Our
-        experienced designers offer professional services you can trust.
+        At <span>Infinite Pixel</span>, we specialize in creating custom websites tailored to the
+        unique needs of small businesses. Our experienced designers offer professional services you
+        can trust.
       </h3>
 
       <div
@@ -114,25 +108,21 @@ onMounted(() => {
           <Review />
         </div>
 
-        <div
-          class="justify-center items-center grid grid-rows-2 md:col-span-3 pb-5"
-        >
+        <div class="justify-center items-center grid grid-rows-2 md:col-span-3 pb-5">
           <p ref="textRef1">
-            We understand the challenges small businesses face, which is why
-            we're committed to delivering clean, functional websites that are
-            affordable without compromising on quality. Whether you're building
-            your online presence for the first time or improving an existing
-            one,
+            We understand the challenges small businesses face, which is why we're committed to
+            delivering clean, functional websites that are affordable without compromising on
+            quality. Whether you're building your online presence for the first time or improving an
+            existing one,
             <strong> Infinite Pixel</strong> has you covered.
           </p>
 
           <span class="border-yellow-600 border-t-2"></span>
 
           <p ref="textRef2">
-            Our experienced team crafts high-performance websites with a focus
-            on usability and modern design. We collaborate closely with you to
-            create a site that authentically represents your brand and drives
-            your business forward.
+            Our experienced team crafts high-performance websites with a focus on usability and
+            modern design. We collaborate closely with you to create a site that authentically
+            represents your brand and drives your business forward.
           </p>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <script setup>
-import { ref, reactive, computed, onMounted, onBeforeUnmount } from "vue"
-import gsap from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
+import { ref, reactive, computed, onMounted, onBeforeUnmount } from 'vue'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,11 +16,11 @@ const emailEndpoint = import.meta.env.VITE_FORM_EMAIL
 const formRef = ref(null)
 
 const formData = reactive({
-  company: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  message: "",
+  company: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  message: '',
 })
 
 const errors = reactive({})
@@ -34,9 +34,9 @@ const maxMessageLength = 800
 ------------------------ */
 const messageLengthClass = computed(() => {
   const len = formData.message.length
-  if (len >= maxMessageLength) return "text-red-800"
-  if (len >= maxMessageLength - 20) return "text-orange-600"
-  return "text-slate-600 font-semibold"
+  if (len >= maxMessageLength) return 'text-red-800'
+  if (len >= maxMessageLength - 20) return 'text-orange-600'
+  return 'text-slate-600 font-semibold'
 })
 
 /* ------------------------
@@ -45,20 +45,20 @@ const messageLengthClass = computed(() => {
 const validateForm = () => {
   Object.keys(errors).forEach((k) => delete errors[k])
 
-  if (!formData.firstName.trim()) errors.firstName = "First name is required"
-  if (!formData.lastName.trim()) errors.lastName = "Last name is required"
-  if (!formData.message.trim()) errors.message = "Message is required"
+  if (!formData.firstName.trim()) errors.firstName = 'First name is required'
+  if (!formData.lastName.trim()) errors.lastName = 'Last name is required'
+  if (!formData.message.trim()) errors.message = 'Message is required'
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!formData.email.trim()) {
-    errors.email = "Email is required"
+    errors.email = 'Email is required'
   } else if (!emailRegex.test(formData.email.trim())) {
-    errors.email = "Invalid email format"
+    errors.email = 'Invalid email format'
   }
 
-  const spammyPatterns = ["@tempmail", "@10minutemail", "@mailinator"]
+  const spammyPatterns = ['@tempmail', '@10minutemail', '@mailinator']
   if (spammyPatterns.some((p) => formData.email.toLowerCase().includes(p))) {
-    errors.email = "Please use a real email address"
+    errors.email = 'Please use a real email address'
   }
 
   return Object.keys(errors).length === 0
@@ -80,25 +80,25 @@ const handleSubmit = async () => {
     payload.append(key, value)
   })
 
-  payload.append("_template", "table")
-  payload.append("_subject", "New Contact Submission")
-  payload.append("_captcha", "false")
+  payload.append('_template', 'table')
+  payload.append('_subject', 'New Contact Submission')
+  payload.append('_captcha', 'false')
 
   try {
     const response = await fetch(emailEndpoint, {
-      method: "POST",
+      method: 'POST',
       body: payload,
     })
 
     if (response.ok) {
       showThankYou.value = true
-      Object.keys(formData).forEach((k) => (formData[k] = ""))
+      Object.keys(formData).forEach((k) => (formData[k] = ''))
       Object.keys(errors).forEach((k) => delete errors[k])
     } else {
-      alert("There was a problem submitting the form.")
+      alert('There was a problem submitting the form.')
     }
   } catch (err) {
-    console.error("Form submission error:", err)
+    console.error('Form submission error:', err)
   } finally {
     submitting.value = false
   }
@@ -113,9 +113,9 @@ onMounted(() => {
   if (!process.client) return
 
   ctx = gsap.context(() => {
-    const heading = document.querySelector(".heading")
-    const subheading = document.querySelector(".subheading")
-    const button = document.querySelector(".btn-animate")
+    const heading = document.querySelector('.heading')
+    const subheading = document.querySelector('.subheading')
+    const button = document.querySelector('.btn-animate')
 
     if (heading) {
       gsap.fromTo(
@@ -125,12 +125,12 @@ onMounted(() => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power1.in",
+          ease: 'power1.in',
           scrollTrigger: {
             trigger: heading,
-            start: "top 80%",
+            start: 'top 80%',
           },
-        }
+        },
       )
     }
 
@@ -143,12 +143,12 @@ onMounted(() => {
           x: 0,
           duration: 1,
           delay: 0.5,
-          ease: "power2.in",
+          ease: 'power2.in',
           scrollTrigger: {
             trigger: subheading,
-            start: "top 80%",
+            start: 'top 80%',
           },
-        }
+        },
       )
     }
 
@@ -160,12 +160,12 @@ onMounted(() => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power2.in",
+          ease: 'power2.in',
           scrollTrigger: {
             trigger: button,
-            start: "top 80%",
+            start: 'top 80%',
           },
-        }
+        },
       )
 
       const hover = () => {
@@ -177,15 +177,15 @@ onMounted(() => {
             duration: 0.2,
             yoyo: true,
             repeat: 1,
-            ease: "power1.out",
-          }
+            ease: 'power1.out',
+          },
         )
       }
 
-      button.addEventListener("mouseenter", hover)
+      button.addEventListener('mouseenter', hover)
 
       onBeforeUnmount(() => {
-        button.removeEventListener("mouseenter", hover)
+        button.removeEventListener('mouseenter', hover)
       })
     }
   })
@@ -200,15 +200,11 @@ onBeforeUnmount(() => {
   <div class="relative overflow-hidden">
     <!-- HEADER -->
     <div class="flex flex-col items-center gap-4 bg-blue-600">
-      <h2
-        class="p-4 font-bold text-slate-50 text-4xl lg:text-6xl text-center heading"
-      >
+      <h2 class="p-4 font-bold text-slate-50 text-4xl lg:text-6xl text-center heading">
         Have a Question or a Project in Mind?
       </h2>
 
-      <p
-        class="p-5 max-w-screen-md text-slate-100 text-xl text-center subheading"
-      >
+      <p class="p-5 max-w-screen-md text-slate-100 text-xl text-center subheading">
         We'd love to hear from you! Drop us a message and we'll get back to you.
       </p>
     </div>
@@ -265,7 +261,7 @@ onBeforeUnmount(() => {
           :disabled="submitting"
           class="bg-gradient-to-br from-zinc-800 to-zinc-900 py-3 rounded-full w-full font-semibold text-white text-lg btn-animate"
         >
-          {{ submitting ? "Submitting..." : "Submit" }}
+          {{ submitting ? 'Submitting...' : 'Submit' }}
         </button>
       </form>
     </div>
@@ -278,20 +274,10 @@ onBeforeUnmount(() => {
       <div class="bg-white shadow-lg p-8 rounded-lg text-center">
         <h2 class="mb-4 font-bold text-green-600 text-2xl">Thank You!</h2>
         <p>Your message has been submitted successfully.</p>
-        <button
-          class="bg-blue-600 mt-6 px-4 py-2 rounded text-white"
-          @click="showThankYou = false"
-        >
+        <button class="bg-blue-600 mt-6 px-4 py-2 rounded text-white" @click="showThankYou = false">
           Close
         </button>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-<input
-  v-model="formData.firstName"
-  class="block mt-1 p-3 border border-gray-300 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full"
-/>
-</style>
