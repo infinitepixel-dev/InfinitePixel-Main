@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vitejs/plugin-vue": "latest",
     "@tailwindcss/vite": "latest",
+    "@vitejs/plugin-vue": "latest",
+    "firebase": "^12.16.0",
     "gsap": "latest",
     "lucide-vue-next": "latest",
     "tailwindcss": "latest",
     "vite": "latest",
     "vue": "latest"
-  },
-  "devDependencies": {}
+  }
 }

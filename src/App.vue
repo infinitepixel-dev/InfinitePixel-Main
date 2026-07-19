@@ -1,4 +1,5 @@
 <script setup>
+import ContactModal from "./components/contact/ContactModal.vue"
 import { nextTick, onBeforeUnmount, onMounted, ref } from "vue"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -14,7 +15,6 @@ import {
   Facebook,
   Gauge,
   Instagram,
-  Layers3,
   Linkedin,
   LockKeyhole,
   Menu,
@@ -30,6 +30,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 const page = ref(null)
 const mobileOpen = ref(false)
+
+const showContactModal = ref(false)
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -269,6 +271,19 @@ onBeforeUnmount(() => {
   ctx?.revert()
 })
 
+/*
+ * Opens the shared project inquiry modal.
+ * Closing the mobile navigation first prevents the menu from remaining open
+ * behind the modal on smaller screens.
+ */
+const openContactModal = () => {
+  mobileOpen.value = false
+  showContactModal.value = true
+}
+
+/*
+ * Closes the mobile navigation after a visitor chooses a navigation link.
+ */
 const closeMenu = () => {
   mobileOpen.value = false
 }
@@ -309,13 +324,14 @@ const closeMenu = () => {
           </a>
         </nav>
 
-        <a
-          href="#contact"
+        <button
+          type="button"
+          @click="openContactModal"
           class="hidden lg:inline-flex items-center gap-2 bg-brand-500/10 hover:bg-brand-500/15 px-5 py-3 border border-brand-400/35 hover:border-brand-400/70 rounded-xl font-semibold text-sm transition"
         >
-          Let’s talk
+          Let’s Talk
           <ArrowUpRight :size="17" />
-        </a>
+        </button>
 
         <button
           type="button"
@@ -402,12 +418,13 @@ const closeMenu = () => {
                 View our work
                 <ArrowRight :size="17" />
               </a>
-              <a
-                href="#contact"
+              <button
+                type="button"
+                @click="openContactModal"
                 class="inline-flex justify-center items-center gap-2 bg-white/[0.03] hover:bg-white/[0.06] px-6 py-3.5 border border-white/15 hover:border-white/30 rounded-xl font-semibold text-sm transition"
               >
                 Schedule a call
-              </a>
+              </button>
             </div>
 
             <div
@@ -930,13 +947,14 @@ const closeMenu = () => {
                 Let’s build something
                 <span class="text-brand-400">remarkable</span> together.
               </h2>
-              <a
-                href="mailto:hello@infinitepixel.dev"
+              <button
+                type="button"
+                @click="openContactModal"
                 class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 mt-8 px-6 py-3.5 rounded-xl font-semibold text-sm transition"
               >
-                Get in touch
+                Start Your Project
                 <ArrowRight :size="17" />
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -996,5 +1014,6 @@ const closeMenu = () => {
         </div>
       </div>
     </footer>
+    <ContactModal v-model="showContactModal" />
   </div>
 </template>
