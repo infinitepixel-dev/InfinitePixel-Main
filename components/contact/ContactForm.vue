@@ -88,7 +88,7 @@ const submitForm = async () => {
   } catch (error) {
     console.error("Unable to submit contact request:", error)
     submitError.value =
-      "We couldn’t send your inquiry. Please try again or email hello@infinitepixel.dev."
+      "We couldn’t send your inquiry. Please try again or email info@infinitepixel.dev."
   } finally {
     submitting.value = false
   }
@@ -112,7 +112,11 @@ const submitForm = async () => {
           :aria-invalid="Boolean(errors.name)"
           :aria-describedby="errors.name ? 'contact-name-error' : undefined"
         />
-        <p v-if="errors.name" id="contact-name-error" class="mt-2 text-red-300 text-xs">
+        <p
+          v-if="errors.name"
+          id="contact-name-error"
+          class="mt-2 text-red-300 text-xs"
+        >
           {{ errors.name }}
         </p>
       </div>
@@ -131,7 +135,11 @@ const submitForm = async () => {
           :aria-invalid="Boolean(errors.email)"
           :aria-describedby="errors.email ? 'contact-email-error' : undefined"
         />
-        <p v-if="errors.email" id="contact-email-error" class="mt-2 text-red-300 text-xs">
+        <p
+          v-if="errors.email"
+          id="contact-email-error"
+          class="mt-2 text-red-300 text-xs"
+        >
           {{ errors.email }}
         </p>
       </div>
@@ -191,7 +199,10 @@ const submitForm = async () => {
       </div>
 
       <div>
-        <label for="contact-timeline" class="font-medium text-slate-200 text-sm">
+        <label
+          for="contact-timeline"
+          class="font-medium text-slate-200 text-sm"
+        >
           Preferred timeline <span class="text-brand-400">*</span>
         </label>
         <select
@@ -227,7 +238,9 @@ const submitForm = async () => {
         <p v-if="errors.message" class="text-red-300 text-xs">
           {{ errors.message }}
         </p>
-        <p class="ml-auto text-slate-600 text-xs">{{ form.message.length }}/2000</p>
+        <p class="ml-auto text-slate-600 text-xs">
+          {{ form.message.length }}/2000
+        </p>
       </div>
     </div>
 

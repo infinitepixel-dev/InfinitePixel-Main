@@ -1,5 +1,9 @@
 const { initializeApp } = require("firebase-admin/app")
-const { getFirestore, FieldValue, Timestamp } = require("firebase-admin/firestore")
+const {
+  getFirestore,
+  FieldValue,
+  Timestamp,
+} = require("firebase-admin/firestore")
 const { defineSecret } = require("firebase-functions/params")
 const { onDocumentCreated } = require("firebase-functions/v2/firestore")
 const { logger } = require("firebase-functions")
@@ -11,7 +15,7 @@ const db = getFirestore()
 const RESEND_API_KEY = defineSecret("RESEND_API_KEY")
 
 const CONTACT_RECIPIENT = "info@infinitepixel.dev"
-const FROM_ADDRESS = "Infinite Pixel Website <website@updates.infinitepixel.dev>"
+const FROM_ADDRESS = "Infinite Pixel Website <info@infinitepixel.dev>"
 const PROCESSING_LEASE_MINUTES = 10
 
 /*
@@ -31,7 +35,10 @@ const escapeHtml = (value = "") =>
  * additional headers into the outgoing message.
  */
 const sanitizeHeader = (value = "") =>
-  String(value).replace(/[\r\n]+/g, " ").trim().slice(0, 250)
+  String(value)
+    .replace(/[\r\n]+/g, " ")
+    .trim()
+    .slice(0, 250)
 
 /*
  * Firestore timestamps, JavaScript dates, and missing values are normalized
@@ -102,7 +109,8 @@ const claimNotification = async (documentRef, eventId) => {
 /*
  * Creates a clear plain-text version for mail clients that do not render HTML.
  */
-const buildTextEmail = (lead, leadId) => `
+const buildTextEmail = (lead, leadId) =>
+  `
 New project inquiry from the Infinite Pixel website
 
 Name: ${lead.name || "Not provided"}
@@ -205,10 +213,13 @@ exports.emailContactRequest = onDocumentCreated(
     const claimed = await claimNotification(snapshot.ref, eventId)
 
     if (!claimed) {
-      logger.info("Contact notification was already sent or is being processed.", {
-        leadId,
-        eventId,
-      })
+      logger.info(
+        "Contact notification was already sent or is being processed.",
+        {
+          leadId,
+          eventId,
+        },
+      )
       return
     }
 
