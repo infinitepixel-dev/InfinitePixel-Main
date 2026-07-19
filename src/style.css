@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  --color-ink-950: #05080d;
+  --color-ink-900: #090e16;
+  --color-ink-850: #0d131d;
+  --color-ink-800: #111a26;
+  --color-brand-400: #4ca8ff;
+  --color-brand-500: #2388f4;
+  --color-brand-600: #0f6ed6;
+  --color-mint-400: #45d7ba;
+  --color-amber-400: #ffbd59;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: var(--font-sans);
+  background: #05080d;
+  color: #f7f9fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 82% 6%, rgba(35, 136, 244, 0.15), transparent 27rem),
+    radial-gradient(circle at 18% 42%, rgba(69, 215, 186, 0.07), transparent 24rem),
+    #05080d;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(76, 168, 255, 0.28);
+  color: white;
+}
+
+.container-shell {
+  width: min(1180px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.section-pad {
+  padding-block: clamp(4.5rem, 8vw, 7.5rem);
+}
+
+.panel-border {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

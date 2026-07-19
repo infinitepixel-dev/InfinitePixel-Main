@@ -1,26 +1,5 @@
-# PowerShell Commands for Node.js Process Management and Build
+# Vue 3 + TypeScript + Vite
 
-> This document provides a markdown format for running the following PowerShell commands: `Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force; Remove-Item .next -Recurse -Force -ErrorAction SilentlyContinue; pnpm run build`.
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Commands
-
-```powershell
-# Stop all Node.js processes
-Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force
-# Remove the .next directory recursively and forcefully
-Remove-Item .next -Recurse -Force -ErrorAction SilentlyContinue
-# Run the build command using pnpm
-pnpm run build
-```
-
-## Usage
-
-1. Open PowerShell.
-2. Copy and paste the commands above into the PowerShell window.
-3. Press Enter to execute the commands.
-
-## Description
-
-- The first command stops all running Node.js processes to ensure that no instances are interfering with the build.
-- The second command removes the `.next` directory, which is typically used by Next.js for build artifacts, ensuring a clean state for the next build.
-- The third command runs the build process using `pnpm`, which is a fast, disk space-efficient package manager.
+Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
