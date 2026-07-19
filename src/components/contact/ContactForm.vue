@@ -74,19 +74,30 @@ const validate = () => {
 const submitForm = async () => {
   if (submitting.value || !validate()) return
 
-  /* Honeypot: bots often fill hidden fields. */
+  /*
+   * Honeypot: silently accept bot submissions without writing them.
+   */
   if (form.website) {
     emit("submitted")
     return
   }
 
   submitting.value = true
+  submitError.value = ""
 
   try {
-    await submitContactRequest(form)
+    const result = await submitContactRequest(form)
+
+    if (!result?.success) {
+      throw result?.error || new Error("Contact request was not created.")
+    }
+
+    console.log("Contact request submitted successfully:", result.id)
+
     emit("submitted")
   } catch (error) {
     console.error("Unable to submit contact request:", error)
+
     submitError.value =
       "We couldn’t send your inquiry. Please try again or email info@infinitepixel.dev."
   } finally {
@@ -112,7 +123,11 @@ const submitForm = async () => {
           :aria-invalid="Boolean(errors.name)"
           :aria-describedby="errors.name ? 'contact-name-error' : undefined"
         />
-        <p v-if="errors.name" id="contact-name-error" class="mt-2 text-red-300 text-xs">
+        <p
+          v-if="errors.name"
+          id="contact-name-error"
+          class="mt-2 text-red-300 text-xs"
+        >
           {{ errors.name }}
         </p>
       </div>
@@ -131,7 +146,11 @@ const submitForm = async () => {
           :aria-invalid="Boolean(errors.email)"
           :aria-describedby="errors.email ? 'contact-email-error' : undefined"
         />
-        <p v-if="errors.email" id="contact-email-error" class="mt-2 text-red-300 text-xs">
+        <p
+          v-if="errors.email"
+          id="contact-email-error"
+          class="mt-2 text-red-300 text-xs"
+        >
           {{ errors.email }}
         </p>
       </div>
@@ -191,7 +210,10 @@ const submitForm = async () => {
       </div>
 
       <div>
-        <label for="contact-timeline" class="font-medium text-slate-200 text-sm">
+        <label
+          for="contact-timeline"
+          class="font-medium text-slate-200 text-sm"
+        >
           Preferred timeline <span class="text-brand-400">*</span>
         </label>
         <select
@@ -227,7 +249,9 @@ const submitForm = async () => {
         <p v-if="errors.message" class="text-red-300 text-xs">
           {{ errors.message }}
         </p>
-        <p class="ml-auto text-slate-600 text-xs">{{ form.message.length }}/2000</p>
+        <p class="ml-auto text-slate-600 text-xs">
+          {{ form.message.length }}/2000
+        </p>
       </div>
     </div>
 
