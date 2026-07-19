@@ -350,14 +350,20 @@ const closeMenu = () => {
     <main>
       <section
         id="home"
-        class="relative pt-32 lg:pt-36 min-h-screen overflow-hidden noise"
+        class="relative pt-32 lg:pt-36 min-h-screen overflow-hidden"
       >
         <div data-hero-glow class="-z-10 absolute inset-0 pointer-events-none">
           <div
-            class="top-10 -right-44 absolute bg-brand-500/10 blur-[120px] rounded-full size-[36rem]"
-          ></div>
-          <div
-            class="top-[38%] left-[38%] absolute bg-gradient-to-r from-transparent via-brand-400/55 to-transparent shadow-[0_0_40px_rgba(35,136,244,.6)] w-[65rem] h-px -rotate-[20deg]"
+            class="absolute inset-0 pointer-events-none"
+            style="
+              background: linear-gradient(
+                to bottom,
+                rgba(2, 6, 23, 0.15),
+                rgba(2, 6, 23, 0.05) 30%,
+                transparent 60%,
+                rgba(2, 6, 23, 0.25)
+              );
+            "
           ></div>
           <div
             class="top-[48%] left-[35%] absolute bg-gradient-to-r from-transparent via-mint-400/25 to-transparent w-[60rem] h-px -rotate-[18deg]"
@@ -907,7 +913,7 @@ const closeMenu = () => {
               </blockquote>
               <div class="flex items-center gap-4 mt-7">
                 <div>
-                  <p class="font-semibold">- Corey Pack</p>
+                  <p class="font-semibold">- Cory Pack</p>
                 </div>
               </div>
             </div>
