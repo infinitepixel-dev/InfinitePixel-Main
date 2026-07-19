@@ -88,23 +88,23 @@ const services = [
 
 const projects = [
   {
-    category: "Home & Living",
-    title: "Northline Interiors",
-    description: "Editorial e-commerce experience",
+    category: "Music Brand",
+    title: "Jawfane",
+    description: "Band Website",
     accent: "from-amber-400/75 via-orange-300/20 to-transparent",
-    label: "Elevate Your Everyday",
+    label: "Post Hardcore Music",
   },
   {
     category: "Industrial Co.",
     title: "Ironwell Fabrication",
-    description: "Conversion-focused business platform",
+    description: "Conversion-focused business website",
     accent: "from-emerald-400/65 via-teal-300/15 to-transparent",
     label: "Built for What’s Next",
   },
   {
     category: "Fitness Brand",
     title: "Kinetic House",
-    description: "Bold membership and coaching site",
+    description: "Membership and coaching site",
     accent: "from-sky-400/75 via-cyan-300/15 to-transparent",
     label: "Stronger Every Day",
   },
