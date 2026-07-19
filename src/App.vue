@@ -1002,13 +1002,16 @@ const closeMenu = () => {
           © {{ new Date().getFullYear() }} Infinite Pixel. All rights reserved.
         </p>
         <div class="flex items-center gap-4 text-slate-400">
-          <a href="#" aria-label="Facebook" class="hover:text-white transition"
+          <a
+            href="https://www.facebook.com/infinitepixel.dev"
+            aria-label="Facebook"
+            class="hover:text-white transition"
             ><Facebook :size="18"
           /></a>
-          <a href="#" aria-label="Instagram" class="hover:text-white transition"
-            ><Instagram :size="18"
-          /></a>
-          <a href="#" aria-label="LinkedIn" class="hover:text-white transition"
+          <a
+            href="https://www.linkedin.com/company/infinite-pixel-web-design/"
+            aria-label="LinkedIn"
+            class="hover:text-white transition"
             ><Linkedin :size="18"
           /></a>
         </div>
