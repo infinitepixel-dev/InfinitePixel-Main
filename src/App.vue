@@ -1,7 +1,7 @@
 <script setup>
 import ContactModal from "./components/contact/ContactModal.vue"
 import ironWrksImage from "./assets/portfolio/IronWrks.png"
-import kineticHouseImage from "./assets/portfolio/KineticHouse.png"
+import kineticHouseImage from "./assets/portfolio/kineticHouse.png"
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
