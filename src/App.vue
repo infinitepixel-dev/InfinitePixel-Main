@@ -1,6 +1,8 @@
 <script setup>
 import ContactModal from "./components/contact/ContactModal.vue"
-import { nextTick, onBeforeUnmount, onMounted, ref } from "vue"
+import ironWrksImage from "./assets/portfolio/IronWrks.png"
+import kineticHouseImage from "./assets/portfolio/KineticHouse.png"
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import {
@@ -32,6 +34,12 @@ const page = ref(null)
 const mobileOpen = ref(false)
 
 const showContactModal = ref(false)
+
+/*
+ * Stores the project currently shown in the full-screen image preview.
+ * A null value means the preview is closed.
+ */
+const activeProject = ref(null)
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -100,6 +108,7 @@ const projects = [
     description: "Conversion-focused business website",
     accent: "from-emerald-400/65 via-teal-300/15 to-transparent",
     label: "Built for What’s Next",
+    image: ironWrksImage,
   },
   {
     category: "Fitness Brand",
@@ -107,13 +116,48 @@ const projects = [
     description: "Membership and coaching site",
     accent: "from-sky-400/75 via-cyan-300/15 to-transparent",
     label: "Stronger Every Day",
+    image: kineticHouseImage,
   },
 ]
+
+/*
+ * Opens a full-screen preview for projects that have an image.
+ */
+const openProjectPreview = (project) => {
+  if (!project?.image) return
+
+  activeProject.value = project
+}
+
+/*
+ * Closes the full-screen project preview.
+ */
+const closeProjectPreview = () => {
+  activeProject.value = null
+}
+
+/*
+ * Closes the full-screen preview when the user presses Escape.
+ */
+const handleProjectPreviewKeydown = (event) => {
+  if (event.key === "Escape" && activeProject.value) {
+    closeProjectPreview()
+  }
+}
+
+/*
+ * Prevents the page behind the preview from scrolling while it is open.
+ */
+watch(activeProject, (project) => {
+  document.body.style.overflow = project ? "hidden" : ""
+})
 
 let ctx
 
 onMounted(async () => {
   await nextTick()
+
+  window.addEventListener("keydown", handleProjectPreviewKeydown)
 
   ctx = gsap.context(() => {
     const reduceMotion = window.matchMedia(
@@ -269,6 +313,8 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
   ctx?.revert()
+  window.removeEventListener("keydown", handleProjectPreviewKeydown)
+  document.body.style.overflow = ""
 })
 
 /*
@@ -864,32 +910,94 @@ const closeMenu = () => {
                     ]"
                   ></div>
                   <div
-                    class="relative bg-ink-950 shadow-2xl border border-white/10 rounded-lg h-full overflow-hidden"
+                    class="relative flex flex-col bg-ink-950 shadow-2xl border border-white/10 rounded-lg h-full overflow-hidden"
                   >
+                    <!-- Compact browser chrome keeps every project preview consistent. -->
                     <div
-                      class="flex items-center gap-1.5 px-3 border-white/[0.06] border-b h-7"
+                      class="flex items-center gap-1.5 px-3 border-white/[0.06] border-b h-7 shrink-0"
                     >
                       <span class="bg-white/20 rounded-full size-1.5"></span>
                       <span class="bg-white/20 rounded-full size-1.5"></span>
                       <span class="bg-white/20 rounded-full size-1.5"></span>
+
+                      <span
+                        class="ml-2 text-[0.45rem] text-slate-600 truncate uppercase tracking-[0.14em]"
+                      >
+                        {{ project.title }}
+                      </span>
                     </div>
-                    <div class="flex items-end p-4 h-[calc(100%-1.75rem)]">
-                      <div>
-                        <p
-                          class="text-[0.55rem] text-slate-400 uppercase tracking-[0.18em]"
-                        >
-                          {{ project.category }}
-                        </p>
-                        <p
-                          class="mt-2 max-w-[9rem] font-semibold text-xl uppercase leading-[0.95] tracking-[-0.05em]"
-                        >
-                          {{ project.label }}
-                        </p>
-                        <span
-                          class="inline-flex mt-4 px-2.5 py-1 border border-white/15 rounded text-[0.5rem]"
-                          >Explore</span
-                        >
-                      </div>
+
+                    <!--
+                      min-h-0 allows this preview to consume only the remaining
+                      browser height instead of overflowing beneath the toolbar.
+                    -->
+                    <div
+                      class="relative flex-1 bg-[#080b10] min-h-0 overflow-hidden"
+                    >
+                      <!--
+                        Real project screenshots fill the browser viewport.
+                        object-cover removes empty letterboxing while object-top
+                        preserves the navigation and hero area of the mockup.
+                      -->
+                      <button
+                        v-if="project.image"
+                        type="button"
+                        class="block z-10 absolute inset-0 w-full h-full cursor-zoom-in"
+                        :aria-label="`Open full-screen preview of ${project.title}`"
+                        @click="openProjectPreview(project)"
+                      >
+                        <img
+                          :src="project.image"
+                          :alt="`${project.title} website preview`"
+                          class="w-full h-full object-cover object-top group-hover:scale-[1.035] transition-transform duration-700 ease-out"
+                          loading="lazy"
+                        />
+                      </button>
+
+                      <!--
+                        A restrained gradient keeps the preview integrated with
+                        the surrounding dark card without hiding the screenshot.
+                      -->
+                      <div
+                        v-if="project.image"
+                        class="z-20 absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/5 pointer-events-none"
+                      ></div>
+
+                      <!-- Projects without screenshots retain the original designed placeholder. -->
+                      <template v-else>
+                        <div
+                          :class="[
+                            'absolute inset-0 bg-gradient-to-br opacity-40 transition duration-500 group-hover:opacity-65',
+                            project.accent,
+                          ]"
+                        ></div>
+
+                        <div
+                          class="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent"
+                        ></div>
+
+                        <div class="relative flex items-end p-4 h-full">
+                          <div>
+                            <p
+                              class="text-[0.55rem] text-slate-400 uppercase tracking-[0.18em]"
+                            >
+                              {{ project.category }}
+                            </p>
+
+                            <p
+                              class="mt-2 max-w-[9rem] font-semibold text-xl uppercase leading-[0.95] tracking-[-0.05em]"
+                            >
+                              {{ project.label }}
+                            </p>
+
+                            <span
+                              class="inline-flex mt-4 px-2.5 py-1 border border-white/15 rounded text-[0.5rem]"
+                            >
+                              Explore
+                            </span>
+                          </div>
+                        </div>
+                      </template>
                     </div>
                   </div>
                 </div>
@@ -901,10 +1009,24 @@ const closeMenu = () => {
                         {{ project.description }}
                       </p>
                     </div>
-                    <ExternalLink
-                      :size="17"
-                      class="text-slate-500 group-hover:text-brand-400 transition"
-                    />
+                    <button
+                      type="button"
+                      class="place-items-center grid rounded-lg size-9 transition"
+                      :class="
+                        project.image
+                          ? 'text-slate-400 hover:bg-white/[0.06] hover:text-brand-400 cursor-pointer'
+                          : 'text-slate-700 cursor-default'
+                      "
+                      :aria-label="
+                        project.image
+                          ? `Open full-screen preview of ${project.title}`
+                          : `${project.title} preview unavailable`
+                      "
+                      :disabled="!project.image"
+                      @click="openProjectPreview(project)"
+                    >
+                      <ExternalLink :size="17" />
+                    </button>
                   </div>
                 </div>
               </article>
@@ -1017,6 +1139,68 @@ const closeMenu = () => {
         </div>
       </div>
     </footer>
+    <!--
+      Full-screen project image preview.
+      Teleport moves the overlay directly under body so the page wrapper's
+      overflow and stacking context cannot hide it.
+    -->
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div
+          v-if="activeProject"
+          class="z-[9999] fixed inset-0 bg-black/95 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          :aria-label="`${activeProject.title} full-screen preview`"
+          @click.self="closeProjectPreview"
+        >
+          <!-- Sticky preview header with project information and close control. -->
+          <div
+            class="top-0 z-20 absolute inset-x-0 flex justify-between items-center gap-4 bg-black/70 backdrop-blur-md px-4 sm:px-6 border-white/10 border-b h-16"
+          >
+            <div class="min-w-0">
+              <p class="font-semibold text-white truncate">
+                {{ activeProject.title }}
+              </p>
+              <p class="text-slate-400 text-xs truncate">
+                {{ activeProject.description }}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="place-items-center grid bg-white/10 hover:bg-white/20 border border-white/15 rounded-full size-10 text-white transition"
+              aria-label="Close full-screen preview"
+              @click="closeProjectPreview"
+            >
+              <X :size="20" />
+            </button>
+          </div>
+
+          <!--
+            Tall website screenshots remain at their natural aspect ratio and
+            can be scrolled vertically inside the full-screen overlay.
+          -->
+          <div class="absolute inset-0 pt-16 overflow-y-auto">
+            <div class="flex justify-center items-start p-3 sm:p-6 min-h-full">
+              <img
+                :src="activeProject.image"
+                :alt="`${activeProject.title} full website mockup`"
+                class="block shadow-2xl border border-white/10 rounded-lg w-auto max-w-full h-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
+
     <ContactModal v-model="showContactModal" />
   </div>
 </template>
