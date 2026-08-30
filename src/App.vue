@@ -69,7 +69,7 @@ const services = [
     icon: PenTool,
   },
   {
-    title: "Scalable & Future-Ready",
+    title: "Built to Grow",
     description:
       "Flexible architecture that grows with your content, team, and business.",
     icon: BarChart3,
@@ -77,7 +77,7 @@ const services = [
   {
     title: "Secure & Reliable",
     description:
-      "Modern standards, clean dependencies, and thoughtful implementation.",
+      "Built with modern tools and kept clean, secure, and dependable.",
     icon: LockKeyhole,
   },
   {
@@ -756,8 +756,8 @@ const closeMenu = () => {
               More than just a <span class="text-mint-400">website</span>
             </h2>
             <p class="mx-auto mt-5 max-w-xl text-slate-400 leading-7">
-              Design, clean code, and strategy come together to create a site
-              that looks sharp and performs with purpose.
+              Great design and clean code come together to make your website
+              fast, easy to use, and reliable as your business grows..
             </p>
           </div>
 
@@ -881,8 +881,8 @@ const closeMenu = () => {
                 Websites that make an <span class="text-brand-400">impact</span>
               </h2>
               <p class="mt-5 max-w-md text-slate-400 leading-7">
-                A few example directions showing how the same system can adapt
-                to very different brands.
+                A look at a few of the websites we’ve designed and built for our
+                clients.
               </p>
               <a
                 href="#contact"
@@ -1061,13 +1061,14 @@ const closeMenu = () => {
               <p
                 class="font-semibold text-mint-400 text-xs uppercase tracking-[0.2em]"
               >
-                Ready to elevate your online presence?
+                Have a project in mind?
               </p>
               <h2
                 class="mt-4 font-semibold text-4xl sm:text-5xl text-balance tracking-[-0.045em]"
               >
                 Let’s build something
-                <span class="text-brand-400">remarkable</span> together.
+                <span class="text-brand-400">that works</span> for your
+                business.
               </h2>
               <button
                 type="button"
