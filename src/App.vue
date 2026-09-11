@@ -87,6 +87,12 @@ const services = [
     icon: MonitorSmartphone,
   },
   {
+    title: "Mobile App Development",
+    description:
+      "Custom mobile applications built for intuitive experiences, performance, and long-term growth.",
+    icon: MonitorSmartphone,
+  },
+  {
     title: "Clean & Modern Code",
     description:
       "Maintainable Vue components, semantic markup, and purposeful animations.",
@@ -440,7 +446,7 @@ const closeMenu = () => {
               data-hero-reveal
               class="font-semibold xl:text-[5.25rem] text-5xl sm:text-6xl text-balance leading-[0.98] tracking-[-0.055em]"
             >
-              Custom websites built for
+              Websites & mobile apps built for
               <span
                 class="bg-clip-text bg-gradient-to-r from-brand-400 via-sky-300 to-mint-400 text-transparent"
                 >growth.</span
@@ -451,9 +457,9 @@ const closeMenu = () => {
               data-hero-reveal
               class="mt-7 max-w-xl text-slate-300 text-base sm:text-lg leading-7"
             >
-              We design and build fast, strategic websites that sharpen your
-              brand, simplify your message, and turn more visitors into
-              customers.
+              We design and build fast, strategic websites and mobile
+              applications that sharpen your brand, simplify your message, and
+              create better digital experiences for your customers.
             </p>
 
             <div data-hero-reveal class="flex sm:flex-row flex-col gap-3 mt-9">
@@ -756,8 +762,9 @@ const closeMenu = () => {
               More than just a <span class="text-mint-400">website</span>
             </h2>
             <p class="mx-auto mt-5 max-w-xl text-slate-400 leading-7">
-              Great design and clean code come together to make your website
-              fast, easy to use, and reliable as your business grows..
+              Great design and clean code come together to create websites and
+              mobile applications that are fast, intuitive, reliable, and built
+              to grow with your business.
             </p>
           </div>
 
@@ -857,8 +864,8 @@ const closeMenu = () => {
                   [
                     "We define the audience, message, goals, and required functionality.",
                     "We shape the visual direction and make every screen feel intentional.",
-                    "We build responsive Vue components with clean, maintainable code.",
-                    "We test, polish, optimize, and prepare the site for launch.",
+                    "We build responsive websites and mobile applications with clean, maintainable code.",
+                    "We test, polish, optimize, and prepare your product for launch.",
                   ][index]
                 }}
               </p>
@@ -878,19 +885,20 @@ const closeMenu = () => {
               <h2
                 class="mt-4 font-semibold text-4xl sm:text-5xl tracking-[-0.045em]"
               >
-                Websites that make an <span class="text-brand-400">impact</span>
+                Digital experiences that make an
+                <span class="text-brand-400">impact</span>
               </h2>
               <p class="mt-5 max-w-md text-slate-400 leading-7">
-                A look at a few of the websites we’ve designed and built for our
-                clients.
+                A look at a few of the websites and digital experiences we’ve
+                designed and built for our clients.
               </p>
-              <a
+              <!-- <a
                 href="#contact"
                 class="inline-flex items-center gap-2 mt-8 px-5 py-3 border border-white/15 hover:border-white/30 rounded-xl font-semibold text-sm"
               >
                 View all projects
                 <ArrowRight :size="17" />
-              </a>
+              </a> -->
             </div>
 
             <div class="gap-5 grid md:grid-cols-3">
